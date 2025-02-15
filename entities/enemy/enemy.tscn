@@ -1,13 +1,18 @@
-[gd_scene load_steps=7 format=3 uid="uid://cx5mk2aylf5te"]
+[gd_scene load_steps=12 format=3 uid="uid://cx5mk2aylf5te"]
 
 [ext_resource type="Texture2D" uid="uid://pnsyneno8c5t" path="res://assets/enemies/attack_shoot_00010.png" id="1_3fvr7"]
 [ext_resource type="Script" uid="uid://dyq1wlk6sb0q4" path="res://entities/enemy/enemy.gd" id="1_dt443"]
+[ext_resource type="Resource" uid="uid://bbyony6hw2axm" path="res://entities/enemy/resources/Tiki1.tres" id="2_4wwj3"]
 [ext_resource type="Texture2D" uid="uid://dcdpetapy551o" path="res://assets/enemies/attack_shoot_00011.png" id="2_dt443"]
 [ext_resource type="Texture2D" uid="uid://dvsnf71q3v7pw" path="res://assets/enemies/attack_shoot_00012.png" id="3_4wwj3"]
+[ext_resource type="Script" uid="uid://xi8j357bo6xr" path="res://addons/godot_state_charts/state_chart.gd" id="6_721x4"]
+[ext_resource type="Script" uid="uid://erpnkwrvfgbf" path="res://addons/godot_state_charts/compound_state.gd" id="7_eaj7m"]
+[ext_resource type="Script" uid="uid://c54wba7xahabr" path="res://addons/godot_state_charts/atomic_state.gd" id="8_a8fs5"]
+[ext_resource type="Script" uid="uid://2iiyj3enpprf" path="res://addons/godot_state_charts/transition.gd" id="9_eaj7m"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tir2s"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_d50e0"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_d2ok7"]
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -20,12 +25,24 @@ animations = [{
 "texture": ExtResource("3_4wwj3")
 }],
 "loop": true,
-"name": &"default",
+"name": &"attack",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_3fvr7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_dt443")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
 }]
 
 [node name="Enemy" type="CharacterBody3D" groups=["enemies"]]
 script = ExtResource("1_dt443")
+resource = ExtResource("2_4wwj3")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -33,10 +50,73 @@ shape = SubResource("CapsuleShape3D_tir2s")
 debug_color = Color(0.956354, 4.81307e-07, 0.538377, 0.42)
 
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.62652, 0)
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.928495, 0)
 billboard = 2
 texture_filter = 2
-sprite_frames = SubResource("SpriteFrames_d50e0")
-frame_progress = 0.167326
+sprite_frames = SubResource("SpriteFrames_d2ok7")
+frame_progress = 0.801578
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+
+[node name="SightRayCast" type="RayCast3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, -1, -8.74228e-08, 0, 8.74228e-08, -1, 0, 1.05982, 0)
+enabled = false
+target_position = Vector3(0, 0, 1)
+debug_shape_custom_color = Color(0, 0.59079, 0.744833, 1)
+
+[node name="AttackRayCast" type="RayCast3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, -1, -8.74228e-08, 0, 8.74228e-08, -1, 0, 0.5, -0.5)
+enabled = false
+target_position = Vector3(0, 0, 1)
+debug_shape_custom_color = Color(1, 0, 0, 1)
+
+[node name="StateChart" type="Node" parent="."]
+script = ExtResource("6_721x4")
+metadata/_custom_type_script = ExtResource("6_721x4")
+
+[node name="RootState" type="Node" parent="StateChart"]
+script = ExtResource("7_eaj7m")
+initial_state = NodePath("IdleState")
+
+[node name="IdleState" type="Node" parent="StateChart/RootState"]
+unique_name_in_owner = true
+script = ExtResource("8_a8fs5")
+
+[node name="Chase" type="Node" parent="StateChart/RootState/IdleState"]
+script = ExtResource("9_eaj7m")
+to = NodePath("../../ChaseState")
+event = &"chase"
+delay_in_seconds = "0.0"
+
+[node name="ChaseState" type="Node" parent="StateChart/RootState"]
+unique_name_in_owner = true
+script = ExtResource("8_a8fs5")
+
+[node name="Attack" type="Node" parent="StateChart/RootState/ChaseState"]
+script = ExtResource("9_eaj7m")
+to = NodePath("../../AttackState")
+event = &"attack"
+delay_in_seconds = "0.0"
+
+[node name="AttackState" type="Node" parent="StateChart/RootState"]
+unique_name_in_owner = true
+script = ExtResource("8_a8fs5")
+
+[node name="Chase" type="Node" parent="StateChart/RootState/AttackState"]
+script = ExtResource("9_eaj7m")
+to = NodePath("../../ChaseState")
+event = &"chase"
+delay_in_seconds = "0.0"
+
+[node name="DeathState" type="Node" parent="StateChart/RootState"]
+unique_name_in_owner = true
+script = ExtResource("8_a8fs5")
+
+[connection signal="state_entered" from="StateChart/RootState/IdleState" to="." method="_on_idle_state_state_entered"]
+[connection signal="state_physics_processing" from="StateChart/RootState/IdleState" to="." method="_on_idle_state_state_physics_processing"]
+[connection signal="state_entered" from="StateChart/RootState/ChaseState" to="." method="_on_chase_state_state_entered"]
+[connection signal="state_physics_processing" from="StateChart/RootState/ChaseState" to="." method="_on_chase_state_state_physics_processing"]
+[connection signal="state_exited" from="StateChart/RootState/AttackState" to="." method="_on_attack_state_state_exited"]
+[connection signal="state_physics_processing" from="StateChart/RootState/AttackState" to="." method="_on_attack_state_state_physics_processing"]

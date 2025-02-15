@@ -1,0 +1,43 @@
+[gd_resource type="Resource" script_class="EnemyResource" load_steps=6 format=3 uid="uid://bbyony6hw2axm"]
+
+[ext_resource type="Script" uid="uid://ch7dh0une2ae" path="res://entities/enemy/resources/enemy_resource.gd" id="1_jbdhn"]
+[ext_resource type="Texture2D" uid="uid://pnsyneno8c5t" path="res://assets/enemies/attack_shoot_00010.png" id="2_te3ax"]
+[ext_resource type="Texture2D" uid="uid://dcdpetapy551o" path="res://assets/enemies/attack_shoot_00011.png" id="3_blsfy"]
+[ext_resource type="Texture2D" uid="uid://dvsnf71q3v7pw" path="res://assets/enemies/attack_shoot_00012.png" id="4_78ray"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_d2ok7"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_te3ax")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_blsfy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_78ray")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_te3ax")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_blsfy")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
+
+[resource]
+script = ExtResource("1_jbdhn")
+attack_range = 5.0
+speed = 100.0
+sprite_frames = SubResource("SpriteFrames_d2ok7")
+default_animation = "default"
+attack_animation = "attack"
+metadata/_custom_type_script = ExtResource("1_jbdhn")
