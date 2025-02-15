@@ -5,6 +5,8 @@ class_name Player
 @export var joy_look_sens := 0.05
 @export var mouse_look_sens := 0.005
 
+var health := 100.0
+
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
@@ -32,3 +34,11 @@ func _physics_process(delta: float) -> void:
 		rotate_y(look_vector * joy_look_sens)
 
 	move_and_slide()
+
+
+func take_damage(damage: int) -> void:
+	printt("took damage", damage)
+
+	health -= damage
+	if health <= 0:
+		print("u r ded")

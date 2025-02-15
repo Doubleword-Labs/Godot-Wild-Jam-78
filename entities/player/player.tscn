@@ -4,8 +4,8 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_symyc"]
 
-[node name="Player" type="CharacterBody3D" groups=["player"]]
-collision_mask = 3
+[node name="Player" type="CharacterBody3D" groups=["damageable", "player"]]
+collision_mask = 7
 script = ExtResource("1_symyc")
 
 [node name="Camera3D" type="Camera3D" parent="."]

@@ -28,6 +28,7 @@ enabled=PackedStringArray("res://addons/cyclops_level_builder/plugin.cfg", "res:
 
 player=""
 enemies=""
+damageable=""
 
 [input]
 
@@ -70,6 +71,7 @@ look_right={
 
 3d_physics/layer_1="Actors"
 3d_physics/layer_2="Environment"
+3d_physics/layer_3="Projectiles"
 
 [physics]
 

@@ -2,6 +2,7 @@
 extends CharacterBody3D
 
 const EnemyStateEvent = {CHASE = "chase", ATTACK = "attack", DEATH = "death"}
+const PROJECTILE = preload("res://entities/projectile/projectile.tscn")
 
 @export var resource: EnemyResource:
 	set(value):
@@ -15,12 +16,17 @@ var sight_range: float
 @onready var nav_agent: NavigationAgent3D = $NavigationAgent3D
 @onready var sight_ray_cast: RayCast3D = %SightRayCast
 @onready var attack_ray_cast: RayCast3D = %AttackRayCast
+@onready var projectile_spawn_point: Node3D = $ProjectileSpawnPoint
+@onready var attack_timer: Timer = $AttackTimer
 
 @onready var state_chart: StateChart = $StateChart
 @onready var idle_state: AtomicState = %IdleState
 @onready var chase_state: AtomicState = %ChaseState
 @onready var attack_state: AtomicState = %AttackState
 @onready var death_state: AtomicState = %DeathState
+
+var can_attack := false
+var health: float
 
 
 func _ready() -> void:
@@ -33,6 +39,7 @@ func _update_from_resource() -> void:
 
 	speed = resource.speed
 	attack_range = resource.attack_range
+	health = resource.health
 	sprite.sprite_frames = resource.sprite_frames
 	sprite.play(resource.default_animation)
 	nav_agent.path_desired_distance = resource.attack_range
@@ -80,7 +87,7 @@ func _on_chase_state_state_physics_processing(delta: float) -> void:
 	if global_position != next_position:
 		look_at(next_position)
 
-	if attack_ray_cast.is_colliding():
+	if attack_ray_cast.is_colliding() and can_attack:
 		var collider := attack_ray_cast.get_collider()
 
 		if collider is Player:
@@ -88,8 +95,36 @@ func _on_chase_state_state_physics_processing(delta: float) -> void:
 
 
 func _on_attack_state_state_physics_processing(delta: float) -> void:
-	pass  # Replace with function body.
+	var projectile := PROJECTILE.instantiate()
+
+	projectile.velocity = (
+		(position.direction_to(nav_agent.target_position).normalized() * delta * 10.0)
+		* (Vector3.BACK + Vector3.RIGHT)
+	)
+
+	get_tree().root.add_child(projectile)
+	projectile.global_position = projectile_spawn_point.global_position
+
+	state_chart.send_event(EnemyStateEvent.CHASE)
 
 
 func _on_attack_state_state_exited() -> void:
 	pass  # Replace with function body.
+
+
+func _on_attack_timer_timeout() -> void:
+	can_attack = true
+
+
+func _on_attack_state_state_entered() -> void:
+	can_attack = false
+	attack_timer.start()
+
+
+func take_damage(damage: int) -> void:
+	printt("took damage", damage)
+
+	health -= damage
+	if health <= 0:
+		# TODO: death state
+		queue_free()

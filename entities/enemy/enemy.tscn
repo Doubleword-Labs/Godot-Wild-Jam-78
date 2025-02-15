@@ -40,7 +40,8 @@ animations = [{
 "speed": 2.0
 }]
 
-[node name="Enemy" type="CharacterBody3D" groups=["enemies"]]
+[node name="Enemy" type="CharacterBody3D" groups=["damageable", "enemies"]]
+collision_mask = 7
 script = ExtResource("1_dt443")
 resource = ExtResource("2_4wwj3")
 
@@ -54,7 +55,7 @@ transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.928495, 0)
 billboard = 2
 texture_filter = 2
 sprite_frames = SubResource("SpriteFrames_d2ok7")
-frame_progress = 0.801578
+frame_progress = 0.719871
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 
@@ -114,9 +115,19 @@ delay_in_seconds = "0.0"
 unique_name_in_owner = true
 script = ExtResource("8_a8fs5")
 
+[node name="ProjectileSpawnPoint" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -0.75)
+
+[node name="AttackTimer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+autostart = true
+
 [connection signal="state_entered" from="StateChart/RootState/IdleState" to="." method="_on_idle_state_state_entered"]
 [connection signal="state_physics_processing" from="StateChart/RootState/IdleState" to="." method="_on_idle_state_state_physics_processing"]
 [connection signal="state_entered" from="StateChart/RootState/ChaseState" to="." method="_on_chase_state_state_entered"]
 [connection signal="state_physics_processing" from="StateChart/RootState/ChaseState" to="." method="_on_chase_state_state_physics_processing"]
+[connection signal="state_entered" from="StateChart/RootState/AttackState" to="." method="_on_attack_state_state_entered"]
 [connection signal="state_exited" from="StateChart/RootState/AttackState" to="." method="_on_attack_state_state_exited"]
 [connection signal="state_physics_processing" from="StateChart/RootState/AttackState" to="." method="_on_attack_state_state_physics_processing"]
+[connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
