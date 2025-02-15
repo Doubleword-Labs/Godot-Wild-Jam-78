@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Godot Wild Jam 78"
-run/main_scene="uid://qet5f3jrkl5j"
+run/main_scene="uid://dxc31s4ijcc2j"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -22,7 +22,7 @@ Game="*res://globals/game.gd"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/cyclops_level_builder/plugin.cfg", "res://addons/godot_state_charts/plugin.cfg", "res://addons/script-ide/plugin.cfg")
+enabled=PackedStringArray("res://addons/cyclops_level_builder/plugin.cfg", "res://addons/func_godot/plugin.cfg", "res://addons/godot_state_charts/plugin.cfg", "res://addons/script-ide/plugin.cfg")
 
 [global_group]
 
