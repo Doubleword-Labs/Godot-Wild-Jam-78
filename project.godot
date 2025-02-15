@@ -18,10 +18,16 @@ config/icon="res://icon.svg"
 [autoload]
 
 CyclopsAutoload="*res://addons/cyclops_level_builder/cyclops_global_scene.tscn"
+Game="*res://globals/game.gd"
 
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/cyclops_level_builder/plugin.cfg", "res://addons/godot_state_charts/plugin.cfg", "res://addons/script-ide/plugin.cfg")
+
+[global_group]
+
+player=""
+enemies=""
 
 [input]
 

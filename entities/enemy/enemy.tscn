@@ -1,0 +1,42 @@
+[gd_scene load_steps=7 format=3 uid="uid://cx5mk2aylf5te"]
+
+[ext_resource type="Texture2D" uid="uid://pnsyneno8c5t" path="res://assets/enemies/attack_shoot_00010.png" id="1_3fvr7"]
+[ext_resource type="Script" uid="uid://dyq1wlk6sb0q4" path="res://entities/enemy/enemy.gd" id="1_dt443"]
+[ext_resource type="Texture2D" uid="uid://dcdpetapy551o" path="res://assets/enemies/attack_shoot_00011.png" id="2_dt443"]
+[ext_resource type="Texture2D" uid="uid://dvsnf71q3v7pw" path="res://assets/enemies/attack_shoot_00012.png" id="3_4wwj3"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tir2s"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_d50e0"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_3fvr7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_dt443")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_4wwj3")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Enemy" type="CharacterBody3D" groups=["enemies"]]
+script = ExtResource("1_dt443")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_tir2s")
+debug_color = Color(0.956354, 4.81307e-07, 0.538377, 0.42)
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.62652, 0)
+billboard = 2
+texture_filter = 2
+sprite_frames = SubResource("SpriteFrames_d50e0")
+frame_progress = 0.167326
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
