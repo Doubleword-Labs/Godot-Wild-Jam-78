@@ -75,6 +75,20 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("16_6dupl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_uy20m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_58ouy")
+}],
+"loop": false,
+"name": &"death",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": ExtResource("2_rbc2y")
 }, {
 "duration": 1.0,
@@ -126,7 +140,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"pain",
-"speed": 8.0
+"speed": 12.0
 }]
 
 [resource]
@@ -137,5 +151,7 @@ speed = 100.0
 sprite_frames = SubResource("SpriteFrames_d2ok7")
 default_animation = "default"
 attack_animation = "attack"
+pain_animation = "pain"
+death_animation = "death"
 health = 30.0
 metadata/_custom_type_script = ExtResource("1_jbdhn")

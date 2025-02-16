@@ -82,6 +82,20 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": ExtResource("17_203c4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_s0cus")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_kumod")
+}],
+"loop": false,
+"name": &"death",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": ExtResource("3_vr86x")
 }, {
 "duration": 1.0,
@@ -133,7 +147,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"pain",
-"speed": 8.0
+"speed": 12.0
 }]
 
 [node name="Enemy" type="CharacterBody3D" groups=["damageable", "enemies"]]
@@ -152,11 +166,8 @@ transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.928495, 0)
 billboard = 2
 texture_filter = 2
 sprite_frames = SubResource("SpriteFrames_d2ok7")
-animation = &"pain"
+animation = &"death"
 autoplay = "default"
-frame = 7
-frame_progress = 1.0
-speed_scale = 1.53108
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 path_desired_distance = 5.0
@@ -181,36 +192,67 @@ metadata/_custom_type_script = ExtResource("6_721x4")
 
 [node name="RootState" type="Node" parent="StateChart"]
 script = ExtResource("7_eaj7m")
+initial_state = NodePath("AliveState")
+
+[node name="AliveState" type="Node" parent="StateChart/RootState"]
+script = ExtResource("7_eaj7m")
 initial_state = NodePath("IdleState")
 
-[node name="IdleState" type="Node" parent="StateChart/RootState"]
+[node name="IdleState" type="Node" parent="StateChart/RootState/AliveState"]
 unique_name_in_owner = true
 script = ExtResource("8_a8fs5")
 
-[node name="Chase" type="Node" parent="StateChart/RootState/IdleState"]
+[node name="Awaken" type="Node" parent="StateChart/RootState/AliveState/IdleState"]
 script = ExtResource("9_eaj7m")
-to = NodePath("../../ChaseState")
-event = &"chase"
+to = NodePath("../../ActiveState")
+event = &"awaken"
 delay_in_seconds = "0.0"
 
-[node name="ChaseState" type="Node" parent="StateChart/RootState"]
+[node name="ActiveState" type="Node" parent="StateChart/RootState/AliveState"]
+unique_name_in_owner = true
+script = ExtResource("7_eaj7m")
+initial_state = NodePath("ChaseState")
+
+[node name="ChaseState" type="Node" parent="StateChart/RootState/AliveState/ActiveState"]
 unique_name_in_owner = true
 script = ExtResource("8_a8fs5")
 
-[node name="Attack" type="Node" parent="StateChart/RootState/ChaseState"]
+[node name="Attack" type="Node" parent="StateChart/RootState/AliveState/ActiveState/ChaseState"]
 script = ExtResource("9_eaj7m")
 to = NodePath("../../AttackState")
 event = &"attack"
 delay_in_seconds = "0.0"
 
-[node name="AttackState" type="Node" parent="StateChart/RootState"]
+[node name="AttackState" type="Node" parent="StateChart/RootState/AliveState/ActiveState"]
 unique_name_in_owner = true
 script = ExtResource("8_a8fs5")
 
-[node name="Chase" type="Node" parent="StateChart/RootState/AttackState"]
+[node name="Chase" type="Node" parent="StateChart/RootState/AliveState/ActiveState/AttackState"]
 script = ExtResource("9_eaj7m")
 to = NodePath("../../ChaseState")
 event = &"chase"
+delay_in_seconds = "0.0"
+
+[node name="PainState" type="Node" parent="StateChart/RootState/AliveState"]
+unique_name_in_owner = true
+script = ExtResource("8_a8fs5")
+
+[node name="Active" type="Node" parent="StateChart/RootState/AliveState/PainState"]
+script = ExtResource("9_eaj7m")
+to = NodePath("../../ActiveState/ChaseState")
+event = &"active"
+delay_in_seconds = "0.0"
+
+[node name="Death" type="Node" parent="StateChart/RootState/AliveState"]
+script = ExtResource("9_eaj7m")
+to = NodePath("../../DeathState")
+event = &"death"
+delay_in_seconds = "0.0"
+
+[node name="Pain" type="Node" parent="StateChart/RootState/AliveState"]
+script = ExtResource("9_eaj7m")
+to = NodePath("../PainState")
+event = &"pain"
 delay_in_seconds = "0.0"
 
 [node name="DeathState" type="Node" parent="StateChart/RootState"]
@@ -225,11 +267,14 @@ wait_time = 2.0
 one_shot = true
 autostart = true
 
-[connection signal="state_entered" from="StateChart/RootState/IdleState" to="." method="_on_idle_state_state_entered"]
-[connection signal="state_physics_processing" from="StateChart/RootState/IdleState" to="." method="_on_idle_state_state_physics_processing"]
-[connection signal="state_entered" from="StateChart/RootState/ChaseState" to="." method="_on_chase_state_state_entered"]
-[connection signal="state_physics_processing" from="StateChart/RootState/ChaseState" to="." method="_on_chase_state_state_physics_processing"]
-[connection signal="state_entered" from="StateChart/RootState/AttackState" to="." method="_on_attack_state_state_entered"]
-[connection signal="state_exited" from="StateChart/RootState/AttackState" to="." method="_on_attack_state_state_exited"]
-[connection signal="state_physics_processing" from="StateChart/RootState/AttackState" to="." method="_on_attack_state_state_physics_processing"]
+[connection signal="animation_finished" from="AnimatedSprite3D" to="." method="_on_animated_sprite_3d_animation_finished"]
+[connection signal="state_entered" from="StateChart/RootState/AliveState/IdleState" to="." method="_on_idle_state_state_entered"]
+[connection signal="state_physics_processing" from="StateChart/RootState/AliveState/IdleState" to="." method="_on_idle_state_state_physics_processing"]
+[connection signal="state_entered" from="StateChart/RootState/AliveState/ActiveState/ChaseState" to="." method="_on_chase_state_state_entered"]
+[connection signal="state_physics_processing" from="StateChart/RootState/AliveState/ActiveState/ChaseState" to="." method="_on_chase_state_state_physics_processing"]
+[connection signal="state_entered" from="StateChart/RootState/AliveState/ActiveState/AttackState" to="." method="_on_attack_state_state_entered"]
+[connection signal="state_exited" from="StateChart/RootState/AliveState/ActiveState/AttackState" to="." method="_on_attack_state_state_exited"]
+[connection signal="state_physics_processing" from="StateChart/RootState/AliveState/ActiveState/AttackState" to="." method="_on_attack_state_state_physics_processing"]
+[connection signal="state_entered" from="StateChart/RootState/AliveState/PainState" to="." method="_on_pain_state_state_entered"]
+[connection signal="state_entered" from="StateChart/RootState/DeathState" to="." method="_on_death_state_state_entered"]
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]

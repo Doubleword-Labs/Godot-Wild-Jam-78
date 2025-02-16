@@ -7,4 +7,6 @@ class_name EnemyResource
 @export var sprite_frames: SpriteFrames
 @export var default_animation := "default"
 @export var attack_animation := "attack"
+@export var pain_animation := "pain"
+@export var death_animation := "death"
 @export var health := 10.0

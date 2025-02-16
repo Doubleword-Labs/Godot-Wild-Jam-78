@@ -1,7 +1,14 @@
 @tool
 extends CharacterBody3D
 
-const EnemyStateEvent = {CHASE = "chase", ATTACK = "attack", DEATH = "death"}
+const EnemyStateEvent = {
+	AWAKEN = "awaken",
+	ACTIVE = "active",
+	CHASE = "chase",
+	ATTACK = "attack",
+	PAIN = "pain",
+	DEATH = "death",
+}
 const PROJECTILE = preload("res://entities/projectile/projectile.tscn")
 
 @export var resource: EnemyResource:
@@ -58,6 +65,7 @@ func update_target_position(target_position: Vector3) -> void:
 
 func _on_idle_state_state_entered() -> void:
 	sight_ray_cast.enabled = true
+	sprite.play(resource.default_animation)
 
 
 func _on_idle_state_state_physics_processing(delta: float) -> void:
@@ -71,15 +79,16 @@ func _on_idle_state_state_physics_processing(delta: float) -> void:
 	if sight_ray_cast.is_colliding():
 		var collider := sight_ray_cast.get_collider()
 		if collider is Player:
-			state_chart.send_event(EnemyStateEvent.CHASE)
+			state_chart.send_event(EnemyStateEvent.AWAKEN)
 
 	if received_damage:
-		state_chart.send_event(EnemyStateEvent.CHASE)
+		state_chart.send_event(EnemyStateEvent.AWAKEN)
 
 
 func _on_chase_state_state_entered() -> void:
 	sight_ray_cast.enabled = false
 	attack_ray_cast.enabled = true
+	sprite.play(resource.default_animation)
 
 
 func _on_chase_state_state_physics_processing(delta: float) -> void:
@@ -101,7 +110,7 @@ func _on_chase_state_state_physics_processing(delta: float) -> void:
 			state_chart.send_event(EnemyStateEvent.ATTACK)
 
 
-func _on_attack_state_state_physics_processing(_delta: float) -> void:	
+func _on_attack_state_state_physics_processing(_delta: float) -> void:
 	var projectile = Game.spawn_projectile(self, projectile_spawn_point)
 	projectile.from_player = false
 	state_chart.send_event(EnemyStateEvent.CHASE)
@@ -118,13 +127,29 @@ func _on_attack_timer_timeout() -> void:
 func _on_attack_state_state_entered() -> void:
 	can_attack = false
 	attack_timer.start()
+	sprite.play(resource.attack_animation)
 
 
-func take_damage(damage: int, from_player: bool) -> void:	
+func take_damage(damage: int, from_player: bool) -> void:
 	if from_player:
 		health -= damage
 		if health <= 0:
-			# TODO: death state
-			queue_free()
+			state_chart.send_event(EnemyStateEvent.DEATH)
 		else:
 			received_damage = true
+			state_chart.send_event(EnemyStateEvent.PAIN)
+
+
+func _on_pain_state_state_entered() -> void:
+	sprite.play(resource.pain_animation)
+
+
+func _on_death_state_state_entered() -> void:
+	sprite.play(resource.death_animation)
+	await sprite.animation_finished
+	queue_free()
+
+
+func _on_animated_sprite_3d_animation_finished() -> void:
+	if sprite.animation == resource.pain_animation:
+		state_chart.send_event(EnemyStateEvent.ACTIVE)
