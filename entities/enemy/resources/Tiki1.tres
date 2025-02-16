@@ -145,8 +145,8 @@ animations = [{
 
 [resource]
 script = ExtResource("1_jbdhn")
-attack_range = 5.0
-sight_range = 15.0
+attack_range = 30.0
+sight_range = 100.0
 speed = 100.0
 sprite_frames = SubResource("SpriteFrames_d2ok7")
 default_animation = "default"
