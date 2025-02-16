@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://c6qhy6082m067"]
+[gd_scene load_steps=7 format=3 uid="uid://c6qhy6082m067"]
 
 [ext_resource type="Script" uid="uid://bvdy77cdw7t37" path="res://entities/projectile/projectile.gd" id="1_iqisb"]
+[ext_resource type="Shader" uid="uid://c5khav6wdcs3n" path="res://entities/projectile/projectile.gdshader" id="2_n5n3x"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_ilcb0"]
 radius = 0.25
@@ -13,6 +14,22 @@ material = SubResource("StandardMaterial3D_ilcb0")
 radius = 0.125
 height = 0.25
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_i4fle"]
+render_priority = 0
+shader = ExtResource("2_n5n3x")
+shader_parameter/time_speed = 1.0
+shader_parameter/spin = 0.0
+shader_parameter/flame_brightness = 0.6
+shader_parameter/color_intensity = 0.0
+shader_parameter/horizontal_frequency = 1.0
+shader_parameter/vertical_frequency = 1.0
+shader_parameter/size = -0.3
+shader_parameter/core_size = 1.0
+shader_parameter/color1 = Color(0.286, 0.22, 0.733, 1)
+shader_parameter/color2 = Color(0.98, 0.38, 0.34, 1)
+shader_parameter/color3 = Color(0.98, 0.95, 0.53, 1)
+shader_parameter/color4 = Color(1, 1, 1, 1)
+
 [node name="Projectile" type="StaticBody3D"]
 collision_layer = 4
 collision_mask = 3
@@ -23,6 +40,7 @@ shape = SubResource("SphereShape3D_ilcb0")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("SphereMesh_iqisb")
+surface_material_override/0 = SubResource("ShaderMaterial_i4fle")
 
 [node name="LifeTimer" type="Timer" parent="."]
 wait_time = 10.0
