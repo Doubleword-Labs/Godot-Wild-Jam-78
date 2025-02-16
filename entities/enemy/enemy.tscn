@@ -58,7 +58,7 @@ texture_filter = 2
 sprite_frames = SubResource("SpriteFrames_d2ok7")
 autoplay = "default"
 frame_progress = 0.360483
-speed_scale = 1.47553
+speed_scale = 1.53108
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 path_desired_distance = 5.0
