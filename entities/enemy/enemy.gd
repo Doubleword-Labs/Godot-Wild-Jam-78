@@ -66,8 +66,7 @@ func _on_idle_state_state_physics_processing(delta: float) -> void:
 
 	var player := Game.get_player()
 	if is_instance_valid(player):
-		var direction := global_position.direction_to(player.global_position)
-		sight_ray_cast.look_at(direction, Vector3.UP, true)
+		sight_ray_cast.look_at(player.global_position, Vector3.UP, true)
 
 	if sight_ray_cast.is_colliding():
 		var collider := sight_ray_cast.get_collider()
