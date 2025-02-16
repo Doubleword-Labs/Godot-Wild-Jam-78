@@ -108,12 +108,6 @@ func _on_chase_state_state_physics_processing(delta: float) -> void:
 			state_chart.send_event(EnemyStateEvent.ATTACK)
 
 
-func _on_attack_state_state_physics_processing(_delta: float) -> void:
-	var projectile = Game.spawn_projectile(self, projectile_spawn_point)
-	projectile.from_player = false
-	state_chart.send_event(EnemyStateEvent.CHASE)
-
-
 func _on_attack_state_state_exited() -> void:
 	pass  # Replace with function body.
 
@@ -124,8 +118,16 @@ func _on_attack_timer_timeout() -> void:
 
 func _on_attack_state_state_entered() -> void:
 	can_attack = false
-	attack_timer.start()
+	var attack_timeout := randf_range(resource.attack_timeout * 0.5, resource.attack_timeout * 2.0)
+	attack_timer.start(attack_timeout)
 	sprite.play(resource.attack_animation)
+
+	var projectile = Game.spawn_projectile(self, projectile_spawn_point)
+	projectile.from_player = false
+
+	await sprite.animation_finished
+
+	state_chart.send_event(EnemyStateEvent.CHASE)
 
 
 func take_damage(damage: int, from_player: bool) -> void:

@@ -1,10 +1,9 @@
-[gd_resource type="Resource" script_class="EnemyResource" load_steps=25 format=3 uid="uid://bbyony6hw2axm"]
+[gd_resource type="Resource" script_class="EnemyResource" load_steps=24 format=3 uid="uid://bbyony6hw2axm"]
 
 [ext_resource type="Script" uid="uid://ch7dh0une2ae" path="res://entities/enemy/resources/enemy_resource.gd" id="1_jbdhn"]
 [ext_resource type="Texture2D" uid="uid://b6mlfaiu0qs31" path="res://assets/enemies/tiki_pencil_001/shoot/tiki02_00006.png" id="2_rbc2y"]
 [ext_resource type="Texture2D" uid="uid://b7gibh73v236f" path="res://assets/enemies/tiki_pencil_001/shoot/tiki02_00007.png" id="5_d2ok7"]
 [ext_resource type="Texture2D" uid="uid://ce5hxm7wsfyjy" path="res://assets/enemies/tiki_pencil_001/shoot/tiki02_00008.png" id="6_rsxim"]
-[ext_resource type="Texture2D" uid="uid://bu6dm8ldxdw5s" path="res://assets/enemies/tiki_pencil_001/shoot/tiki02_00010.png" id="6_t2ehp"]
 [ext_resource type="Texture2D" uid="uid://hwrkm55v8csb" path="res://assets/enemies/tiki_pencil_001/shoot/tiki02_00011.png" id="7_r3qs4"]
 [ext_resource type="Texture2D" uid="uid://btyx4ekmn4al8" path="res://assets/enemies/tiki_pencil_001/shoot/tiki02_00009.png" id="7_vckgd"]
 [ext_resource type="Texture2D" uid="uid://bebqsylqc3i4m" path="res://assets/enemies/tiki_pencil_001/shoot/tiki02_00012.png" id="8_yl43t"]
@@ -27,21 +26,6 @@
 [sub_resource type="SpriteFrames" id="SpriteFrames_d2ok7"]
 animations = [{
 "frames": [{
-"duration": 1.0,
-"texture": ExtResource("2_rbc2y")
-}, {
-"duration": 1.0,
-"texture": ExtResource("5_d2ok7")
-}, {
-"duration": 1.0,
-"texture": ExtResource("6_rsxim")
-}, {
-"duration": 1.0,
-"texture": ExtResource("7_vckgd")
-}, {
-"duration": 1.0,
-"texture": ExtResource("6_t2ehp")
-}, {
 "duration": 1.0,
 "texture": ExtResource("7_r3qs4")
 }, {
@@ -69,9 +53,9 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("15_ev7bj")
 }],
-"loop": true,
+"loop": false,
 "name": &"attack",
-"speed": 8.0
+"speed": 12.0
 }, {
 "frames": [{
 "duration": 1.0,

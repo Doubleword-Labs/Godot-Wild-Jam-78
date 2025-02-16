@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://cx5mk2aylf5te"]
+[gd_scene load_steps=30 format=3 uid="uid://cx5mk2aylf5te"]
 
 [ext_resource type="Script" uid="uid://dyq1wlk6sb0q4" path="res://entities/enemy/enemy.gd" id="1_dt443"]
 [ext_resource type="Resource" uid="uid://bbyony6hw2axm" path="res://entities/enemy/resources/Tiki1.tres" id="2_4wwj3"]
@@ -7,7 +7,6 @@
 [ext_resource type="Script" uid="uid://xi8j357bo6xr" path="res://addons/godot_state_charts/state_chart.gd" id="6_721x4"]
 [ext_resource type="Texture2D" uid="uid://ce5hxm7wsfyjy" path="res://assets/enemies/tiki_pencil_001/shoot/tiki02_00008.png" id="7_aqotc"]
 [ext_resource type="Script" uid="uid://erpnkwrvfgbf" path="res://addons/godot_state_charts/compound_state.gd" id="7_eaj7m"]
-[ext_resource type="Texture2D" uid="uid://bu6dm8ldxdw5s" path="res://assets/enemies/tiki_pencil_001/shoot/tiki02_00010.png" id="7_fktuf"]
 [ext_resource type="Script" uid="uid://c54wba7xahabr" path="res://addons/godot_state_charts/atomic_state.gd" id="8_a8fs5"]
 [ext_resource type="Texture2D" uid="uid://btyx4ekmn4al8" path="res://assets/enemies/tiki_pencil_001/shoot/tiki02_00009.png" id="8_ogeq8"]
 [ext_resource type="Texture2D" uid="uid://hwrkm55v8csb" path="res://assets/enemies/tiki_pencil_001/shoot/tiki02_00011.png" id="8_v82o1"]
@@ -35,21 +34,6 @@
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_vr86x")
-}, {
-"duration": 1.0,
-"texture": ExtResource("6_4ohlc")
-}, {
-"duration": 1.0,
-"texture": ExtResource("7_aqotc")
-}, {
-"duration": 1.0,
-"texture": ExtResource("8_ogeq8")
-}, {
-"duration": 1.0,
-"texture": ExtResource("7_fktuf")
-}, {
-"duration": 1.0,
 "texture": ExtResource("8_v82o1")
 }, {
 "duration": 1.0,
@@ -76,9 +60,9 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("16_kumod")
 }],
-"loop": true,
+"loop": false,
 "name": &"attack",
-"speed": 8.0
+"speed": 12.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -165,24 +149,25 @@ transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.928495, 0)
 billboard = 2
 texture_filter = 2
 sprite_frames = SubResource("SpriteFrames_d2ok7")
+animation = &"attack"
 autoplay = "default"
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
-path_desired_distance = 5.0
+path_desired_distance = 30.0
 avoidance_enabled = true
 
 [node name="SightRayCast" type="RayCast3D" parent="."]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, -1, -8.74228e-08, 0, 8.74228e-08, -1, 0, 1.05982, 0)
 enabled = false
-target_position = Vector3(0, 0, 15)
+target_position = Vector3(0, 0, 100)
 debug_shape_custom_color = Color(0, 0.59079, 0.744833, 1)
 
 [node name="AttackRayCast" type="RayCast3D" parent="."]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, -1, -8.74228e-08, 0, 8.74228e-08, -1, 0, 0.5, -0.5)
 enabled = false
-target_position = Vector3(0, 0, 5)
+target_position = Vector3(0, 0, 30)
 debug_shape_custom_color = Color(1, 0, 0, 1)
 
 [node name="StateChart" type="Node" parent="."]
