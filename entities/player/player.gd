@@ -12,7 +12,7 @@ const PROJECTILE = preload("res://entities/projectile/projectile.tscn")
 @export var joy_look_sens := 0.05
 @export var mouse_look_sens := 0.005
 
-var health := 100.0
+@export var health := 100.0
 var can_attack := true
 
 func _input(event: InputEvent) -> void:
@@ -56,6 +56,9 @@ func take_damage(damage: int, from_player: bool) -> void:
 		printt("took damage", damage)
 
 		health -= damage
+		
+		Game.hp_gui.value = health
+		
 		if health <= 0:
 			print("u r ded")
 

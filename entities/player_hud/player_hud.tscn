@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://b78bqckus7vfd"]
+[gd_scene load_steps=12 format=3 uid="uid://b78bqckus7vfd"]
 
 [ext_resource type="Texture2D" uid="uid://dxp3bq6ly8bu" path="res://assets/player/idle/jason_drawn_00000.png" id="1_dec37"]
 [ext_resource type="Texture2D" uid="uid://bj8e5hcrfs8es" path="res://assets/player/idle/jason_drawn_00001.png" id="2_v05wo"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://dr8q8pcoxblit" path="res://assets/player/idle/jason_drawn_00005.png" id="6_l1yva"]
 [ext_resource type="Texture2D" uid="uid://dx7umd8m8le7g" path="res://assets/player/idle/jason_drawn_00006.png" id="7_d2mea"]
 [ext_resource type="Texture2D" uid="uid://c2tp2i4rychgn" path="res://assets/player/idle/jason_drawn_00007.png" id="8_vg1dr"]
+[ext_resource type="Script" uid="uid://cnfxn2ejpqym3" path="res://entities/player_hud/hp.gd" id="9_v05wo"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_bectd"]
 animations = [{
@@ -41,6 +42,8 @@ animations = [{
 "speed": 8.0
 }]
 
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_v05wo"]
+
 [node name="CanvasLayer" type="CanvasLayer"]
 
 [node name="Hand" type="Control" parent="."]
@@ -69,3 +72,11 @@ offset_bottom = 4.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(1, 1, 1, 0.180392)
+
+[node name="HP" type="ProgressBar" parent="."]
+offset_left = 28.0
+offset_top = 31.0
+offset_right = 241.0
+offset_bottom = 68.0
+theme_override_styles/background = SubResource("StyleBoxTexture_v05wo")
+script = ExtResource("9_v05wo")

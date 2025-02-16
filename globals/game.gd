@@ -3,7 +3,9 @@ extends Node
 const PROJECTILE = preload("res://entities/projectile/projectile.tscn")
 
 var player: Player
+var hp_gui: Gui_HP
 
+	
 
 func get_player() -> Player:
 	if not is_instance_valid(player):
