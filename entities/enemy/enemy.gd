@@ -96,9 +96,7 @@ func _on_chase_state_state_physics_processing(delta: float) -> void:
 	var next_position := nav_agent.get_next_path_position()
 	var new_velocity := (next_position - current_position).normalized() * speed * delta
 
-	velocity = velocity.move_toward(new_velocity, 0.25)
-
-	move_and_slide()
+	nav_agent.velocity = new_velocity
 
 	if global_position != next_position:
 		look_at(next_position)
@@ -153,3 +151,8 @@ func _on_death_state_state_entered() -> void:
 func _on_animated_sprite_3d_animation_finished() -> void:
 	if sprite.animation == resource.pain_animation:
 		state_chart.send_event(EnemyStateEvent.ACTIVE)
+
+
+func _on_navigation_agent_3d_velocity_computed(safe_velocity: Vector3) -> void:
+	velocity = velocity.move_toward(safe_velocity, 0.25)
+	move_and_slide()
