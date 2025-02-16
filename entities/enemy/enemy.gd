@@ -27,6 +27,7 @@ var sight_range: float
 
 var can_attack := false
 var health: float
+var received_damage := false
 
 
 func _ready() -> void:
@@ -74,6 +75,9 @@ func _on_idle_state_state_physics_processing(delta: float) -> void:
 		if collider is Player:
 			state_chart.send_event(EnemyStateEvent.CHASE)
 
+	if received_damage:
+		state_chart.send_event(EnemyStateEvent.CHASE)
+
 
 func _on_chase_state_state_entered() -> void:
 	sight_ray_cast.enabled = false
@@ -118,9 +122,9 @@ func _on_attack_state_state_entered() -> void:
 
 
 func take_damage(damage: int) -> void:
-	printt("took damage", damage)
-
 	health -= damage
 	if health <= 0:
 		# TODO: death state
 		queue_free()
+	else:
+		received_damage = true
