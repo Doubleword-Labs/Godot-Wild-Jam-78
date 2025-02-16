@@ -43,9 +43,8 @@ func _update_from_resource() -> void:
 	health = resource.health
 
 	sprite.sprite_frames = resource.sprite_frames
-	sprite.speed_scale = randf_range(0.5, 2.0)
-
 	if not Engine.is_editor_hint():
+		sprite.speed_scale = randf_range(0.5, 2.0)
 		sprite.play(resource.default_animation)
 
 	nav_agent.path_desired_distance = resource.attack_range
