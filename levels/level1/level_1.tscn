@@ -1,6 +1,7 @@
-[gd_scene load_steps=33 format=4 uid="uid://dxc31s4ijcc2j"]
+[gd_scene load_steps=34 format=4 uid="uid://dxc31s4ijcc2j"]
 
 [ext_resource type="Script" uid="uid://g8vn2ulx4var" path="res://addons/cyclops_level_builder/nodes/cyclops_block.gd" id="1_02o5q"]
+[ext_resource type="Script" uid="uid://gta2qv6v5bdy" path="res://levels/level.gd" id="1_8e3mo"]
 [ext_resource type="Script" uid="uid://clfoxvyksf4lf" path="res://addons/cyclops_level_builder/resources/data_vector_byte.gd" id="2_icxts"]
 [ext_resource type="Script" uid="uid://crff02qb0i00h" path="res://addons/cyclops_level_builder/resources/data_vector_int.gd" id="3_iqhro"]
 [ext_resource type="Script" uid="uid://ok487hejowcw" path="res://addons/cyclops_level_builder/resources/data_vector_float.gd" id="4_ebna0"]
@@ -187,6 +188,7 @@ points = PackedVector3Array(3.41421, 2.5, -4, 2.58579, 2.5, -4, 2.58579, 0.5, -4
 points = PackedVector3Array(7.08579, 0.5, -1, 7.91421, 0.5, -1, 7.5, 2.5, 0, 7.5, 2.5, 0, 7.5, 2.5, 0, 7.5, 2.5, -1.38016e-07, 7.5, 2.5, 0, 7.5, 2.5, 3.332e-07, 7.5, 2.5, -2.35608e-07, 7.5, 2.5, 0, 7.5, 2.5, 0, 7.5, 2.5, 0, 7.5, 2.5, 0, 7.5, 2.5, -3.332e-07, 7.5, 2.5, 0, 7.5, 2.5, 0, 7.5, 2.5, 0, 7.5, 2.5, 0, 6.5, 0.5, -0.414213, 8.5, 0.5, -0.414214, 6.5, 0.5, 0.414213, 7.08579, 0.5, 1, 7.91421, 0.5, 1, 8.5, 0.5, 0.414214)
 
 [node name="Level1" type="Node3D"]
+script = ExtResource("1_8e3mo")
 
 [node name="block0" type="Node3D" parent="."]
 script = ExtResource("1_02o5q")

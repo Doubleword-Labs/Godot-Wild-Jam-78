@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://cvf7653hiknvm"]
+[gd_scene load_steps=4 format=3 uid="uid://cvf7653hiknvm"]
 
 [ext_resource type="Script" uid="uid://dejp5ore4fjxu" path="res://entities/player/player.gd" id="1_symyc"]
+[ext_resource type="PackedScene" uid="uid://b78bqckus7vfd" path="res://entities/player_hud/player_hud.tscn" id="2_abrql"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_symyc"]
 
@@ -12,6 +13,17 @@ script = ExtResource("1_symyc")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 current = true
 
+[node name="ProjectileSpawnPoint" type="Node3D" parent="Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("CapsuleShape3D_symyc")
+
+[node name="PlayerHud" parent="." instance=ExtResource("2_abrql")]
+
+[node name="AttackTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]

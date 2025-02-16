@@ -55,22 +55,23 @@ transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.928495, 0)
 billboard = 2
 texture_filter = 2
 sprite_frames = SubResource("SpriteFrames_d2ok7")
-frame_progress = 0.719871
+frame_progress = 0.868998
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+path_desired_distance = 5.0
 
 [node name="SightRayCast" type="RayCast3D" parent="."]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, -1, -8.74228e-08, 0, 8.74228e-08, -1, 0, 1.05982, 0)
 enabled = false
-target_position = Vector3(0, 0, 1)
+target_position = Vector3(0, 0, 15)
 debug_shape_custom_color = Color(0, 0.59079, 0.744833, 1)
 
 [node name="AttackRayCast" type="RayCast3D" parent="."]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, -1, -8.74228e-08, 0, 8.74228e-08, -1, 0, 0.5, -0.5)
 enabled = false
-target_position = Vector3(0, 0, 1)
+target_position = Vector3(0, 0, 5)
 debug_shape_custom_color = Color(1, 0, 0, 1)
 
 [node name="StateChart" type="Node" parent="."]

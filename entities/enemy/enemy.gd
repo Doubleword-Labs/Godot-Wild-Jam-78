@@ -94,17 +94,8 @@ func _on_chase_state_state_physics_processing(delta: float) -> void:
 			state_chart.send_event(EnemyStateEvent.ATTACK)
 
 
-func _on_attack_state_state_physics_processing(delta: float) -> void:
-	var projectile := PROJECTILE.instantiate()
-
-	projectile.velocity = (
-		(position.direction_to(nav_agent.target_position).normalized() * delta * 10.0)
-		* (Vector3.BACK + Vector3.RIGHT)
-	)
-
-	get_tree().root.add_child(projectile)
-	projectile.global_position = projectile_spawn_point.global_position
-
+func _on_attack_state_state_physics_processing(_delta: float) -> void:
+	Game.spawn_projectile(self, projectile_spawn_point)
 	state_chart.send_event(EnemyStateEvent.CHASE)
 
 

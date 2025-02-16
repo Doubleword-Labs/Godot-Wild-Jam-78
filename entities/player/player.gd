@@ -1,17 +1,32 @@
 extends CharacterBody3D
 class_name Player
 
+const PROJECTILE = preload("res://entities/projectile/projectile.tscn")
+
+@onready var player_hud: CanvasLayer = $PlayerHud
+@onready var attack_timer: Timer = $AttackTimer
+@onready var camera: Camera3D = $Camera3D
+@onready var projectile_spawn_point: Node3D = $Camera3D/ProjectileSpawnPoint
+
 @export var speed := 5.0
 @export var joy_look_sens := 0.05
 @export var mouse_look_sens := 0.005
 
 var health := 100.0
-
+var can_attack := true
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		rotate_y(-event.relative.x * mouse_look_sens)
 
+func _process(_delta: float) -> void:
+	if Input.is_action_pressed("attack") and can_attack:
+		_attack()
+
+func _attack() -> void:
+	can_attack = false
+	attack_timer.start()
+	Game.spawn_projectile(self, projectile_spawn_point)
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -42,3 +57,7 @@ func take_damage(damage: int) -> void:
 	health -= damage
 	if health <= 0:
 		print("u r ded")
+
+
+func _on_attack_timer_timeout() -> void:
+	can_attack = true
