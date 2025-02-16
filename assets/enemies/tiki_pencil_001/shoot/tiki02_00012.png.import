@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://pnsyneno8c5t"
-path.s3tc="res://.godot/imported/attack_shoot_00010.png-1a1d2600243ee74f8f1ed2280bea07b4.s3tc.ctex"
+uid="uid://bebqsylqc3i4m"
+path.s3tc="res://.godot/imported/tiki02_00012.png-970c1b43aadbe5c0be4199d9e6729bc4.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/enemies/attack_shoot_00010.png"
-dest_files=["res://.godot/imported/attack_shoot_00010.png-1a1d2600243ee74f8f1ed2280bea07b4.s3tc.ctex"]
+source_file="res://assets/enemies/tiki_pencil_001/shoot/tiki02_00012.png"
+dest_files=["res://.godot/imported/tiki02_00012.png-970c1b43aadbe5c0be4199d9e6729bc4.s3tc.ctex"]
 
 [params]
 
