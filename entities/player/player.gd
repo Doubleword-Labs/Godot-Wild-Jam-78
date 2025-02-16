@@ -27,7 +27,7 @@ func _attack() -> void:
 	can_attack = false
 	attack_timer.start()
 	Game.spawn_projectile(self, projectile_spawn_point)
-
+	
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():
@@ -51,12 +51,13 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 
-func take_damage(damage: int) -> void:
-	printt("took damage", damage)
+func take_damage(damage: int, from_player: bool) -> void:
+	if !from_player:
+		printt("took damage", damage)
 
-	health -= damage
-	if health <= 0:
-		print("u r ded")
+		health -= damage
+		if health <= 0:
+			print("u r ded")
 
 
 func _on_attack_timer_timeout() -> void:

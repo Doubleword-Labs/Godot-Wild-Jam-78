@@ -4,6 +4,7 @@ class_name Projectile
 var spawned_by: Node3D
 var velocity: Vector3 = Vector3.ZERO
 var resource: Resource
+var from_player: bool = true
 
 
 func _physics_process(delta: float) -> void:
@@ -14,7 +15,7 @@ func _physics_process(delta: float) -> void:
 			queue_free()
 
 			if collider.is_in_group("damageable"):
-				collider.take_damage(10)
+				collider.take_damage(10, from_player)
 
 
 func _on_life_timer_timeout() -> void:

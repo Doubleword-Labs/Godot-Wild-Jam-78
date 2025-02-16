@@ -101,8 +101,9 @@ func _on_chase_state_state_physics_processing(delta: float) -> void:
 			state_chart.send_event(EnemyStateEvent.ATTACK)
 
 
-func _on_attack_state_state_physics_processing(_delta: float) -> void:
-	Game.spawn_projectile(self, projectile_spawn_point)
+func _on_attack_state_state_physics_processing(_delta: float) -> void:	
+	var projectile = Game.spawn_projectile(self, projectile_spawn_point)
+	projectile.from_player = false
 	state_chart.send_event(EnemyStateEvent.CHASE)
 
 
@@ -119,10 +120,11 @@ func _on_attack_state_state_entered() -> void:
 	attack_timer.start()
 
 
-func take_damage(damage: int) -> void:
-	health -= damage
-	if health <= 0:
-		# TODO: death state
-		queue_free()
-	else:
-		received_damage = true
+func take_damage(damage: int, from_player: bool) -> void:	
+	if from_player:
+		health -= damage
+		if health <= 0:
+			# TODO: death state
+			queue_free()
+		else:
+			received_damage = true
