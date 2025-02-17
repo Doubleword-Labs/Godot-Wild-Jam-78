@@ -11,7 +11,7 @@ offset_right = 1151.0
 offset_bottom = 644.0
 color = Color(3.57972e-07, 0.26907, 0, 1)
 
-[node name="Label" type="Label" parent="."]
+[node name="Settings" type="Label" parent="."]
 offset_left = 408.0
 offset_top = 28.0
 offset_right = 724.0
@@ -19,6 +19,56 @@ offset_bottom = 151.0
 theme_override_fonts/font = ExtResource("2_0uirt")
 theme_override_font_sizes/font_size = 75
 text = "Settings"
+
+[node name="SoundSettings" type="Node" parent="."]
+
+[node name="Master" type="Label" parent="SoundSettings"]
+offset_left = 414.0
+offset_top = 140.0
+offset_right = 473.0
+offset_bottom = 167.0
+theme_override_fonts/font = ExtResource("2_0uirt")
+text = "Master"
+
+[node name="MasterVolume" type="HScrollBar" parent="SoundSettings/Master"]
+layout_mode = 0
+offset_left = 92.0
+offset_top = 11.0
+offset_right = 245.0
+offset_bottom = 19.0
+max_value = 1.0
+
+[node name="Music" type="Label" parent="SoundSettings"]
+offset_left = 420.0
+offset_top = 171.0
+offset_right = 479.0
+offset_bottom = 198.0
+theme_override_fonts/font = ExtResource("2_0uirt")
+text = "Music"
+
+[node name="MusicVolume" type="HScrollBar" parent="SoundSettings/Music"]
+layout_mode = 0
+offset_left = 85.0
+offset_top = 9.0
+offset_right = 238.0
+offset_bottom = 17.0
+max_value = 1.0
+
+[node name="SFX" type="Label" parent="SoundSettings"]
+offset_left = 436.0
+offset_top = 194.0
+offset_right = 474.0
+offset_bottom = 221.0
+theme_override_fonts/font = ExtResource("2_0uirt")
+text = "SFX"
+
+[node name="SFXVolume" type="HScrollBar" parent="SoundSettings/SFX"]
+layout_mode = 0
+offset_left = 69.0
+offset_top = 11.0
+offset_right = 222.0
+offset_bottom = 19.0
+max_value = 1.0
 
 [node name="Return" type="Button" parent="."]
 offset_left = 458.0
@@ -30,4 +80,7 @@ theme_override_fonts/font = ExtResource("2_0uirt")
 theme_override_font_sizes/font_size = 30
 text = "Return"
 
+[connection signal="value_changed" from="SoundSettings/Master/MasterVolume" to="." method="_on_master_volume_value_changed"]
+[connection signal="value_changed" from="SoundSettings/Music/MusicVolume" to="." method="_on_music_volume_value_changed"]
+[connection signal="value_changed" from="SoundSettings/SFX/SFXVolume" to="." method="_on_sfx_volume_value_changed"]
 [connection signal="pressed" from="Return" to="." method="_on_return_pressed"]
