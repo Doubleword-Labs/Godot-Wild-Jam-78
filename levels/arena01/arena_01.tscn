@@ -1,11 +1,15 @@
-[gd_scene load_steps=410 format=4 uid="uid://bwt8aau3hnf2u"]
+[gd_scene load_steps=417 format=4 uid="uid://bwt8aau3hnf2u"]
 
 [ext_resource type="Script" uid="uid://iqjhfm6bsp6k" path="res://addons/func_godot/src/map/func_godot_map.gd" id="1_3jh3j"]
 [ext_resource type="Script" uid="uid://gta2qv6v5bdy" path="res://levels/level.gd" id="1_12c2m"]
 [ext_resource type="Resource" uid="uid://bkhxcqsquw1yg" path="res://addons/func_godot/func_godot_default_map_settings.tres" id="2_12c2m"]
 [ext_resource type="Texture2D" uid="uid://cyg2snr1w5xw5" path="res://addons/func_godot/textures/default_texture.png" id="3_q3k5g"]
 [ext_resource type="PackedScene" uid="uid://cvf7653hiknvm" path="res://entities/player/player.tscn" id="4_00j58"]
-[ext_resource type="PackedScene" uid="uid://cx5mk2aylf5te" path="res://entities/enemy/enemy.tscn" id="5_5ng33"]
+[ext_resource type="PackedScene" uid="uid://dudp8r4j4e2kt" path="res://entities/spawner/spawner.tscn" id="7_fxwlg"]
+[ext_resource type="Script" uid="uid://lt7ywc1ubvtt" path="res://entities/spawner/spawner_resource.gd" id="8_o2hcj"]
+[ext_resource type="Resource" uid="uid://chjmobof5rfmv" path="res://entities/enemy/resources/tiki_eraser_01.tres" id="9_ayr14"]
+[ext_resource type="Resource" uid="uid://bbyony6hw2axm" path="res://entities/enemy/resources/tiki_pencil_01.tres" id="10_w7nsc"]
+[ext_resource type="Resource" uid="uid://bxfc1w7qg63t0" path="res://entities/enemy/resources/tiki_pencil_02.tres" id="11_4qyet"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_yrsgf"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -1266,6 +1270,24 @@ points = PackedVector3Array(-4, 0, -4.25, -3.75, 0.25, -3.25, -3.75, 0.25, -3.25
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_q258l"]
 points = PackedVector3Array(-16, 0.25, -3.24999, -16, 0.25, -3.25, -15.75, 0, -4.25, -11.75, 0, -4.25, -11.75, 0, -4.25, -11.75, 8.84868e-06, -4.24995, -12, 0.25, -3.25, -17.75, 0, 4.25, -17.75, 0, 4.24998, -17.75, 0, 4.25011, -17.5, 0.25, 3.25, -13.75, 0, 4.25, -13.5, 0.25, 3.24996, -13.5, 0.25, 3.25, -13.5, 0.25, 3.25)
 
+[sub_resource type="Resource" id="Resource_fm2rd"]
+script = ExtResource("8_o2hcj")
+resource = ExtResource("9_ayr14")
+spawn_rate = 1.0
+metadata/_custom_type_script = ExtResource("8_o2hcj")
+
+[sub_resource type="Resource" id="Resource_uebnn"]
+script = ExtResource("8_o2hcj")
+resource = ExtResource("10_w7nsc")
+spawn_rate = 1.0
+metadata/_custom_type_script = ExtResource("8_o2hcj")
+
+[sub_resource type="Resource" id="Resource_atwq1"]
+script = ExtResource("8_o2hcj")
+resource = ExtResource("11_4qyet")
+spawn_rate = 1.0
+metadata/_custom_type_script = ExtResource("8_o2hcj")
+
 [node name="Arena01" type="Node3D"]
 script = ExtResource("1_12c2m")
 
@@ -1278,42 +1300,6 @@ shadow_enabled = true
 
 [node name="Player" parent="." instance=ExtResource("4_00j58")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 12)
-
-[node name="Enemy" parent="." instance=ExtResource("5_5ng33")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 2, 0.569278, -9)
-
-[node name="Enemy2" parent="." instance=ExtResource("5_5ng33")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 2, 0.569278, -11)
-
-[node name="Enemy3" parent="." instance=ExtResource("5_5ng33")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 2, 0.569278, -13)
-
-[node name="Enemy4" parent="." instance=ExtResource("5_5ng33")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 2, 0.569278, -15)
-
-[node name="Enemy5" parent="." instance=ExtResource("5_5ng33")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 5, 0.569278, -9)
-
-[node name="Enemy6" parent="." instance=ExtResource("5_5ng33")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 5, 0.569278, -11)
-
-[node name="Enemy7" parent="." instance=ExtResource("5_5ng33")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 5, 0.569278, -13)
-
-[node name="Enemy8" parent="." instance=ExtResource("5_5ng33")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 5, 0.569278, -15)
-
-[node name="Enemy9" parent="." instance=ExtResource("5_5ng33")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -1, 0.569278, -9)
-
-[node name="Enemy10" parent="." instance=ExtResource("5_5ng33")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -1, 0.569278, -11)
-
-[node name="Enemy11" parent="." instance=ExtResource("5_5ng33")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -1, 0.569278, -13)
-
-[node name="Enemy12" parent="." instance=ExtResource("5_5ng33")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, -1, 0.569278, -15)
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_ofg5g")
@@ -2514,3 +2500,21 @@ shape = SubResource("ConvexPolygonShape3D_m4634")
 
 [node name="entity_0_brush_393_collision_shape" type="CollisionShape3D" parent="NavigationRegion3D/FuncGodotMap/entity_0_worldspawn"]
 shape = SubResource("ConvexPolygonShape3D_q258l")
+
+[node name="Spawner" parent="." instance=ExtResource("7_fxwlg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.3635, 1.07426, -12.9338)
+enemies = Array[ExtResource("8_o2hcj")]([SubResource("Resource_fm2rd"), SubResource("Resource_uebnn"), SubResource("Resource_atwq1")])
+spawn_limit = 20
+spawn_amount = 5
+
+[node name="Spawner2" parent="." instance=ExtResource("7_fxwlg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.36347, 1.07426, -12.9338)
+enemies = Array[ExtResource("8_o2hcj")]([SubResource("Resource_fm2rd"), SubResource("Resource_uebnn"), SubResource("Resource_atwq1")])
+spawn_limit = 20
+spawn_amount = 5
+
+[node name="Spawner3" parent="." instance=ExtResource("7_fxwlg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.6365, 1.07426, -12.9338)
+enemies = Array[ExtResource("8_o2hcj")]([SubResource("Resource_fm2rd"), SubResource("Resource_uebnn"), SubResource("Resource_atwq1")])
+spawn_limit = 20
+spawn_amount = 5

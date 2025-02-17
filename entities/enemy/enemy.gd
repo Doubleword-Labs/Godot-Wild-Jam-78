@@ -1,5 +1,6 @@
 @tool
 extends CharacterBody3D
+class_name Enemy
 
 const EnemyStateEvent = {
 	AWAKEN = "awaken",
@@ -14,6 +15,8 @@ const PROJECTILE = preload("res://entities/projectile/projectile.tscn")
 @export var resource: EnemyResource:
 	set(value):
 		resource = value
+		if Engine.is_editor_hint():
+			_update_from_resource()
 
 var speed: float
 var attack_range: float
@@ -122,9 +125,6 @@ func _on_attack_state_state_entered() -> void:
 	attack_timer.start(attack_timeout)
 	sprite.play(resource.attack_animation)
 
-	var projectile = Game.spawn_projectile(self, projectile_spawn_point)
-	projectile.from_player = false
-
 	await sprite.animation_finished
 
 	state_chart.send_event(EnemyStateEvent.CHASE)
@@ -158,3 +158,10 @@ func _on_animated_sprite_3d_animation_finished() -> void:
 func _on_navigation_agent_3d_velocity_computed(safe_velocity: Vector3) -> void:
 	velocity = velocity.move_toward(safe_velocity, 0.25)
 	move_and_slide()
+
+
+func _on_animated_sprite_3d_frame_changed() -> void:
+	if sprite.animation == resource.attack_animation:
+		if sprite.frame == resource.attack_frame:
+			var projectile = Game.spawn_projectile(self, projectile_spawn_point)
+			projectile.from_player = false

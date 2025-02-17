@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://dudp8r4j4e2kt"]
+
+[ext_resource type="Script" uid="uid://d2ttn7y7ub0r2" path="res://entities/spawner/spawner.gd" id="1_g400x"]
+
+[node name="Spawner" type="Node3D"]
+script = ExtResource("1_g400x")
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="SpawnMarkers" type="Node3D" parent="."]
+
+[node name="@Marker3D@170114" type="Marker3D" parent="SpawnMarkers"]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
