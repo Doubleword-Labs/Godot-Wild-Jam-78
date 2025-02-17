@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dyq6ixb4h11yh"]
+
+[ext_resource type="Script" uid="uid://bhd72pt5vgmkj" path="res://globals/music_player_autoplay.gd" id="1_3le6b"]
+
+[node name="Music" type="AudioStreamPlayer"]
+bus = &"Music"
+script = ExtResource("1_3le6b")
+
+[connection signal="finished" from="." to="." method="_on_finished"]

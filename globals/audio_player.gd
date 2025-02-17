@@ -23,17 +23,16 @@ func play_music():
 	if music_player != null:
 		return
 		
-	music_player = AudioStreamPlayer.new()
+	music_player = MusicPlayer
 	music_player.stream = game_music
-	music_player.autoplay = true
+	#music_player.autoplay = true
 	music_player.bus = "Music"
-	add_child(music_player)
 	music_player.play()	
 	
 func play_sfx(sfx: AudioStream):
 	var sfx_player = AudioStreamPlayer.new()
 	sfx_player.stream = sfx
-	music_player.bus = "SFX"
+	sfx_player.bus = "SFX"
 	add_child(sfx_player)
 	sfx_player.play()
 	
