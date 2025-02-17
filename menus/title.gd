@@ -22,7 +22,7 @@ func _on_credits_pressed() -> void:
 	
 	
 func _on_quit_pressed() -> void:
-	if OS.has_feature('JavaScript') or OS.has_feature("web_android") or OS.has_feature("web_ios"):
+	if OS.get_name() == "Web" or OS.has_feature('JavaScript') or OS.has_feature("web_android") or OS.has_feature("web_ios"):
 		get_tree().change_scene_to_file(quit_path)
 	else:
 		get_tree().quit()
