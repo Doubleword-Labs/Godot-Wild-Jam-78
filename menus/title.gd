@@ -3,6 +3,7 @@ extends Node2D
 var game_path := "res://levels/arena03/arena_03.tscn"
 var settings_path := "res://menus/settings.tscn"
 var credits_path := "res://menus/credits.tscn"
+var quit_path := "res://menus/quit.tscn"
 
 func _ready() -> void:
 	AudioPlayer.play_music()
@@ -21,4 +22,7 @@ func _on_credits_pressed() -> void:
 	
 	
 func _on_quit_pressed() -> void:
-	get_tree().quit()
+	if OS.has_feature('JavaScript') or OS.has_feature("web_android") or OS.has_feature("web_ios"):
+		get_tree().change_scene_to_file(quit_path)
+	else:
+		get_tree().quit()
