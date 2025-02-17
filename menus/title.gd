@@ -4,6 +4,10 @@ var game_path := "res://levels/arena03/arena_03.tscn"
 var settings_path := "res://menus/settings.tscn"
 var credits_path := "res://menus/credits.tscn"
 
+func _ready() -> void:
+	AudioPlayer.play_music()
+
+
 func _on_play_pressed() -> void:
 	get_tree().change_scene_to_file(game_path)
 
