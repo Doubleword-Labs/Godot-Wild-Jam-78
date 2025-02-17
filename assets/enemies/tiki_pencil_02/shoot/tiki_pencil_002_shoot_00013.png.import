@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://t6r653mxsles"
 path.s3tc="res://.godot/imported/tiki_pencil_002_shoot_00013.png-fd2b2f5b5ca51e2f00e94926da9f00c9.s3tc.ctex"
+path.etc2="res://.godot/imported/tiki_pencil_002_shoot_00013.png-fd2b2f5b5ca51e2f00e94926da9f00c9.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/enemies/tiki_pencil_02/shoot/tiki_pencil_002_shoot_00013.png"
-dest_files=["res://.godot/imported/tiki_pencil_002_shoot_00013.png-fd2b2f5b5ca51e2f00e94926da9f00c9.s3tc.ctex"]
+dest_files=["res://.godot/imported/tiki_pencil_002_shoot_00013.png-fd2b2f5b5ca51e2f00e94926da9f00c9.s3tc.ctex", "res://.godot/imported/tiki_pencil_002_shoot_00013.png-fd2b2f5b5ca51e2f00e94926da9f00c9.etc2.ctex"]
 
 [params]
 

@@ -4,15 +4,16 @@ importer="texture"
 type="CompressedTexture2D"
 uid="uid://korejyy0tcu7"
 path.s3tc="res://.godot/imported/tiki_eraser_001_shoot_00010.png-84f6361fdb7fe7412f64fe0604a26eb2.s3tc.ctex"
+path.etc2="res://.godot/imported/tiki_eraser_001_shoot_00010.png-84f6361fdb7fe7412f64fe0604a26eb2.etc2.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
+"imported_formats": ["s3tc_bptc", "etc2_astc"],
 "vram_texture": true
 }
 
 [deps]
 
 source_file="res://assets/enemies/tiki_eraser_01/shoot/tiki_eraser_001_shoot_00010.png"
-dest_files=["res://.godot/imported/tiki_eraser_001_shoot_00010.png-84f6361fdb7fe7412f64fe0604a26eb2.s3tc.ctex"]
+dest_files=["res://.godot/imported/tiki_eraser_001_shoot_00010.png-84f6361fdb7fe7412f64fe0604a26eb2.s3tc.ctex", "res://.godot/imported/tiki_eraser_001_shoot_00010.png-84f6361fdb7fe7412f64fe0604a26eb2.etc2.ctex"]
 
 [params]
 
