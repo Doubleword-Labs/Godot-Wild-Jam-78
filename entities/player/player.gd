@@ -7,27 +7,50 @@ const PROJECTILE = preload("res://entities/projectile/projectile.tscn")
 @onready var attack_timer: Timer = $AttackTimer
 @onready var camera: Camera3D = $Camera3D
 @onready var projectile_spawn_point: Node3D = $Camera3D/ProjectileSpawnPoint
+@onready var melee_ray_cast: RayCast3D = $Camera3D/MeleeRayCast
 
 @export var speed := 5.0
 @export var joy_look_sens := 0.05
 @export var mouse_look_sens := 0.005
+@export var ranged_attack_timeout := 0.5
+@export var melee_attack_timeout := 0.5
 
 @export var health := 100.0
 var can_attack := true
+
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		rotate_y(-event.relative.x * mouse_look_sens)
 
+
 func _process(_delta: float) -> void:
 	if Input.is_action_pressed("attack") and can_attack:
-		_attack()
+		_ranged_attack()
 
-func _attack() -> void:
+	if Input.is_action_pressed("melee_attack") and can_attack:
+		_melee_attack()
+
+
+func _ranged_attack() -> void:
 	can_attack = false
-	attack_timer.start()
+	attack_timer.start(ranged_attack_timeout)
 	Game.spawn_projectile(self, projectile_spawn_point)
-	
+
+
+func _melee_attack() -> void:
+	can_attack = false
+	attack_timer.start(melee_attack_timeout)
+	player_hud.melee_attack()
+
+	melee_ray_cast.force_raycast_update()
+	if melee_ray_cast.is_colliding():
+		var hit = melee_ray_cast.get_collider()
+
+		if hit.is_in_group("damageable"):
+			hit.take_damage(10, true)
+
+
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():
@@ -56,9 +79,9 @@ func take_damage(damage: int, from_player: bool) -> void:
 		printt("took damage", damage)
 
 		health -= damage
-		
+
 		Game.hp_gui.value = health
-		
+
 		if health <= 0:
 			print("u r ded")
 
