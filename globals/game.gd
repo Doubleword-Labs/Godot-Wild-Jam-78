@@ -5,6 +5,7 @@ const PROJECTILE := preload("res://entities/projectile/projectile.tscn")
 var player: Player
 var hp_gui: TextureProgressBar
 var stationery_gui: Label
+var wave_gui: Label
 var paused_gui_node: Node
 var lose_gui_node: Node
 var win_gui_node: Node

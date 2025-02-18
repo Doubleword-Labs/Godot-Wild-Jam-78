@@ -13,6 +13,8 @@ func _ready() -> void:
 	Game.hp_gui.value = Game.get_player().health
 	
 	Game.stationery_gui = $Stationery
+	
+	Game.wave_gui = $Wave
 
 func melee_attack() -> void:
 	weapon_sprite.play("melee")
