@@ -1,22 +1,7 @@
 extends CharacterBody3D
 class_name Player
 
-const PROJECTILE = preload("res://entities/projectile/projectile.tscn")
-const player_damaged_sfx_arr = [
-	preload("res://assets/sfx/voice - ahh.wav"),
-	preload("res://assets/sfx/voice - bah.wav"),
-	preload("res://assets/sfx/voice - blaah.wav"),
-	preload("res://assets/sfx/voice - raaaaaa.wav"),
-	preload("res://assets/sfx/voice - oohh.wav")
-	]
-const punch_sfx_arr = [
-	preload("res://assets/sfx/punch/punch clothes 1.wav"),
-	preload("res://assets/sfx/punch/punch clothes 8.wav"),
-	preload("res://assets/sfx/punch/punch clothes 9.wav"),
-	preload("res://assets/sfx/punch/punch flesh 8.wav"),
-	preload("res://assets/sfx/punch/punch flesh 9.wav"),
-	preload("res://assets/sfx/punch/punch flesh 10.wav")
-] 
+const PROJECTILE = preload("res://entities/projectile/projectile.tscn") 
 
 @onready var player_hud: CanvasLayer = $PlayerHud
 @onready var attack_timer: Timer = $AttackTimer
@@ -67,7 +52,7 @@ func _melee_attack() -> void:
 
 		if hit.is_in_group("damageable"):
 			hit.take_damage(50, true)
-			AudioPlayer.play_sfx_array(punch_sfx_arr)
+			AudioPlayer.play_sfx_array(AudioPlayer.punch_sfx_arr)
 
 
 func _physics_process(delta: float) -> void:
@@ -96,7 +81,7 @@ func _physics_process(delta: float) -> void:
 func take_damage(damage: int, from_player: bool) -> void:
 	if !from_player:
 		printt("took damage", damage)
-		AudioPlayer.play_sfx_array(player_damaged_sfx_arr)
+		AudioPlayer.play_sfx_array(AudioPlayer.player_damaged_sfx_arr)
 
 		health -= damage
 

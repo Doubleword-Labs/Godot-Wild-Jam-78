@@ -1,7 +1,49 @@
 extends Node
 
 const game_music: AudioStream = preload("res://assets/music/jungle-story-168459.mp3")
-
+const lose_sfx_arr := [
+	preload("res://assets/sfx/lose/voice - oh no 5.wav"),
+	preload("res://assets/sfx/lose/voice - oh god 1.wav"),
+	preload("res://assets/sfx/lose/voice - oh no 3.wav")]
+const win_sfx_arr := [
+	preload("res://assets/sfx/win/kazoo 2.wav"),
+	preload("res://assets/sfx/win/voice - wow 2.wav"),
+	preload("res://assets/sfx/win/voice - wow 3.wav"),
+	preload("res://assets/sfx/win/voice - hmeh meh meh meh.wav"),
+	preload("res://assets/sfx/win/voice - wow 1.wav")
+]
+const died_enemy_arr = [
+	preload("res://assets/sfx/died_enemy/bowl smashed apart 1.wav"),
+	preload("res://assets/sfx/died_enemy/bowl smashed apart on wood 3.wav"),
+	preload("res://assets/sfx/died_enemy/bowl smashed apart on wood 16.wav"),
+	preload("res://assets/sfx/died_enemy/bowl smashed apart on wood 17.wav"),
+	preload("res://assets/sfx/died_enemy/bowl smashed apart on wood 18.wav"),
+	preload("res://assets/sfx/died_enemy/bowl smashed apart on wood 19.wav")
+]
+const pain_enemy_arr = [
+	preload("res://assets/sfx/pain_enemy/plastic crunch 6.wav"),
+	preload("res://assets/sfx/pain_enemy/plastic crunch 11.wav"),
+	preload("res://assets/sfx/pain_enemy/plastic crunch 12.wav"),
+	preload("res://assets/sfx/pain_enemy/plastic crunch 13.wav"),
+	preload("res://assets/sfx/pain_enemy/plastic crunch 14.wav"),
+	preload("res://assets/sfx/pain_enemy/plastic crunch 21.wav")
+]
+const player_damaged_sfx_arr = [
+	preload("res://assets/sfx/player_damaged/voice - ahh.wav"),
+	preload("res://assets/sfx/player_damaged/voice - bah.wav"),
+	preload("res://assets/sfx/player_damaged/voice - blaah.wav"),
+	preload("res://assets/sfx/player_damaged/voice - raaaaaa.wav"),
+	preload("res://assets/sfx/player_damaged/voice - oohh.wav")
+	]
+const punch_sfx_arr = [
+	preload("res://assets/sfx/punch/punch clothes 1.wav"),
+	preload("res://assets/sfx/punch/punch clothes 8.wav"),
+	preload("res://assets/sfx/punch/punch clothes 9.wav"),
+	preload("res://assets/sfx/punch/punch flesh 8.wav"),
+	preload("res://assets/sfx/punch/punch flesh 9.wav"),
+	preload("res://assets/sfx/punch/punch flesh 10.wav")
+]
+	
 var music_player: AudioStreamPlayer
 var default_volumes = [1, 0.4, 0.6]
 

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://b5lo5ybc3ij3j"
+path="res://.godot/imported/voice - hmeh meh meh meh.wav-c259ab4855d5e564683552e80b795c16.sample"
+
+[deps]
+
+source_file="res://assets/sfx/win/voice - hmeh meh meh meh.wav"
+dest_files=["res://.godot/imported/voice - hmeh meh meh meh.wav-c259ab4855d5e564683552e80b795c16.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

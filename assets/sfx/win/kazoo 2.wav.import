@@ -2,13 +2,13 @@
 
 importer="wav"
 type="AudioStreamWAV"
-uid="uid://d11j1hq56tev4"
-path="res://.godot/imported/kazoo 2.wav-5221bb6bef5ba9dcf72bc309225c75e7.sample"
+uid="uid://cd6nk3ttr6fnb"
+path="res://.godot/imported/kazoo 2.wav-97e3a36be1a5233b630282c97f508cfd.sample"
 
 [deps]
 
-source_file="res://assets/sfx/kazoo 2.wav"
-dest_files=["res://.godot/imported/kazoo 2.wav-5221bb6bef5ba9dcf72bc309225c75e7.sample"]
+source_file="res://assets/sfx/win/kazoo 2.wav"
+dest_files=["res://.godot/imported/kazoo 2.wav-97e3a36be1a5233b630282c97f508cfd.sample"]
 
 [params]
 

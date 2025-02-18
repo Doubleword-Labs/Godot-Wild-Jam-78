@@ -1,16 +1,6 @@
 extends Node
 
 const PROJECTILE = preload("res://entities/projectile/projectile.tscn")
-const death_sfx_arr: Array = [
-	preload("res://assets/sfx/voice - oh no 5.wav"),
-	preload("res://assets/sfx/voice - oh god 1.wav"),
-	preload("res://assets/sfx/voice - oh no 3.wav")]
-const win_sfx_arr = [
-	preload("res://assets/sfx/kazoo 2.wav"),
-	preload("res://assets/sfx/voice - wow 2.wav"),
-	preload("res://assets/sfx/voice - wow 3.wav"),
-	preload("res://assets/sfx/voice - hmeh meh meh meh.wav"),
-	preload("res://assets/sfx/voice - wow 1.wav")]
 
 var player: Player
 var hp_gui
@@ -85,7 +75,7 @@ func reload():
 func die():
 	pause(true)
 	AudioPlayer.free_sfx()
-	AudioPlayer.play_sfx_array(death_sfx_arr)
+	AudioPlayer.play_sfx_array(AudioPlayer.lose_sfx_arr)
 	can_pause = false
 	lose_gui_node.visible = true
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
@@ -94,7 +84,7 @@ func die():
 func win():
 	pause(true)
 	AudioPlayer.free_sfx()
-	AudioPlayer.play_sfx_array(win_sfx_arr)
+	AudioPlayer.play_sfx_array(AudioPlayer.win_sfx_arr)
 	can_pause = false
 	win_gui_node.visible = true
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE

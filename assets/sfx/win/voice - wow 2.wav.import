@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dfupon53nbawo"
+path="res://.godot/imported/voice - wow 2.wav-601d4927102816a886e0aa5e9a08c5ec.sample"
+
+[deps]
+
+source_file="res://assets/sfx/win/voice - wow 2.wav"
+dest_files=["res://.godot/imported/voice - wow 2.wav-601d4927102816a886e0aa5e9a08c5ec.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

@@ -11,22 +11,7 @@ const EnemyStateEvent = {
 	DEATH = "death",
 }
 const PROJECTILE = preload("res://entities/projectile/projectile.tscn")
-const died_enemy_arr = [
-	preload("res://assets/sfx/died_enemy/bowl smashed apart 1.wav"),
-	preload("res://assets/sfx/died_enemy/bowl smashed apart on wood 3.wav"),
-	preload("res://assets/sfx/died_enemy/bowl smashed apart on wood 16.wav"),
-	preload("res://assets/sfx/died_enemy/bowl smashed apart on wood 17.wav"),
-	preload("res://assets/sfx/died_enemy/bowl smashed apart on wood 18.wav"),
-	preload("res://assets/sfx/died_enemy/bowl smashed apart on wood 19.wav")
-]
-const pain_enemy_arr = [
-	preload("res://assets/sfx/pain_enemy/plastic crunch 6.wav"),
-	preload("res://assets/sfx/pain_enemy/plastic crunch 11.wav"),
-	preload("res://assets/sfx/pain_enemy/plastic crunch 12.wav"),
-	preload("res://assets/sfx/pain_enemy/plastic crunch 13.wav"),
-	preload("res://assets/sfx/pain_enemy/plastic crunch 14.wav"),
-	preload("res://assets/sfx/pain_enemy/plastic crunch 21.wav")
-]
+
 
 @export var resource: EnemyResource:
 	set(value):
@@ -157,12 +142,12 @@ func take_damage(damage: int, from_player: bool) -> void:
 
 
 func _on_pain_state_state_entered() -> void:
-	AudioPlayer.play_sfx_array(pain_enemy_arr)
+	AudioPlayer.play_sfx_array(AudioPlayer.pain_enemy_arr)
 	sprite.play(resource.pain_animation)
 
 
 func _on_death_state_state_entered() -> void:
-	AudioPlayer.play_sfx_array(died_enemy_arr)
+	AudioPlayer.play_sfx_array(AudioPlayer.died_enemy_arr)
 	sprite.play(resource.death_animation)
 	await sprite.animation_finished
 	queue_free()
