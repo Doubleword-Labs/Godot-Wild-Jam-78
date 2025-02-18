@@ -4,8 +4,23 @@ const PROJECTILE = preload("res://entities/projectile/projectile.tscn")
 
 var player: Player
 var hp_gui: Gui_HP
+var paused_gui_node
+var paused = false
 
-	
+func _process(_delta: float) -> void:
+	if Input.is_action_just_released("pause"):
+		if (paused):
+			paused = false
+			get_tree().paused = false
+			paused_gui_node.visible = false
+			process_mode = Node.PROCESS_MODE_PAUSABLE
+			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+		else:
+			paused = true
+			get_tree().paused = true
+			paused_gui_node.visible = true
+			process_mode = Node.PROCESS_MODE_WHEN_PAUSED
+
 
 func get_player() -> Player:
 	if not is_instance_valid(player):

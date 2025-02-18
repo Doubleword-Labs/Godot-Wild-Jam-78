@@ -18,6 +18,10 @@ const PROJECTILE = preload("res://entities/projectile/projectile.tscn")
 @export var health := 100.0
 var can_attack := true
 
+var paused = false
+
+func _ready() -> void:
+	pass
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
