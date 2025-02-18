@@ -16,7 +16,8 @@ var resource: Resource
 var from_player: bool = true
 
 func _ready() -> void:
-	AudioPlayer.play_sfx_array(projectile_spawed_sfx_arr)
+	if (spawned_by is Player):
+		AudioPlayer.play_sfx_array(projectile_spawed_sfx_arr)
 
 func _physics_process(delta: float) -> void:
 	var collision := move_and_collide(velocity * delta)
