@@ -2,6 +2,7 @@ extends Node
 
 const PROJECTILE = preload("res://entities/projectile/projectile.tscn")
 const death_sfx = preload("res://assets/sfx/eraser 8.wav")
+const win_sfx = preload("res://assets/sfx/kazoo 2.wav")
 
 var player: Player
 var hp_gui: Gui_HP
@@ -83,7 +84,7 @@ func die():
 
 func win():
 	pause(true)
-	AudioPlayer.play_sfx(death_sfx)
+	AudioPlayer.play_sfx(win_sfx)
 	can_pause = false
 	win_gui_node.visible = true
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
