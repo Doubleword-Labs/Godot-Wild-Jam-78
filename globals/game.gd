@@ -1,7 +1,7 @@
 extends Node
 
 const PROJECTILE = preload("res://entities/projectile/projectile.tscn")
-const death_sfx = preload("res://assets/sfx/eraser 8.wav")
+const death_sfx = preload("res://assets/sfx/voice - oh no 5.wav")
 const win_sfx = preload("res://assets/sfx/kazoo 2.wav")
 
 var player: Player
