@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cvda5sj028il4"
+path="res://.godot/imported/plastic crunch 12.wav-eec1e11ec982dc484bdc282da1c6c941.sample"
+
+[deps]
+
+source_file="res://assets/sfx/pain_enemy/plastic crunch 12.wav"
+dest_files=["res://.godot/imported/plastic crunch 12.wav-eec1e11ec982dc484bdc282da1c6c941.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2
