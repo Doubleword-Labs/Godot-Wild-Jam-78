@@ -11,7 +11,14 @@ const EnemyStateEvent = {
 	DEATH = "death",
 }
 const PROJECTILE = preload("res://entities/projectile/projectile.tscn")
-
+const died_enemy_arr = [
+	preload("res://assets/sfx/died_enemy/plastic crunch 6.wav"),
+	preload("res://assets/sfx/died_enemy/plastic crunch 11.wav"),
+	preload("res://assets/sfx/died_enemy/plastic crunch 12.wav"),
+	preload("res://assets/sfx/died_enemy/plastic crunch 13.wav"),
+	preload("res://assets/sfx/died_enemy/plastic crunch 14.wav"),
+	preload("res://assets/sfx/died_enemy/plastic crunch 21.wav")
+]
 @export var resource: EnemyResource:
 	set(value):
 		resource = value
@@ -145,6 +152,7 @@ func _on_pain_state_state_entered() -> void:
 
 
 func _on_death_state_state_entered() -> void:
+	AudioPlayer.play_sfx_array(died_enemy_arr)
 	sprite.play(resource.death_animation)
 	await sprite.animation_finished
 	queue_free()
