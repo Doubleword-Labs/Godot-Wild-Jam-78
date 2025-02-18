@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://kytiayibw05b"
+path="res://.godot/imported/paper crunch 3.wav-1e570bcfddcf737435414d40e2bd749c.sample"
+
+[deps]
+
+source_file="res://assets/sfx/projectile_spawned/paper crunch 3.wav"
+dest_files=["res://.godot/imported/paper crunch 3.wav-1e570bcfddcf737435414d40e2bd749c.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2
