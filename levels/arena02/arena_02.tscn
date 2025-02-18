@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://ceua3g70lcq81"]
+[gd_scene load_steps=20 format=3 uid="uid://ceua3g70lcq81"]
 
 [ext_resource type="Script" uid="uid://gta2qv6v5bdy" path="res://levels/level.gd" id="1_sof8r"]
 [ext_resource type="PackedScene" uid="uid://cvf7653hiknvm" path="res://entities/player/player.tscn" id="2_patpq"]
@@ -8,6 +8,7 @@
 [ext_resource type="Resource" uid="uid://chjmobof5rfmv" path="res://entities/enemy/resources/tiki_eraser_01.tres" id="6_de0jm"]
 [ext_resource type="Resource" uid="uid://bbyony6hw2axm" path="res://entities/enemy/resources/tiki_pencil_01.tres" id="7_q6qsw"]
 [ext_resource type="Resource" uid="uid://bxfc1w7qg63t0" path="res://entities/enemy/resources/tiki_pencil_02.tres" id="8_vdk6s"]
+[ext_resource type="Resource" uid="uid://d4fgyepouyfb5" path="res://entities/enemy/resources/tiki_usb_01.tres" id="9_patpq"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_yrsgf"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -46,6 +47,24 @@ resource = ExtResource("8_vdk6s")
 spawn_rate = 1.0
 metadata/_custom_type_script = ExtResource("5_whn3h")
 
+[sub_resource type="Resource" id="Resource_ml8i0"]
+script = ExtResource("5_whn3h")
+resource = ExtResource("9_patpq")
+spawn_rate = 1.0
+metadata/_custom_type_script = ExtResource("5_whn3h")
+
+[sub_resource type="Resource" id="Resource_3vlcc"]
+script = ExtResource("5_whn3h")
+resource = ExtResource("9_patpq")
+spawn_rate = 1.0
+metadata/_custom_type_script = ExtResource("5_whn3h")
+
+[sub_resource type="Resource" id="Resource_whn3h"]
+script = ExtResource("5_whn3h")
+resource = ExtResource("9_patpq")
+spawn_rate = 1.0
+metadata/_custom_type_script = ExtResource("5_whn3h")
+
 [node name="Arena01" type="Node3D"]
 script = ExtResource("1_sof8r")
 
@@ -72,18 +91,18 @@ vertices = PackedVector3Array(3.16103, 0, -3.94817, -3.69631, 0, -2.96482, -3.28
 
 [node name="Spawner" parent="." instance=ExtResource("4_3vlcc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.3635, 0.07426, -16.9338)
-enemies = Array[ExtResource("5_whn3h")]([SubResource("Resource_fm2rd"), SubResource("Resource_uebnn"), SubResource("Resource_atwq1")])
+enemies = Array[ExtResource("5_whn3h")]([SubResource("Resource_fm2rd"), SubResource("Resource_uebnn"), SubResource("Resource_atwq1"), SubResource("Resource_ml8i0")])
 spawn_limit = 20
 spawn_amount = 5
 
 [node name="Spawner2" parent="." instance=ExtResource("4_3vlcc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.6365, 0.07426, -14.9338)
-enemies = Array[ExtResource("5_whn3h")]([SubResource("Resource_fm2rd"), SubResource("Resource_uebnn"), SubResource("Resource_atwq1")])
+enemies = Array[ExtResource("5_whn3h")]([SubResource("Resource_fm2rd"), SubResource("Resource_uebnn"), SubResource("Resource_atwq1"), SubResource("Resource_3vlcc")])
 spawn_limit = 20
 spawn_amount = 5
 
 [node name="Spawner3" parent="." instance=ExtResource("4_3vlcc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.6365, 0.07426, 0.0662003)
-enemies = Array[ExtResource("5_whn3h")]([SubResource("Resource_fm2rd"), SubResource("Resource_uebnn"), SubResource("Resource_atwq1")])
+enemies = Array[ExtResource("5_whn3h")]([SubResource("Resource_fm2rd"), SubResource("Resource_uebnn"), SubResource("Resource_atwq1"), SubResource("Resource_whn3h")])
 spawn_limit = 20
 spawn_amount = 5
