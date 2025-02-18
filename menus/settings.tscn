@@ -1,15 +1,21 @@
-[gd_scene load_steps=3 format=3 uid="uid://b8wy67y5716wn"]
+[gd_scene load_steps=4 format=3 uid="uid://b8wy67y5716wn"]
 
 [ext_resource type="Script" uid="uid://f4hovebph03t" path="res://menus/settings.gd" id="1_kot5a"]
 [ext_resource type="FontFile" uid="uid://db4p37abih74f" path="res://assets/fonts/Sigmar/Sigmar-Regular.ttf" id="2_0uirt"]
+[ext_resource type="Texture2D" uid="uid://gli4y8kdimw3" path="res://assets/background/title_bg.png" id="2_hjugb"]
 
 [node name="Settings" type="Node2D"]
 script = ExtResource("1_kot5a")
 
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 1152.0
+offset_bottom = 648.0
+texture = ExtResource("2_hjugb")
+
 [node name="ColorRect" type="ColorRect" parent="."]
 offset_right = 1151.0
 offset_bottom = 644.0
-color = Color(3.57972e-07, 0.26907, 0, 1)
+color = Color(0.133333, 0.219608, 0.337255, 0.207843)
 
 [node name="Settings" type="Label" parent="."]
 offset_left = 408.0
