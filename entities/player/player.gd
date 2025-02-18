@@ -9,6 +9,13 @@ const player_damaged_sfx_arr = [
 	preload("res://assets/sfx/voice - raaaaaa.wav"),
 	preload("res://assets/sfx/voice - oohh.wav")
 	]
+const punch_sfx_arr = [
+	preload("res://assets/sfx/punch/punch clothes 1.wav"),
+	preload("res://assets/sfx/punch/punch clothes 8.wav"),
+	preload("res://assets/sfx/punch/punch clothes 9.wav"),
+	preload("res://assets/sfx/punch/punch flesh 8.wav"),
+	preload("res://assets/sfx/punch/punch flesh 9.wav")
+] 
 
 @onready var player_hud: CanvasLayer = $PlayerHud
 @onready var attack_timer: Timer = $AttackTimer
@@ -58,7 +65,8 @@ func _melee_attack() -> void:
 		var hit = melee_ray_cast.get_collider()
 
 		if hit.is_in_group("damageable"):
-			hit.take_damage(10, true)
+			hit.take_damage(50, true)
+			AudioPlayer.play_sfx_array(punch_sfx_arr)
 
 
 func _physics_process(delta: float) -> void:
