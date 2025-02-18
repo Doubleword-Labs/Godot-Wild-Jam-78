@@ -12,12 +12,12 @@ const EnemyStateEvent = {
 }
 const PROJECTILE = preload("res://entities/projectile/projectile.tscn")
 const died_enemy_arr = [
-	preload("res://assets/sfx/died_enemy/plastic crunch 6.wav"),
-	preload("res://assets/sfx/died_enemy/plastic crunch 11.wav"),
-	preload("res://assets/sfx/died_enemy/plastic crunch 12.wav"),
-	preload("res://assets/sfx/died_enemy/plastic crunch 13.wav"),
-	preload("res://assets/sfx/died_enemy/plastic crunch 14.wav"),
-	preload("res://assets/sfx/died_enemy/plastic crunch 21.wav")
+	preload("res://assets/sfx/died_enemy/bowl smashed apart 1.wav"),
+	preload("res://assets/sfx/died_enemy/bowl smashed apart on wood 3.wav"),
+	preload("res://assets/sfx/died_enemy/bowl smashed apart on wood 16.wav"),
+	preload("res://assets/sfx/died_enemy/bowl smashed apart on wood 17.wav"),
+	preload("res://assets/sfx/died_enemy/bowl smashed apart on wood 18.wav"),
+	preload("res://assets/sfx/died_enemy/bowl smashed apart on wood 19.wav")
 ]
 const pain_enemy_arr = [
 	preload("res://assets/sfx/pain_enemy/plastic crunch 6.wav"),
