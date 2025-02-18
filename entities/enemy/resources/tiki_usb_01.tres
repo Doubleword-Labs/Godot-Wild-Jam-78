@@ -1,0 +1,169 @@
+[gd_resource type="Resource" script_class="EnemyResource" load_steps=29 format=3 uid="uid://d4fgyepouyfb5"]
+
+[ext_resource type="Script" uid="uid://ch7dh0une2ae" path="res://entities/enemy/resources/enemy_resource.gd" id="1_2lyl1"]
+[ext_resource type="Texture2D" uid="uid://btsm0o13to1y6" path="res://assets/enemies/tiki_usb_01/shoot/tiki_usb_001_shoot_00006.png" id="2_kcxr8"]
+[ext_resource type="Texture2D" uid="uid://bw08bibfhctp1" path="res://assets/enemies/tiki_usb_01/shoot/tiki_usb_001_shoot_00007.png" id="3_52ryy"]
+[ext_resource type="Texture2D" uid="uid://dta2k58q61h2y" path="res://assets/enemies/tiki_usb_01/shoot/tiki_usb_001_shoot_00008.png" id="4_at3yv"]
+[ext_resource type="Texture2D" uid="uid://cr22sebwcc84b" path="res://assets/enemies/tiki_usb_01/shoot/tiki_usb_001_shoot_00009.png" id="5_bttc4"]
+[ext_resource type="Texture2D" uid="uid://bgi2t0hu8kjy5" path="res://assets/enemies/tiki_usb_01/shoot/tiki_usb_001_shoot_00010.png" id="6_jripf"]
+[ext_resource type="Texture2D" uid="uid://cgx1xc618vfjv" path="res://assets/enemies/tiki_usb_01/shoot/tiki_usb_001_shoot_00011.png" id="7_v1omp"]
+[ext_resource type="Texture2D" uid="uid://cwxbmenhw482h" path="res://assets/enemies/tiki_usb_01/shoot/tiki_usb_001_shoot_00012.png" id="8_an3ul"]
+[ext_resource type="Texture2D" uid="uid://cuajc8aj0kkhg" path="res://assets/enemies/tiki_usb_01/shoot/tiki_usb_001_shoot_00013.png" id="9_l3tu6"]
+[ext_resource type="Texture2D" uid="uid://de2kv1gna4tp4" path="res://assets/enemies/tiki_usb_01/shoot/tiki_usb_001_shoot_00014.png" id="10_dgu10"]
+[ext_resource type="Texture2D" uid="uid://bx5nyle5amimj" path="res://assets/enemies/tiki_usb_01/shoot/tiki_usb_001_shoot_00015.png" id="11_2lyl1"]
+[ext_resource type="Texture2D" uid="uid://cpncot5lpvnbo" path="res://assets/enemies/tiki_usb_01/shoot/tiki_usb_001_shoot_00016.png" id="12_3jxga"]
+[ext_resource type="Texture2D" uid="uid://oh8gv7jh6al4" path="res://assets/enemies/tiki_usb_01/shoot/tiki_usb_001_shoot_00017.png" id="13_glffb"]
+[ext_resource type="Texture2D" uid="uid://buwxscvf6l1n" path="res://assets/enemies/tiki_usb_01/shoot/tiki_usb_001_shoot_00018.png" id="14_j1qtt"]
+[ext_resource type="Texture2D" uid="uid://u676kvj5yf00" path="res://assets/enemies/tiki_usb_01/shoot/tiki_usb_001_shoot_00019.png" id="15_r3bfa"]
+[ext_resource type="Texture2D" uid="uid://cu5ogxposw73o" path="res://assets/enemies/shared/death/Enemy_DEATH_00000.png" id="16_kbnqc"]
+[ext_resource type="Texture2D" uid="uid://b8ui4ojf1w2pv" path="res://assets/enemies/shared/death/Enemy_DEATH_00001.png" id="17_dle08"]
+[ext_resource type="Texture2D" uid="uid://8kuas6xems46" path="res://assets/enemies/shared/death/Enemy_DEATH_00002.png" id="18_a53uy"]
+[ext_resource type="Texture2D" uid="uid://clxvwugsflsua" path="res://assets/enemies/shared/death/Enemy_DEATH_00003.png" id="19_t7xai"]
+[ext_resource type="Texture2D" uid="uid://bw4ek4622l4qp" path="res://assets/enemies/shared/death/Enemy_DEATH_00004.png" id="20_4tur5"]
+[ext_resource type="Texture2D" uid="uid://cd5315hre4xuc" path="res://assets/enemies/shared/death/Enemy_DEATH_00005.png" id="21_j3rr7"]
+[ext_resource type="Texture2D" uid="uid://6agt053n4pg5" path="res://assets/enemies/shared/death/Enemy_DEATH_00006.png" id="22_6j5d4"]
+[ext_resource type="Texture2D" uid="uid://c7jqddvikptnp" path="res://assets/enemies/shared/death/Enemy_DEATH_00007.png" id="23_uw8we"]
+[ext_resource type="Texture2D" uid="uid://tlblckeo0mx4" path="res://assets/enemies/shared/death/Enemy_DEATH_00008.png" id="24_c3epr"]
+[ext_resource type="Texture2D" uid="uid://4midewhvqr83" path="res://assets/enemies/shared/death/Enemy_DEATH_00009.png" id="25_h0tvg"]
+[ext_resource type="Texture2D" uid="uid://eyy81fetlu63" path="res://assets/enemies/shared/death/Enemy_DEATH_00010.png" id="26_q8ko7"]
+[ext_resource type="Texture2D" uid="uid://gd5sctfpnic5" path="res://assets/enemies/shared/death/Enemy_DEATH_00011.png" id="27_p6fms"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3da6q"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_kcxr8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_52ryy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_at3yv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_bttc4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_jripf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_v1omp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_an3ul")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_l3tu6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_dgu10")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_2lyl1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_3jxga")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_glffb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_j1qtt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_r3bfa")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("16_kbnqc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_dle08")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_a53uy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_t7xai")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_4tur5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_j3rr7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_6j5d4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_uw8we")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_c3epr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_h0tvg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_q8ko7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_p6fms")
+}],
+"loop": false,
+"name": &"death",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_kcxr8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_52ryy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_at3yv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_bttc4")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_kcxr8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_52ryy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_at3yv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_bttc4")
+}],
+"loop": false,
+"name": &"pain",
+"speed": 12.0
+}]
+
+[resource]
+script = ExtResource("1_2lyl1")
+attack_range = 30.0
+attack_timeout = 2.0
+sight_range = 100.0
+speed = 100.0
+health = 30.0
+sprite_frames = SubResource("SpriteFrames_3da6q")
+default_animation = "default"
+attack_animation = "attack"
+attack_frame = 6
+pain_animation = "pain"
+death_animation = "death"
+metadata/_custom_type_script = "uid://ch7dh0une2ae"
