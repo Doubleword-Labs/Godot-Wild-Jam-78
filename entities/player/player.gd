@@ -18,7 +18,6 @@ const PROJECTILE = preload("res://entities/projectile/projectile.tscn")
 @export var health := 100.0
 var can_attack := true
 
-var death_sfx = preload("res://assets/sfx/eraser 8.wav")
 
 func _ready() -> void:
 	pass
@@ -87,11 +86,7 @@ func take_damage(damage: int, from_player: bool) -> void:
 		Game.hp_gui.value = health
 
 		if health <= 0:
-			Game.pause(true)
-			AudioPlayer.play_sfx(death_sfx)
-			Game.can_pause = false
-			Game.lose_gui_node.visible = true
-			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+			Game.die()
 
 
 func _on_attack_timer_timeout() -> void:

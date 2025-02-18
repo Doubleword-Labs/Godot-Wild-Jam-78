@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://cfvwxfxagwl8y"]
+[gd_scene load_steps=3 format=3 uid="uid://dx8ncp3g3sfst"]
 
 [ext_resource type="FontFile" uid="uid://db4p37abih74f" path="res://assets/fonts/Sigmar/Sigmar-Regular.ttf" id="1_adefy"]
 [ext_resource type="Script" uid="uid://bi6hknne5net5" path="res://entities/player_hud/player_hud_lose.gd" id="1_m0aqb"]
@@ -12,6 +12,7 @@ offset_bottom = 647.0
 color = Color(0, 0, 0, 0.247059)
 
 [node name="Label" type="Label" parent="ColorRect"]
+layout_mode = 0
 offset_left = 456.0
 offset_top = 224.0
 offset_right = 716.0

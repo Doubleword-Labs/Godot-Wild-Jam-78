@@ -1,19 +1,45 @@
-[gd_scene load_steps=2 format=3 uid="uid://bciipxha38k5g"]
+[gd_scene load_steps=3 format=3 uid="uid://c584w6k84mnx3"]
 
+[ext_resource type="Script" uid="uid://cymy7uo8ssj7v" path="res://entities/player_hud/player_hud_win.gd" id="1_dmtdt"]
 [ext_resource type="FontFile" uid="uid://db4p37abih74f" path="res://assets/fonts/Sigmar/Sigmar-Regular.ttf" id="1_k0thd"]
 
-[node name="CanvasLayer" type="CanvasLayer"]
+[node name="Win" type="CanvasLayer"]
+script = ExtResource("1_dmtdt")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ColorRect2" type="ColorRect" parent="."]
 offset_right = 1154.0
 offset_bottom = 647.0
 color = Color(0, 0, 0, 0.247059)
 
-[node name="Label" type="Label" parent="."]
-offset_left = 475.0
-offset_top = 275.0
-offset_right = 672.0
-offset_bottom = 358.0
+[node name="Label" type="Label" parent="ColorRect2"]
+layout_mode = 0
+offset_left = 313.0
+offset_top = 224.0
+offset_right = 866.0
+offset_bottom = 307.0
 theme_override_fonts/font = ExtResource("1_k0thd")
 theme_override_font_sizes/font_size = 50
-text = "Paused"
+text = "You Cleared Wave X!"
+
+[node name="WaveAgain" type="Button" parent="."]
+offset_left = 138.0
+offset_top = 475.0
+offset_right = 565.0
+offset_bottom = 571.0
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("1_k0thd")
+theme_override_font_sizes/font_size = 30
+text = "Next Wave?"
+
+[node name="Title" type="Button" parent="."]
+offset_left = 619.0
+offset_top = 475.0
+offset_right = 1046.0
+offset_bottom = 571.0
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("1_k0thd")
+theme_override_font_sizes/font_size = 30
+text = "Back to Title"
+
+[connection signal="pressed" from="WaveAgain" to="." method="_on_wave_again_pressed"]
+[connection signal="pressed" from="Title" to="." method="_on_title_pressed"]

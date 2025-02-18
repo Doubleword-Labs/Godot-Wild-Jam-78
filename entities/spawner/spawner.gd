@@ -31,6 +31,9 @@ var spawn_count := 0
 
 
 func _ready() -> void:
+	spawnlevel(Waves.current_wave)
+	Waves.spawners.append(self)
+
 	if Engine.is_editor_hint():
 		return
 
@@ -79,7 +82,8 @@ func spawn_enemy(global_spawn_position: Vector3, parent: Node3D) -> void:
 		enemy.top_level = true
 
 		parent.add_child(enemy)
-		Game.spawnables.append(enemy);
+		Game.spawnables.append(enemy)
+		Waves.spawnlist.append(enemy)
 		enemy.global_position = global_spawn_position
 
 		enemy_spawned.emit(self, enemy)
@@ -163,3 +167,8 @@ func get_spawn_target() -> Node3D:
 		get_tree().root.add_child(spawn_target)
 
 	return get_node("/root/Enemies")
+	
+func spawnlevel(level: int) -> void:
+	spawn_limit = level
+	spawn_amount = level
+	spawn_timeout = 5
