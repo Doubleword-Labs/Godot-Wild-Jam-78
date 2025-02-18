@@ -87,7 +87,10 @@ func take_damage(damage: int, from_player: bool) -> void:
 		Game.hp_gui.value = health
 
 		if health <= 0:
-			print("u r ded")
+			Game.pause(true)
+			Game.can_pause = false
+			Game.lose_gui_node.visible = true
+			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 
 func _on_attack_timer_timeout() -> void:

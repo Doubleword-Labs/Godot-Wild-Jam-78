@@ -5,6 +5,8 @@ extends CanvasLayer
 
 func _ready() -> void:
 	Game.paused_gui_node = $Pause
+	Game.lose_gui_node = $PauseLose
+	Game.win_gui_node = $PauseWin
 
 
 func melee_attack() -> void:

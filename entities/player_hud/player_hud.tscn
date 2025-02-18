@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://b78bqckus7vfd"]
+[gd_scene load_steps=21 format=3 uid="uid://b78bqckus7vfd"]
 
 [ext_resource type="Texture2D" uid="uid://dxp3bq6ly8bu" path="res://assets/player/idle/jason_drawn_00000.png" id="1_dec37"]
 [ext_resource type="Script" uid="uid://ds4ev0degwh8i" path="res://entities/player_hud/player_hud.gd" id="1_ocp11"]
@@ -16,6 +16,8 @@
 [ext_resource type="Texture2D" uid="uid://brbsf1wi8ahe1" path="res://assets/player/punch/jason_drawn_punch_00004.png" id="12_tob4y"]
 [ext_resource type="Texture2D" uid="uid://5vsxivws16nd" path="res://assets/player/punch/jason_drawn_punch_00005.png" id="13_jg8nn"]
 [ext_resource type="PackedScene" uid="uid://dmvklct5ybqg7" path="res://entities/player_hud/player_hud_pause.tscn" id="16_d3o8r"]
+[ext_resource type="PackedScene" uid="uid://bciipxha38k5g" path="res://entities/player_hud/player_hud_win.tscn" id="17_6fl1v"]
+[ext_resource type="PackedScene" uid="uid://cfvwxfxagwl8y" path="res://entities/player_hud/player_hud_lose.tscn" id="18_tob4y"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_bectd"]
 animations = [{
@@ -111,4 +113,9 @@ script = ExtResource("9_v05wo")
 
 [node name="Pause" parent="." instance=ExtResource("16_d3o8r")]
 visible = false
-script = null
+
+[node name="PauseWin" parent="." instance=ExtResource("17_6fl1v")]
+visible = false
+
+[node name="PauseLose" parent="." instance=ExtResource("18_tob4y")]
+visible = false
