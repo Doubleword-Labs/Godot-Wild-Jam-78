@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://c065d6nqro7wq"]
+[gd_scene load_steps=18 format=3 uid="uid://c065d6nqro7wq"]
 
 [ext_resource type="Script" uid="uid://gta2qv6v5bdy" path="res://levels/level.gd" id="1_qh4mo"]
 [ext_resource type="PackedScene" uid="uid://cvf7653hiknvm" path="res://entities/player/player.tscn" id="2_878re"]
@@ -9,6 +9,7 @@
 [ext_resource type="Resource" uid="uid://chjmobof5rfmv" path="res://entities/enemy/resources/tiki_eraser_01.tres" id="6_uro06"]
 [ext_resource type="Resource" uid="uid://bbyony6hw2axm" path="res://entities/enemy/resources/tiki_pencil_01.tres" id="7_7glqg"]
 [ext_resource type="Resource" uid="uid://bxfc1w7qg63t0" path="res://entities/enemy/resources/tiki_pencil_02.tres" id="8_i6axb"]
+[ext_resource type="PackedScene" uid="uid://byp34cina6f3c" path="res://entities/tiki_hut/tiki_hut.tscn" id="10_5fjfq"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_yrsgf"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -145,20 +146,34 @@ spawn_amount = 5
 wave = 2
 operator = 2
 
-[node name="Spawner3" parent="Wave > 2" instance=ExtResource("4_j8tro")]
+[node name="Wave < 5" parent="Wave > 2" instance=ExtResource("4_4q6uk")]
+wave = 5
+operator = 3
+
+[node name="Spawner3" parent="Wave > 2/Wave < 5" instance=ExtResource("4_j8tro")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.232, 0.07426, 0.0662003)
 enemies = Array[ExtResource("5_wvknh")]([SubResource("Resource_fm2rd"), SubResource("Resource_uebnn"), SubResource("Resource_atwq1")])
 spawn_limit = 20
 spawn_amount = 5
 
-[node name="Spawner2" parent="Wave > 2" instance=ExtResource("4_j8tro")]
+[node name="Spawner2" parent="Wave > 2/Wave < 5" instance=ExtResource("4_j8tro")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.3635, 0.07426, -15.2739)
 enemies = Array[ExtResource("5_wvknh")]([SubResource("Resource_fm2rd"), SubResource("Resource_uebnn"), SubResource("Resource_atwq1")])
 spawn_limit = 20
 spawn_amount = 5
 
-[node name="Spawner4" parent="Wave > 2" instance=ExtResource("4_j8tro")]
+[node name="Spawner4" parent="Wave > 2/Wave < 5" instance=ExtResource("4_j8tro")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.19876, 0.07426, -14.9338)
 enemies = Array[ExtResource("5_wvknh")]([SubResource("Resource_fm2rd"), SubResource("Resource_uebnn"), SubResource("Resource_atwq1")])
 spawn_limit = 20
 spawn_amount = 5
+
+[node name="Wave 5" parent="." instance=ExtResource("4_4q6uk")]
+wave = 5
+
+[node name="Shop" parent="Wave 5" instance=ExtResource("10_5fjfq")]
+transform = Transform3D(-0.720745, 0, 0.693201, 0, 1, 0, -0.693201, 0, -0.720745, -11.4684, 0, 12.0714)
+
+[node name="Exit" parent="Wave 5" instance=ExtResource("10_5fjfq")]
+transform = Transform3D(0.825449, 0, -0.564477, 0, 1, 0, 0.564477, 0, 0.825449, 12.133, 0, -12.797)
+sign_text = "Exit"

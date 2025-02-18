@@ -1,0 +1,5 @@
+[gd_scene load_steps=2 format=3 uid="uid://bbfxa13m2nqut"]
+
+[ext_resource type="PackedScene" uid="uid://dvfvqrv2yi2um" path="res://meshes/tiki_hut/tiki_hut.gltf" id="1_7oi2i"]
+
+[node name="tiki_hut" instance=ExtResource("1_7oi2i")]

@@ -1,0 +1,64 @@
+[gd_scene load_steps=6 format=3 uid="uid://byp34cina6f3c"]
+
+[ext_resource type="PackedScene" uid="uid://bbfxa13m2nqut" path="res://entities/tiki_hut/tiki_hut_base.tscn" id="1_s1c6u"]
+[ext_resource type="Script" uid="uid://ckyxw34qa81rv" path="res://entities/tiki_hut/tiki_hut.gd" id="1_tlqxp"]
+
+[sub_resource type="Animation" id="Animation_tlqxp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("tiki_hut:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_s1c6u"]
+resource_name = "spawn"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("tiki_hut:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.466667, 0.766667),
+"transitions": PackedFloat32Array(-2, 0.5, 2),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(1.5, 1.5, 1.5), Vector3(1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1ctbc"]
+_data = {
+&"RESET": SubResource("Animation_tlqxp"),
+&"spawn": SubResource("Animation_s1c6u")
+}
+
+[node name="TikiHut" type="Node3D"]
+script = ExtResource("1_tlqxp")
+
+[node name="tiki_hut" parent="." instance=ExtResource("1_s1c6u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
+
+[node name="SignLabel3D" type="Label3D" parent="tiki_hut/Node/THE HUT/tiki hut/hut/hut sign" index="2"]
+unique_name_in_owner = true
+transform = Transform3D(-2.22045e-14, -66.6666, 2.97333e-30, 100, -1.4803e-14, -2.44929e-14, 2.44929e-14, -1.98222e-30, 100, -140.939, 31.8666, 13.7729)
+pixel_size = 0.02
+shaded = true
+texture_filter = 2
+modulate = Color(1, 1, 0.588235, 1)
+text = "Shop"
+width = 1000.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_1ctbc")
+}
+autoplay = "spawn"
+
+[editable path="tiki_hut"]
