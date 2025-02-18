@@ -31,11 +31,11 @@ var spawn_count := 0
 
 
 func _ready() -> void:
-	spawnlevel(Waves.current_wave)
-	Waves.spawners.append(self)
-
 	if Engine.is_editor_hint():
 		return
+		
+	spawnlevel(Waves.current_wave)
+	Waves.spawners.append(self)
 
 	if enemies.size() == 0:
 		push_error("No enemies defined in spawner", self)
