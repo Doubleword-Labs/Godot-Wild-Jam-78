@@ -14,7 +14,8 @@ const punch_sfx_arr = [
 	preload("res://assets/sfx/punch/punch clothes 8.wav"),
 	preload("res://assets/sfx/punch/punch clothes 9.wav"),
 	preload("res://assets/sfx/punch/punch flesh 8.wav"),
-	preload("res://assets/sfx/punch/punch flesh 9.wav")
+	preload("res://assets/sfx/punch/punch flesh 9.wav"),
+	preload("res://assets/sfx/punch/punch flesh 10.wav")
 ] 
 
 @onready var player_hud: CanvasLayer = $PlayerHud
