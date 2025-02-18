@@ -13,7 +13,7 @@ const win_sfx_arr = [
 	preload("res://assets/sfx/voice - wow 1.wav")]
 
 var player: Player
-var hp_gui: Gui_HP
+var hp_gui
 var paused_gui_node
 var lose_gui_node
 var win_gui_node

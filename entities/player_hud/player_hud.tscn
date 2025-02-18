@@ -10,12 +10,13 @@
 [ext_resource type="Texture2D" uid="uid://dx7umd8m8le7g" path="res://assets/player/idle/jason_drawn_00006.png" id="7_d2mea"]
 [ext_resource type="Texture2D" uid="uid://c2tp2i4rychgn" path="res://assets/player/idle/jason_drawn_00007.png" id="8_vg1dr"]
 [ext_resource type="Texture2D" uid="uid://dmbm1etb5n2u2" path="res://assets/player/punch/jason_drawn_punch_00001.png" id="9_d3o8r"]
-[ext_resource type="Script" uid="uid://cnfxn2ejpqym3" path="res://entities/player_hud/hp.gd" id="9_v05wo"]
 [ext_resource type="Texture2D" uid="uid://de2h2ysgt21f4" path="res://assets/player/punch/jason_drawn_punch_00002.png" id="10_ocp11"]
 [ext_resource type="Texture2D" uid="uid://ck552q5bnvhid" path="res://assets/player/punch/jason_drawn_punch_00003.png" id="11_6fl1v"]
 [ext_resource type="Texture2D" uid="uid://brbsf1wi8ahe1" path="res://assets/player/punch/jason_drawn_punch_00004.png" id="12_tob4y"]
 [ext_resource type="Texture2D" uid="uid://5vsxivws16nd" path="res://assets/player/punch/jason_drawn_punch_00005.png" id="13_jg8nn"]
+[ext_resource type="Texture2D" uid="uid://bgkfd5ikxdmoj" path="res://assets/gui/hp/healthbarUnder.png" id="15_tob4y"]
 [ext_resource type="PackedScene" uid="uid://dmvklct5ybqg7" path="res://entities/player_hud/player_hud_pause.tscn" id="16_d3o8r"]
+[ext_resource type="Texture2D" uid="uid://dve1cp0l1s7ab" path="res://assets/gui/hp/healthbarProgress.png" id="16_tob4y"]
 [ext_resource type="PackedScene" uid="uid://c584w6k84mnx3" path="res://entities/player_hud/player_hud_win.tscn" id="17_6fl1v"]
 [ext_resource type="PackedScene" uid="uid://dx8ncp3g3sfst" path="res://entities/player_hud/player_hud_lose.tscn" id="18_tob4y"]
 
@@ -71,8 +72,6 @@ animations = [{
 "speed": 16.0
 }]
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_v05wo"]
-
 [node name="CanvasLayer" type="CanvasLayer"]
 script = ExtResource("1_ocp11")
 
@@ -103,13 +102,17 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(1, 1, 1, 0.180392)
 
-[node name="HP" type="ProgressBar" parent="."]
-offset_left = 28.0
-offset_top = 31.0
-offset_right = 241.0
-offset_bottom = 68.0
-theme_override_styles/background = SubResource("StyleBoxTexture_v05wo")
-script = ExtResource("9_v05wo")
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HealthBar" type="TextureProgressBar" parent="."]
+offset_left = 41.0
+offset_top = 44.0
+offset_right = 306.0
+offset_bottom = 91.0
+texture_under = ExtResource("15_tob4y")
+texture_progress = ExtResource("16_tob4y")
 
 [node name="Pause" parent="." instance=ExtResource("16_d3o8r")]
 visible = false
