@@ -64,20 +64,52 @@ navigation_mesh = SubResource("NavigationMesh_ofg5g")
 
 [node name="tiki_arena02_collsion" parent="NavigationRegion3D" instance=ExtResource("3_ldq5f")]
 
+[node name="Node" type="Node" parent="NavigationRegion3D"]
+
+[node name="NavigationObstacle3D" type="NavigationObstacle3D" parent="NavigationRegion3D/Node"]
+vertices = PackedVector3Array(6.38749, 0, -8.55619, 4.86108, 0, -16.1254, 3.89326, 0, -17.2342, 2.38401, 0, -17.2812, 0.193052, 0, -16.5665, -0.244391, 0, -13.2397, 1.85252, 0, -9.19692, 2.90474, 0, -7.0536)
+
+[node name="NavigationObstacle3D" type="NavigationObstacle3D" parent="NavigationRegion3D/Node/NavigationObstacle3D"]
+vertices = PackedVector3Array(13.2185, 0, 9.81635, 13.8143, 0, 8.42622, 13.507, 0, 5.89027, 10.2368, 0, 1.82803, 9.05106, 0, 1.62696, 7.80658, 0, 2.22032, 7.11777, 0, 3.20573, 8.53878, 0, 6.69525, 10.0787, 0, 9.38486, 10.439, 0, 10.0444)
+
+[node name="NavigationObstacle3D" type="NavigationObstacle3D" parent="NavigationRegion3D/Node/NavigationObstacle3D/NavigationObstacle3D"]
+vertices = PackedVector3Array(5.43189, 0, 15.5428, 6.89675, 0, 12.4353, 6.63101, 0, 11.6707, 5.32163, 0, 11.11, 3.45677, 0, 11.0633, 2.69966, 0, 13.8768, 2.71183, 0, 15.3165, 4.14536, 0, 15.8801)
+
+[node name="NavigationObstacle3D" type="NavigationObstacle3D" parent="NavigationRegion3D/Node/NavigationObstacle3D/NavigationObstacle3D/NavigationObstacle3D"]
+vertices = PackedVector3Array(-2.9501, 0, 18.1591, -0.316165, 0, 17.9626, 1.13849, 0, 16.5682, 0.605044, 0, 14.9828, 0.553894, 0, 13.101, -1.58693, 0, 13.0586, -4.24805, 0, 14.881, -4.03154, 0, 17.4079)
+
+[node name="NavigationObstacle3D" type="NavigationObstacle3D" parent="NavigationRegion3D/Node/NavigationObstacle3D/NavigationObstacle3D/NavigationObstacle3D/NavigationObstacle3D"]
+vertices = PackedVector3Array(-6.42338, 0, 2.94591, -5.00054, 0, 6.2935, -4.21116, 0, 6.30565, -2.3682, 0, 5.22412, -3.26008, 0, 2.49553, -4.44284, 0, 0.787928)
+
+[node name="NavigationObstacle3D" type="NavigationObstacle3D" parent="NavigationRegion3D/Node/NavigationObstacle3D/NavigationObstacle3D/NavigationObstacle3D/NavigationObstacle3D/NavigationObstacle3D"]
+vertices = PackedVector3Array(12.4373, 0, -6.39896, 12.2128, 0, -5.98461, 12.2021, 0, -5.35048, 12.4448, 0, -4.7503, 14.0395, 0, -5.02339, 14.0846, 0, -6.17192)
+
+[node name="NavigationObstacle3D" type="NavigationObstacle3D" parent="NavigationRegion3D/Node/NavigationObstacle3D/NavigationObstacle3D/NavigationObstacle3D/NavigationObstacle3D/NavigationObstacle3D/NavigationObstacle3D"]
+vertices = PackedVector3Array(17.8748, 0, -2.18797, 17.5494, 0, -1.65413, 17.5313, 0, -1.10259, 19.2328, 0, 0.590866, 20.093, 0, 0.609735, 20.6115, 0, -1.46414, 20.2644, 0, -2.39308)
+
+[node name="NavigationObstacle3D" type="NavigationObstacle3D" parent="NavigationRegion3D/Node/NavigationObstacle3D/NavigationObstacle3D/NavigationObstacle3D/NavigationObstacle3D/NavigationObstacle3D/NavigationObstacle3D/NavigationObstacle3D"]
+vertices = PackedVector3Array(-17.9292, 0, -2.26157, -17.5941, 0, 0.557422, -16.6609, 0, 1.93562, -15.0487, 0, 2.34232, -13.2146, 0, 0.283034, -14.2821, 0, -2.1551, -16.2014, 0, -2.85638)
+
+[node name="NavigationObstacle3D" type="NavigationObstacle3D" parent="NavigationRegion3D/Node/NavigationObstacle3D/NavigationObstacle3D/NavigationObstacle3D/NavigationObstacle3D/NavigationObstacle3D/NavigationObstacle3D/NavigationObstacle3D/NavigationObstacle3D"]
+vertices = PackedVector3Array(-11.5461, 0, -15.4634, -13.534, 0, -14.9174, -13.5759, 0, -12.0203, -14.8664, 0, -10.0034, -14.8967, 0, -9.21209, -13.591, 0, -8.65908, -11.9336, 0, -9.52785, -11.8178, 0, -10.7768, -9.69793, 0, -11.5954, -9.68534, 0, -13.4591, -10.7484, 0, -14.4214)
+
+[node name="NavigationObstacle3D" type="NavigationObstacle3D" parent="NavigationRegion3D/Node/NavigationObstacle3D/NavigationObstacle3D/NavigationObstacle3D/NavigationObstacle3D/NavigationObstacle3D/NavigationObstacle3D/NavigationObstacle3D/NavigationObstacle3D/NavigationObstacle3D"]
+vertices = PackedVector3Array(-5.33307, 0, -20.6738, -6.31779, 0, -20.7027, -7.00406, 0, -20.1546, -8.29469, 0, -19.5118, -8.39997, 0, -18.7567, -7.30314, 0, -18.3368, -6.11871, 0, -17.6642, -5.54742, 0, -18.5226, -6.05569, 0, -19.4226, -5.8911, 0, -20.5353)
+
 [node name="Spawner" parent="." instance=ExtResource("4_j8tro")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.3635, 0.07426, -16.9338)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.3635, 0.07426, -15.2739)
 enemies = Array[ExtResource("5_wvknh")]([SubResource("Resource_fm2rd"), SubResource("Resource_uebnn"), SubResource("Resource_atwq1")])
 spawn_limit = 20
 spawn_amount = 5
 
 [node name="Spawner2" parent="." instance=ExtResource("4_j8tro")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.6365, 0.07426, -14.9338)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.19876, 0.07426, -14.9338)
 enemies = Array[ExtResource("5_wvknh")]([SubResource("Resource_fm2rd"), SubResource("Resource_uebnn"), SubResource("Resource_atwq1")])
 spawn_limit = 20
 spawn_amount = 5
 
 [node name="Spawner3" parent="." instance=ExtResource("4_j8tro")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.6365, 0.07426, 0.0662003)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.232, 0.07426, 0.0662003)
 enemies = Array[ExtResource("5_wvknh")]([SubResource("Resource_fm2rd"), SubResource("Resource_uebnn"), SubResource("Resource_atwq1")])
 spawn_limit = 20
 spawn_amount = 5
