@@ -183,7 +183,7 @@ debug_shape_custom_color = Color(1, 0, 0, 1)
 
 [node name="StateChart" type="Node" parent="."]
 script = ExtResource("6_721x4")
-metadata/_custom_type_script = ExtResource("6_721x4")
+metadata/_custom_type_script = "uid://xi8j357bo6xr"
 
 [node name="RootState" type="Node" parent="StateChart"]
 script = ExtResource("7_eaj7m")

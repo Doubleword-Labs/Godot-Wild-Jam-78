@@ -1,4 +1,4 @@
-[gd_scene load_steps=417 format=4 uid="uid://bwt8aau3hnf2u"]
+[gd_scene load_steps=419 format=4 uid="uid://bwt8aau3hnf2u"]
 
 [ext_resource type="Script" uid="uid://iqjhfm6bsp6k" path="res://addons/func_godot/src/map/func_godot_map.gd" id="1_3jh3j"]
 [ext_resource type="Script" uid="uid://gta2qv6v5bdy" path="res://levels/level.gd" id="1_12c2m"]
@@ -10,6 +10,7 @@
 [ext_resource type="Resource" uid="uid://chjmobof5rfmv" path="res://entities/enemy/resources/tiki_eraser_01.tres" id="9_ayr14"]
 [ext_resource type="Resource" uid="uid://bbyony6hw2axm" path="res://entities/enemy/resources/tiki_pencil_01.tres" id="10_w7nsc"]
 [ext_resource type="Resource" uid="uid://bxfc1w7qg63t0" path="res://entities/enemy/resources/tiki_pencil_02.tres" id="11_4qyet"]
+[ext_resource type="Resource" uid="uid://d4fgyepouyfb5" path="res://entities/enemy/resources/tiki_usb_01.tres" id="11_fxwlg"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_yrsgf"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -1288,6 +1289,12 @@ resource = ExtResource("11_4qyet")
 spawn_rate = 1.0
 metadata/_custom_type_script = ExtResource("8_o2hcj")
 
+[sub_resource type="Resource" id="Resource_o2hcj"]
+script = ExtResource("8_o2hcj")
+resource = ExtResource("11_fxwlg")
+spawn_rate = 1.0
+metadata/_custom_type_script = "uid://lt7ywc1ubvtt"
+
 [node name="Arena01" type="Node3D"]
 script = ExtResource("1_12c2m")
 
@@ -1309,7 +1316,7 @@ navigation_mesh = SubResource("NavigationMesh_ofg5g")
 script = ExtResource("1_3jh3j")
 local_map_file = "uid://cq827jalx4r4s"
 map_settings = ExtResource("2_12c2m")
-metadata/_custom_type_script = ExtResource("1_3jh3j")
+metadata/_custom_type_script = "uid://iqjhfm6bsp6k"
 
 [node name="entity_0_worldspawn" type="StaticBody3D" parent="NavigationRegion3D/FuncGodotMap"]
 collision_mask = 0
@@ -2524,18 +2531,18 @@ vertices = PackedVector3Array(24.2204, 0, 3.62871, 18.9154, 0, 2.9339, 17.3981, 
 
 [node name="Spawner" parent="." instance=ExtResource("7_fxwlg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.3635, 1.07426, -12.9338)
-enemies = Array[ExtResource("8_o2hcj")]([SubResource("Resource_fm2rd"), SubResource("Resource_uebnn"), SubResource("Resource_atwq1")])
+enemies = Array[ExtResource("8_o2hcj")]([SubResource("Resource_fm2rd"), SubResource("Resource_uebnn"), SubResource("Resource_atwq1"), SubResource("Resource_o2hcj")])
 spawn_limit = 20
 spawn_amount = 5
 
 [node name="Spawner2" parent="." instance=ExtResource("7_fxwlg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.36347, 1.07426, -12.9338)
-enemies = Array[ExtResource("8_o2hcj")]([SubResource("Resource_fm2rd"), SubResource("Resource_uebnn"), SubResource("Resource_atwq1")])
+enemies = Array[ExtResource("8_o2hcj")]([SubResource("Resource_fm2rd"), SubResource("Resource_uebnn"), SubResource("Resource_atwq1"), SubResource("Resource_o2hcj")])
 spawn_limit = 20
 spawn_amount = 5
 
 [node name="Spawner3" parent="." instance=ExtResource("7_fxwlg")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.6365, 1.07426, -12.9338)
-enemies = Array[ExtResource("8_o2hcj")]([SubResource("Resource_fm2rd"), SubResource("Resource_uebnn"), SubResource("Resource_atwq1")])
+enemies = Array[ExtResource("8_o2hcj")]([SubResource("Resource_fm2rd"), SubResource("Resource_uebnn"), SubResource("Resource_atwq1"), SubResource("Resource_o2hcj")])
 spawn_limit = 20
 spawn_amount = 5
