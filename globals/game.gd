@@ -77,13 +77,14 @@ func free_spawnables() -> void:
 
 
 func reload():
+	free_spawnables()	
 	pause(false)
-	free_spawnables()
 	can_pause = true
 
 
 func die():
 	pause(true)
+	AudioPlayer.free_sfx()
 	AudioPlayer.play_sfx_array(death_sfx_arr)
 	can_pause = false
 	lose_gui_node.visible = true
@@ -92,6 +93,7 @@ func die():
 
 func win():
 	pause(true)
+	AudioPlayer.free_sfx()
 	AudioPlayer.play_sfx_array(win_sfx_arr)
 	can_pause = false
 	win_gui_node.visible = true

@@ -5,6 +5,7 @@ const game_music: AudioStream = preload("res://assets/music/jungle-story-168459.
 var music_player: AudioStreamPlayer
 var default_volumes = [1, 0.4, 0.6]
 
+var sfx_player_list = []
 
 func _ready():
 	update_volume(0, default_volumes[0])
@@ -34,6 +35,7 @@ func play_sfx(sfx: AudioStream):
 	sfx_player.stream = sfx
 	sfx_player.bus = "SFX"
 	add_child(sfx_player)
+	sfx_player_list.append(sfx_player)
 	sfx_player.play()
 	
 	await sfx_player.finished
@@ -41,3 +43,9 @@ func play_sfx(sfx: AudioStream):
 func play_sfx_array(sfx_arr: Array) -> void:
 	play_sfx(sfx_arr.pick_random())
 	
+func free_sfx():
+	for sfx in sfx_player_list:
+		if is_instance_valid(sfx) and not sfx.is_queued_for_deletion():
+			sfx.queue_free()
+	
+	sfx_player_list = []
