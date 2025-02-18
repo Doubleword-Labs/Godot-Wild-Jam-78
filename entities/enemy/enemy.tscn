@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://cx5mk2aylf5te"]
+[gd_scene load_steps=44 format=3 uid="uid://cx5mk2aylf5te"]
 
 [ext_resource type="Script" uid="uid://dyq1wlk6sb0q4" path="res://entities/enemy/enemy.gd" id="1_dt443"]
 [ext_resource type="Resource" uid="uid://bxfc1w7qg63t0" path="res://entities/enemy/resources/tiki_pencil_02.tres" id="2_cdg3n"]
@@ -21,18 +21,30 @@
 [ext_resource type="Texture2D" uid="uid://dtm1i3d31bd07" path="res://assets/enemies/tiki_pencil_02/hit/tiki_pencil_002_hit_00011.png" id="14_qhp00"]
 [ext_resource type="Texture2D" uid="uid://e6ye03bmavr8" path="res://assets/enemies/tiki_pencil_02/shoot/tiki_pencil_002_shoot_00006.png" id="15_n8b7o"]
 [ext_resource type="Texture2D" uid="uid://cdme073jct0w6" path="res://assets/enemies/tiki_pencil_02/shoot/tiki_pencil_002_shoot_00007.png" id="16_1lqus"]
+[ext_resource type="Texture2D" uid="uid://cu5ogxposw73o" path="res://assets/enemies/shared/death/Enemy_DEATH_00000.png" id="17_1lqus"]
 [ext_resource type="Texture2D" uid="uid://ny6vyt70wdmn" path="res://assets/enemies/tiki_pencil_02/shoot/tiki_pencil_002_shoot_00008.png" id="17_2fo61"]
+[ext_resource type="Texture2D" uid="uid://b8ui4ojf1w2pv" path="res://assets/enemies/shared/death/Enemy_DEATH_00001.png" id="18_2fo61"]
 [ext_resource type="Texture2D" uid="uid://bac5n6ej7wp5q" path="res://assets/enemies/tiki_pencil_02/shoot/tiki_pencil_002_shoot_00009.png" id="18_dtkp3"]
+[ext_resource type="Texture2D" uid="uid://8kuas6xems46" path="res://assets/enemies/shared/death/Enemy_DEATH_00002.png" id="19_dtkp3"]
 [ext_resource type="Texture2D" uid="uid://dm4sad76tw4y7" path="res://assets/enemies/tiki_pencil_02/hit/tiki_pencil_002_hit_00012.png" id="19_m56ec"]
 [ext_resource type="Texture2D" uid="uid://ca2weedjoqfyt" path="res://assets/enemies/tiki_pencil_02/hit/tiki_pencil_002_hit_00013.png" id="20_ag8el"]
+[ext_resource type="Texture2D" uid="uid://clxvwugsflsua" path="res://assets/enemies/shared/death/Enemy_DEATH_00003.png" id="20_m56ec"]
+[ext_resource type="Texture2D" uid="uid://bw4ek4622l4qp" path="res://assets/enemies/shared/death/Enemy_DEATH_00004.png" id="21_ag8el"]
 [ext_resource type="Texture2D" uid="uid://b5ja75m4w4pa2" path="res://assets/enemies/tiki_pencil_02/hit/tiki_pencil_002_hit_00014.png" id="21_kvmxw"]
 [ext_resource type="Texture2D" uid="uid://hskofeg1d65b" path="res://assets/enemies/tiki_pencil_02/hit/tiki_pencil_002_hit_00015.png" id="22_fxw2g"]
+[ext_resource type="Texture2D" uid="uid://cd5315hre4xuc" path="res://assets/enemies/shared/death/Enemy_DEATH_00005.png" id="22_kvmxw"]
 [ext_resource type="Texture2D" uid="uid://bf4xignjoethb" path="res://assets/enemies/tiki_pencil_02/hit/tiki_pencil_002_hit_00016.png" id="23_d8pt4"]
+[ext_resource type="Texture2D" uid="uid://6agt053n4pg5" path="res://assets/enemies/shared/death/Enemy_DEATH_00006.png" id="23_fxw2g"]
 [ext_resource type="Texture2D" uid="uid://3xhra5dwjh88" path="res://assets/enemies/tiki_pencil_02/hit/tiki_pencil_002_hit_00017.png" id="24_d0pvf"]
+[ext_resource type="Texture2D" uid="uid://c7jqddvikptnp" path="res://assets/enemies/shared/death/Enemy_DEATH_00007.png" id="24_d8pt4"]
+[ext_resource type="Texture2D" uid="uid://tlblckeo0mx4" path="res://assets/enemies/shared/death/Enemy_DEATH_00008.png" id="25_d0pvf"]
+[ext_resource type="Texture2D" uid="uid://4midewhvqr83" path="res://assets/enemies/shared/death/Enemy_DEATH_00009.png" id="26_d8vfj"]
+[ext_resource type="Texture2D" uid="uid://eyy81fetlu63" path="res://assets/enemies/shared/death/Enemy_DEATH_00010.png" id="27_8uinu"]
+[ext_resource type="Texture2D" uid="uid://gd5sctfpnic5" path="res://assets/enemies/shared/death/Enemy_DEATH_00011.png" id="28_26jx0"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tir2s"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_3qkq4"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_kl4j4"]
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -83,13 +95,40 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("12_lwq83")
+"texture": ExtResource("17_1lqus")
 }, {
 "duration": 1.0,
-"texture": ExtResource("13_qur3k")
+"texture": ExtResource("18_2fo61")
 }, {
 "duration": 1.0,
-"texture": ExtResource("14_qhp00")
+"texture": ExtResource("19_dtkp3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_m56ec")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_ag8el")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_kvmxw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_fxw2g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_d8pt4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_d0pvf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_d8vfj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_8uinu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("28_26jx0")
 }],
 "loop": false,
 "name": &"death",
@@ -159,7 +198,7 @@ debug_color = Color(0.956354, 4.81307e-07, 0.538377, 0.42)
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0.928495, 0)
 billboard = 2
 texture_filter = 2
-sprite_frames = SubResource("SpriteFrames_3qkq4")
+sprite_frames = SubResource("SpriteFrames_kl4j4")
 animation = &"attack"
 autoplay = "default"
 

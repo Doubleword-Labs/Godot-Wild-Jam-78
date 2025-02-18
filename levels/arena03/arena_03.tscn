@@ -1,8 +1,9 @@
-[gd_scene load_steps=16 format=3 uid="uid://c065d6nqro7wq"]
+[gd_scene load_steps=17 format=3 uid="uid://c065d6nqro7wq"]
 
 [ext_resource type="Script" uid="uid://gta2qv6v5bdy" path="res://levels/level.gd" id="1_qh4mo"]
 [ext_resource type="PackedScene" uid="uid://cvf7653hiknvm" path="res://entities/player/player.tscn" id="2_878re"]
 [ext_resource type="PackedScene" uid="uid://4ht7h1bcblqs" path="res://meshes/levels/tiki_arena02_collsion.gltf" id="3_ldq5f"]
+[ext_resource type="PackedScene" uid="uid://12n0mbmpq1h4" path="res://entities/wave_component/wave_component.tscn" id="4_4q6uk"]
 [ext_resource type="PackedScene" uid="uid://dudp8r4j4e2kt" path="res://entities/spawner/spawner.tscn" id="4_j8tro"]
 [ext_resource type="Script" uid="uid://lt7ywc1ubvtt" path="res://entities/spawner/spawner_resource.gd" id="5_wvknh"]
 [ext_resource type="Resource" uid="uid://chjmobof5rfmv" path="res://entities/enemy/resources/tiki_eraser_01.tres" id="6_uro06"]
@@ -116,20 +117,48 @@ vertices = PackedVector3Array(-5.33307, 0, -20.6738, -6.31779, 0, -20.7027, -7.0
 affect_navigation_mesh = true
 carve_navigation_mesh = true
 
-[node name="Spawner" parent="." instance=ExtResource("4_j8tro")]
+[node name="Wave1" parent="." instance=ExtResource("4_4q6uk")]
+wave = 1
+
+[node name="Spawner" parent="Wave1" instance=ExtResource("4_j8tro")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.3635, 0.07426, -15.2739)
 enemies = Array[ExtResource("5_wvknh")]([SubResource("Resource_fm2rd"), SubResource("Resource_uebnn"), SubResource("Resource_atwq1")])
 spawn_limit = 20
 spawn_amount = 5
 
-[node name="Spawner2" parent="." instance=ExtResource("4_j8tro")]
+[node name="Wave2" parent="." instance=ExtResource("4_4q6uk")]
+wave = 2
+
+[node name="Spawner2" parent="Wave2" instance=ExtResource("4_j8tro")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.3635, 0.07426, -15.2739)
+enemies = Array[ExtResource("5_wvknh")]([SubResource("Resource_fm2rd"), SubResource("Resource_uebnn"), SubResource("Resource_atwq1")])
+spawn_limit = 20
+spawn_amount = 5
+
+[node name="Spawner3" parent="Wave2" instance=ExtResource("4_j8tro")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.19876, 0.07426, -14.9338)
 enemies = Array[ExtResource("5_wvknh")]([SubResource("Resource_fm2rd"), SubResource("Resource_uebnn"), SubResource("Resource_atwq1")])
 spawn_limit = 20
 spawn_amount = 5
 
-[node name="Spawner3" parent="." instance=ExtResource("4_j8tro")]
+[node name="Wave > 2" parent="." instance=ExtResource("4_4q6uk")]
+wave = 2
+operator = 2
+
+[node name="Spawner3" parent="Wave > 2" instance=ExtResource("4_j8tro")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.232, 0.07426, 0.0662003)
+enemies = Array[ExtResource("5_wvknh")]([SubResource("Resource_fm2rd"), SubResource("Resource_uebnn"), SubResource("Resource_atwq1")])
+spawn_limit = 20
+spawn_amount = 5
+
+[node name="Spawner2" parent="Wave > 2" instance=ExtResource("4_j8tro")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.3635, 0.07426, -15.2739)
+enemies = Array[ExtResource("5_wvknh")]([SubResource("Resource_fm2rd"), SubResource("Resource_uebnn"), SubResource("Resource_atwq1")])
+spawn_limit = 20
+spawn_amount = 5
+
+[node name="Spawner4" parent="Wave > 2" instance=ExtResource("4_j8tro")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.19876, 0.07426, -14.9338)
 enemies = Array[ExtResource("5_wvknh")]([SubResource("Resource_fm2rd"), SubResource("Resource_uebnn"), SubResource("Resource_atwq1")])
 spawn_limit = 20
 spawn_amount = 5
