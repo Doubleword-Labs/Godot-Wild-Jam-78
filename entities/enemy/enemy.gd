@@ -152,6 +152,7 @@ func _on_death_state_state_entered() -> void:
 	await sprite.animation_finished
 	queue_free()
 	Waves.prune_spawnlist()
+	Game.stationery_gui.text = "Stationery: " + str(len(Waves.spawnlist))
 	if (len(Waves.spawnlist) == 0):
 		Game.win();
 

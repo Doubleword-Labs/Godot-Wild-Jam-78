@@ -36,6 +36,7 @@ func _ready() -> void:
 		
 	spawnlevel(Waves.current_wave)
 	Waves.spawners.append(self)
+	Game.stationery_gui.text = "Stationery: " + str(len(Waves.spawnlist))
 
 	if enemies.size() == 0:
 		push_error("No enemies defined in spawner", self)
@@ -84,6 +85,7 @@ func spawn_enemy(global_spawn_position: Vector3, parent: Node3D) -> void:
 		parent.add_child(enemy)
 		Game.spawnables.append(enemy)
 		Waves.spawnlist.append(enemy)
+		Game.stationery_gui.text = "Stationery: " + str(len(Waves.spawnlist))
 		enemy.global_position = global_spawn_position
 
 		enemy_spawned.emit(self, enemy)

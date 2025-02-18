@@ -1,18 +1,19 @@
 extends Node
 
-const PROJECTILE = preload("res://entities/projectile/projectile.tscn")
+const PROJECTILE := preload("res://entities/projectile/projectile.tscn")
 
 var player: Player
-var hp_gui
-var paused_gui_node
-var lose_gui_node
-var win_gui_node
-var spawnables = []
+var hp_gui: TextureProgressBar
+var stationery_gui: Label
+var paused_gui_node: Node
+var lose_gui_node: Node
+var win_gui_node: Node
+var spawnables := []
 
-var current_level = "res://levels/arena03/arena_03.tscn"
+var current_level := "res://levels/arena03/arena_03.tscn"
 
-var paused = false
-var can_pause = true
+var paused := false
+var can_pause := true
 
 func _process(_delta: float) -> void:
 	if paused_gui_node != null:

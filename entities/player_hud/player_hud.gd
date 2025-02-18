@@ -11,6 +11,8 @@ func _ready() -> void:
 	Game.hp_gui = $HealthBar
 	Game.hp_gui.max_value = 100
 	Game.hp_gui.value = Game.get_player().health
+	
+	Game.stationery_gui = $Stationery
 
 func melee_attack() -> void:
 	weapon_sprite.play("melee")
