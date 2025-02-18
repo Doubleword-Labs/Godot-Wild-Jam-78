@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dwkxh53ms60qy"
+path="res://.godot/imported/voice - blaah.wav-89e01c94ea77ba0b94051aef0f0f2425.sample"
+
+[deps]
+
+source_file="res://assets/sfx/voice - blaah.wav"
+dest_files=["res://.godot/imported/voice - blaah.wav-89e01c94ea77ba0b94051aef0f0f2425.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

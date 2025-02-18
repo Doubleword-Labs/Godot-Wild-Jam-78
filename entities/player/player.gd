@@ -2,7 +2,13 @@ extends CharacterBody3D
 class_name Player
 
 const PROJECTILE = preload("res://entities/projectile/projectile.tscn")
-const player_damaged_sfx = preload("res://assets/sfx/voice - ahh.wav")
+const player_damaged_sfx_arr = [
+	preload("res://assets/sfx/voice - ahh.wav"),
+	preload("res://assets/sfx/voice - bah.wav"),
+	preload("res://assets/sfx/voice - blaah.wav"),
+	preload("res://assets/sfx/voice - raaaaaa.wav"),
+	preload("res://assets/sfx/voice - oohh.wav")
+	]
 
 @onready var player_hud: CanvasLayer = $PlayerHud
 @onready var attack_timer: Timer = $AttackTimer
@@ -81,7 +87,7 @@ func _physics_process(delta: float) -> void:
 func take_damage(damage: int, from_player: bool) -> void:
 	if !from_player:
 		printt("took damage", damage)
-		AudioPlayer.play_sfx(player_damaged_sfx)
+		AudioPlayer.play_sfx_array(player_damaged_sfx_arr)
 
 		health -= damage
 

@@ -37,3 +37,7 @@ func play_sfx(sfx: AudioStream):
 	sfx_player.play()
 	
 	await sfx_player.finished
+	
+func play_sfx_array(sfx_arr: Array) -> void:
+	play_sfx(sfx_arr.pick_random())
+	
