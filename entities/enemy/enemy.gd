@@ -147,7 +147,7 @@ func _on_pain_state_state_entered() -> void:
 func _on_death_state_state_entered() -> void:
 	sprite.play(resource.death_animation)
 	await sprite.animation_finished
-	free()
+	queue_free()
 	Waves.prune_spawnlist()
 	if (len(Waves.spawnlist) == 0):
 		Game.win();

@@ -8,7 +8,7 @@ func prune_spawnlist() -> void:
 	var temp = []
 	
 	for item in spawnlist:
-		if (item != null):
+		if is_instance_valid(item) and not item.is_queued_for_deletion():
 			temp.append(item)
 				
 	spawnlist = temp
