@@ -12,7 +12,7 @@ func _ready() -> void:
 
 func _on_play_pressed() -> void:
 	Waves.current_wave = 1
-	get_tree().change_scene_to_file(game_path)
+	Waves.set_level()
 
 
 func _on_settings_pressed() -> void:

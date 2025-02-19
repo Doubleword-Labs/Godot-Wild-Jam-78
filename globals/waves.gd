@@ -16,7 +16,9 @@ var levels = [
 ]
 
 func set_level():
-	Game.current_level = levels[(current_wave - 1) % len(levels)]
+	get_tree().change_scene_to_file(
+		levels[(current_wave - 1) % len(levels)]
+		)
 
 
 func prune_spawnlist() -> void:
