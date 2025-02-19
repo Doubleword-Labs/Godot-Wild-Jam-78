@@ -43,6 +43,15 @@ const punch_sfx_arr = [
 	preload("res://assets/sfx/punch/punch flesh 9.wav"),
 	preload("res://assets/sfx/punch/punch flesh 10.wav")
 ]
+const projectile_spawed_sfx_arr = [
+	preload("res://assets/sfx/projectile_spawned/paper crunch 1.wav"),
+	preload("res://assets/sfx/projectile_spawned/paper crunch 2.wav"),
+	preload("res://assets/sfx/projectile_spawned/paper crunch 3.wav"),
+	preload("res://assets/sfx/projectile_spawned/paper crunch 4.wav"),
+	preload("res://assets/sfx/projectile_spawned/plastic crunch 15.wav"),
+	preload("res://assets/sfx/projectile_spawned/plastic crunch 16.wav"),
+	preload("res://assets/sfx/projectile_spawned/plastic crunch 21.wav")
+]
 	
 var music_player: AudioStreamPlayer
 var default_volumes = [1, 0.4, 0.6]
