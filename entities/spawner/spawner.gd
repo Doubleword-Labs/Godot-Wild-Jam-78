@@ -35,7 +35,6 @@ func _ready() -> void:
 		return
 		
 	spawnlevel(Waves.current_wave)
-	Waves.spawners.append(self)
 	Game.stationery_gui.text = "Stationery: " + str(len(Waves.spawnlist))
 
 	if enemies.size() == 0:
@@ -171,6 +170,6 @@ func get_spawn_target() -> Node3D:
 	return get_node("/root/Enemies")
 	
 func spawnlevel(level: int) -> void:
-	spawn_limit = level
-	spawn_amount = level
+	spawn_limit = Waves.get_spawn_limit()
+	spawn_amount = Waves.get_spawn_amount()
 	spawn_timeout = 5

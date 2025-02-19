@@ -101,13 +101,19 @@ spawn_limit = 20
 spawn_amount = 5
 
 [node name="Spawner2" parent="." instance=ExtResource("4_3vlcc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.6365, 0.07426, -14.9338)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.12202, 0.07426, -14.9338)
 enemies = Array[ExtResource("5_whn3h")]([SubResource("Resource_fm2rd"), SubResource("Resource_uebnn"), SubResource("Resource_atwq1"), SubResource("Resource_3vlcc")])
 spawn_limit = 20
 spawn_amount = 5
 
 [node name="Spawner3" parent="." instance=ExtResource("4_3vlcc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.6365, 0.07426, 0.0662003)
+enemies = Array[ExtResource("5_whn3h")]([SubResource("Resource_fm2rd"), SubResource("Resource_uebnn"), SubResource("Resource_atwq1"), SubResource("Resource_whn3h")])
+spawn_limit = 20
+spawn_amount = 5
+
+[node name="Spawner4" parent="." instance=ExtResource("4_3vlcc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.9168, 0.07426, 15.7087)
 enemies = Array[ExtResource("5_whn3h")]([SubResource("Resource_fm2rd"), SubResource("Resource_uebnn"), SubResource("Resource_atwq1"), SubResource("Resource_whn3h")])
 spawn_limit = 20
 spawn_amount = 5
