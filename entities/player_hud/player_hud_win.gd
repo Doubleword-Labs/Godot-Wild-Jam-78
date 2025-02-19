@@ -12,7 +12,7 @@ func _ready() -> void:
 func _on_wave_again_pressed() -> void:
 	Game.reload()
 	Waves.current_wave += 1
-	#get_tree().reload_current_scene()
+	Waves.set_level()
 	get_tree().change_scene_to_file(Game.current_level)
 
 

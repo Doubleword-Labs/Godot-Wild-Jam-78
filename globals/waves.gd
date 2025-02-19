@@ -9,6 +9,14 @@ var current_wave = 0:
 
 var spawners = []
 var spawnlist = []
+var levels = [
+	"res://levels/arena03/arena_03.tscn",
+	"res://levels/arena02/arena_02.tscn",
+	"res://levels/arena04/arena_04.tscn"
+]
+
+func set_level():
+	Game.current_level = levels[(current_wave - 1) % len(levels)]
 
 
 func prune_spawnlist() -> void:
