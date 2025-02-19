@@ -12,7 +12,6 @@ const EnemyStateEvent = {
 }
 const PROJECTILE = preload("res://entities/projectile/projectile.tscn")
 
-
 @export var resource: EnemyResource:
 	set(value):
 		resource = value
@@ -29,6 +28,7 @@ var sight_range: float
 @onready var attack_ray_cast: RayCast3D = %AttackRayCast
 @onready var projectile_spawn_point: Node3D = $ProjectileSpawnPoint
 @onready var attack_timer: Timer = $AttackTimer
+@onready var collision_shape: CollisionShape3D = $CollisionShape3D
 
 @onready var state_chart: StateChart = $StateChart
 @onready var idle_state: AtomicState = %IdleState
@@ -54,6 +54,7 @@ func _update_from_resource() -> void:
 	health = resource.health
 
 	sprite.sprite_frames = resource.sprite_frames
+	sprite.offset = resource.sprite_offset
 	if not Engine.is_editor_hint():
 		sprite.speed_scale = randf_range(0.85, 1.25)
 		sprite.play(resource.default_animation)
@@ -61,6 +62,17 @@ func _update_from_resource() -> void:
 	nav_agent.path_desired_distance = resource.attack_range
 	attack_ray_cast.target_position.z = resource.attack_range
 	sight_ray_cast.target_position.z = resource.sight_range
+
+	var size := sprite.get_item_rect().size * sprite.pixel_size
+	sprite.position.y = size.y / 4
+
+	if is_instance_valid(resource.collision_shape):
+		collision_shape.shape = resource.collision_shape
+	else:
+		var capsule = CapsuleShape3D.new()
+		capsule.radius = 0.5
+		capsule.height = 2.0
+		collision_shape.shape = capsule
 
 
 func update_target_position(target_position: Vector3) -> void:
@@ -153,8 +165,8 @@ func _on_death_state_state_entered() -> void:
 	queue_free()
 	Waves.prune_spawnlist()
 	Game.stationery_gui.text = "Stationery: " + str(len(Waves.spawnlist))
-	if (len(Waves.spawnlist) == 0):
-		Game.win();
+	if len(Waves.spawnlist) == 0:
+		Game.win()
 
 
 func _on_animated_sprite_3d_animation_finished() -> void:
