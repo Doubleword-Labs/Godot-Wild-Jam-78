@@ -14,6 +14,7 @@ var levels = [
 	"res://levels/arena02/arena_02.tscn",
 	"res://levels/arena04/arena_04.tscn"
 ]
+var shop = "res://levels/shop/shop.tscn"
 
 func set_level():
 	get_tree().change_scene_to_file(

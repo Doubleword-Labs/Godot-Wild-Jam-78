@@ -6,7 +6,6 @@ class_name Level
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED	
 	Game.wave_gui.text = "Wave: "+str(Waves.current_wave)
-	print(Waves.current_wave)
 
 
 func _exit_tree() -> void:
