@@ -7,6 +7,9 @@
 
 [node name="Player" type="CharacterBody3D" groups=["damageable", "player"]]
 collision_mask = 7
+floor_max_angle = 1.5708
+platform_on_leave = 1
+safe_margin = 1.0
 script = ExtResource("1_symyc")
 
 [node name="Camera3D" type="Camera3D" parent="."]
