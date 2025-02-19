@@ -105,39 +105,39 @@ grow_vertical = 2
 color = Color(1, 1, 1, 0.180392)
 
 [node name="HealthBar" type="TextureProgressBar" parent="."]
-offset_left = 53.0
+offset_left = 59.0
 offset_top = 38.0
-offset_right = 318.0
+offset_right = 324.0
 offset_bottom = 85.0
 texture_under = ExtResource("15_tob4y")
 texture_progress = ExtResource("16_tob4y")
 
-[node name="TextureRect" type="TextureRect" parent="."]
-offset_left = 2.0
+[node name="Heart" type="TextureRect" parent="."]
+offset_left = 8.0
 offset_top = 12.0
-offset_right = 82.0
+offset_right = 88.0
 offset_bottom = 92.0
 texture = ExtResource("17_dpv0g")
 
 [node name="Stationery" type="Label" parent="."]
-offset_left = 797.0
-offset_top = 26.0
-offset_right = 1101.0
-offset_bottom = 85.0
+offset_left = 824.0
+offset_top = 30.0
+offset_right = 1128.0
+offset_bottom = 96.0
 theme_override_constants/outline_size = 10
 theme_override_fonts/font = ExtResource("17_jg8nn")
-theme_override_font_sizes/font_size = 35
+theme_override_font_sizes/font_size = 38
 text = "Stationery: 0"
 horizontal_alignment = 2
 
 [node name="Wave" type="Label" parent="."]
-offset_left = 427.0
-offset_top = 26.0
-offset_right = 731.0
-offset_bottom = 85.0
+offset_left = 428.0
+offset_top = 3.0
+offset_right = 732.0
+offset_bottom = 102.0
 theme_override_constants/outline_size = 10
 theme_override_fonts/font = ExtResource("17_jg8nn")
-theme_override_font_sizes/font_size = 35
+theme_override_font_sizes/font_size = 60
 text = "Wave: 1"
 horizontal_alignment = 1
 
