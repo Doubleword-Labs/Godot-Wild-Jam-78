@@ -185,6 +185,7 @@ sight_range = 100.0
 speed = 100.0
 health = 30.0
 sprite_frames = SubResource("SpriteFrames_kl4j4")
+sprite_offset = Vector2(0, 0)
 default_animation = "default"
 attack_animation = "attack"
 attack_frame = 6

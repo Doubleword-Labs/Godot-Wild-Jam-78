@@ -269,8 +269,10 @@ offset = Vector2(45, 0)
 billboard = 2
 texture_filter = 2
 sprite_frames = SubResource("SpriteFrames_yd6c0")
-animation = &"attack"
+animation = &"pain"
 autoplay = "default"
+frame = 7
+frame_progress = 1.0
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 path_desired_distance = 30.0
