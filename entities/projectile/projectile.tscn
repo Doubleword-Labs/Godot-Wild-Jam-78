@@ -1,10 +1,22 @@
-[gd_scene load_steps=7 format=3 uid="uid://c6qhy6082m067"]
+[gd_scene load_steps=9 format=3 uid="uid://c6qhy6082m067"]
 
 [ext_resource type="Script" uid="uid://bvdy77cdw7t37" path="res://entities/projectile/projectile.gd" id="1_iqisb"]
+[ext_resource type="Texture2D" uid="uid://dt088emfnuox3" path="res://assets/projectile/shot_paper_ball.png" id="2_i4fle"]
 [ext_resource type="Shader" uid="uid://c5khav6wdcs3n" path="res://entities/projectile/projectile.gdshader" id="2_n5n3x"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_ilcb0"]
 radius = 0.25
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_i4fle"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_i4fle")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ilcb0"]
 albedo_color = Color(1, 0.541176, 0, 1)
@@ -31,6 +43,7 @@ shader_parameter/color3 = Color(0.98, 0.95, 0.53, 1)
 shader_parameter/color4 = Color(1, 1, 1, 1)
 
 [node name="Projectile" type="StaticBody3D"]
+transform = Transform3D(0.767878, 0, 0, 0, 0.750533, 0, 0, 0, 1, 0, 0, 0)
 collision_layer = 4
 collision_mask = 3
 script = ExtResource("1_iqisb")
@@ -38,7 +51,12 @@ script = ExtResource("1_iqisb")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("SphereShape3D_ilcb0")
 
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
+transform = Transform3D(0.550508, 0, 0, 0, 0.458259, 0, 0, 0, 1, 0, 0, 0)
+sprite_frames = SubResource("SpriteFrames_i4fle")
+
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+visible = false
 mesh = SubResource("SphereMesh_iqisb")
 surface_material_override/0 = SubResource("ShaderMaterial_i4fle")
 
