@@ -51,6 +51,9 @@ script = ExtResource("1_iqisb")
 shape = SubResource("SphereShape3D_ilcb0")
 
 [node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+billboard = 2
+texture_filter = 2
 sprite_frames = SubResource("SpriteFrames_i4fle")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
