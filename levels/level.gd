@@ -1,6 +1,7 @@
 extends Node3D
 class_name Level
 
+@onready var world_environment: WorldEnvironment = $WorldEnvironment
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED	
