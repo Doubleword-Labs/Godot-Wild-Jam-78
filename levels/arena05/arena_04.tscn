@@ -1,0 +1,99 @@
+[gd_scene load_steps=20 format=3 uid="uid://ib1c30hpfq7q"]
+
+[ext_resource type="Script" uid="uid://gta2qv6v5bdy" path="res://levels/level.gd" id="1_q3id4"]
+[ext_resource type="PackedScene" uid="uid://cvf7653hiknvm" path="res://entities/player/player.tscn" id="2_stayi"]
+[ext_resource type="PackedScene" uid="uid://dudp8r4j4e2kt" path="res://entities/spawner/spawner.tscn" id="4_ojm8r"]
+[ext_resource type="PackedScene" uid="uid://bjd5qhkt47gpw" path="res://meshes/levels/beach_arena_v1.gltf" id="4_stayi"]
+[ext_resource type="Script" uid="uid://lt7ywc1ubvtt" path="res://entities/spawner/spawner_resource.gd" id="5_wcpyi"]
+[ext_resource type="Resource" uid="uid://chjmobof5rfmv" path="res://entities/enemy/resources/tiki_eraser_01.tres" id="6_dvobn"]
+[ext_resource type="Resource" uid="uid://bbyony6hw2axm" path="res://entities/enemy/resources/tiki_pencil_01.tres" id="7_jbvbn"]
+[ext_resource type="Resource" uid="uid://bxfc1w7qg63t0" path="res://entities/enemy/resources/tiki_pencil_02.tres" id="8_x0uqj"]
+[ext_resource type="Resource" uid="uid://d4fgyepouyfb5" path="res://entities/enemy/resources/tiki_usb_01.tres" id="9_8tff6"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_yrsgf"]
+sky_top_color = Color(0.168627, 0.752941, 0.811765, 1)
+sky_horizon_color = Color(0.168627, 0.752941, 0.811765, 1)
+ground_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
+
+[sub_resource type="Sky" id="Sky_oksox"]
+sky_material = SubResource("ProceduralSkyMaterial_yrsgf")
+
+[sub_resource type="Environment" id="Environment_lt6fg"]
+background_mode = 2
+sky = SubResource("Sky_oksox")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_q3id4"]
+
+[sub_resource type="Resource" id="Resource_fm2rd"]
+script = ExtResource("5_wcpyi")
+resource = ExtResource("6_dvobn")
+spawn_rate = 1.0
+metadata/_custom_type_script = ExtResource("5_wcpyi")
+
+[sub_resource type="Resource" id="Resource_uebnn"]
+script = ExtResource("5_wcpyi")
+resource = ExtResource("7_jbvbn")
+spawn_rate = 1.0
+metadata/_custom_type_script = ExtResource("5_wcpyi")
+
+[sub_resource type="Resource" id="Resource_atwq1"]
+script = ExtResource("5_wcpyi")
+resource = ExtResource("8_x0uqj")
+spawn_rate = 1.0
+metadata/_custom_type_script = ExtResource("5_wcpyi")
+
+[sub_resource type="Resource" id="Resource_oxlqm"]
+script = ExtResource("5_wcpyi")
+resource = ExtResource("9_8tff6")
+spawn_rate = 1.0
+metadata/_custom_type_script = ExtResource("5_wcpyi")
+
+[sub_resource type="Resource" id="Resource_gyr0b"]
+script = ExtResource("5_wcpyi")
+resource = ExtResource("9_8tff6")
+spawn_rate = 1.0
+metadata/_custom_type_script = ExtResource("5_wcpyi")
+
+[sub_resource type="Resource" id="Resource_yu7i2"]
+script = ExtResource("5_wcpyi")
+resource = ExtResource("9_8tff6")
+spawn_rate = 1.0
+metadata/_custom_type_script = ExtResource("5_wcpyi")
+
+[node name="Arena01" type="Node3D"]
+script = ExtResource("1_q3id4")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_lt6fg")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="Player" parent="." instance=ExtResource("2_stayi")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 0.2, 13)
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_q3id4")
+
+[node name="beach_arena_v1" parent="NavigationRegion3D" instance=ExtResource("4_stayi")]
+
+[node name="Spawner3" parent="." instance=ExtResource("4_ojm8r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.232, 0.07426, -0.891082)
+enemies = Array[ExtResource("5_wcpyi")]([SubResource("Resource_fm2rd"), SubResource("Resource_uebnn"), SubResource("Resource_atwq1"), SubResource("Resource_oxlqm")])
+spawn_limit = 20
+spawn_amount = 5
+
+[node name="Spawner2" parent="." instance=ExtResource("4_ojm8r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.7814, 0.07426, -6.50009)
+enemies = Array[ExtResource("5_wcpyi")]([SubResource("Resource_fm2rd"), SubResource("Resource_uebnn"), SubResource("Resource_atwq1"), SubResource("Resource_gyr0b")])
+spawn_limit = 20
+spawn_amount = 5
+
+[node name="Spawner4" parent="." instance=ExtResource("4_ojm8r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.17233, 0.07426, -14.3389)
+enemies = Array[ExtResource("5_wcpyi")]([SubResource("Resource_fm2rd"), SubResource("Resource_uebnn"), SubResource("Resource_atwq1"), SubResource("Resource_yu7i2")])
+spawn_limit = 20
+spawn_amount = 5
