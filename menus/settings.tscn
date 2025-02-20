@@ -13,15 +13,16 @@ offset_bottom = 648.0
 texture = ExtResource("2_hjugb")
 
 [node name="ColorRect" type="ColorRect" parent="."]
+visible = false
 offset_right = 1151.0
 offset_bottom = 644.0
 color = Color(0.133333, 0.219608, 0.337255, 0.207843)
 
 [node name="Settings" type="Label" parent="."]
 offset_left = 408.0
-offset_top = 28.0
+offset_top = -10.0
 offset_right = 724.0
-offset_bottom = 151.0
+offset_bottom = 113.0
 theme_override_constants/outline_size = 10
 theme_override_fonts/font = ExtResource("2_0uirt")
 theme_override_font_sizes/font_size = 75
@@ -30,10 +31,10 @@ text = "Settings"
 [node name="SoundSettings" type="Node" parent="."]
 
 [node name="Master" type="Label" parent="SoundSettings"]
-offset_left = 414.0
-offset_top = 150.0
-offset_right = 505.0
-offset_bottom = 192.0
+offset_left = 439.0
+offset_top = 316.0
+offset_right = 530.0
+offset_bottom = 358.0
 theme_override_constants/outline_size = 10
 theme_override_fonts/font = ExtResource("2_0uirt")
 theme_override_font_sizes/font_size = 25
@@ -48,10 +49,10 @@ offset_bottom = 31.0
 max_value = 1.0
 
 [node name="Music" type="Label" parent="SoundSettings"]
-offset_left = 420.0
-offset_top = 182.0
-offset_right = 496.0
-offset_bottom = 224.0
+offset_left = 445.0
+offset_top = 348.0
+offset_right = 521.0
+offset_bottom = 390.0
 theme_override_constants/outline_size = 10
 theme_override_fonts/font = ExtResource("2_0uirt")
 theme_override_font_sizes/font_size = 25
@@ -66,10 +67,10 @@ offset_bottom = 31.0
 max_value = 1.0
 
 [node name="SFX" type="Label" parent="SoundSettings"]
-offset_left = 436.0
-offset_top = 212.0
-offset_right = 485.0
-offset_bottom = 254.0
+offset_left = 461.0
+offset_top = 378.0
+offset_right = 510.0
+offset_bottom = 420.0
 theme_override_constants/outline_size = 10
 theme_override_fonts/font = ExtResource("2_0uirt")
 theme_override_font_sizes/font_size = 25
