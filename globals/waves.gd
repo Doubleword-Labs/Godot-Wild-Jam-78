@@ -16,9 +16,14 @@ var levels = [
 	"res://levels/arena03/arena_03.tscn",
 ]
 var shop = "res://levels/shop/shop.tscn"
+var shop_time := false
 
 func set_level():
 	get_tree().change_scene_to_file(levels[(current_wave - 1) % len(levels)])
+
+
+func set_shop():
+	get_tree().change_scene_to_file(shop)
 
 
 func get_spawn_limit():
