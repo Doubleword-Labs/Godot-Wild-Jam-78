@@ -75,8 +75,16 @@ func reload():
 
 
 func die():
-	pause(true)
 	AudioPlayer.free_sfx()
+	if OS.get_name() == "Web":
+		AudioPlayer.squelch_sfx = true
+		await get_tree().create_timer(0.25).timeout
+	
+	pause(true)
+	
+	if OS.get_name() == "Web":
+		AudioPlayer.squelch_sfx = false
+		
 	AudioPlayer.play_sfx_array(AudioPlayer.lose_sfx_arr)
 	can_pause = false
 	lose_gui_node.visible = true
@@ -84,8 +92,16 @@ func die():
 
 
 func win():
-	pause(true)
 	AudioPlayer.free_sfx()
+	if OS.get_name() == "Web":
+		AudioPlayer.squelch_sfx = true
+		await get_tree().create_timer(0.25).timeout
+		
+	pause(true)
+	
+	if OS.get_name() == "Web":
+		AudioPlayer.squelch_sfx = false
+		
 	AudioPlayer.play_sfx_array(AudioPlayer.win_sfx_arr)
 	can_pause = false
 	win_gui_node.visible = true

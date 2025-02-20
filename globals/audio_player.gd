@@ -58,6 +58,8 @@ var default_volumes = [1, 0.4, 0.6]
 
 var sfx_player_list = []
 
+var squelch_sfx = false
+
 func _ready():
 	update_volume(0, default_volumes[0])
 	update_volume(1, default_volumes[1])
@@ -82,6 +84,9 @@ func play_music():
 	music_player.play()	
 	
 func play_sfx(sfx: AudioStream):
+	if squelch_sfx:
+		return
+	
 	var sfx_player = AudioStreamPlayer.new()
 	sfx_player.stream = sfx
 	sfx_player.bus = "SFX"
