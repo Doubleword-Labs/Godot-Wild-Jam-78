@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cmaeet4rj6eb2"
+path="res://.godot/imported/voice - oh no 4.wav-c3572e2bb349323780a8e12169f8966b.sample"
+
+[deps]
+
+source_file="res://assets/sfx/lose/voice - oh no 4.wav"
+dest_files=["res://.godot/imported/voice - oh no 4.wav-c3572e2bb349323780a8e12169f8966b.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

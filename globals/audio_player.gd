@@ -4,7 +4,13 @@ const game_music: AudioStream = preload("res://assets/music/jungle-story-168459.
 const lose_sfx_arr := [
 	preload("res://assets/sfx/lose/voice - oh no 5.wav"),
 	preload("res://assets/sfx/lose/voice - oh god 1.wav"),
-	preload("res://assets/sfx/lose/voice - oh no 3.wav")]
+	preload("res://assets/sfx/lose/voice - oh god 1.wav"),
+	preload("res://assets/sfx/lose/voice - oh no 3.wav"),
+	preload("res://assets/sfx/lose/voice - oh no 2.wav"),
+	preload("res://assets/sfx/lose/voice - oh no 4.wav"),
+	preload("res://assets/sfx/lose/voice - oh no 6.wav"),
+	preload("res://assets/sfx/lose/voice - oh no 1.wav")
+]
 const win_sfx_arr := [
 	preload("res://assets/sfx/win/kazoo 2.wav"),
 	preload("res://assets/sfx/win/voice - wow 2.wav"),
