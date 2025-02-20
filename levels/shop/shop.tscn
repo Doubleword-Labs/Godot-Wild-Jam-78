@@ -40,7 +40,7 @@ transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -
 shadow_enabled = true
 
 [node name="Player" parent="." instance=ExtResource("2_878re")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 0.2, 13)
+transform = Transform3D(0.703655, 0, 0.710542, 0, 1, 0, -0.710542, 0, 0.703655, 13, 0.2, 13)
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_ofg5g")
