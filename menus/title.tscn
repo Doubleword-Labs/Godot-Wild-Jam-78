@@ -30,49 +30,49 @@ theme_override_font_sizes/font_size = 75
 text = "Jason Drawn"
 
 [node name="Play" type="Button" parent="."]
-offset_left = 136.0
-offset_top = 521.0
-offset_right = 345.0
-offset_bottom = 617.0
+offset_left = 864.0
+offset_top = 136.0
+offset_right = 1073.0
+offset_bottom = 232.0
 size_flags_horizontal = 3
 theme_override_constants/outline_size = 10
 theme_override_fonts/font = ExtResource("2_vmgax")
 theme_override_font_sizes/font_size = 30
-text = "Play"
+text = "PLAY"
 
 [node name="Settings" type="Button" parent="."]
-offset_left = 370.0
-offset_top = 520.0
-offset_right = 579.0
-offset_bottom = 616.0
+offset_left = 865.0
+offset_top = 242.0
+offset_right = 1074.0
+offset_bottom = 338.0
 size_flags_horizontal = 3
 theme_override_constants/outline_size = 10
 theme_override_fonts/font = ExtResource("2_vmgax")
 theme_override_font_sizes/font_size = 30
-text = "Settings"
+text = "SETUP"
 
 [node name="Credits" type="Button" parent="."]
-offset_left = 601.0
-offset_top = 521.0
-offset_right = 810.0
-offset_bottom = 617.0
+offset_left = 864.0
+offset_top = 350.0
+offset_right = 1073.0
+offset_bottom = 446.0
 size_flags_horizontal = 3
 theme_override_constants/outline_size = 10
 theme_override_fonts/font = ExtResource("2_vmgax")
 theme_override_font_sizes/font_size = 30
-text = "Credits
+text = "CREDITS
 "
 
 [node name="Quit" type="Button" parent="."]
-offset_left = 836.0
-offset_top = 521.0
-offset_right = 1045.0
-offset_bottom = 617.0
+offset_left = 864.0
+offset_top = 458.0
+offset_right = 1073.0
+offset_bottom = 554.0
 size_flags_horizontal = 3
 theme_override_constants/outline_size = 10
 theme_override_fonts/font = ExtResource("2_vmgax")
 theme_override_font_sizes/font_size = 30
-text = "Quit
+text = "QUIT
 "
 
 [connection signal="pressed" from="Play" to="." method="_on_play_pressed"]
