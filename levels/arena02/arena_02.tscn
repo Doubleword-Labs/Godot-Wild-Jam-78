@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://ceua3g70lcq81"]
+[gd_scene load_steps=21 format=3 uid="uid://ceua3g70lcq81"]
 
 [ext_resource type="Script" uid="uid://gta2qv6v5bdy" path="res://levels/level.gd" id="1_sof8r"]
 [ext_resource type="PackedScene" uid="uid://cvf7653hiknvm" path="res://entities/player/player.tscn" id="2_patpq"]
@@ -66,6 +66,8 @@ resource = ExtResource("9_patpq")
 spawn_rate = 1.0
 metadata/_custom_type_script = ExtResource("5_whn3h")
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_3vlcc"]
+
 [node name="Arena01" type="Node3D"]
 script = ExtResource("1_sof8r")
 
@@ -113,3 +115,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.9168, 0.07426, 15.7087)
 enemies = Array[ExtResource("5_whn3h")]([SubResource("Resource_fm2rd"), SubResource("Resource_uebnn"), SubResource("Resource_atwq1"), SubResource("Resource_whn3h")])
 spawn_limit = 20
 spawn_amount = 5
+
+[node name="LavaArea" type="Area3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="LavaArea"]
+transform = Transform3D(7.05273, 0, 0, 0, 1, 0, 0, 0, 14550.3, 0, -6.19328, 0)
+shape = SubResource("BoxShape3D_3vlcc")
+
+[connection signal="body_entered" from="LavaArea" to="." method="_on_lava_area_body_entered"]

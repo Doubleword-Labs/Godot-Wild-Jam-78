@@ -10,3 +10,7 @@ func _ready() -> void:
 
 func _exit_tree() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+
+
+func _on_lava_area_body_entered(body: Node3D) -> void:
+	Game.die()
