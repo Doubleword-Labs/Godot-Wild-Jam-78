@@ -13,9 +13,8 @@ offset_bottom = 648.0
 texture = ExtResource("2_l5hgj")
 
 [node name="ColorRect" type="ColorRect" parent="."]
-visible = false
 offset_right = 1151.0
-offset_bottom = 644.0
+offset_bottom = 648.0
 color = Color(0.0262169, 0.0618191, 0.112455, 0.705882)
 
 [node name="Label" type="Label" parent="."]
@@ -30,31 +29,31 @@ theme_override_font_sizes/font_size = 75
 text = "Bye!"
 
 [node name="Label2" type="Label" parent="."]
-offset_left = 88.0
-offset_top = 367.0
-offset_right = 1079.0
-offset_bottom = 490.0
+offset_left = 94.0
+offset_top = 358.0
+offset_right = 1085.0
+offset_bottom = 481.0
 theme_override_constants/outline_size = 10
 theme_override_fonts/font = ExtResource("2_lgto3")
 theme_override_font_sizes/font_size = 75
 text = "ESC to remove Fullscreen"
 
 [node name="Label3" type="Label" parent="."]
-offset_left = 133.0
-offset_top = 488.0
-offset_right = 1124.0
-offset_bottom = 611.0
+offset_left = 149.0
+offset_top = 484.0
+offset_right = 1140.0
+offset_bottom = 607.0
 theme_override_constants/outline_size = 10
 theme_override_fonts/font = ExtResource("2_lgto3")
 theme_override_font_sizes/font_size = 75
 text = "Refresh to load again"
 
 [node name="Label4" type="Label" parent="."]
-offset_left = 145.0
-offset_top = 257.0
-offset_right = 1136.0
-offset_bottom = 380.0
+offset_left = 164.0
+offset_top = 243.0
+offset_right = 1155.0
+offset_bottom = 366.0
 theme_override_constants/outline_size = 10
 theme_override_fonts/font = ExtResource("2_lgto3")
 theme_override_font_sizes/font_size = 75
-text = "The Game has Exited!"
+text = "The Game is Finished!"

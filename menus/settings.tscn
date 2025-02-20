@@ -93,7 +93,7 @@ size_flags_horizontal = 3
 theme_override_constants/outline_size = 10
 theme_override_fonts/font = ExtResource("2_0uirt")
 theme_override_font_sizes/font_size = 30
-text = "Return"
+text = "RETURN"
 
 [connection signal="value_changed" from="SoundSettings/Master/MasterVolume" to="." method="_on_master_volume_value_changed"]
 [connection signal="value_changed" from="SoundSettings/Music/MusicVolume" to="." method="_on_music_volume_value_changed"]
