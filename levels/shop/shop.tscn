@@ -40,7 +40,7 @@ transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -
 shadow_enabled = true
 
 [node name="Player" parent="." instance=ExtResource("2_878re")]
-transform = Transform3D(0.703655, 0, 0.710542, 0, 1, 0, -0.710542, 0, 0.703655, 13, 0.2, 13)
+transform = Transform3D(-0.777146, 0, 0.629321, 0, 1, 0, -0.629321, 0, -0.777146, -3.13128, 0.2, 1.62367)
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_ofg5g")
@@ -111,13 +111,14 @@ shape = SubResource("BoxShape3D_7w5nn")
 
 [node name="Exit" parent="." instance=ExtResource("10_5fjfq")]
 transform = Transform3D(0.825449, 0, -0.564477, 0, 1, 0, 0.564477, 0, 0.825449, 12.133, 0, -12.797)
+visible = false
 sign_text = "Exit"
 
 [node name="ExitDoor" type="Area3D" parent="Exit"]
+visible = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Exit/ExitDoor"]
 transform = Transform3D(1, 0, 2.98023e-08, 0, 1, 0, -2.98023e-08, 0, 1, -0.0243063, 0.897775, 2.46402)
 shape = SubResource("BoxShape3D_ab8xu")
 
 [connection signal="body_entered" from="Shop/ShopDoor" to="." method="_on_shop_door_body_entered"]
-[connection signal="body_entered" from="Exit/ExitDoor" to="." method="_on_exit_door_body_entered"]
