@@ -1,8 +1,8 @@
 [gd_scene load_steps=9 format=3 uid="uid://c6qhy6082m067"]
 
 [ext_resource type="Script" uid="uid://bvdy77cdw7t37" path="res://entities/projectile/projectile.gd" id="1_iqisb"]
-[ext_resource type="Texture2D" uid="uid://txywdy7ylgce" path="res://assets/projectile/shot_paper_ball.png" id="2_i4fle"]
 [ext_resource type="Shader" uid="uid://c5khav6wdcs3n" path="res://entities/projectile/projectile.gdshader" id="2_n5n3x"]
+[ext_resource type="Texture2D" uid="uid://c12o5ell22y4k" path="res://assets/projectile/512x512_paperball_TEST_ONLYx.png" id="5_mim5d"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_ilcb0"]
 radius = 0.25
@@ -11,7 +11,7 @@ radius = 0.25
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_i4fle")
+"texture": ExtResource("5_mim5d")
 }],
 "loop": true,
 "name": &"default",
