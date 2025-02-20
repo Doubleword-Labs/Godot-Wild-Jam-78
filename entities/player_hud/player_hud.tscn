@@ -102,9 +102,9 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("21_crcwn")
 }],
-"loop": true,
+"loop": false,
 "name": &"shoot",
-"speed": 16.0
+"speed": 8.0
 }]
 
 [node name="CanvasLayer" type="CanvasLayer"]

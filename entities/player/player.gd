@@ -38,6 +38,7 @@ func _process(_delta: float) -> void:
 func _ranged_attack() -> void:
 	can_attack = false
 	attack_timer.start(ranged_attack_timeout)
+	player_hud.shoot_attack()
 	Game.spawn_projectile(self, projectile_spawn_point)
 
 

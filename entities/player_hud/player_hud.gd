@@ -20,3 +20,10 @@ func melee_attack() -> void:
 	weapon_sprite.play("melee")
 	await weapon_sprite.animation_finished
 	weapon_sprite.play("idle")
+
+
+func shoot_attack() -> void:
+	weapon_sprite.play("shoot")
+	await weapon_sprite.animation_finished
+	weapon_sprite.play("idle")
+	
