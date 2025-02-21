@@ -61,7 +61,8 @@ func _physics_process(delta: float) -> void:
 			queue_free()
 
 			if collider.is_in_group("damageable"):
-				collider.take_damage(resource.impact_damage, spawned_by is Player)
+				if is_instance_valid(spawned_by) and not spawned_by.is_queued_for_deletion():
+					collider.take_damage(resource.impact_damage, spawned_by is Player)
 
 			var audio_player := AudioPlayer.play_sfx_3d_array(resource.impact_sounds)
 			if is_instance_valid(audio_player):
