@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://gta2qv6v5bdy" path="res://levels/level.gd" id="1_wr23p"]
 [ext_resource type="PackedScene" uid="uid://cvf7653hiknvm" path="res://entities/player/player.tscn" id="2_da7ab"]
-[ext_resource type="PackedScene" uid="uid://caii3k8gyx8ev" path="res://meshes/levels/tiki_arena04_v1_vulcano.gltf" id="3_7ygbp"]
+[ext_resource type="PackedScene" uid="uid://c274t3nji2tmk" path="res://meshes/levels/vulcano_island_arena_v2.gltf" id="3_gcryc"]
 [ext_resource type="PackedScene" uid="uid://dudp8r4j4e2kt" path="res://entities/spawner/spawner.tscn" id="5_nxv8n"]
 [ext_resource type="Script" uid="uid://lt7ywc1ubvtt" path="res://entities/spawner/spawner_resource.gd" id="6_np2gy"]
 [ext_resource type="Resource" uid="uid://chjmobof5rfmv" path="res://entities/enemy/resources/tiki_eraser_01.tres" id="7_o21g1"]
@@ -83,69 +83,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 0.2, 13)
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_ofg5g")
 
-[node name="tiki_arena04_v1_vulcano" parent="NavigationRegion3D" instance=ExtResource("3_7ygbp")]
-
-[node name="Node2" type="Node" parent="NavigationRegion3D/tiki_arena04_v1_vulcano"]
-
-[node name="NavigationObstacle3D" type="NavigationObstacle3D" parent="NavigationRegion3D/tiki_arena04_v1_vulcano/Node2"]
-vertices = PackedVector3Array(-17.6706, 0, -14.8845, -16.8658, 0, -12.5934, -17.1318, 0, -11.3313, -19.4713, 0, -10.9365, -20.7304, 0, -11.6689)
-affect_navigation_mesh = true
-carve_navigation_mesh = true
-
-[node name="NavigationObstacle3D2" type="NavigationObstacle3D" parent="NavigationRegion3D/tiki_arena04_v1_vulcano/Node2"]
-vertices = PackedVector3Array(-14.4415, 0, -11.0495, -15.1606, 0, -8.70706, -14.6698, 0, -7.55391, -12.3127, 0, -7.60671, -11.4801, 0, -8.37172, -13.0538, 0, -11.2703)
-affect_navigation_mesh = true
-carve_navigation_mesh = true
-
-[node name="NavigationObstacle3D3" type="NavigationObstacle3D" parent="NavigationRegion3D/tiki_arena04_v1_vulcano/Node2"]
-vertices = PackedVector3Array(1.33714, 0, -20.7471, -1.47214, 0, -20.7943, -2.18013, 0, -19.5604, -0.146146, 0, -17.4211, 1.05306, 0, -17.6222, 1.93893, 0, -19.692)
-affect_navigation_mesh = true
-carve_navigation_mesh = true
-
-[node name="NavigationObstacle3D4" type="NavigationObstacle3D" parent="NavigationRegion3D/tiki_arena04_v1_vulcano/Node2"]
-vertices = PackedVector3Array(10.8756, 0, -20.8223, 10.2934, 0, -20.3006, 10.6738, 0, -17.8308, 9.10776, 0, -17.6688, 7.76517, 0, -20.3384, 7.92451, 0, -22.8978, 10.7902, 0, -21.6785)
-affect_navigation_mesh = true
-carve_navigation_mesh = true
-
-[node name="NavigationObstacle3D5" type="NavigationObstacle3D" parent="NavigationRegion3D/tiki_arena04_v1_vulcano/Node2"]
-vertices = PackedVector3Array(15.4437, 0, -9.87982, 14.7099, 0, 0.678273, 13.0308, 0, 1.66806, 12.725, 0, 3.84407, 9.63553, 0, 3.69501, 4.70978, 0, -2.94856, 2.80049, 0, -6.78619, 1.26385, 0, -8.39589, 2.22018, 0, -10.1101, 3.73371, 0, -10.5418, 3.76103, 0, -13.9325, 6.1227, 0, -15.7315, 8.32747, 0, -15.4595)
-affect_navigation_mesh = true
-carve_navigation_mesh = true
-
-[node name="NavigationObstacle3D6" type="NavigationObstacle3D" parent="NavigationRegion3D/tiki_arena04_v1_vulcano/Node2"]
-vertices = PackedVector3Array(23.5887, 0, -1.02407, 16.8333, 0, -0.445186, 16.1822, 0, 2.14293, 23.4813, 0, 2.74458)
-affect_navigation_mesh = true
-carve_navigation_mesh = true
-
-[node name="NavigationObstacle3D7" type="NavigationObstacle3D" parent="NavigationRegion3D/tiki_arena04_v1_vulcano/Node2"]
-vertices = PackedVector3Array(19.933, 0, 7.42919, 19.1634, 0, 6.09795, 18.2562, 0, 5.42899, 16.9941, 0, 6.47219, 15.9385, 0, 7.64293, 16.4711, 0, 9.49242, 19.1871, 0, 9.0605)
-affect_navigation_mesh = true
-carve_navigation_mesh = true
-
-[node name="NavigationObstacle3D8" type="NavigationObstacle3D" parent="NavigationRegion3D/tiki_arena04_v1_vulcano/Node2"]
-vertices = PackedVector3Array(-13.0192, 0, -19.4231, -9.11761, 0, -14.2224, -10.0821, 0, -13.2446, -14.3629, 0, -15.4861, -15.7521, 0, -17.9591)
-affect_navigation_mesh = true
-carve_navigation_mesh = true
-
-[node name="NavigationObstacle3D9" type="NavigationObstacle3D" parent="NavigationRegion3D/tiki_arena04_v1_vulcano/Node2"]
-vertices = PackedVector3Array(0.819096, 0, -1.73764, -1.17234, 0, -2.02486, -1.84564, 0, -1.30764, -1.00492, 0, 2.12762, 0.831708, 0, 2.11204, 1.72471, 0, -0.181114)
-affect_navigation_mesh = true
-carve_navigation_mesh = true
-
-[node name="NavigationObstacle3D10" type="NavigationObstacle3D" parent="NavigationRegion3D/tiki_arena04_v1_vulcano/Node2"]
-vertices = PackedVector3Array(-9.65016, 0, 11.3192, -7.51472, 0, 11.4292, -7.06313, 0, 10.3827, -5.62056, 0, 9.78689, -5.43293, 0, 7.83939, -6.21237, 0, 6.88165, -8.08317, 0, 6.39482, -7.79549, 0, 4.76079, -9.39161, 0, 3.94603, -9.51322, 0, 3.21165, -11.2126, 0, 1.60663, -12.9318, 0, 2.31407, -13.6403, 0, 1.02271, -15.531, 0, 1.18136, -17.5917, 0, 3.45804, -17.5614, 0, 6.84553, -19.7412, 0, 11.2858, -19.8392, 0, 12.9061, -18.5048, 0, 13.2881, -15.8083, 0, 11.171, -13.8569, 0, 10.2395, -11.1506, 0, 10.4662)
-affect_navigation_mesh = true
-carve_navigation_mesh = true
-
-[node name="NavigationObstacle3D11" type="NavigationObstacle3D" parent="NavigationRegion3D/tiki_arena04_v1_vulcano/Node2"]
-vertices = PackedVector3Array(-3.01498, 0, 14.8614, -2.27369, 0, 16.0803, -1.06855, 0, 15.5956, 0.710897, 0, 15.3791, 1.23611, 0, 14.1484, 0.0822129, 0, 13.1734, 0.0168834, 0, 12.3967, -0.85437, 0, 12.0093, -3.00137, 0, 14.6993)
-affect_navigation_mesh = true
-carve_navigation_mesh = true
-
-[node name="NavigationObstacle3D12" type="NavigationObstacle3D" parent="NavigationRegion3D/tiki_arena04_v1_vulcano/Node2"]
-vertices = PackedVector3Array(8.79962, 0, 13.2151, 12.0266, 0, 17.2009, 14.5227, 0, 18.9987, 12.3594, 0, 21.0147, 8.86941, 0, 18.1366, 8.83681, 0, 16.4706, 8.25833, 0, 15.6717, 8.16596, 0, 14.4991, 8.02129, 0, 13.2507)
-affect_navigation_mesh = true
-carve_navigation_mesh = true
+[node name="vulcano_island_arena_v2" parent="NavigationRegion3D" instance=ExtResource("3_gcryc")]
 
 [node name="Spawner3" parent="." instance=ExtResource("5_nxv8n")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.232, 0.07426, -0.891082)
