@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="WeaponResource" load_steps=8 format=3 uid="uid://b2rkwd640cxm3"]
 
-[ext_resource type="AudioStream" uid="uid://dllhd5vm4oow4" path="res://assets/sfx/weapons/staple_shotgun/216057__gusgus26__rattle.wav" id="1_8x2w2"]
+[ext_resource type="AudioStream" uid="uid://c6l8ugfe6wxid" path="res://assets/sfx/weapons/staple_shotgun/fire.wav" id="1_8x2w2"]
 [ext_resource type="Script" uid="uid://d0c7jub8ujtvp" path="res://entities/weapon/weapon_resource.gd" id="1_c2as2"]
 [ext_resource type="Resource" uid="uid://bnwocgopvps0t" path="res://entities/projectile/resources/staple.tres" id="1_keynl"]
 [ext_resource type="Texture2D" uid="uid://cndh8etcgykc1" path="res://assets/weapons/stapler_shotgun/hud/JD_right_hand_Stapler_00000.png" id="3_8x2w2"]

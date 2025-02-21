@@ -1,14 +1,7 @@
-[gd_resource type="Resource" script_class="ProjectileResource" load_steps=11 format=3 uid="uid://d18nbi5siw1xe"]
+[gd_resource type="Resource" script_class="ProjectileResource" load_steps=4 format=3 uid="uid://d18nbi5siw1xe"]
 
 [ext_resource type="PackedScene" uid="uid://qdkkarbk1ani" path="res://entities/projectile/resources/ball_of_paper/ball_of_paper.tscn" id="1_6s1u7"]
 [ext_resource type="Script" uid="uid://we358fsclmak" path="res://entities/projectile/projectile_resource.gd" id="1_pwm1g"]
-[ext_resource type="AudioStream" uid="uid://bishh7b81qti4" path="res://assets/sfx/projectile_spawned/paper crunch 1.wav" id="3_nxqnh"]
-[ext_resource type="AudioStream" uid="uid://b45kddurlqrmw" path="res://assets/sfx/projectile_spawned/paper crunch 2.wav" id="4_1r4gw"]
-[ext_resource type="AudioStream" uid="uid://kytiayibw05b" path="res://assets/sfx/projectile_spawned/paper crunch 3.wav" id="5_s6cvr"]
-[ext_resource type="AudioStream" uid="uid://b1qrhixucbcs8" path="res://assets/sfx/projectile_spawned/paper crunch 4.wav" id="6_tmicr"]
-[ext_resource type="AudioStream" uid="uid://iwfchfwygrme" path="res://assets/sfx/projectile_spawned/plastic crunch 15.wav" id="7_6wehx"]
-[ext_resource type="AudioStream" uid="uid://dvo4r40nre15b" path="res://assets/sfx/projectile_spawned/plastic crunch 16.wav" id="8_ql763"]
-[ext_resource type="AudioStream" uid="uid://jg6hcmcrjfht" path="res://assets/sfx/pain_enemy/plastic crunch 21.wav" id="9_6oajv"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_ilcb0"]
 radius = 0.25
@@ -20,9 +13,11 @@ impact_damage = 10.0
 area_damage = 0.0
 area_radius = 0.0
 spread = 0.0
-spawn_sounds = Array[AudioStream]([ExtResource("3_nxqnh"), ExtResource("4_1r4gw"), ExtResource("5_s6cvr"), ExtResource("6_tmicr"), ExtResource("7_6wehx"), ExtResource("8_ql763"), ExtResource("9_6oajv")])
+spawn_sounds = Array[AudioStream]([])
 impact_sounds = Array[AudioStream]([])
 collision_shape = SubResource("SphereShape3D_ilcb0")
 scene = ExtResource("1_6s1u7")
+show_projectile_hit = true
+projectile_hit_scale = 1.0
 max_lifetime = 10.0
 metadata/_custom_type_script = "uid://we358fsclmak"

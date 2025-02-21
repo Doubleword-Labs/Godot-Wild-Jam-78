@@ -1,5 +1,6 @@
-[gd_resource type="Resource" script_class="WeaponResource" load_steps=24 format=3 uid="uid://cktjs8hbv04pk"]
+[gd_resource type="Resource" script_class="WeaponResource" load_steps=25 format=3 uid="uid://cktjs8hbv04pk"]
 
+[ext_resource type="AudioStream" uid="uid://dgyublsch5l14" path="res://assets/sfx/weapons/paper_throw/throw.wav" id="1_b321w"]
 [ext_resource type="Script" uid="uid://d0c7jub8ujtvp" path="res://entities/weapon/weapon_resource.gd" id="1_egj82"]
 [ext_resource type="Resource" uid="uid://d18nbi5siw1xe" path="res://entities/projectile/resources/ball_of_paper.tres" id="1_nidtu"]
 [ext_resource type="Texture2D" uid="uid://c2p6xe7aajcne" path="res://assets/player/black-and-white/JD_right_hand_idle/JD_right_hand_idle_00000.png" id="2_6l3ae"]
@@ -103,8 +104,8 @@ animations = [{
 
 [resource]
 script = ExtResource("1_egj82")
-attack_damage = 10.0
-attack_range = 100.0
+melee_damage = 10.0
+melee_range = 100.0
 attack_timeout = 0.5
 projectile_count = 1
 projectile_resource = ExtResource("1_nidtu")
@@ -113,5 +114,5 @@ idle_animation = "idle"
 attack_animation = "shoot"
 sprite_position = Vector2(815, 408)
 sprite_scale = Vector2(0.473633, 0.473633)
-attack_sounds = Array[AudioStream]([])
+attack_sounds = Array[AudioStream]([ExtResource("1_b321w")])
 metadata/_custom_type_script = "uid://d0c7jub8ujtvp"
