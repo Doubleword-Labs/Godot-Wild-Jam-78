@@ -152,6 +152,8 @@ func take_damage(damage: int, from_player: bool) -> void:
 		if Buff.player_vampire:
 			Game.get_player().health += damage
 			Game.hp_gui.value = Game.get_player().health
+			if Game.hp_gui.value > Game.hp_gui.max_value:
+				Game.hp_gui.value = Game.hp_gui.max_value
 			
 		if health <= 0:
 			state_chart.send_event(EnemyStateEvent.DEATH)
