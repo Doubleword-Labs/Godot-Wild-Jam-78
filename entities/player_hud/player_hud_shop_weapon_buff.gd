@@ -14,6 +14,7 @@ func _ready() -> void:
 
 func _on_button_minigun_pressed() -> void:	
 	Buff.weapon_minigun = true
+	Game.get_player()._request_weapon(1)
 	Waves.exit_shop()
 
 
