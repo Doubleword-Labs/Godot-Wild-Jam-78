@@ -17,5 +17,7 @@ spawn_sounds = Array[AudioStream]([])
 impact_sounds = Array[AudioStream]([])
 collision_shape = SubResource("SphereShape3D_n5n3x")
 scene = ExtResource("1_lwdd2")
+show_projectile_hit = true
+projectile_hit_scale = 1.0
 max_lifetime = 1.0
 metadata/_custom_type_script = "uid://we358fsclmak"

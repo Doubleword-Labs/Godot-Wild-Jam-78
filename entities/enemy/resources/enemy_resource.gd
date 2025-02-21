@@ -7,6 +7,7 @@ class_name EnemyResource
 @export var sight_range := 15.0
 @export var speed := 100.0
 @export var health := 10.0
+@export var pain_chance := 1.0
 
 @export_group("Animations")
 @export var sprite_frames: SpriteFrames
@@ -19,3 +20,9 @@ class_name EnemyResource
 
 @export_group("Collisions")
 @export var collision_shape: Shape3D
+
+@export_group("Audio")
+@export var awake_sound: AudioStream
+@export var death_sound: AudioStream
+@export var roam_sound: AudioStream
+@export var pain_sound: AudioStream

@@ -31,6 +31,7 @@ var sight_range: float
 @onready var attack_ray_cast: RayCast3D = %AttackRayCast
 @onready var projectile_spawn_point: Node3D = $ProjectileSpawnPoint
 @onready var attack_timer: Timer = $AttackTimer
+@onready var roam_timer: Timer = $RoamTimer
 
 @onready var state_chart: StateChart = $StateChart
 @onready var idle_state: AtomicState = %IdleState
@@ -41,6 +42,7 @@ var sight_range: float
 var can_attack := false
 var health: float
 var received_damage := false
+var audio_player: AudioStreamPlayer3D
 
 
 func _ready() -> void:
@@ -143,38 +145,52 @@ func _on_attack_state_state_entered() -> void:
 
 func take_damage(damage: int, from_player: bool) -> void:
 	if from_player:
-		
 		if Buff.player_damage:
 			damage = damage * 2
-			
+
 		health -= damage
-		
+
 		if Buff.player_vampire:
-			Game.get_player().health += ceil(damage / 10)
+			Game.get_player().health += ceil(damage / 10.0)
 			Game.hp_gui.value = Game.get_player().health
 			if Game.hp_gui.value > Game.hp_gui.max_value:
 				Game.hp_gui.value = Game.hp_gui.max_value
-			
+
 		if health <= 0:
 			state_chart.send_event(EnemyStateEvent.DEATH)
 		else:
 			received_damage = true
-			state_chart.send_event(EnemyStateEvent.PAIN)
+
+			# pain chance
+			if randf() <= resource.pain_chance:
+				state_chart.send_event(EnemyStateEvent.PAIN)
+
+
+func play_sound(sound: AudioStream, override: bool = false) -> bool:
+	if not is_instance_valid(sound):
+		return false
+
+	if is_instance_valid(audio_player) and audio_player.playing:
+		if override:
+			audio_player.stop()
+		else:
+			return false
+
+	audio_player = AudioPlayer.play_sfx_3d(sound)
+	if is_instance_valid(audio_player):
+		audio_player.global_position = global_position
+		return true
+
+	return false
 
 
 func _on_pain_state_state_entered() -> void:
-	var audio_player := AudioPlayer.play_sfx_3d_array(AudioPlayer.pain_enemy_arr)
-	if is_instance_valid(audio_player):
-		audio_player.global_position = global_position
-
+	play_sound(resource.pain_sound, true)
 	sprite.play(resource.pain_animation)
 
 
 func _on_death_state_state_entered() -> void:
-	var audio_player := AudioPlayer.play_sfx_3d_array(AudioPlayer.died_enemy_arr)
-	if is_instance_valid(audio_player):
-		audio_player.global_position = global_position
-
+	play_sound(resource.death_sound, true)
 	sprite.play(resource.death_animation)
 	await sprite.animation_finished
 	queue_free()
@@ -198,3 +214,13 @@ func _on_animated_sprite_3d_frame_changed() -> void:
 	if is_instance_valid(sprite) and sprite.animation == resource.attack_animation:
 		if sprite.frame == resource.attack_frame:
 			Game.spawn_projectile(self, projectile_spawn_point, FIREBALL_PROJECTILE)
+
+
+func _on_idle_state_state_exited() -> void:
+	play_sound(resource.awake_sound)
+
+
+func _on_roam_timer_timeout() -> void:
+	if play_sound(resource.roam_sound):
+		var timeout := minf(2.0, randf() * 10)
+		roam_timer.start(timeout)

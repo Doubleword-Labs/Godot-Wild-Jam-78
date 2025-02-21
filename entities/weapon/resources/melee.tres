@@ -102,8 +102,8 @@ animations = [{
 
 [resource]
 script = ExtResource("1_t5uoa")
-attack_damage = 30.0
-attack_range = 1.5
+melee_damage = 30.0
+melee_range = 100.0
 attack_timeout = 0.5
 projectile_count = 1
 sprite_frames = SubResource("SpriteFrames_t5uoa")

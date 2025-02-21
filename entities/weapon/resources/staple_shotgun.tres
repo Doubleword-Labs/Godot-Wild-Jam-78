@@ -1,10 +1,11 @@
-[gd_resource type="Resource" script_class="WeaponResource" load_steps=8 format=3 uid="uid://b2rkwd640cxm3"]
+[gd_resource type="Resource" script_class="WeaponResource" load_steps=9 format=3 uid="uid://b2rkwd640cxm3"]
 
 [ext_resource type="AudioStream" uid="uid://c6l8ugfe6wxid" path="res://assets/sfx/weapons/staple_shotgun/fire.wav" id="1_8x2w2"]
 [ext_resource type="Script" uid="uid://d0c7jub8ujtvp" path="res://entities/weapon/weapon_resource.gd" id="1_c2as2"]
 [ext_resource type="Resource" uid="uid://bnwocgopvps0t" path="res://entities/projectile/resources/staple.tres" id="1_keynl"]
 [ext_resource type="Texture2D" uid="uid://cndh8etcgykc1" path="res://assets/weapons/stapler_shotgun/hud/JD_right_hand_Stapler_00000.png" id="3_8x2w2"]
 [ext_resource type="Texture2D" uid="uid://b3y4066sp508n" path="res://assets/weapons/stapler_shotgun/hud/JD_right_hand_Stapler_00002.png" id="5_dep4a"]
+[ext_resource type="Texture2D" uid="uid://dt7p5m2x4mn2j" path="res://assets/weapons/stapler_shotgun/hud/JD_right_hand_Stapler_00001.png" id="5_rlp05"]
 [ext_resource type="Texture2D" uid="uid://bm3h5me58joi5" path="res://assets/weapons/stapler_shotgun/hud/JD_right_hand_Stapler_00003.png" id="6_ykd01"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_8x2w2"]
@@ -12,6 +13,9 @@ animations = [{
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("3_8x2w2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_rlp05")
 }],
 "loop": true,
 "name": &"default",
