@@ -54,7 +54,6 @@ func pause(to_pause: bool) -> void:
 		process_mode = Node.PROCESS_MODE_PAUSABLE
 		
 	AudioPlayer.squelch_sfx = false	
-	can_pause = false
 
 
 func get_player() -> Player:
@@ -121,6 +120,7 @@ func die():
 	AudioPlayer.free_sfx()
 	
 	pause(true)
+	can_pause = false
 	
 	AudioPlayer.play_sfx_array(AudioPlayer.lose_sfx_arr)
 	hud_modal(lose_gui_node)
@@ -133,6 +133,7 @@ func win():
 	AudioPlayer.free_sfx()
 	
 	pause(true)
+	can_pause = false
 	
 	AudioPlayer.play_sfx_array(AudioPlayer.win_sfx_arr)
 	hud_modal(win_gui_node)
