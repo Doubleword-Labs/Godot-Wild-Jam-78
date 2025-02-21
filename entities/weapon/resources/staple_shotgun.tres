@@ -31,9 +31,9 @@ animations = [{
 
 [resource]
 script = ExtResource("1_c2as2")
-attack_damage = 10.0
-attack_range = 100.0
-attack_timeout = 0.5
+melee_damage = 10.0
+melee_range = 100.0
+attack_timeout = 1.0
 projectile_count = 10
 projectile_resource = ExtResource("1_keynl")
 sprite_frames = SubResource("SpriteFrames_8x2w2")

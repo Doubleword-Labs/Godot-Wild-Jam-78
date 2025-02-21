@@ -33,7 +33,6 @@ func _ready() -> void:
 
 	if not is_zero_approx(resource.spread):
 		var spread := resource.spread
-		printt("spread", spread)
 
 		var yaw := randfn(0.0, spread)
 		var pitch := randfn(0.0, spread)
