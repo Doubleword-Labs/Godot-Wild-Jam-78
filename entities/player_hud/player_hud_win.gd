@@ -5,7 +5,7 @@ var title_path = "res://menus/title.tscn"
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_WHEN_PAUSED
-	$ColorRect2/Label.text = "You Cleared Wave " + str(Waves.current_wave) + "!"
+	$ColorRect2/Label.text = "Wave " + str(Waves.current_wave) + "!"
 
 
 func _on_wave_again_pressed() -> void:

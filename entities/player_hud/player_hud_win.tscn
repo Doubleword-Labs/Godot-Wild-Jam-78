@@ -13,14 +13,27 @@ color = Color(0, 0, 0, 0.247059)
 
 [node name="Label" type="Label" parent="ColorRect2"]
 layout_mode = 0
-offset_left = 313.0
-offset_top = 224.0
-offset_right = 866.0
-offset_bottom = 307.0
+offset_left = 18.0
+offset_top = 287.0
+offset_right = 1159.0
+offset_bottom = 452.0
 theme_override_constants/outline_size = 10
 theme_override_fonts/font = ExtResource("1_k0thd")
-theme_override_font_sizes/font_size = 50
-text = "You Cleared Wave X!"
+theme_override_font_sizes/font_size = 100
+text = "Wave X!"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="ColorRect2"]
+layout_mode = 0
+offset_left = 18.0
+offset_top = 133.0
+offset_right = 1159.0
+offset_bottom = 298.0
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("1_k0thd")
+theme_override_font_sizes/font_size = 100
+text = "You Erased"
+horizontal_alignment = 1
 
 [node name="WaveAgain" type="Button" parent="."]
 offset_left = 138.0
