@@ -4,7 +4,7 @@
 [ext_resource type="Resource" uid="uid://cspy28kk467px" path="res://entities/projectile/resources/rubber_band.tres" id="2_n5n3x"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_1f6fx"]
-radius = 0.15
+radius = 0.1
 
 [node name="Projectile" type="StaticBody3D"]
 collision_layer = 4
