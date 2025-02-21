@@ -150,7 +150,7 @@ func take_damage(damage: int, from_player: bool) -> void:
 		health -= damage
 		
 		if Buff.player_vampire:
-			Game.get_player().health += damage / 10
+			Game.get_player().health += ceil(damage / 10)
 			Game.hp_gui.value = Game.get_player().health
 			if Game.hp_gui.value > Game.hp_gui.max_value:
 				Game.hp_gui.value = Game.hp_gui.max_value
