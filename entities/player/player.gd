@@ -145,3 +145,11 @@ func take_damage(damage: int, from_player: bool) -> void:
 
 func _on_attack_timer_timeout() -> void:
 	can_attack = true
+
+
+func _on_regen_timer_timeout() -> void:
+	if Buff.player_regen:
+		if Game.hp_gui.value < Game.hp_gui.max_value:
+			var player = Game.get_player()
+			player.health += 1
+			Game.hp_gui.value = player.health
