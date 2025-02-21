@@ -22,6 +22,7 @@ var current_level := "res://levels/arena03/arena_03.tscn"
 var paused := false
 var can_pause := true
 
+var current_weapon = 0
 
 func _process(_delta: float) -> void:
 	if paused_gui_node != null:

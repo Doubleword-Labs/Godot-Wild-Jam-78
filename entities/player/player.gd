@@ -19,8 +19,6 @@ const STAPLE_SHOTGUN = preload("res://entities/weapon/resources/staple_shotgun.t
 @export var health := 100.0
 var can_attack := true
 
-var current_weapon := 0
-
 var melee_weapon := preload("res://entities/weapon/resources/melee.tres")
 var weapons: Array[PlayerWeapon] = [
 	PlayerWeapon.new(PAPER_BALL_THROW, true),
@@ -31,7 +29,7 @@ var weapons: Array[PlayerWeapon] = [
 
 func _ready() -> void:
 	melee_ray_cast.target_position.y = -melee_weapon.melee_range
-	_update_weapon(weapons[current_weapon].resource)
+	_update_weapon(weapons[Game.current_weapon].resource)
 
 	if Buff.player_flash:
 		speed = 10.0
@@ -42,14 +40,14 @@ func _ready() -> void:
 
 
 func _request_weapon(index: int) -> void:
-	if current_weapon == index:
+	if Game.current_weapon == index:
 		print("Weapon already equipped")
 		return
 
 	var requested_weapon := weapons[index]
 	if requested_weapon.owned:
 		_update_weapon(requested_weapon.resource)
-		current_weapon = index
+		Game.current_weapon = index
 	else:
 		print("You don't have that weapon")
 
@@ -60,7 +58,7 @@ func _update_weapon(resource: WeaponResource) -> void:
 
 
 func _get_current_weapon() -> WeaponResource:
-	return weapons[current_weapon].resource
+	return weapons[Game.current_weapon].resource
 
 
 func _input(event: InputEvent) -> void:
