@@ -1,0 +1,115 @@
+[gd_resource type="Resource" script_class="WeaponResource" load_steps=24 format=3 uid="uid://cny0oc34g062a"]
+
+[ext_resource type="Resource" uid="uid://cspy28kk467px" path="res://entities/projectile/resources/rubber_band.tres" id="1_3308t"]
+[ext_resource type="Script" uid="uid://d0c7jub8ujtvp" path="res://entities/weapon/weapon_resource.gd" id="1_v4ium"]
+[ext_resource type="Texture2D" uid="uid://c2p6xe7aajcne" path="res://assets/player/black-and-white/JD_right_hand_idle/JD_right_hand_idle_00000.png" id="2_3308t"]
+[ext_resource type="Texture2D" uid="uid://d11xfdmpkrixy" path="res://assets/player/black-and-white/JD_right_hand_idle/JD_right_hand_idle_00001.png" id="3_u2two"]
+[ext_resource type="Texture2D" uid="uid://dyjmt3ibfckb" path="res://assets/player/black-and-white/JD_right_hand_idle/JD_right_hand_idle_00002.png" id="4_f2vcd"]
+[ext_resource type="Texture2D" uid="uid://di5xm4qwh08at" path="res://assets/player/black-and-white/JD_right_hand_idle/JD_right_hand_idle_00003.png" id="5_gddty"]
+[ext_resource type="Texture2D" uid="uid://dn43masf2aqkt" path="res://assets/player/black-and-white/JD_right_hand_idle/JD_right_hand_idle_00004.png" id="6_vgxmm"]
+[ext_resource type="Texture2D" uid="uid://cqisjm80522st" path="res://assets/player/black-and-white/JD_right_hand_idle/JD_right_hand_idle_00005.png" id="7_xfdvv"]
+[ext_resource type="Texture2D" uid="uid://cm6nhdkkjt6y8" path="res://assets/player/black-and-white/JD_right_hand_idle/JD_right_hand_idle_00006.png" id="8_m2ovt"]
+[ext_resource type="Texture2D" uid="uid://dp5btqenvla7" path="res://assets/player/black-and-white/JD_right_hand_idle/JD_right_hand_idle_00007.png" id="9_4wj2m"]
+[ext_resource type="Texture2D" uid="uid://ba0rar1s50w44" path="res://assets/player/black-and-white/JD_left_hand_punch_01/JD_left_hand_punch_00000.png" id="10_ur4th"]
+[ext_resource type="Texture2D" uid="uid://d33dooad8ovpi" path="res://assets/player/black-and-white/JD_left_hand_punch_01/JD_left_hand_punch_00001.png" id="11_ehtw1"]
+[ext_resource type="Texture2D" uid="uid://bkuuvsb7tum7v" path="res://assets/player/black-and-white/JD_left_hand_punch_01/JD_left_hand_punch_00002.png" id="12_qbxol"]
+[ext_resource type="Texture2D" uid="uid://4x850jg5ufue" path="res://assets/player/black-and-white/JD_left_hand_punch_01/JD_left_hand_punch_00003.png" id="13_s0hyo"]
+[ext_resource type="Texture2D" uid="uid://6v4nlm6ip7ha" path="res://assets/player/black-and-white/JD_left_hand_punch_01/JD_left_hand_punch_00004.png" id="14_6yf7n"]
+[ext_resource type="Texture2D" uid="uid://b5yn2eakxjmgb" path="res://assets/player/black-and-white/JD_left_hand_punch_01/JD_left_hand_punch_00005.png" id="15_eesh6"]
+[ext_resource type="Texture2D" uid="uid://dsnkeix2phdr3" path="res://assets/player/black-and-white/JD_left_hand_punch_01/JD_left_hand_punch_00006.png" id="16_6tr2j"]
+[ext_resource type="Texture2D" uid="uid://bkbwhuq0e3y07" path="res://assets/player/black-and-white/JD_left_hand_punch_01/JD_left_hand_punch_00007.png" id="17_jpqxv"]
+[ext_resource type="Texture2D" uid="uid://cfe3tgofuv43q" path="res://assets/player/black-and-white/JD_right_hand_shoot/JD_right_hand_shoot_00004.png" id="18_0umbn"]
+[ext_resource type="Texture2D" uid="uid://b8ygoo3rkkvp7" path="res://assets/player/black-and-white/JD_right_hand_shoot/JD_right_hand_shoot_00005.png" id="19_n55ix"]
+[ext_resource type="Texture2D" uid="uid://elq3ixns57sm" path="res://assets/player/black-and-white/JD_right_hand_shoot/JD_right_hand_shoot_00006.png" id="20_os06l"]
+[ext_resource type="Texture2D" uid="uid://dotfhfjlpsd0q" path="res://assets/player/black-and-white/JD_right_hand_shoot/JD_right_hand_shoot_00007.png" id="21_e75d2"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bectd"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_3308t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_u2two")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_f2vcd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_gddty")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_vgxmm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_xfdvv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_m2ovt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_4wj2m")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_ur4th")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_ehtw1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_qbxol")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_s0hyo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_6yf7n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_eesh6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_6tr2j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_jpqxv")
+}],
+"loop": false,
+"name": &"melee",
+"speed": 16.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("18_0umbn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_n55ix")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_os06l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_e75d2")
+}],
+"loop": false,
+"name": &"shoot",
+"speed": 8.0
+}]
+
+[resource]
+script = ExtResource("1_v4ium")
+attack_damage = 10.0
+attack_range = 100.0
+attack_timeout = 0.5
+projectile_resource = ExtResource("1_3308t")
+sprite_frames = SubResource("SpriteFrames_bectd")
+idle_animation = "idle"
+attack_animation = "shoot"
+sprite_position = Vector2(815, 408)
+sprite_scale = Vector2(0.473633, 0.473633)
+metadata/_custom_type_script = "uid://d0c7jub8ujtvp"

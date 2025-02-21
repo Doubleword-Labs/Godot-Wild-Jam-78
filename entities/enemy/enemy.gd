@@ -10,7 +10,8 @@ const EnemyStateEvent = {
 	PAIN = "pain",
 	DEATH = "death",
 }
-const PROJECTILE = preload("res://entities/projectile/projectile.tscn")
+
+const FIREBALL_PROJECTILE = preload("res://entities/projectile/resources/fireball.tres")
 
 @export var resource: EnemyResource:
 	set(value):
@@ -169,5 +170,4 @@ func _on_navigation_agent_3d_velocity_computed(safe_velocity: Vector3) -> void:
 func _on_animated_sprite_3d_frame_changed() -> void:
 	if is_instance_valid(sprite) and sprite.animation == resource.attack_animation:
 		if sprite.frame == resource.attack_frame:
-			var projectile = Game.spawn_projectile(self, projectile_spawn_point)
-			projectile.from_player = false
+			Game.spawn_projectile(self, projectile_spawn_point, FIREBALL_PROJECTILE)

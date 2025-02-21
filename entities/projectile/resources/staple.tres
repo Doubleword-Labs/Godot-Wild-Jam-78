@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ProjectileResource" load_steps=2 format=3 uid="uid://bnwocgopvps0t"]
+
+[ext_resource type="Script" uid="uid://we358fsclmak" path="res://entities/projectile/projectile_resource.gd" id="1_m2f4a"]
+
+[resource]
+script = ExtResource("1_m2f4a")
+speed = 10.0
+impact_damage = 10.0
+area_damage = 0.0
+area_radius = 0.0
+metadata/_custom_type_script = "uid://we358fsclmak"
