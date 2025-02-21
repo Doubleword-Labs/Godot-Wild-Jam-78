@@ -30,6 +30,13 @@ func _process(_delta: float) -> void:
 			pause(!paused)
 			paused_gui_node.visible = paused
 
+	if Input.is_action_just_pressed("full_screen"):
+		var current_mode := get_window().mode
+		if current_mode == Window.MODE_FULLSCREEN:
+			get_window().mode = Window.MODE_WINDOWED
+		else:
+			get_window().mode = Window.MODE_FULLSCREEN
+
 
 func pause(to_pause: bool) -> void:
 	AudioPlayer.free_sfx()
