@@ -11,9 +11,10 @@
 [ext_resource type="Resource" uid="uid://d4fgyepouyfb5" path="res://entities/enemy/resources/tiki_usb_01.tres" id="10_b5l0g"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_yrsgf"]
-sky_top_color = Color(0.168627, 0.752941, 0.811765, 1)
-sky_horizon_color = Color(0.168627, 0.752941, 0.811765, 1)
-ground_horizon_color = Color(0.168627, 0.752941, 0.811765, 1)
+sky_top_color = Color(0.435294, 0.12549, 0.12549, 1)
+sky_horizon_color = Color(0.283092, 0.252073, 0.0241556, 1)
+ground_bottom_color = Color(0.729639, 0.412297, 0.189404, 1)
+ground_horizon_color = Color(0.729412, 0.411765, 0.188235, 1)
 
 [sub_resource type="Sky" id="Sky_gcryc"]
 sky_material = SubResource("ProceduralSkyMaterial_yrsgf")
