@@ -24,10 +24,17 @@ func set_level():
 
 func set_shop():
 	if (Buff.is_shop_bought()):
+		Game.pause(false)
 		shop_time = false
 		set_level()
 	else:
 		get_tree().change_scene_to_file(shop)
+
+
+func exit_shop():	
+	Game.pause(false)
+	shop_time = false
+	Waves.set_level()
 
 
 func get_spawn_limit():

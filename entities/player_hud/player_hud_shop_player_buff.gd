@@ -5,6 +5,7 @@ extends CanvasLayer
 @onready var gui_vampire: Button = $ButtonVampire
 @onready var gui_regen: Button = $ButtonRegen
 @onready var gui_damage: Button = $ButtonDamage
+@onready var root:CanvasLayer = $"."
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_WHEN_PAUSED
@@ -47,7 +48,8 @@ func _on_button_damage_pressed() -> void:
 
 
 func weapon_buff_modal():
-	print('weapon buff modal')
-	Game.pause(false)
-	Waves.set_shop()
-	pass
+	root.visible = false
+	if (Buff.is_weapon_buffs_all_bought()):
+		Waves.exit_shop()
+	else:
+		Game.shop_weapon_buff_node.visible = true

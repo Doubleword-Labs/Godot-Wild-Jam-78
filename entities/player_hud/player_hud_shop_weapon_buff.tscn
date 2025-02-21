@@ -1,0 +1,75 @@
+[gd_scene load_steps=3 format=3 uid="uid://dw3mev7tcxi1g"]
+
+[ext_resource type="Script" uid="uid://c7cqku8y3gqll" path="res://entities/player_hud/player_hud_shop_weapon_buff.gd" id="1_8ob4s"]
+[ext_resource type="FontFile" uid="uid://db4p37abih74f" path="res://assets/fonts/Sigmar/Sigmar-Regular.ttf" id="2_8frtw"]
+
+[node name="ShopWeaponBuff" type="CanvasLayer"]
+script = ExtResource("1_8ob4s")
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+offset_right = 1154.0
+offset_bottom = 647.0
+color = Color(0, 0, 0, 0.247059)
+
+[node name="Label" type="Label" parent="ColorRect2"]
+layout_mode = 0
+offset_left = 266.0
+offset_top = 107.0
+offset_right = 875.0
+offset_bottom = 190.0
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("2_8frtw")
+theme_override_font_sizes/font_size = 50
+text = "Weapon Upgrade Shop"
+
+[node name="Next" type="Button" parent="."]
+visible = false
+offset_left = 138.0
+offset_top = 475.0
+offset_right = 565.0
+offset_bottom = 571.0
+size_flags_horizontal = 3
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("2_8frtw")
+theme_override_font_sizes/font_size = 30
+text = "Next Wave?"
+
+[node name="Title" type="Button" parent="."]
+visible = false
+offset_left = 619.0
+offset_top = 475.0
+offset_right = 1046.0
+offset_bottom = 571.0
+size_flags_horizontal = 3
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("2_8frtw")
+theme_override_font_sizes/font_size = 30
+text = "Back to Title"
+
+[node name="ButtonMinigun" type="Button" parent="."]
+offset_left = 206.0
+offset_top = 230.0
+offset_right = 545.0
+offset_bottom = 434.0
+theme_override_fonts/font = ExtResource("2_8frtw")
+theme_override_font_sizes/font_size = 25
+text = "WEAPON UNLOCK
+ANGER MANAGEMENT
+Fires a thousand 
+rubber bands a minute"
+
+[node name="ButtonStapler" type="Button" parent="."]
+offset_left = 576.0
+offset_top = 229.0
+offset_right = 922.0
+offset_bottom = 433.0
+theme_override_fonts/font = ExtResource("2_8frtw")
+theme_override_font_sizes/font_size = 25
+text = "WEAPON UNLOCK
+STAPLER SHOTGUN
+An FPS staple"
+
+[connection signal="pressed" from="Next" to="." method="_on_wave_again_pressed"]
+[connection signal="pressed" from="Title" to="." method="_on_title_pressed"]
+[connection signal="pressed" from="ButtonMinigun" to="." method="_on_button_minigun_pressed"]
+[connection signal="pressed" from="ButtonStapler" to="." method="_on_button_stapler_pressed"]

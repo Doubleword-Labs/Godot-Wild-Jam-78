@@ -13,6 +13,7 @@ var paused_gui_node: CanvasLayer
 var lose_gui_node: CanvasLayer
 var win_gui_node: CanvasLayer
 var shop_player_buff_node: CanvasLayer
+var shop_weapon_buff_node: CanvasLayer
 
 var spawnables := []
 
