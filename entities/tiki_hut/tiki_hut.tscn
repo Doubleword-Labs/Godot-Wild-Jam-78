@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://byp34cina6f3c"]
+[gd_scene load_steps=7 format=3 uid="uid://byp34cina6f3c"]
 
 [ext_resource type="PackedScene" uid="uid://bbfxa13m2nqut" path="res://entities/tiki_hut/tiki_hut_base.tscn" id="1_s1c6u"]
 [ext_resource type="Script" uid="uid://ckyxw34qa81rv" path="res://entities/tiki_hut/tiki_hut.gd" id="1_tlqxp"]
+[ext_resource type="FontFile" uid="uid://db4p37abih74f" path="res://assets/fonts/Sigmar/Sigmar-Regular.ttf" id="3_1ctbc"]
 
 [sub_resource type="Animation" id="Animation_tlqxp"]
 length = 0.001
@@ -53,6 +54,7 @@ shaded = true
 texture_filter = 2
 modulate = Color(1, 1, 0.588235, 1)
 text = "Shop"
+font = ExtResource("3_1ctbc")
 width = 1000.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
