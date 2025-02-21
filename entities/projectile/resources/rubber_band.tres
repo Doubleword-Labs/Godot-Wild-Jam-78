@@ -1,7 +1,17 @@
-[gd_resource type="Resource" script_class="ProjectileResource" load_steps=4 format=3 uid="uid://cspy28kk467px"]
+[gd_resource type="Resource" script_class="ProjectileResource" load_steps=14 format=3 uid="uid://cspy28kk467px"]
 
 [ext_resource type="PackedScene" uid="uid://wmmky8u2yslj" path="res://entities/projectile/resources/rubber_band/rubber_band.tscn" id="1_1f6fx"]
 [ext_resource type="Script" uid="uid://we358fsclmak" path="res://entities/projectile/projectile_resource.gd" id="1_jydok"]
+[ext_resource type="AudioStream" uid="uid://hpp7t4bcapw4" path="res://assets/sfx/weapons/rubber_band_gun/hit-01.wav" id="1_nhdeq"]
+[ext_resource type="AudioStream" uid="uid://bs6mdpstky1bn" path="res://assets/sfx/weapons/rubber_band_gun/hit-02.wav" id="2_wt427"]
+[ext_resource type="AudioStream" uid="uid://dkgqm31qe3gd8" path="res://assets/sfx/weapons/rubber_band_gun/hit-03.wav" id="3_x7egs"]
+[ext_resource type="AudioStream" uid="uid://ddn5t0iw33jsk" path="res://assets/sfx/weapons/rubber_band_gun/hit-04.wav" id="4_ndn10"]
+[ext_resource type="AudioStream" uid="uid://b0tm060wivi3d" path="res://assets/sfx/weapons/rubber_band_gun/hit-05.wav" id="5_ypi5n"]
+[ext_resource type="AudioStream" uid="uid://bl1qnq688v4an" path="res://assets/sfx/weapons/rubber_band_gun/hit-06.wav" id="6_np3po"]
+[ext_resource type="AudioStream" uid="uid://bdhctluxbka1i" path="res://assets/sfx/weapons/rubber_band_gun/hit-07.wav" id="7_st54n"]
+[ext_resource type="AudioStream" uid="uid://dunp7vohmn8bh" path="res://assets/sfx/weapons/rubber_band_gun/hit-08.wav" id="8_0rj6c"]
+[ext_resource type="AudioStream" uid="uid://0hjrrf6q8v8b" path="res://assets/sfx/weapons/rubber_band_gun/hit-09.wav" id="9_kt6b5"]
+[ext_resource type="AudioStream" uid="uid://df88m0ybtwhuu" path="res://assets/sfx/weapons/rubber_band_gun/hit-10.wav" id="10_tc52q"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_1f6fx"]
 radius = 0.1
@@ -14,7 +24,7 @@ area_damage = 0.0
 area_radius = 0.0
 spread = 2.0
 spawn_sounds = Array[AudioStream]([])
-impact_sounds = Array[AudioStream]([])
+impact_sounds = Array[AudioStream]([ExtResource("1_nhdeq"), ExtResource("2_wt427"), ExtResource("3_x7egs"), ExtResource("4_ndn10"), ExtResource("5_ypi5n"), ExtResource("6_np3po"), ExtResource("7_st54n"), ExtResource("8_0rj6c"), ExtResource("9_kt6b5"), ExtResource("10_tc52q")])
 collision_shape = SubResource("SphereShape3D_1f6fx")
 scene = ExtResource("1_1f6fx")
 max_lifetime = 3.0

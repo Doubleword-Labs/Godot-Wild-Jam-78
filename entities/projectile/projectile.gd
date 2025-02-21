@@ -62,9 +62,9 @@ func _physics_process(delta: float) -> void:
 			if collider.is_in_group("damageable"):
 				collider.take_damage(resource.impact_damage, spawned_by is Player)
 
-				var audio_player := AudioPlayer.play_sfx_3d_array(resource.impact_sounds)
-				if is_instance_valid(audio_player):
-					audio_player.global_position = global_position
+			var audio_player := AudioPlayer.play_sfx_3d_array(resource.impact_sounds)
+			if is_instance_valid(audio_player):
+				audio_player.global_position = global_position
 
 
 func _on_life_timer_timeout() -> void:
