@@ -144,6 +144,10 @@ func _on_attack_state_state_entered() -> void:
 func take_damage(damage: int, from_player: bool) -> void:
 	if from_player:
 		health -= damage
+		if (Buff.player_vampire):
+			Game.get_player().health += damage
+			Game.hp_gui.value = Game.get_player().health
+			
 		if health <= 0:
 			state_chart.send_event(EnemyStateEvent.DEATH)
 		else:
