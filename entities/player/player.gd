@@ -33,8 +33,12 @@ func _ready() -> void:
 	melee_ray_cast.target_position.y = -melee_weapon.melee_range
 	_update_weapon(weapons[current_weapon].resource)
 
-	if (Buff.player_flash):
+	if Buff.player_flash:
 		speed = 10.0
+		
+	if Buff.player_ogre:
+		health = 200
+		Game.hp_gui.value = health
 
 
 func _request_weapon(index: int) -> void:
