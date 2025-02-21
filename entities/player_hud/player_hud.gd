@@ -22,6 +22,8 @@ func _ready() -> void:
 	_update_melee_weapon()
 	weapon_sprite.show()
 	melee_sprite.hide()
+	
+	$AnimatedSprite2D.play()
 
 
 func melee_attack() -> void:

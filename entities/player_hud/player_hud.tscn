@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://b78bqckus7vfd"]
+[gd_scene load_steps=36 format=3 uid="uid://b78bqckus7vfd"]
 
 [ext_resource type="Script" uid="uid://ds4ev0degwh8i" path="res://entities/player_hud/player_hud.gd" id="1_ocp11"]
 [ext_resource type="Texture2D" uid="uid://c2p6xe7aajcne" path="res://assets/player/black-and-white/JD_right_hand_idle/JD_right_hand_idle_00000.png" id="2_y653e"]
@@ -24,6 +24,14 @@
 [ext_resource type="FontFile" uid="uid://db4p37abih74f" path="res://assets/fonts/Sigmar/Sigmar-Regular.ttf" id="17_jg8nn"]
 [ext_resource type="Texture2D" uid="uid://bkbwhuq0e3y07" path="res://assets/player/black-and-white/JD_left_hand_punch_01/JD_left_hand_punch_00007.png" id="17_t07ct"]
 [ext_resource type="PackedScene" uid="uid://dx8ncp3g3sfst" path="res://entities/player_hud/player_hud_lose.tscn" id="18_tob4y"]
+[ext_resource type="Texture2D" uid="uid://djuk2or210lo3" path="res://assets/gui/hp/80x80_heart/80x80_heart_00000.png" id="20_khhc8"]
+[ext_resource type="Texture2D" uid="uid://bqrwg4v7xus" path="res://assets/gui/hp/80x80_heart/80x80_heart_00001.png" id="21_i16y2"]
+[ext_resource type="Texture2D" uid="uid://djng5icftsxmc" path="res://assets/gui/hp/80x80_heart/80x80_heart_00002.png" id="22_tmxfp"]
+[ext_resource type="Texture2D" uid="uid://dynq4fik85ktm" path="res://assets/gui/hp/80x80_heart/80x80_heart_00003.png" id="23_8dp2i"]
+[ext_resource type="Texture2D" uid="uid://cclq8nkpnitc1" path="res://assets/gui/hp/80x80_heart/80x80_heart_00004.png" id="24_w6756"]
+[ext_resource type="Texture2D" uid="uid://bca0atysw76tj" path="res://assets/gui/hp/80x80_heart/80x80_heart_00005.png" id="25_bju2w"]
+[ext_resource type="Texture2D" uid="uid://bn27tilsuq4ca" path="res://assets/gui/hp/80x80_heart/80x80_heart_00006.png" id="26_g2w5c"]
+[ext_resource type="Texture2D" uid="uid://crb55sgppmt47" path="res://assets/gui/hp/80x80_heart/80x80_heart_00007.png" id="27_jikvl"]
 [ext_resource type="PackedScene" uid="uid://b73ju0p53en0j" path="res://entities/player_hud/player_hud_shop_player_buff.tscn" id="29_6mfx8"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_bectd"]
@@ -87,6 +95,38 @@ animations = [{
 "speed": 16.0
 }]
 
+[sub_resource type="SpriteFrames" id="SpriteFrames_hac87"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("20_khhc8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_i16y2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_tmxfp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_8dp2i")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_w6756")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_bju2w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("26_g2w5c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("27_jikvl")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [node name="CanvasLayer" type="CanvasLayer"]
 script = ExtResource("1_ocp11")
 
@@ -128,14 +168,21 @@ grow_vertical = 2
 color = Color(1, 1, 1, 0.180392)
 
 [node name="HealthBar" type="TextureProgressBar" parent="."]
-offset_left = 59.0
-offset_top = 38.0
-offset_right = 324.0
-offset_bottom = 85.0
+offset_left = 65.0
+offset_top = 37.0
+offset_right = 330.0
+offset_bottom = 84.0
 texture_under = ExtResource("15_tob4y")
 texture_progress = ExtResource("16_tob4y")
 
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(52, 53)
+sprite_frames = SubResource("SpriteFrames_hac87")
+frame = 3
+frame_progress = 0.526437
+
 [node name="Heart" type="TextureRect" parent="."]
+visible = false
 offset_left = 8.0
 offset_top = 12.0
 offset_right = 88.0
