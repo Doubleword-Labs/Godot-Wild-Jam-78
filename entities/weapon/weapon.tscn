@@ -89,4 +89,3 @@ position = Vector2(815, 408)
 scale = Vector2(0.473633, 0.473633)
 sprite_frames = SubResource("SpriteFrames_bectd")
 animation = &"idle"
-frame_progress = 0.0181993

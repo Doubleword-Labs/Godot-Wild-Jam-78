@@ -63,9 +63,14 @@ func update_from_resource() -> void:
 			sprite.speed_scale = randf_range(0.85, 1.25)
 			sprite.play(resource.default_animation)
 
-	nav_agent.path_desired_distance = resource.attack_range
-	attack_ray_cast.target_position.z = resource.attack_range
-	sight_ray_cast.target_position.z = resource.sight_range
+	if is_instance_valid(nav_agent):
+		nav_agent.path_desired_distance = resource.attack_range
+
+	if is_instance_valid(attack_ray_cast):
+		attack_ray_cast.target_position.z = resource.attack_range
+
+	if is_instance_valid(sight_ray_cast):
+		sight_ray_cast.target_position.z = resource.sight_range
 
 
 func update_target_position(target_position: Vector3) -> void:
