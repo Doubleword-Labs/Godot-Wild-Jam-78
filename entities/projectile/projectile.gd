@@ -65,6 +65,8 @@ func _physics_process(delta: float) -> void:
 					if (spawned_by is Player):
 						if Game.current_weapon == 1:
 							damage = 2
+						if Game.current_weapon == 2:
+							damage = 3
 					collider.take_damage(damage, spawned_by is Player)
 
 			var audio_player := AudioPlayer.play_sfx_3d_array(resource.impact_sounds)
