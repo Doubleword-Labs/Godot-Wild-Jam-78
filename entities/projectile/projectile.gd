@@ -16,7 +16,7 @@ const PROJECTILE_HIT = preload("res://entities/projectile_hit/projectile_hit.tsc
 
 var spawned_by: Node3D
 var velocity: Vector3 = Vector3.ZERO
-
+var damage:= 10.0
 
 func _ready() -> void:
 	update_from_resource()
@@ -62,7 +62,10 @@ func _physics_process(delta: float) -> void:
 
 			if collider.is_in_group("damageable"):
 				if is_instance_valid(spawned_by) and not spawned_by.is_queued_for_deletion():
-					collider.take_damage(resource.impact_damage, spawned_by is Player)
+					if (spawned_by is Player):
+						if Game.current_weapon == 1:
+							damage = 2
+					collider.take_damage(damage, spawned_by is Player)
 
 			var audio_player := AudioPlayer.play_sfx_3d_array(resource.impact_sounds)
 			if is_instance_valid(audio_player):
