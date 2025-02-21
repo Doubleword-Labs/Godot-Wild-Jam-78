@@ -20,113 +20,94 @@ offset_bottom = 644.0
 color = Color(0.133333, 0.219608, 0.337255, 0.207843)
 
 [node name="Label" type="Label" parent="."]
-offset_left = 394.0
-offset_top = 28.0
-offset_right = 742.0
-offset_bottom = 151.0
+offset_left = 398.0
+offset_top = 23.0
+offset_right = 746.0
+offset_bottom = 146.0
 theme_override_constants/outline_size = 10
 theme_override_fonts/font = ExtResource("2_5jbn1")
 theme_override_font_sizes/font_size = 75
 text = "CREDITS"
 
 [node name="Return" type="Button" parent="."]
-offset_left = 458.0
-offset_top = 521.0
-offset_right = 667.0
-offset_bottom = 617.0
+offset_left = 464.0
+offset_top = 529.0
+offset_right = 673.0
+offset_bottom = 625.0
 size_flags_horizontal = 3
 theme_override_constants/outline_size = 10
 theme_override_fonts/font = ExtResource("2_5jbn1")
 theme_override_font_sizes/font_size = 30
 text = "RETURN"
 
-[node name="MadeBy" type="Label" parent="."]
-offset_left = 297.0
-offset_top = 147.0
-offset_right = 858.0
-offset_bottom = 189.0
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+offset_left = 1.0
+offset_top = 133.0
+offset_right = 1159.0
+offset_bottom = 513.0
+horizontal_scroll_mode = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+layout_mode = 2
+
+[node name="MadeBy" type="Label" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
 theme_override_constants/outline_size = 10
 theme_override_fonts/font = ExtResource("2_5jbn1")
-theme_override_font_sizes/font_size = 25
+theme_override_font_sizes/font_size = 35
 text = "Made by Deevus, Addsoul & NathanSDunn"
+horizontal_alignment = 1
 
-[node name="Font" type="Label" parent="."]
-offset_left = 525.0
-offset_top = 200.0
-offset_right = 643.0
-offset_bottom = 242.0
+[node name="Font" type="Label" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
 theme_override_constants/outline_size = 10
 theme_override_fonts/font = ExtResource("2_5jbn1")
 theme_override_font_sizes/font_size = 25
-text = "Font"
+text = "
+Font
+https://fonts.google.com/specimen/Sigmar"
+horizontal_alignment = 1
 
-[node name="SFX" type="Label" parent="."]
-offset_left = 489.0
-offset_top = 372.0
-offset_right = 671.0
-offset_bottom = 459.0
+[node name="Music" type="Label" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("2_5jbn1")
+theme_override_font_sizes/font_size = 25
+text = "
+Music
+https://pixabay.com/music/beats-jungle-story-168459/
+"
+horizontal_alignment = 1
+
+[node name="SFX" type="Label" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
 theme_override_constants/outline_size = 10
 theme_override_fonts/font = ExtResource("2_5jbn1")
 theme_override_font_sizes/font_size = 25
 text = "Sound Effects
-"
+https://filmcow.itch.io/filmcow-sfx-2
+https://filmcow.itch.io/filmcow-sfx-4"
+horizontal_alignment = 1
 
-[node name="FontSigmar" type="LinkButton" parent="."]
+[node name="PushSpacing" type="Label" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "                                                                                                                                                                                                                                                                                "
+
+[node name="FontSigmar" type="LinkButton" parent="ScrollContainer/VBoxContainer"]
+visible = false
 modulate = Color(0.0403016, 0.58888, 0.913882, 1)
-offset_left = 304.0
-offset_top = 244.0
-offset_right = 870.0
-offset_bottom = 286.0
+layout_mode = 2
 theme_override_constants/outline_size = 10
-theme_override_constants/underline_spacing = 1
+theme_override_constants/underline_spacing = 0
 theme_override_fonts/font = ExtResource("2_5jbn1")
 theme_override_font_sizes/font_size = 25
 text = "https://fonts.google.com/specimen/Sigmar"
 uri = "https://fonts.google.com/specimen/Sigmar"
 
-[node name="FilmCow2" type="LinkButton" parent="."]
+[node name="MusicLink" type="LinkButton" parent="ScrollContainer/VBoxContainer"]
+visible = false
 modulate = Color(0.0403016, 0.58888, 0.913882, 1)
-offset_left = 336.0
-offset_top = 419.0
-offset_right = 902.0
-offset_bottom = 461.0
-theme_override_constants/outline_size = 10
-theme_override_constants/underline_spacing = 1
-theme_override_fonts/font = ExtResource("2_5jbn1")
-theme_override_font_sizes/font_size = 25
-text = "https://filmcow.itch.io/filmcow-sfx-2"
-uri = "https://filmcow.itch.io/filmcow-sfx-2"
-
-[node name="FilmCow4" type="LinkButton" parent="."]
-modulate = Color(0.0403016, 0.58888, 0.913882, 1)
-offset_left = 336.0
-offset_top = 464.0
-offset_right = 902.0
-offset_bottom = 506.0
-theme_override_constants/outline_size = 10
-theme_override_constants/underline_spacing = 1
-theme_override_fonts/font = ExtResource("2_5jbn1")
-theme_override_font_sizes/font_size = 25
-text = "https://filmcow.itch.io/filmcow-sfx-4"
-uri = "https://filmcow.itch.io/filmcow-sfx-4"
-
-[node name="Music" type="Label" parent="."]
-offset_left = 517.0
-offset_top = 287.0
-offset_right = 635.0
-offset_bottom = 374.0
-theme_override_constants/outline_size = 10
-theme_override_fonts/font = ExtResource("2_5jbn1")
-theme_override_font_sizes/font_size = 25
-text = "Music
-"
-
-[node name="MusicLink" type="LinkButton" parent="."]
-modulate = Color(0.0403016, 0.58888, 0.913882, 1)
-offset_left = 204.0
-offset_top = 330.0
-offset_right = 931.0
-offset_bottom = 372.0
+layout_mode = 2
 theme_override_constants/outline_size = 10
 theme_override_constants/underline_spacing = 1
 theme_override_fonts/font = ExtResource("2_5jbn1")
@@ -134,4 +115,31 @@ theme_override_font_sizes/font_size = 25
 text = "https://pixabay.com/music/beats-jungle-story-168459/"
 uri = "https://pixabay.com/music/beats-jungle-story-168459/"
 
+[node name="FilmCow2" type="LinkButton" parent="ScrollContainer/VBoxContainer"]
+visible = false
+modulate = Color(0.0403016, 0.58888, 0.913882, 1)
+layout_mode = 2
+theme_override_constants/outline_size = 10
+theme_override_constants/underline_spacing = 1
+theme_override_fonts/font = ExtResource("2_5jbn1")
+theme_override_font_sizes/font_size = 25
+text = "https://filmcow.itch.io/filmcow-sfx-2"
+uri = "https://filmcow.itch.io/filmcow-sfx-2"
+
+[node name="FilmCow4" type="LinkButton" parent="ScrollContainer/VBoxContainer"]
+visible = false
+modulate = Color(0.0403016, 0.58888, 0.913882, 1)
+layout_mode = 2
+theme_override_constants/outline_size = 10
+theme_override_constants/underline_spacing = 1
+theme_override_fonts/font = ExtResource("2_5jbn1")
+theme_override_font_sizes/font_size = 25
+text = "https://filmcow.itch.io/filmcow-sfx-4"
+uri = "https://filmcow.itch.io/filmcow-sfx-4"
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
+
 [connection signal="pressed" from="Return" to="." method="_on_return_pressed"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
