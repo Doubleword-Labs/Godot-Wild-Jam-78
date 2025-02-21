@@ -15,7 +15,7 @@ PROJECT_PATH = "project.godot"
 GODOT_PATH = "godot"
 BIN_DIR = "bin"
 
-ITCHIO_USER="doubleword-labs"
+ITCHIO_USER="nathansdunn"
 ITCHIO_PROJECT="jason-drawn"
 
 #================================================================
