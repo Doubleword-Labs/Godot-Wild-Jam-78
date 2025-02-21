@@ -23,7 +23,11 @@ func set_level():
 
 
 func set_shop():
-	get_tree().change_scene_to_file(shop)
+	if (Buff.is_shop_bought()):
+		shop_time = false
+		set_level()
+	else:
+		get_tree().change_scene_to_file(shop)
 
 
 func get_spawn_limit():

@@ -19,13 +19,6 @@ func _ready() -> void:
 		gui_regen.disabled = true
 	if Buff.player_damage:
 		gui_damage.disabled = true
-		
-	if (Buff.player_ogre and 
-	Buff.player_flash and	
-	Buff.player_vampire and
-	Buff.player_regen and
-	Buff.player_damage):
-		print('all shop purchased')
 
 
 func _on_button_ogre_pressed() -> void:
@@ -50,7 +43,6 @@ func _on_button_regen_pressed() -> void:
 
 func _on_button_damage_pressed() -> void:
 	Buff.player_damage = true
-	print(Buff.player_damage)
 	weapon_buff_modal()
 
 
