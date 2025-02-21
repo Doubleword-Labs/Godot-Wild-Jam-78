@@ -16,7 +16,10 @@ func _ready() -> void:
 	Game.shop_weapon_buff_node = $ShopWeaponBuff
 	
 	Game.hp_gui = $HealthBar
-	Game.hp_gui.max_value = 100
+	if (Buff.player_ogre):
+		Game.hp_gui.max_value = 200
+	else:
+		Game.hp_gui.max_value = 100
 	Game.hp_gui.value = Game.get_player().health
 	Game.stationery_gui = $Stationery
 	Game.wave_gui = $Wave

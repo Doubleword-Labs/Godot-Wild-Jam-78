@@ -32,6 +32,9 @@ var weapons: Array[PlayerWeapon] = [
 func _ready() -> void:
 	melee_ray_cast.target_position.y = -melee_weapon.attack_range
 	_update_weapon(weapons[current_weapon].resource)
+	if (Buff.player_ogre):
+		health = 200
+		Game.hp_gui.value = health
 
 
 func _request_weapon(index: int) -> void:
