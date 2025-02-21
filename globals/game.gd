@@ -40,9 +40,7 @@ func _process(_delta: float) -> void:
 			get_window().mode = Window.MODE_FULLSCREEN
 
 
-func pause(to_pause: bool) -> void:
-	AudioPlayer.free_sfx()
-
+func pause(to_pause: bool) -> void:	
 	if OS.get_name() == "Web":
 		AudioPlayer.squelch_sfx = true
 		await get_tree().create_timer(0.25).timeout
@@ -54,11 +52,9 @@ func pause(to_pause: bool) -> void:
 		process_mode = Node.PROCESS_MODE_WHEN_PAUSED
 	else:
 		process_mode = Node.PROCESS_MODE_PAUSABLE
-
-	if OS.get_name() == "Web":
-		AudioPlayer.squelch_sfx = false
-
-	Game.can_pause = to_pause
+		
+	AudioPlayer.squelch_sfx = false	
+	can_pause = false
 
 
 func get_player() -> Player:
@@ -120,15 +116,23 @@ func hud_modal(modal: CanvasLayer):
 
 func die():
 	player_hud.erase_damage_transparency = 0
-	erase_damage.modulate = Color(1, 1, 1, 0)
+	erase_damage.modulate = Color(1, 1, 1, 0)	
+	
+	AudioPlayer.free_sfx()
+	
 	pause(true)
+	
 	AudioPlayer.play_sfx_array(AudioPlayer.lose_sfx_arr)
 	hud_modal(lose_gui_node)
 
 
 func win():
 	player_hud.erase_damage_transparency = 0
-	erase_damage.modulate = Color(1, 1, 1, 0)
+	erase_damage.modulate = Color(1, 1, 1, 0)	
+	
+	AudioPlayer.free_sfx()
+	
 	pause(true)
+	
 	AudioPlayer.play_sfx_array(AudioPlayer.win_sfx_arr)
 	hud_modal(win_gui_node)
