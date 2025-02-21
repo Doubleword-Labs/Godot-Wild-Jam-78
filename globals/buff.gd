@@ -6,12 +6,19 @@ var player_vampire := false
 var player_regen := false
 var player_damage := false
 
+var weapon_staple := false
+var weapon_minigun := false
+
 func is_player_buffs_all_bought():
-	return (player_ogre and 
-		player_flash and	
+	return (player_ogre and
+		player_flash and
 		player_vampire and
 		player_regen and
 		player_damage)
+		
+func is_weapon_buffs_all_bought():
+	return (weapon_staple and
+		weapon_minigun)
 
 func is_shop_bought():
-	return is_player_buffs_all_bought()
+	return is_player_buffs_all_bought() and is_weapon_buffs_all_bought()
