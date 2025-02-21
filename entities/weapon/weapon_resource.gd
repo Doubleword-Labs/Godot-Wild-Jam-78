@@ -2,8 +2,8 @@ extends Resource
 class_name WeaponResource
 
 @export_group("Stats")
-@export var attack_damage: float = 10.0
-@export var attack_range: float = 100.0
+@export var melee_damage: float = 10.0
+@export var melee_range: float = 100.0
 @export var attack_timeout: float = 0.5
 
 @export_group("Projectile")

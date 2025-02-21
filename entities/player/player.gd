@@ -30,11 +30,8 @@ var weapons: Array[PlayerWeapon] = [
 
 
 func _ready() -> void:
-	melee_ray_cast.target_position.y = -melee_weapon.attack_range
+	melee_ray_cast.target_position.y = -melee_weapon.melee_range
 	_update_weapon(weapons[current_weapon].resource)
-	if (Buff.player_ogre):
-		health = 200
-		Game.hp_gui.value = health
 
 	if (Buff.player_flash):
 		speed = 10.0
@@ -106,7 +103,7 @@ func _melee_attack() -> void:
 		var hit = melee_ray_cast.get_collider()
 
 		if hit.is_in_group("damageable"):
-			hit.take_damage(melee_weapon.attack_damage, true)
+			hit.take_damage(melee_weapon.melee_damage, true)
 			AudioPlayer.play_sfx_array(AudioPlayer.punch_sfx_arr)
 
 

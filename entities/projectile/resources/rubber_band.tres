@@ -1,11 +1,21 @@
-[gd_resource type="Resource" script_class="ProjectileResource" load_steps=2 format=3 uid="uid://cspy28kk467px"]
+[gd_resource type="Resource" script_class="ProjectileResource" load_steps=4 format=3 uid="uid://cspy28kk467px"]
 
+[ext_resource type="PackedScene" uid="uid://wmmky8u2yslj" path="res://entities/projectile/resources/rubber_band/rubber_band.tscn" id="1_1f6fx"]
 [ext_resource type="Script" uid="uid://we358fsclmak" path="res://entities/projectile/projectile_resource.gd" id="1_jydok"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_1f6fx"]
+radius = 0.1
 
 [resource]
 script = ExtResource("1_jydok")
-speed = 10.0
+speed = 50.0
 impact_damage = 10.0
 area_damage = 0.0
 area_radius = 0.0
+spread = 2.0
+spawn_sounds = Array[AudioStream]([])
+impact_sounds = Array[AudioStream]([])
+collision_shape = SubResource("SphereShape3D_1f6fx")
+scene = ExtResource("1_1f6fx")
+max_lifetime = 3.0
 metadata/_custom_type_script = "uid://we358fsclmak"
