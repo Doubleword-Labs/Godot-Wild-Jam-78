@@ -13,11 +13,13 @@ const EnemyStateEvent = {
 
 const FIREBALL_PROJECTILE = preload("res://entities/projectile/resources/fireball.tres")
 
+@export_tool_button("Update from resource") var update_from_resource_button := update_from_resource
+
 @export var resource: EnemyResource:
 	set(value):
 		resource = value
 		if Engine.is_editor_hint():
-			_update_from_resource()
+			update_from_resource()
 
 var speed: float
 var attack_range: float
@@ -42,10 +44,10 @@ var received_damage := false
 
 
 func _ready() -> void:
-	_update_from_resource()
+	update_from_resource()
 
 
-func _update_from_resource() -> void:
+func update_from_resource() -> void:
 	if not is_instance_valid(resource):
 		return
 
@@ -53,10 +55,13 @@ func _update_from_resource() -> void:
 	attack_range = resource.attack_range
 	health = resource.health
 
-	sprite.sprite_frames = resource.sprite_frames
-	if not Engine.is_editor_hint():
-		sprite.speed_scale = randf_range(0.85, 1.25)
-		sprite.play(resource.default_animation)
+	if is_instance_valid(sprite):
+		sprite.sprite_frames = resource.sprite_frames
+		sprite.animation = resource.default_animation
+		sprite.offset = resource.sprite_offset
+		if not Engine.is_editor_hint():
+			sprite.speed_scale = randf_range(0.85, 1.25)
+			sprite.play(resource.default_animation)
 
 	nav_agent.path_desired_distance = resource.attack_range
 	attack_ray_cast.target_position.z = resource.attack_range

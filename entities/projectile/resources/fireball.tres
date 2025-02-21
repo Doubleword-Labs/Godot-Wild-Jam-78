@@ -1,6 +1,10 @@
-[gd_resource type="Resource" script_class="ProjectileResource" load_steps=2 format=3 uid="uid://c53nbapcuidth"]
+[gd_resource type="Resource" script_class="ProjectileResource" load_steps=4 format=3 uid="uid://c53nbapcuidth"]
 
+[ext_resource type="PackedScene" uid="uid://ctt3qrsd8rjrd" path="res://entities/projectile/resources/fireball/fireball.tscn" id="1_07r6x"]
 [ext_resource type="Script" uid="uid://we358fsclmak" path="res://entities/projectile/projectile_resource.gd" id="1_ffmkm"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_07r6x"]
+radius = 0.2
 
 [resource]
 script = ExtResource("1_ffmkm")
@@ -8,4 +12,8 @@ speed = 10.0
 impact_damage = 10.0
 area_damage = 0.0
 area_radius = 0.0
+spawn_sounds = Array[AudioStream]([])
+impact_sounds = Array[AudioStream]([])
+collision_shape = SubResource("SphereShape3D_07r6x")
+scene = ExtResource("1_07r6x")
 metadata/_custom_type_script = "uid://we358fsclmak"

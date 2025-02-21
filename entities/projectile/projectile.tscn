@@ -1,65 +1,19 @@
-[gd_scene load_steps=9 format=3 uid="uid://c6qhy6082m067"]
+[gd_scene load_steps=4 format=3 uid="uid://c6qhy6082m067"]
 
 [ext_resource type="Script" uid="uid://bvdy77cdw7t37" path="res://entities/projectile/projectile.gd" id="1_iqisb"]
-[ext_resource type="Shader" uid="uid://c5khav6wdcs3n" path="res://entities/projectile/projectile.gdshader" id="2_n5n3x"]
-[ext_resource type="Texture2D" uid="uid://c12o5ell22y4k" path="res://assets/projectile/512x512_paperball_TEST_ONLYx.png" id="5_mim5d"]
+[ext_resource type="Resource" uid="uid://c53nbapcuidth" path="res://entities/projectile/resources/fireball.tres" id="2_n5n3x"]
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_ilcb0"]
-radius = 0.25
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_i4fle"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("5_mim5d")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ilcb0"]
-albedo_color = Color(1, 0.541176, 0, 1)
-
-[sub_resource type="SphereMesh" id="SphereMesh_iqisb"]
-material = SubResource("StandardMaterial3D_ilcb0")
-radius = 0.125
-height = 0.25
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_i4fle"]
-render_priority = 0
-shader = ExtResource("2_n5n3x")
-shader_parameter/time_speed = 1.0
-shader_parameter/spin = 0.0
-shader_parameter/flame_brightness = 0.6
-shader_parameter/color_intensity = 0.0
-shader_parameter/horizontal_frequency = 1.0
-shader_parameter/vertical_frequency = 1.0
-shader_parameter/size = -0.3
-shader_parameter/core_size = 1.0
-shader_parameter/color1 = Color(0.286, 0.22, 0.733, 1)
-shader_parameter/color2 = Color(0.98, 0.38, 0.34, 1)
-shader_parameter/color3 = Color(0.98, 0.95, 0.53, 1)
-shader_parameter/color4 = Color(1, 1, 1, 1)
+[sub_resource type="SphereShape3D" id="SphereShape3D_07r6x"]
+radius = 0.2
 
 [node name="Projectile" type="StaticBody3D"]
 collision_layer = 4
 collision_mask = 3
 script = ExtResource("1_iqisb")
+resource = ExtResource("2_n5n3x")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("SphereShape3D_ilcb0")
-
-[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
-transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
-billboard = 2
-texture_filter = 2
-sprite_frames = SubResource("SpriteFrames_i4fle")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-visible = false
-mesh = SubResource("SphereMesh_iqisb")
-surface_material_override/0 = SubResource("ShaderMaterial_i4fle")
+shape = SubResource("SphereShape3D_07r6x")
 
 [node name="LifeTimer" type="Timer" parent="."]
 wait_time = 10.0

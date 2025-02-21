@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://ctt3qrsd8rjrd"]
+
+[ext_resource type="Shader" uid="uid://c5khav6wdcs3n" path="res://entities/projectile/projectile.gdshader" id="1_43wme"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ilcb0"]
+albedo_color = Color(1, 0.541176, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_xwps5"]
+material = SubResource("StandardMaterial3D_ilcb0")
+radius = 0.25
+height = 0.5
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mqgc5"]
+render_priority = 0
+shader = ExtResource("1_43wme")
+shader_parameter/time_speed = 1.0
+shader_parameter/spin = 0.0
+shader_parameter/flame_brightness = 0.6
+shader_parameter/color_intensity = 0.0
+shader_parameter/horizontal_frequency = 1.0
+shader_parameter/vertical_frequency = 1.0
+shader_parameter/size = -0.3
+shader_parameter/core_size = 1.0
+shader_parameter/color1 = Color(0.286, 0.22, 0.733, 1)
+shader_parameter/color2 = Color(0.98, 0.38, 0.34, 1)
+shader_parameter/color3 = Color(0.98, 0.95, 0.53, 1)
+shader_parameter/color4 = Color(1, 1, 1, 1)
+
+[node name="Fireball" type="MeshInstance3D"]
+mesh = SubResource("SphereMesh_xwps5")
+surface_material_override/0 = SubResource("ShaderMaterial_mqgc5")
