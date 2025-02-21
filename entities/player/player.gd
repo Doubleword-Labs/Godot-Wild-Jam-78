@@ -141,6 +141,7 @@ func _physics_process(delta: float) -> void:
 func take_damage(damage: int, from_player: bool) -> void:
 	if !from_player:
 		printt("took damage", damage)
+		Game.player_hud.erase_damage_transparency = 1
 		AudioPlayer.play_sfx_array(AudioPlayer.player_damaged_sfx_arr)
 
 		health -= damage

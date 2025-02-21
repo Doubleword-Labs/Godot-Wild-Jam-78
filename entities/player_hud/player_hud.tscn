@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://b78bqckus7vfd"]
+[gd_scene load_steps=38 format=3 uid="uid://b78bqckus7vfd"]
 
 [ext_resource type="Script" uid="uid://ds4ev0degwh8i" path="res://entities/player_hud/player_hud.gd" id="1_ocp11"]
 [ext_resource type="Texture2D" uid="uid://c2p6xe7aajcne" path="res://assets/player/black-and-white/JD_right_hand_idle/JD_right_hand_idle_00000.png" id="2_y653e"]
@@ -33,6 +33,7 @@
 [ext_resource type="Texture2D" uid="uid://bn27tilsuq4ca" path="res://assets/gui/hp/80x80_heart/80x80_heart_00006.png" id="26_g2w5c"]
 [ext_resource type="Texture2D" uid="uid://crb55sgppmt47" path="res://assets/gui/hp/80x80_heart/80x80_heart_00007.png" id="27_jikvl"]
 [ext_resource type="PackedScene" uid="uid://b73ju0p53en0j" path="res://entities/player_hud/player_hud_shop_player_buff.tscn" id="29_6mfx8"]
+[ext_resource type="Texture2D" uid="uid://bj0k3dy1ne7lv" path="res://assets/gui/erase_damage/player_erase_damage_v3_HUD.png" id="30_tmxfp"]
 [ext_resource type="PackedScene" uid="uid://dw3mev7tcxi1g" path="res://entities/player_hud/player_hud_shop_weapon_buff.tscn" id="34_i16y2"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_bectd"]
@@ -212,6 +213,16 @@ theme_override_font_sizes/font_size = 60
 text = "Wave: 1"
 horizontal_alignment = 1
 
+[node name="EraseDamage" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0)
+offset_right = 1152.0
+offset_bottom = 648.0
+texture = ExtResource("30_tmxfp")
+
+[node name="WipeOutDamage" type="Timer" parent="EraseDamage"]
+wait_time = 0.1
+autostart = true
+
 [node name="Pause" parent="." instance=ExtResource("16_d3o8r")]
 visible = false
 
@@ -226,3 +237,5 @@ visible = false
 
 [node name="ShopWeaponBuff" parent="." instance=ExtResource("34_i16y2")]
 visible = false
+
+[connection signal="timeout" from="EraseDamage/WipeOutDamage" to="." method="_on_wipe_out_damage_timeout"]

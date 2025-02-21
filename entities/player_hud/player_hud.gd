@@ -4,6 +4,9 @@ const MELEE_WEAPON_RESOURCE = preload("res://entities/weapon/resources/melee.tre
 
 @onready var weapon_sprite: AnimatedSprite2D = $Hand/WeaponSprite
 @onready var melee_sprite: AnimatedSprite2D = $Hand/MeleeSprite
+@onready var erase_damage: TextureRect = $EraseDamage
+
+var erase_damage_transparency = 0
 
 var weapon_resource: WeaponResource
 
@@ -14,6 +17,7 @@ func _ready() -> void:
 	Game.win_gui_node = $PauseWin
 	Game.shop_player_buff_node = $ShopPlayerBuff
 	Game.shop_weapon_buff_node = $ShopWeaponBuff
+	Game.player_hud = $"."
 	
 	Game.hp_gui = $HealthBar
 	if (Buff.player_ogre):
@@ -72,3 +76,11 @@ func _update_melee_weapon():
 		melee_sprite.position = resource.sprite_position
 		melee_sprite.scale = resource.sprite_scale
 		melee_sprite.play(resource.idle_animation)
+
+
+func _on_wipe_out_damage_timeout() -> void:
+	if erase_damage_transparency == 0:
+		return
+
+	erase_damage_transparency -= 0.1
+	erase_damage.modulate = Color(1, 1, 1, erase_damage_transparency)
