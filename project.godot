@@ -23,6 +23,7 @@ Game="*res://globals/game.gd"
 AudioPlayer="*res://globals/audio_player.gd"
 MusicPlayer="*res://globals/music_player.tscn"
 Waves="*res://globals/waves.gd"
+Buff="*res://globals/buff.gd"
 
 [display]
 

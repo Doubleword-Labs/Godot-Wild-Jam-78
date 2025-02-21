@@ -3,12 +3,17 @@ extends Node
 const PROJECTILE := preload("res://entities/projectile/projectile.tscn")
 
 var player: Player
+
 var hp_gui: TextureProgressBar
+
 var stationery_gui: Label
 var wave_gui: Label
-var paused_gui_node: Node
-var lose_gui_node: Node
-var win_gui_node: Node
+
+var paused_gui_node: CanvasLayer
+var lose_gui_node: CanvasLayer
+var win_gui_node: CanvasLayer
+var shop_player_buff_node: CanvasLayer
+
 var spawnables := []
 
 var current_level := "res://levels/arena03/arena_03.tscn"
@@ -24,7 +29,13 @@ func _process(_delta: float) -> void:
 			paused_gui_node.visible = paused
 
 
-func pause(to_pause: bool) -> void:
+func pause(to_pause: bool) -> void:	
+	AudioPlayer.free_sfx()
+	
+	if OS.get_name() == "Web":
+		AudioPlayer.squelch_sfx = true
+		await get_tree().create_timer(0.25).timeout
+	
 	paused = to_pause
 	get_tree().paused = to_pause
 
@@ -32,6 +43,11 @@ func pause(to_pause: bool) -> void:
 		process_mode = Node.PROCESS_MODE_WHEN_PAUSED
 	else:
 		process_mode = Node.PROCESS_MODE_PAUSABLE
+
+	if OS.get_name() == "Web":
+		AudioPlayer.squelch_sfx = false
+		
+	Game.can_pause = to_pause
 
 
 func get_player() -> Player:
@@ -84,35 +100,20 @@ func reload():
 	can_pause = true
 
 
-func die():
-	AudioPlayer.free_sfx()
-	if OS.get_name() == "Web":
-		AudioPlayer.squelch_sfx = true
-		await get_tree().create_timer(0.25).timeout
-
+func hud_modal(modal: CanvasLayer):	
 	pause(true)
-
-	if OS.get_name() == "Web":
-		AudioPlayer.squelch_sfx = false
-
-	AudioPlayer.play_sfx_array(AudioPlayer.lose_sfx_arr)
 	can_pause = false
-	lose_gui_node.visible = true
+	modal.visible = true
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+
+
+func die():
+	pause(true)
+	AudioPlayer.play_sfx_array(AudioPlayer.lose_sfx_arr)	
+	hud_modal(lose_gui_node)
 
 
 func win():
-	AudioPlayer.free_sfx()
-	if OS.get_name() == "Web":
-		AudioPlayer.squelch_sfx = true
-		await get_tree().create_timer(0.25).timeout
-
-	pause(true)
-
-	if OS.get_name() == "Web":
-		AudioPlayer.squelch_sfx = false
-
-	AudioPlayer.play_sfx_array(AudioPlayer.win_sfx_arr)
-	can_pause = false
-	win_gui_node.visible = true
-	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	pause(true)		
+	AudioPlayer.play_sfx_array(AudioPlayer.win_sfx_arr)	
+	hud_modal(win_gui_node)

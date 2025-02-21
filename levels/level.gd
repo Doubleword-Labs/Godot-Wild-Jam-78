@@ -21,7 +21,8 @@ func _on_lava_area_body_entered(body: Node3D) -> void:
 
 
 func _on_shop_door_body_entered(body: Node3D) -> void:
-	print("Shop Opened!") # Replace with function body.
+	print("Shop Opened!")
+	Game.hud_modal(Game.shop_player_buff_node)
 
 
 func _on_exit_door_body_entered(body: Node3D) -> void:

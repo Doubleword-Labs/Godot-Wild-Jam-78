@@ -12,6 +12,7 @@ func _ready() -> void:
 	Game.paused_gui_node = $Pause
 	Game.lose_gui_node = $PauseLose
 	Game.win_gui_node = $PauseWin
+	Game.shop_player_buff_node = $ShopPlayerBuff
 	Game.hp_gui = $HealthBar
 	Game.hp_gui.max_value = 100
 	Game.hp_gui.value = Game.get_player().health

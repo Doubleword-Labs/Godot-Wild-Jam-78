@@ -1,0 +1,115 @@
+[gd_scene load_steps=3 format=3 uid="uid://b73ju0p53en0j"]
+
+[ext_resource type="Script" uid="uid://dtf01gtgtvsfe" path="res://entities/player_hud/player_hud_shop_player_buff.gd" id="1_dnwqf"]
+[ext_resource type="FontFile" uid="uid://db4p37abih74f" path="res://assets/fonts/Sigmar/Sigmar-Regular.ttf" id="2_m8sim"]
+
+[node name="ShopPlayerBuff" type="CanvasLayer"]
+script = ExtResource("1_dnwqf")
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+offset_right = 1154.0
+offset_bottom = 647.0
+color = Color(0, 0, 0, 0.247059)
+
+[node name="Label" type="Label" parent="ColorRect2"]
+layout_mode = 0
+offset_left = 345.0
+offset_top = 107.0
+offset_right = 806.0
+offset_bottom = 190.0
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("2_m8sim")
+theme_override_font_sizes/font_size = 50
+text = "Player Buff Shop"
+
+[node name="Next" type="Button" parent="."]
+visible = false
+offset_left = 138.0
+offset_top = 475.0
+offset_right = 565.0
+offset_bottom = 571.0
+size_flags_horizontal = 3
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("2_m8sim")
+theme_override_font_sizes/font_size = 30
+text = "Next Wave?"
+
+[node name="Title" type="Button" parent="."]
+visible = false
+offset_left = 619.0
+offset_top = 475.0
+offset_right = 1046.0
+offset_bottom = 571.0
+size_flags_horizontal = 3
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("2_m8sim")
+theme_override_font_sizes/font_size = 30
+text = "Back to Title"
+
+[node name="ButtonOgre" type="Button" parent="."]
+offset_left = 94.0
+offset_top = 229.0
+offset_right = 272.0
+offset_bottom = 433.0
+theme_override_fonts/font = ExtResource("2_m8sim")
+theme_override_font_sizes/font_size = 25
+text = "OGRE
+Double
+Health
+Points"
+
+[node name="ButtonFlash" type="Button" parent="."]
+offset_left = 311.0
+offset_top = 229.0
+offset_right = 489.0
+offset_bottom = 433.0
+theme_override_fonts/font = ExtResource("2_m8sim")
+theme_override_font_sizes/font_size = 25
+text = "THE FLASH
+Double
+Run
+Speed"
+
+[node name="ButtonVampire" type="Button" parent="."]
+offset_left = 521.0
+offset_top = 229.0
+offset_right = 699.0
+offset_bottom = 433.0
+theme_override_fonts/font = ExtResource("2_m8sim")
+theme_override_font_sizes/font_size = 25
+text = "VAMPIRE
+Health 
+Points
+From Attack"
+
+[node name="ButtonRegen" type="Button" parent="."]
+offset_left = 726.0
+offset_top = 229.0
+offset_right = 904.0
+offset_bottom = 433.0
+theme_override_fonts/font = ExtResource("2_m8sim")
+theme_override_font_sizes/font_size = 25
+text = "REGEN
+1 Health
+Points
+/Second"
+
+[node name="ButtonDamage" type="Button" parent="."]
+offset_left = 932.0
+offset_top = 229.0
+offset_right = 1110.0
+offset_bottom = 433.0
+theme_override_fonts/font = ExtResource("2_m8sim")
+theme_override_font_sizes/font_size = 25
+text = "DOUBLE
+DAMAGE
+2 x
+Damage"
+
+[connection signal="pressed" from="Next" to="." method="_on_wave_again_pressed"]
+[connection signal="pressed" from="Title" to="." method="_on_title_pressed"]
+[connection signal="pressed" from="ButtonOgre" to="." method="_on_button_ogre_pressed"]
+[connection signal="pressed" from="ButtonFlash" to="." method="_on_button_flash_pressed"]
+[connection signal="pressed" from="ButtonVampire" to="." method="_on_button_vampire_pressed"]
+[connection signal="pressed" from="ButtonRegen" to="." method="_on_button_regen_pressed"]
+[connection signal="pressed" from="ButtonDamage" to="." method="_on_button_damage_pressed"]
