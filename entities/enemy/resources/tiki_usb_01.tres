@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="EnemyResource" load_steps=32 format=3 uid="uid://d4fgyepouyfb5"]
+[gd_resource type="Resource" script_class="EnemyResource" load_steps=42 format=3 uid="uid://d4fgyepouyfb5"]
 
 [ext_resource type="Script" uid="uid://ch7dh0une2ae" path="res://entities/enemy/resources/enemy_resource.gd" id="1_2lyl1"]
 [ext_resource type="AudioStream" uid="uid://chvjcplbiy321" path="res://assets/sfx/enemies/usb/awake.wav" id="1_bttc4"]
@@ -30,6 +30,16 @@
 [ext_resource type="Texture2D" uid="uid://4midewhvqr83" path="res://assets/enemies/shared/death/Enemy_DEATH_00009.png" id="25_h0tvg"]
 [ext_resource type="Texture2D" uid="uid://eyy81fetlu63" path="res://assets/enemies/shared/death/Enemy_DEATH_00010.png" id="26_q8ko7"]
 [ext_resource type="Texture2D" uid="uid://gd5sctfpnic5" path="res://assets/enemies/shared/death/Enemy_DEATH_00011.png" id="27_p6fms"]
+[ext_resource type="Texture2D" uid="uid://dgrlid0284sgb" path="res://assets/enemies/tiki_usb_01/hit/tiki_usb_001_hit_00010.png" id="31_r3bfa"]
+[ext_resource type="Texture2D" uid="uid://dgph30ekt4tj7" path="res://assets/enemies/tiki_usb_01/hit/tiki_usb_001_hit_00011.png" id="32_3da6q"]
+[ext_resource type="Texture2D" uid="uid://c6f072a6iv4td" path="res://assets/enemies/tiki_usb_01/hit/tiki_usb_001_hit_00012.png" id="33_ygym6"]
+[ext_resource type="Texture2D" uid="uid://b6dk20v645260" path="res://assets/enemies/tiki_usb_01/hit/tiki_usb_001_hit_00013.png" id="34_6efit"]
+[ext_resource type="Texture2D" uid="uid://4w0d8sg83pbj" path="res://assets/enemies/tiki_usb_01/hit/tiki_usb_001_hit_00014.png" id="35_oq7sk"]
+[ext_resource type="Texture2D" uid="uid://bvfid8godlero" path="res://assets/enemies/tiki_usb_01/hit/tiki_usb_001_hit_00015.png" id="36_w7aye"]
+[ext_resource type="Texture2D" uid="uid://hbdxcb02l0ro" path="res://assets/enemies/tiki_usb_01/hit/tiki_usb_001_hit_00016.png" id="37_t1ogp"]
+[ext_resource type="Texture2D" uid="uid://b4fu0ivl3mxtb" path="res://assets/enemies/tiki_usb_01/hit/tiki_usb_001_hit_00017.png" id="38_mpita"]
+[ext_resource type="Texture2D" uid="uid://ds5117a4v270r" path="res://assets/enemies/tiki_usb_01/hit/tiki_usb_001_hit_00018.png" id="39_x6uj3"]
+[ext_resource type="Texture2D" uid="uid://1es3vmfiliuj" path="res://assets/enemies/tiki_usb_01/hit/tiki_usb_001_hit_00019.png" id="40_205ga"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_3da6q"]
 animations = [{
@@ -140,16 +150,34 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_kcxr8")
+"texture": ExtResource("31_r3bfa")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_52ryy")
+"texture": ExtResource("32_3da6q")
 }, {
 "duration": 1.0,
-"texture": ExtResource("4_at3yv")
+"texture": ExtResource("33_ygym6")
 }, {
 "duration": 1.0,
-"texture": ExtResource("5_bttc4")
+"texture": ExtResource("34_6efit")
+}, {
+"duration": 1.0,
+"texture": ExtResource("35_oq7sk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("36_w7aye")
+}, {
+"duration": 1.0,
+"texture": ExtResource("37_t1ogp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("38_mpita")
+}, {
+"duration": 1.0,
+"texture": ExtResource("39_x6uj3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("40_205ga")
 }],
 "loop": false,
 "name": &"pain",
@@ -163,6 +191,7 @@ attack_timeout = 2.0
 sight_range = 100.0
 speed = 100.0
 health = 30.0
+pain_chance = 1.0
 sprite_frames = SubResource("SpriteFrames_3da6q")
 sprite_offset = Vector2(0, 0)
 default_animation = "default"

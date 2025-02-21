@@ -255,6 +255,7 @@ attack_timeout = 2.0
 sight_range = 100.0
 speed = 100.0
 health = 100.0
+pain_chance = 1.0
 sprite_frames = SubResource("SpriteFrames_yd6c0")
 sprite_offset = Vector2(45, 0)
 default_animation = "default"
