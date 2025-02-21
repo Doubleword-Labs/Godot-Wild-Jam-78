@@ -36,6 +36,9 @@ func _ready() -> void:
 		health = 200
 		Game.hp_gui.value = health
 
+	if (Buff.player_flash):
+		speed = 10.0
+
 
 func _request_weapon(index: int) -> void:
 	if current_weapon == index:
