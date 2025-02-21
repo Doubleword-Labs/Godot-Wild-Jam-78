@@ -118,12 +118,14 @@ func hud_modal(modal: CanvasLayer):
 
 
 func die():
+	player_hud.erase_damage_transparency = 0
 	pause(true)
 	AudioPlayer.play_sfx_array(AudioPlayer.lose_sfx_arr)
 	hud_modal(lose_gui_node)
 
 
 func win():
+	player_hud.erase_damage_transparency = 0
 	pause(true)
 	AudioPlayer.play_sfx_array(AudioPlayer.win_sfx_arr)
 	hud_modal(win_gui_node)
