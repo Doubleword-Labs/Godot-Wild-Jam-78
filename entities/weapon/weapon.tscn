@@ -56,4 +56,4 @@ resource = ExtResource("2_g83n5")
 position = Vector2(576, 405)
 scale = Vector2(0.473633, 0.473633)
 sprite_frames = SubResource("SpriteFrames_fdhhv")
-frame_progress = 0.971097
+frame_progress = 0.0428483

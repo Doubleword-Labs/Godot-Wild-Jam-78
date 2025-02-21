@@ -30,13 +30,13 @@ func _process(_delta: float) -> void:
 			paused_gui_node.visible = paused
 
 
-func pause(to_pause: bool) -> void:	
+func pause(to_pause: bool) -> void:
 	AudioPlayer.free_sfx()
-	
+
 	if OS.get_name() == "Web":
 		AudioPlayer.squelch_sfx = true
 		await get_tree().create_timer(0.25).timeout
-	
+
 	paused = to_pause
 	get_tree().paused = to_pause
 
@@ -47,7 +47,7 @@ func pause(to_pause: bool) -> void:
 
 	if OS.get_name() == "Web":
 		AudioPlayer.squelch_sfx = false
-		
+
 	Game.can_pause = to_pause
 
 
@@ -66,7 +66,7 @@ func _physics_process(_delta: float) -> void:
 		get_tree().call_group("enemies", "update_target_position", player.global_transform.origin)
 
 
-func _get_projectiles_parent() -> Node:
+func get_projectiles_parent() -> Node:
 	return get_tree().root
 
 
@@ -82,7 +82,7 @@ func spawn_projectile(
 	projectile.rotation = actor.rotation
 	projectile.velocity = -actor.transform.basis.z
 
-	_get_projectiles_parent().add_child(projectile)
+	get_projectiles_parent().add_child(projectile)
 	projectile.global_position = spawn_point.global_position
 	spawnables.append(projectile)
 	return projectile
@@ -101,7 +101,7 @@ func reload():
 	can_pause = true
 
 
-func hud_modal(modal: CanvasLayer):	
+func hud_modal(modal: CanvasLayer):
 	pause(true)
 	can_pause = false
 	modal.visible = true
@@ -110,11 +110,11 @@ func hud_modal(modal: CanvasLayer):
 
 func die():
 	pause(true)
-	AudioPlayer.play_sfx_array(AudioPlayer.lose_sfx_arr)	
+	AudioPlayer.play_sfx_array(AudioPlayer.lose_sfx_arr)
 	hud_modal(lose_gui_node)
 
 
 func win():
-	pause(true)		
-	AudioPlayer.play_sfx_array(AudioPlayer.win_sfx_arr)	
+	pause(true)
+	AudioPlayer.play_sfx_array(AudioPlayer.win_sfx_arr)
 	hud_modal(win_gui_node)

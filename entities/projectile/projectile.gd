@@ -2,6 +2,8 @@
 extends StaticBody3D
 class_name Projectile
 
+const PROJECTILE_HIT = preload("res://entities/projectile_hit/projectile_hit.tscn")
+
 @onready var collision_shape: CollisionShape3D = $CollisionShape3D
 @onready var life_timer: Timer = $LifeTimer
 
@@ -64,6 +66,12 @@ func _physics_process(delta: float) -> void:
 			var audio_player := AudioPlayer.play_sfx_3d_array(resource.impact_sounds)
 			if is_instance_valid(audio_player):
 				audio_player.global_position = global_position
+
+			if resource.show_projectile_hit:
+				var projectile_hit := PROJECTILE_HIT.instantiate()
+				Game.get_projectiles_parent().add_child(projectile_hit)
+				projectile_hit.scale = Vector3.ONE * resource.projectile_hit_scale
+				projectile_hit.global_position = global_position
 
 
 func _on_life_timer_timeout() -> void:

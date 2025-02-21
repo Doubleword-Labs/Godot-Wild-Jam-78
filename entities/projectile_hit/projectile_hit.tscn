@@ -1,0 +1,74 @@
+[gd_scene load_steps=15 format=3 uid="uid://deq5isnmcw6ey"]
+
+[ext_resource type="Texture2D" uid="uid://cu5ogxposw73o" path="res://assets/enemies/shared/death/Enemy_DEATH_00000.png" id="1_0xl2g"]
+[ext_resource type="Script" uid="uid://gfy50wmx6pdg" path="res://entities/projectile_hit/projectile_hit.gd" id="1_ytrab"]
+[ext_resource type="Texture2D" uid="uid://b8ui4ojf1w2pv" path="res://assets/enemies/shared/death/Enemy_DEATH_00001.png" id="2_ytrab"]
+[ext_resource type="Texture2D" uid="uid://8kuas6xems46" path="res://assets/enemies/shared/death/Enemy_DEATH_00002.png" id="3_dpfxq"]
+[ext_resource type="Texture2D" uid="uid://clxvwugsflsua" path="res://assets/enemies/shared/death/Enemy_DEATH_00003.png" id="4_dcude"]
+[ext_resource type="Texture2D" uid="uid://bw4ek4622l4qp" path="res://assets/enemies/shared/death/Enemy_DEATH_00004.png" id="5_we44h"]
+[ext_resource type="Texture2D" uid="uid://cd5315hre4xuc" path="res://assets/enemies/shared/death/Enemy_DEATH_00005.png" id="6_yycti"]
+[ext_resource type="Texture2D" uid="uid://6agt053n4pg5" path="res://assets/enemies/shared/death/Enemy_DEATH_00006.png" id="7_egp45"]
+[ext_resource type="Texture2D" uid="uid://c7jqddvikptnp" path="res://assets/enemies/shared/death/Enemy_DEATH_00007.png" id="8_5hu1x"]
+[ext_resource type="Texture2D" uid="uid://tlblckeo0mx4" path="res://assets/enemies/shared/death/Enemy_DEATH_00008.png" id="9_mrvr3"]
+[ext_resource type="Texture2D" uid="uid://4midewhvqr83" path="res://assets/enemies/shared/death/Enemy_DEATH_00009.png" id="10_wh63e"]
+[ext_resource type="Texture2D" uid="uid://eyy81fetlu63" path="res://assets/enemies/shared/death/Enemy_DEATH_00010.png" id="11_rjjc5"]
+[ext_resource type="Texture2D" uid="uid://gd5sctfpnic5" path="res://assets/enemies/shared/death/Enemy_DEATH_00011.png" id="12_nbgqa"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_2i27g"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_0xl2g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_ytrab")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_dpfxq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_dcude")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_we44h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_yycti")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_egp45")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_5hu1x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_mrvr3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_wh63e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_rjjc5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_nbgqa")
+}],
+"loop": false,
+"name": &"default",
+"speed": 24.0
+}]
+
+[node name="ProjectileHit" type="Node3D"]
+script = ExtResource("1_ytrab")
+
+[node name="AnimatedSprite3D" type="AnimatedSprite3D" parent="."]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
+modulate = Color(1, 1, 1, 0.498039)
+billboard = 2
+shaded = true
+sprite_frames = SubResource("SpriteFrames_2i27g")
+autoplay = "default"
+frame = 11
+frame_progress = 1.0
+
+[connection signal="animation_finished" from="AnimatedSprite3D" to="." method="_on_animated_sprite_3d_animation_finished"]
