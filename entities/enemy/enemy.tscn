@@ -176,6 +176,7 @@ animations = [{
 }]
 
 [node name="Enemy" type="CharacterBody3D" groups=["damageable", "enemies"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.483773, -0.00049713, -1.20731)
 collision_mask = 7
 script = ExtResource("1_dt443")
 resource = ExtResource("2_n8b7o")

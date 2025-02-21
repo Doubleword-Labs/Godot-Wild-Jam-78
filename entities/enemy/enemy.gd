@@ -184,8 +184,15 @@ func play_sound(sound: AudioStream, override: bool = false) -> bool:
 	return false
 
 
+func get_current_audio_stream() -> AudioStream:
+	if is_instance_valid(audio_player):
+		return audio_player.stream
+
+	return null
+
+
 func _on_pain_state_state_entered() -> void:
-	play_sound(resource.pain_sound, true)
+	play_sound(resource.pain_sound, get_current_audio_stream() != resource.pain_sound)
 	sprite.play(resource.pain_animation)
 
 
