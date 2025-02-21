@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="WeaponResource" load_steps=20 format=3 uid="uid://cktjs8hbv04pk"]
+[gd_resource type="Resource" script_class="WeaponResource" load_steps=24 format=3 uid="uid://cktjs8hbv04pk"]
 
 [ext_resource type="Script" uid="uid://d0c7jub8ujtvp" path="res://entities/weapon/weapon_resource.gd" id="1_egj82"]
 [ext_resource type="Resource" uid="uid://d18nbi5siw1xe" path="res://entities/projectile/resources/ball_of_paper.tres" id="1_nidtu"]
@@ -18,8 +18,12 @@
 [ext_resource type="Texture2D" uid="uid://b5yn2eakxjmgb" path="res://assets/player/black-and-white/JD_left_hand_punch_01/JD_left_hand_punch_00005.png" id="15_ea3dg"]
 [ext_resource type="Texture2D" uid="uid://dsnkeix2phdr3" path="res://assets/player/black-and-white/JD_left_hand_punch_01/JD_left_hand_punch_00006.png" id="16_81q2h"]
 [ext_resource type="Texture2D" uid="uid://bkbwhuq0e3y07" path="res://assets/player/black-and-white/JD_left_hand_punch_01/JD_left_hand_punch_00007.png" id="17_53hsg"]
+[ext_resource type="Texture2D" uid="uid://cfe3tgofuv43q" path="res://assets/player/black-and-white/JD_right_hand_shoot/JD_right_hand_shoot_00004.png" id="19_21mur"]
+[ext_resource type="Texture2D" uid="uid://b8ygoo3rkkvp7" path="res://assets/player/black-and-white/JD_right_hand_shoot/JD_right_hand_shoot_00005.png" id="20_b321w"]
+[ext_resource type="Texture2D" uid="uid://elq3ixns57sm" path="res://assets/player/black-and-white/JD_right_hand_shoot/JD_right_hand_shoot_00006.png" id="21_rnbcw"]
+[ext_resource type="Texture2D" uid="uid://dotfhfjlpsd0q" path="res://assets/player/black-and-white/JD_right_hand_shoot/JD_right_hand_shoot_00007.png" id="22_7ky73"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_bectd"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_v48sp"]
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -78,6 +82,23 @@ animations = [{
 "loop": false,
 "name": &"melee",
 "speed": 16.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("19_21mur")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_b321w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_rnbcw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_7ky73")
+}],
+"loop": false,
+"name": &"shoot",
+"speed": 12.0
 }]
 
 [resource]
@@ -85,10 +106,12 @@ script = ExtResource("1_egj82")
 attack_damage = 10.0
 attack_range = 100.0
 attack_timeout = 0.5
+projectile_count = 1
 projectile_resource = ExtResource("1_nidtu")
-sprite_frames = SubResource("SpriteFrames_bectd")
+sprite_frames = SubResource("SpriteFrames_v48sp")
 idle_animation = "idle"
 attack_animation = "shoot"
 sprite_position = Vector2(815, 408)
 sprite_scale = Vector2(0.473633, 0.473633)
+attack_sounds = Array[AudioStream]([])
 metadata/_custom_type_script = "uid://d0c7jub8ujtvp"

@@ -24,6 +24,25 @@ func _ready() -> void:
 
 	if spawned_by is Player:
 		AudioPlayer.play_sfx_array(resource.spawn_sounds)
+	else:
+		var audio_player := AudioPlayer.play_sfx_3d_array(resource.spawn_sounds)
+		if is_instance_valid(audio_player):
+			audio_player.global_position = global_position
+
+	life_timer.start(resource.max_lifetime)
+
+	if not is_zero_approx(resource.spread):
+		var spread := resource.spread
+		printt("spread", spread)
+
+		var yaw := randfn(0.0, spread)
+		var pitch := randfn(0.0, spread)
+
+		var yaw_rotation := Quaternion(global_transform.basis.y, deg_to_rad(yaw))
+		var pitch_rotation := Quaternion(global_transform.basis.x, deg_to_rad(pitch))
+		var combined_rotation := yaw_rotation * pitch_rotation
+
+		velocity = velocity * combined_rotation
 
 
 func _enter_tree() -> void:
@@ -42,7 +61,10 @@ func _physics_process(delta: float) -> void:
 
 			if collider.is_in_group("damageable"):
 				collider.take_damage(resource.impact_damage, spawned_by is Player)
-				AudioPlayer.play_sfx_array(resource.impact_sounds)
+
+				var audio_player := AudioPlayer.play_sfx_3d_array(resource.impact_sounds)
+				if is_instance_valid(audio_player):
+					audio_player.global_position = global_position
 
 
 func _on_life_timer_timeout() -> void:

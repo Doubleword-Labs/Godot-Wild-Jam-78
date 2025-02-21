@@ -1,91 +1,39 @@
-[gd_scene load_steps=20 format=3 uid="uid://ch1ix5b0wxhmx"]
+[gd_scene load_steps=7 format=3 uid="uid://ch1ix5b0wxhmx"]
 
 [ext_resource type="Script" uid="uid://csu6bgllhipr7" path="res://entities/weapon/weapon.gd" id="1_4m8ho"]
-[ext_resource type="Resource" uid="uid://cktjs8hbv04pk" path="res://entities/weapon/resources/paper_ball_throw.tres" id="2_xc5g8"]
-[ext_resource type="Texture2D" uid="uid://c2p6xe7aajcne" path="res://assets/player/black-and-white/JD_right_hand_idle/JD_right_hand_idle_00000.png" id="3_dd8or"]
-[ext_resource type="Texture2D" uid="uid://d11xfdmpkrixy" path="res://assets/player/black-and-white/JD_right_hand_idle/JD_right_hand_idle_00001.png" id="4_6awls"]
-[ext_resource type="Texture2D" uid="uid://dyjmt3ibfckb" path="res://assets/player/black-and-white/JD_right_hand_idle/JD_right_hand_idle_00002.png" id="5_q8cmt"]
-[ext_resource type="Texture2D" uid="uid://di5xm4qwh08at" path="res://assets/player/black-and-white/JD_right_hand_idle/JD_right_hand_idle_00003.png" id="6_f8jy4"]
-[ext_resource type="Texture2D" uid="uid://dn43masf2aqkt" path="res://assets/player/black-and-white/JD_right_hand_idle/JD_right_hand_idle_00004.png" id="7_irbe2"]
-[ext_resource type="Texture2D" uid="uid://cqisjm80522st" path="res://assets/player/black-and-white/JD_right_hand_idle/JD_right_hand_idle_00005.png" id="8_pwfnv"]
-[ext_resource type="Texture2D" uid="uid://cm6nhdkkjt6y8" path="res://assets/player/black-and-white/JD_right_hand_idle/JD_right_hand_idle_00006.png" id="9_nn2we"]
-[ext_resource type="Texture2D" uid="uid://dp5btqenvla7" path="res://assets/player/black-and-white/JD_right_hand_idle/JD_right_hand_idle_00007.png" id="10_ormof"]
-[ext_resource type="Texture2D" uid="uid://ba0rar1s50w44" path="res://assets/player/black-and-white/JD_left_hand_punch_01/JD_left_hand_punch_00000.png" id="11_wvvct"]
-[ext_resource type="Texture2D" uid="uid://d33dooad8ovpi" path="res://assets/player/black-and-white/JD_left_hand_punch_01/JD_left_hand_punch_00001.png" id="12_y01ux"]
-[ext_resource type="Texture2D" uid="uid://bkuuvsb7tum7v" path="res://assets/player/black-and-white/JD_left_hand_punch_01/JD_left_hand_punch_00002.png" id="13_orc65"]
-[ext_resource type="Texture2D" uid="uid://4x850jg5ufue" path="res://assets/player/black-and-white/JD_left_hand_punch_01/JD_left_hand_punch_00003.png" id="14_tai3n"]
-[ext_resource type="Texture2D" uid="uid://6v4nlm6ip7ha" path="res://assets/player/black-and-white/JD_left_hand_punch_01/JD_left_hand_punch_00004.png" id="15_1rxar"]
-[ext_resource type="Texture2D" uid="uid://b5yn2eakxjmgb" path="res://assets/player/black-and-white/JD_left_hand_punch_01/JD_left_hand_punch_00005.png" id="16_2ahye"]
-[ext_resource type="Texture2D" uid="uid://dsnkeix2phdr3" path="res://assets/player/black-and-white/JD_left_hand_punch_01/JD_left_hand_punch_00006.png" id="17_vknm2"]
-[ext_resource type="Texture2D" uid="uid://bkbwhuq0e3y07" path="res://assets/player/black-and-white/JD_left_hand_punch_01/JD_left_hand_punch_00007.png" id="18_1dcu4"]
+[ext_resource type="Resource" uid="uid://b2rkwd640cxm3" path="res://entities/weapon/resources/staple_shotgun.tres" id="2_ja78u"]
+[ext_resource type="Texture2D" uid="uid://cndh8etcgykc1" path="res://assets/weapons/stapler_shotgun/hud/JD_right_hand_Stapler_00000.png" id="3_edh15"]
+[ext_resource type="Texture2D" uid="uid://b3y4066sp508n" path="res://assets/weapons/stapler_shotgun/hud/JD_right_hand_Stapler_00002.png" id="5_ug0dp"]
+[ext_resource type="Texture2D" uid="uid://bm3h5me58joi5" path="res://assets/weapons/stapler_shotgun/hud/JD_right_hand_Stapler_00003.png" id="6_g83n5"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_bectd"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_8x2w2"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("3_dd8or")
-}, {
-"duration": 1.0,
-"texture": ExtResource("4_6awls")
-}, {
-"duration": 1.0,
-"texture": ExtResource("5_q8cmt")
-}, {
-"duration": 1.0,
-"texture": ExtResource("6_f8jy4")
-}, {
-"duration": 1.0,
-"texture": ExtResource("7_irbe2")
-}, {
-"duration": 1.0,
-"texture": ExtResource("8_pwfnv")
-}, {
-"duration": 1.0,
-"texture": ExtResource("9_nn2we")
-}, {
-"duration": 1.0,
-"texture": ExtResource("10_ormof")
+"texture": ExtResource("3_edh15")
 }],
 "loop": true,
-"name": &"idle",
-"speed": 8.0
+"name": &"default",
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("11_wvvct")
+"texture": ExtResource("5_ug0dp")
 }, {
 "duration": 1.0,
-"texture": ExtResource("12_y01ux")
-}, {
-"duration": 1.0,
-"texture": ExtResource("13_orc65")
-}, {
-"duration": 1.0,
-"texture": ExtResource("14_tai3n")
-}, {
-"duration": 1.0,
-"texture": ExtResource("15_1rxar")
-}, {
-"duration": 1.0,
-"texture": ExtResource("16_2ahye")
-}, {
-"duration": 1.0,
-"texture": ExtResource("17_vknm2")
-}, {
-"duration": 1.0,
-"texture": ExtResource("18_1dcu4")
+"texture": ExtResource("6_g83n5")
 }],
 "loop": false,
-"name": &"melee",
-"speed": 16.0
+"name": &"shoot",
+"speed": 12.0
 }]
 
 [node name="Weapon" type="Node"]
 script = ExtResource("1_4m8ho")
-resource = ExtResource("2_xc5g8")
+resource = ExtResource("2_ja78u")
 
 [node name="Sprite" type="AnimatedSprite2D" parent="."]
 position = Vector2(815, 408)
 scale = Vector2(0.473633, 0.473633)
-sprite_frames = SubResource("SpriteFrames_bectd")
-animation = &"idle"
+sprite_frames = SubResource("SpriteFrames_8x2w2")
+frame_progress = 0.235238

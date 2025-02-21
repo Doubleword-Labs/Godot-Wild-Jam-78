@@ -24,8 +24,8 @@ var current_weapon := 0
 var melee_weapon := preload("res://entities/weapon/resources/melee.tres")
 var weapons: Array[PlayerWeapon] = [
 	PlayerWeapon.new(PAPER_BALL_THROW, true),
-	PlayerWeapon.new(RUBBER_BAND_GUN, false),
-	PlayerWeapon.new(STAPLE_SHOTGUN, false),
+	PlayerWeapon.new(RUBBER_BAND_GUN, true),
+	PlayerWeapon.new(STAPLE_SHOTGUN, true),
 ]
 
 
@@ -45,6 +45,7 @@ func _request_weapon(index: int) -> void:
 	var requested_weapon := weapons[index]
 	if requested_weapon.owned:
 		_update_weapon(requested_weapon.resource)
+		current_weapon = index
 	else:
 		print("You don't have that weapon")
 
@@ -83,7 +84,13 @@ func _ranged_attack() -> void:
 	var current_weapon_resource := _get_current_weapon()
 	attack_timer.start(current_weapon_resource.attack_timeout)
 	player_hud.shoot_attack()
-	Game.spawn_projectile(self, projectile_spawn_point, current_weapon_resource.projectile_resource)
+
+	AudioPlayer.play_sfx_array(current_weapon_resource.attack_sounds)
+
+	for i in range(current_weapon_resource.projectile_count):
+		Game.spawn_projectile(
+			self, projectile_spawn_point, current_weapon_resource.projectile_resource
+		)
 
 
 func _melee_attack() -> void:

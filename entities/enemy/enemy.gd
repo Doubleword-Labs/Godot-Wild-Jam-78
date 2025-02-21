@@ -152,12 +152,18 @@ func take_damage(damage: int, from_player: bool) -> void:
 
 
 func _on_pain_state_state_entered() -> void:
-	AudioPlayer.play_sfx_array(AudioPlayer.pain_enemy_arr)
+	var audio_player := AudioPlayer.play_sfx_3d_array(AudioPlayer.pain_enemy_arr)
+	if is_instance_valid(audio_player):
+		audio_player.global_position = global_position
+
 	sprite.play(resource.pain_animation)
 
 
 func _on_death_state_state_entered() -> void:
-	AudioPlayer.play_sfx_array(AudioPlayer.died_enemy_arr)
+	var audio_player := AudioPlayer.play_sfx_3d_array(AudioPlayer.died_enemy_arr)
+	if is_instance_valid(audio_player):
+		audio_player.global_position = global_position
+
 	sprite.play(resource.death_animation)
 	await sprite.animation_finished
 	queue_free()

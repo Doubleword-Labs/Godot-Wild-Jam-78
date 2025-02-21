@@ -6,6 +6,7 @@ class_name ProjectileResource
 @export var impact_damage: float = 10
 @export var area_damage: float = 0
 @export var area_radius: float = 0
+@export var spread: float = 0
 
 @export_group("Audio")
 @export var spawn_sounds: Array[AudioStream] = []
@@ -16,3 +17,6 @@ class_name ProjectileResource
 
 @export_group("Visuals")
 @export var scene: PackedScene
+
+@export_group("Misc")
+@export var max_lifetime: float = 10

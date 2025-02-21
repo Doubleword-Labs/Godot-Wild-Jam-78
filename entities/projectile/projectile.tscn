@@ -1,10 +1,10 @@
 [gd_scene load_steps=4 format=3 uid="uid://c6qhy6082m067"]
 
 [ext_resource type="Script" uid="uid://bvdy77cdw7t37" path="res://entities/projectile/projectile.gd" id="1_iqisb"]
-[ext_resource type="Resource" uid="uid://c53nbapcuidth" path="res://entities/projectile/resources/fireball.tres" id="2_n5n3x"]
+[ext_resource type="Resource" uid="uid://bnwocgopvps0t" path="res://entities/projectile/resources/staple.tres" id="2_n5n3x"]
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_07r6x"]
-radius = 0.2
+[sub_resource type="SphereShape3D" id="SphereShape3D_n5n3x"]
+radius = 0.15
 
 [node name="Projectile" type="StaticBody3D"]
 collision_layer = 4
@@ -13,11 +13,10 @@ script = ExtResource("1_iqisb")
 resource = ExtResource("2_n5n3x")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("SphereShape3D_07r6x")
+shape = SubResource("SphereShape3D_n5n3x")
 
 [node name="LifeTimer" type="Timer" parent="."]
 wait_time = 10.0
 one_shot = true
-autostart = true
 
 [connection signal="timeout" from="LifeTimer" to="." method="_on_life_timer_timeout"]
