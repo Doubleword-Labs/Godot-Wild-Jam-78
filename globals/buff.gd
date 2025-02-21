@@ -9,6 +9,8 @@ var player_damage := false
 var weapon_staple := false
 var weapon_minigun := false
 
+var player_ogre_amount := 150
+
 func is_player_buffs_all_bought():
 	return (player_ogre and
 		player_flash and

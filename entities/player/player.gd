@@ -35,7 +35,7 @@ func _ready() -> void:
 		speed = 10.0
 		
 	if Buff.player_ogre:
-		health = 200
+		health = Buff.player_ogre_amount
 		Game.hp_gui.value = health
 
 

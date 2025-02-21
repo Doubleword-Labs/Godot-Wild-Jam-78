@@ -23,9 +23,9 @@ func _ready() -> void:
 
 func _on_button_ogre_pressed() -> void:
 	Buff.player_ogre = true
-	Game.hp_gui.max_value = 200
-	Game.hp_gui.value = 200
-	Game.get_player().health = 200	
+	Game.hp_gui.max_value = Buff.player_ogre_amount
+	Game.hp_gui.value = Buff.player_ogre_amount
+	Game.get_player().health = Buff.player_ogre_amount
 	weapon_buff_modal()
 
 

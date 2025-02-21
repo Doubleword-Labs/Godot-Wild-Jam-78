@@ -17,7 +17,7 @@ func _ready() -> void:
 	
 	Game.hp_gui = $HealthBar
 	if (Buff.player_ogre):
-		Game.hp_gui.max_value = 200
+		Game.hp_gui.max_value = Buff.player_ogre_amount
 	else:
 		Game.hp_gui.max_value = 100
 	Game.hp_gui.value = Game.get_player().health
