@@ -83,7 +83,7 @@ def get_platforms(args: ProgramArgs) -> dict[str, bool]:
 PLATFORM_MAP = {
     "windows": "Windows Desktop",
     "macos": "macOS",
-    "linux": "Linux/X11",
+    "linux": "Linux",
     "web": "Web"
 }
 

@@ -1,34 +1,621 @@
 [gd_scene load_steps=34 format=4 uid="uid://dxc31s4ijcc2j"]
 
-[ext_resource type="Script" uid="uid://g8vn2ulx4var" path="res://addons/cyclops_level_builder/nodes/cyclops_block.gd" id="1_02o5q"]
 [ext_resource type="Script" uid="uid://gta2qv6v5bdy" path="res://levels/level.gd" id="1_8e3mo"]
-[ext_resource type="Script" uid="uid://clfoxvyksf4lf" path="res://addons/cyclops_level_builder/resources/data_vector_byte.gd" id="2_icxts"]
-[ext_resource type="Script" uid="uid://crff02qb0i00h" path="res://addons/cyclops_level_builder/resources/data_vector_int.gd" id="3_iqhro"]
-[ext_resource type="Script" uid="uid://ok487hejowcw" path="res://addons/cyclops_level_builder/resources/data_vector_float.gd" id="4_ebna0"]
-[ext_resource type="Script" uid="uid://b0e7u0cr6yyr0" path="res://addons/cyclops_level_builder/resources/mesh_vector_data.gd" id="5_2lrd6"]
 [ext_resource type="Script" uid="uid://iqjhfm6bsp6k" path="res://addons/func_godot/src/map/func_godot_map.gd" id="6_iqhro"]
 [ext_resource type="Resource" uid="uid://bkhxcqsquw1yg" path="res://addons/func_godot/func_godot_default_map_settings.tres" id="7_ebna0"]
 [ext_resource type="Texture2D" uid="uid://cyg2snr1w5xw5" path="res://addons/func_godot/textures/default_texture.png" id="8_ebna0"]
 [ext_resource type="PackedScene" uid="uid://cvf7653hiknvm" path="res://entities/player/player.tscn" id="9_2lrd6"]
 
+[sub_resource type="GDScript" id="GDScript_02o5q"]
+script/source = "# MIT License
+#
+# Copyright (c) 2023 Mark McKay
+# https://github.com/blackears/cyclopsLevelBuilder
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the \"Software\"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+
+@tool
+extends Node3D
+class_name CyclopsBlock
+
+signal mesh_changed
+
+var mesh_instance:MeshInstance3D
+var mesh_wire:MeshInstance3D
+var collision_body:PhysicsBody3D
+var collision_shape:CollisionShape3D
+var active:bool
+
+var dirty:bool = true
+
+var control_mesh:ConvexVolume
+
+@export var block_data:ConvexBlockData:
+	get:
+		return block_data
+		
+	set(value):
+		if block_data != value:
+			block_data = value
+			control_mesh = ConvexVolume.new()
+			control_mesh.init_from_convex_block_data(block_data)
+			
+			#Convert to mesh vector data
+			var mvd:MeshVectorData = MeshVectorData.new()
+			mvd.create_from_convex_block(block_data)
+			mesh_vector_data = mvd
+			
+			#dirty = true
+			#mesh_changed.emit()
+
+@export var mesh_vector_data:MeshVectorData:
+	set(value):
+		if mesh_vector_data != value:
+			mesh_vector_data = value
+
+			control_mesh = ConvexVolume.new()
+			control_mesh.init_from_mesh_vector_data(mesh_vector_data)
+
+			dirty = true
+			mesh_changed.emit()
+
+@export var materials:Array[Material]
+
+var default_material:Material = preload(\"res://addons/cyclops_level_builder/materials/grid.tres\")
+var display_mode:DisplayMode.Type = DisplayMode.Type.MATERIAL
+
+@export var collision_type:Collision.Type = Collision.Type.STATIC:
+	get:
+		return collision_type
+	set(value):
+		collision_type = value
+		update_physics_body()
+
+@export_flags_3d_physics var collision_layer:int = 1:
+	get:
+		return collision_layer
+	set(value):
+		collision_layer = value
+		if collision_body:
+			collision_body.collision_layer = collision_layer
+		
+@export_flags_3d_physics var collision_mask:int = 1:
+	get:
+		return collision_mask
+	set(value):
+		collision_mask = value
+		if collision_body:
+			collision_body.collision_mask = collision_mask
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	mesh_instance = MeshInstance3D.new()
+	add_child(mesh_instance)
+	mesh_instance.gi_mode = GeometryInstance3D.GI_MODE_STATIC
+
+	#print(\"block owner path %s\" % owner.get_path())
+
+	if Engine.is_editor_hint():
+		mesh_wire = MeshInstance3D.new()
+		add_child(mesh_wire)
+	
+	collision_shape = CollisionShape3D.new()
+
+	#occluder = OccluderInstance3D.new()
+	#add_child(occluder)
+	
+	build_from_block()
+	update_physics_body()
+
+func update_physics_body():
+	
+	if collision_body:
+		collision_body.remove_child(collision_shape)
+		collision_body.queue_free()
+		collision_body = null
+	
+	match collision_type:
+		Collision.Type.STATIC:
+			collision_body = StaticBody3D.new()
+		Collision.Type.KINEMATIC:
+			collision_body = CharacterBody3D.new()
+		Collision.Type.RIGID:
+			collision_body = RigidBody3D.new()
+			
+	if collision_body:
+		collision_body.collision_layer = collision_layer
+		collision_body.collision_mask = collision_mask
+		add_child(collision_body)
+		
+		collision_body.add_child(collision_shape)
+	
+
+func build_from_block():
+	#print(\"build_from_block\")
+		
+	dirty = false
+	
+	mesh_instance.mesh = null
+	collision_shape.shape = null
+
+	if Engine.is_editor_hint():
+#		var global_scene:CyclopsGlobalScene = get_node(\"/root/CyclopsAutoload\")
+		var global_scene = get_node(\"/root/CyclopsAutoload\")
+		display_mode = global_scene.builder.display_mode
+	
+#	print(\"block_data %s\" % block_data)
+#	print(\"vert points %s\" % block_data.vertex_points)
+	#if !block_data:
+		#return
+	if !mesh_vector_data:
+		return
+	
+#	print(\"got block data\")		
+	
+	var vol:ConvexVolume = ConvexVolume.new()
+	vol.init_from_mesh_vector_data(mesh_vector_data)
+	#vol.init_from_convex_block_data(block_data)
+	
+	#print(\"volume %s\" % vol)
+	
+	var mesh:ArrayMesh
+
+	if Engine.is_editor_hint():
+		var global_scene = get_node(\"/root/CyclopsAutoload\")
+		mesh_wire.mesh = vol.create_mesh_wire(global_scene.outline_material)
+		#print (\"added wireframe\")
+
+		#print(\"rebuilding mesh\")
+		if display_mode == DisplayMode.Type.MATERIAL:
+			mesh = vol.create_mesh(materials, default_material)
+		if display_mode == DisplayMode.Type.MESH:
+			mesh = vol.create_mesh(materials, default_material, true)
+			#print (\"added faces\")
+	else:
+		mesh = vol.create_mesh(materials, default_material)
+	
+	mesh_instance.mesh = mesh
+	
+	var shape:ConvexPolygonShape3D = ConvexPolygonShape3D.new()
+	shape.points = vol.get_points()
+	collision_shape.shape = shape
+	
+	#if !Engine.is_editor_hint():
+		##Disabling this in the editor for now since this is causing slowdown
+		#var occluder_object:ArrayOccluder3D = ArrayOccluder3D.new()
+		#occluder_object.vertices = vol.get_points()
+		#occluder_object.indices = vol.get_trimesh_indices()
+		#occluder.occluder = occluder_object
+	
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	if dirty:
+			
+		build_from_block()
+
+	if Engine.is_editor_hint():
+#		var global_scene:CyclopsGlobalScene = get_node(\"/root/CyclopsAutoload\")
+		var global_scene = get_node(\"/root/CyclopsAutoload\")
+
+		if display_mode != global_scene.builder.display_mode:
+			dirty = true
+			return
+
+func draw_unit_labels(viewport_camera:Camera3D, local_to_world:Transform3D):
+	var global_scene:CyclopsGlobalScene = get_node(\"/root/CyclopsAutoload\")
+
+	var font:Font = global_scene.units_font
+	var font_size:float = global_scene.units_font_size	
+	var descent:float = font.get_descent(font_size)
+	var text_offset:Vector2 = Vector2(0, -global_scene.vertex_radius - descent)
+	
+	if control_mesh:
+		for e_idx in control_mesh.edges.size():
+			var e:ConvexVolume.EdgeInfo = control_mesh.edges[e_idx]
+			var focus:Vector3 = local_to_world * e.get_midpoint()
+			if !viewport_camera.is_position_behind(focus):
+				var focus_2d:Vector2 = viewport_camera.unproject_position(focus)
+				
+				var v0:ConvexVolume.VertexInfo = control_mesh.vertices[e.start_index]
+				var v1:ConvexVolume.VertexInfo = control_mesh.vertices[e.end_index]
+				var distance:Vector3 = v1.point - v0.point
+				global_scene.draw_text(\"%.3f\" % distance.length(), focus_2d, font, font_size)
+		
+		
+
+func append_mesh_outline(mesh:ImmediateMesh, viewport_camera:Camera3D, local_to_world:Transform3D, mat:Material):
+	#var global_scene:CyclopsGlobalScene = get_node(\"/root/CyclopsAutoload\")
+	
+	if control_mesh:
+		control_mesh.append_mesh_outline(mesh, viewport_camera, local_to_world, mat)
+
+func append_mesh_wire(mesh:ImmediateMesh):
+	var global_scene:CyclopsGlobalScene = get_node(\"/root/CyclopsAutoload\")
+	
+	var mat:Material = global_scene.outline_material
+	control_mesh.append_mesh_wire(mesh, mat)
+
+
+func intersect_ray_closest(origin:Vector3, dir:Vector3)->IntersectResults:
+	if !mesh_vector_data:
+		return null
+	
+	var xform:Transform3D = global_transform.affine_inverse()
+	var origin_local:Vector3 = xform * origin
+	var dir_local:Vector3 = xform.basis * dir
+	
+	var result:IntersectResults = control_mesh.intersect_ray_closest(origin_local, dir_local)
+	if result:
+		result.object = self
+		
+	return result
+
+
+func select_face(face_idx:int, select_type:Selection.Type = Selection.Type.REPLACE):
+	if select_type == Selection.Type.REPLACE:
+		for f in control_mesh.faces:
+			f.selected = f.index == face_idx
+	elif select_type == Selection.Type.ADD:
+		control_mesh.faces[face_idx].selected = true
+	elif select_type == Selection.Type.SUBTRACT:
+		control_mesh.faces[face_idx].selected = true
+	elif select_type == Selection.Type.TOGGLE:
+		control_mesh.faces[face_idx].selected = !control_mesh.faces[face_idx].selected
+
+	mesh_changed.emit()
+
+func export_to_cyclops_file(file_builder:CyclopsFileBuilder)->Dictionary:
+	var result:Dictionary
+	
+	result[\"collision_type\"] = Collision.Type.keys()[collision_type]
+	result[\"collision_layer\"] = collision_layer
+	result[\"collision_mask\"] = collision_mask
+	
+	var mat_res_paths:PackedStringArray
+	for mat in materials:
+		if mat:
+			mat_res_paths.append(mat.resource_path)
+		else:
+			mat_res_paths.append(\"\")
+	result[\"materials\"] = mat_res_paths
+	
+	if mesh_vector_data:
+		result[\"mesh\"] = mesh_vector_data.to_dictionary(file_builder)
+	#build_mesh[\"mesh\"] = cur_node.mesh_vector_data.to_dictionary(self)
+	return result
+	
+"
+
+[sub_resource type="GDScript" id="GDScript_icxts"]
+script/source = "# MIT License
+#
+# Copyright (c) 2023 Mark McKay
+# https://github.com/blackears/cyclopsLevelBuilder
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the \"Software\"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+
+@tool
+extends DataVector
+class_name DataVectorByte
+
+@export var data:PackedByteArray
+
+func _init(name:StringName = \"\", data:PackedByteArray = [], data_type:DataType = DataType.BOOL):
+	self.name = name
+	self.data = data
+	self.data_type = data_type
+	self.stride = data_type_num_components(data_type)
+
+
+func get_buffer_byte_data()->PackedByteArray:
+	return data
+
+#func to_dictionary(buffer_ar:BufferArchive)->Dictionary:
+	#var result:Dictionary = super(buffer_ar)
+	#var region:BufferArchive.BufferRegion = buffer_ar.store_buffer(data)
+	#
+##	result[\"data\"] = Marshalls.raw_to_base64(data.compress())
+	#result[\"data_buffer\"] = region.index
+	#
+	#return result
+	
+func get_data_format_type()->DataFormatType:
+	return DataFormatType.BYTE
+	
+func size()->int:
+	return data.size()
+
+func resize(size:int):
+	data.resize(size * stride)
+	
+func get_value(index:int)->int:
+	return data[index]
+
+func set_value(value:int, index:int):
+	data[index] = value
+"
+
 [sub_resource type="Resource" id="Resource_8e3mo"]
-script = ExtResource("2_icxts")
+script = SubResource("GDScript_icxts")
 data = PackedByteArray("AAAAAAAAAQAAAAAA")
 name = &"selected"
 category = ""
 data_type = 0
 stride = 1
 
+[sub_resource type="GDScript" id="GDScript_iqhro"]
+script/source = "# MIT License
+#
+# Copyright (c) 2023 Mark McKay
+# https://github.com/blackears/cyclopsLevelBuilder
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the \"Software\"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+
+@tool
+extends DataVector
+class_name DataVectorFloat
+
+@export var data:PackedFloat32Array
+
+func _init(name:StringName = \"\", data:PackedFloat32Array = [], data_type:DataType = DataType.FLOAT):
+	self.name = name
+	self.data = data
+	self.data_type = data_type
+	self.stride = data_type_num_components(data_type)
+
+func get_data_format_type()->DataFormatType:
+	return DataFormatType.FLOAT32
+	
+func size()->int:
+	return data.size()
+
+func resize(size:int):
+	data.resize(size * stride)
+	
+func get_value(index:int)->float:
+	return data[index]
+
+func to_vec2_array()->PackedVector2Array:
+	var result:PackedVector2Array
+	for i in num_components():
+		result.append(get_value_vec2(i))
+	return result
+
+func to_vec3_array()->PackedVector3Array:
+	var result:PackedVector3Array
+	for i in num_components():
+		result.append(get_value_vec3(i))
+	return result
+
+func to_vec4_array()->Array[Vector4]:
+	var result:Array[Vector4]
+	for i in num_components():
+		result.append(get_value_vec4(i))
+	return result
+
+func to_color_array()->PackedColorArray:
+	var result:PackedColorArray
+	for i in num_components():
+		result.append(get_value_color(i))
+	return result
+
+func to_transform2d_array()->Array[Transform2D]:
+	#print(\"to_transform2d_array num_components() \", num_components())
+	var result:Array[Transform2D]
+	for i in num_components():
+		result.append(get_value_transform2d(i))
+	return result
+
+func get_value_vec2(index:int)->Vector2:
+	return Vector2(data[index * stride], data[index * stride + 1])
+	
+func get_value_vec3(index:int)->Vector3:
+	return Vector3(data[index * stride], data[index * stride + 1], data[index * stride + 2])
+
+func get_value_vec4(index:int)->Vector4:
+	return Vector4(data[index * stride], data[index * stride + 1], data[index * stride + 2], data[index * stride + 3])
+
+func get_value_color(index:int)->Color:
+	return Color(data[index * stride], data[index * stride + 1], data[index * stride + 2], data[index * stride + 3])
+
+func get_value_transform2d(index:int)->Transform2D:
+	return Transform2D(
+		Vector2(data[index * stride], data[index * stride + 1]),
+		Vector2(data[index * stride + 2], data[index * stride + 3]),
+		Vector2(data[index * stride + 4], data[index * stride + 5])
+		)
+
+func get_value_transform3d(index:int)->Transform3D:
+	return Transform3D(
+		Vector3(data[index * stride], data[index * stride + 1], data[index * stride + 2]),
+		Vector3(data[index * stride + 3], data[index * stride + 4], data[index * stride + 5]),
+		Vector3(data[index * stride + 6], data[index * stride + 7], data[index * stride + 8]),
+		Vector3(data[index * stride + 9], data[index * stride + 10], data[index * stride + 11])
+		)
+	
+
+func set_value(value:int, index:int):
+	data[index] = value
+	
+func set_value_vec2(value:Vector2, index:int):
+	data[index * stride] = value.x
+	data[index * stride + 1] = value.y
+
+func set_value_vec3(value:Vector3, index:int):
+	data[index * stride] = value.x
+	data[index * stride + 1] = value.y
+	data[index * stride + 2] = value.z
+
+func set_value_vec4(value:Vector4, index:int):
+	data[index * stride] = value.x
+	data[index * stride + 1] = value.y
+	data[index * stride + 2] = value.z
+	data[index * stride + 3] = value.w
+
+func set_value_color(value:Color, index:int):
+	data[index * stride] = value.r
+	data[index * stride + 1] = value.g
+	data[index * stride + 2] = value.b
+	data[index * stride + 3] = value.a
+
+func get_buffer_byte_data()->PackedByteArray:
+	return data.to_byte_array()
+
+#func to_dictionary(buffer_ar:BufferArchive)->Dictionary:
+	#var result:Dictionary = super(buffer_ar)
+	#var region:BufferArchive.BufferRegion = buffer_ar.store_buffer(data.to_byte_array())
+	#
+	#result[\"data_buffer\"] = region.index
+	#
+	#return result
+"
+
 [sub_resource type="Resource" id="Resource_u3t6j"]
-script = ExtResource("4_ebna0")
+script = SubResource("GDScript_iqhro")
 data = PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)
 name = &"color"
 category = ""
 data_type = 4
 stride = 4
 
+[sub_resource type="GDScript" id="GDScript_ebna0"]
+script/source = "# MIT License
+#
+# Copyright (c) 2023 Mark McKay
+# https://github.com/blackears/cyclopsLevelBuilder
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the \"Software\"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+
+@tool
+extends DataVector
+class_name DataVectorInt
+
+@export var data:PackedInt32Array
+
+func _init(name:StringName = \"\", data:PackedInt32Array = [], data_type:DataType = DataType.INT):
+	self.name = name
+	self.data = data
+	self.data_type = data_type
+	self.stride = data_type_num_components(data_type)
+	
+func get_data_format_type()->DataFormatType:
+	return DataFormatType.INT32
+	
+func size()->int:
+	return data.size()
+
+func resize(size:int):
+	data.resize(size * stride)
+
+func get_value(index:int)->int:
+	return data[index]
+
+func get_value_ivec2(index:int)->Vector2i:
+	return Vector2i(data[index * stride], data[index * stride + 1])
+	
+func get_value_ivec3(index:int)->Vector3i:
+	return Vector3i(data[index * stride], data[index * stride + 1], data[index * stride + 2])
+	
+func get_value_ivec4(index:int)->Vector4i:
+	return Vector4i(data[index * stride], data[index * stride + 1], data[index * stride + 2], data[index * stride + 3])
+	
+	
+func set_value(value:int, index:int):
+	data[index] = value
+	
+func set_value_ivec2(value:Vector2i, index:int):
+	data[index * stride] = value.x
+	data[index * stride + 1] = value.y
+
+func set_value_ivec3(value:Vector3i, index:int):
+	data[index * stride] = value.x
+	data[index * stride + 1] = value.y
+	data[index * stride + 2] = value.z
+
+func set_value_ivec4(value:Vector4i, index:int):
+	data[index * stride] = value.x
+	data[index * stride + 1] = value.y
+	data[index * stride + 2] = value.z
+	data[index * stride + 3] = value.w
+
+func get_buffer_byte_data()->PackedByteArray:
+	return data.to_byte_array()
+
+#func to_dictionary(buffer_ar:BufferArchive)->Dictionary:
+	#var result:Dictionary = super(buffer_ar)
+	#var region:BufferArchive.BufferRegion = buffer_ar.store_buffer(data.to_byte_array())
+	#
+	#result[\"data_buffer\"] = region.index
+	#
+	#return result
+"
+
 [sub_resource type="Resource" id="Resource_qqcxk"]
-script = ExtResource("3_iqhro")
+script = SubResource("GDScript_ebna0")
 data = PackedInt32Array(-1, -1, -1, -1, -1, -1)
 name = &"material_index"
 category = ""
@@ -36,7 +623,7 @@ data_type = 1
 stride = 1
 
 [sub_resource type="Resource" id="Resource_o80m7"]
-script = ExtResource("2_icxts")
+script = SubResource("GDScript_icxts")
 data = PackedByteArray("AAABAAAA")
 name = &"selected"
 category = ""
@@ -44,7 +631,7 @@ data_type = 0
 stride = 1
 
 [sub_resource type="Resource" id="Resource_tl3cw"]
-script = ExtResource("4_ebna0")
+script = SubResource("GDScript_iqhro")
 data = PackedFloat32Array(1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0)
 name = &"uv_transform"
 category = ""
@@ -52,7 +639,7 @@ data_type = 8
 stride = 6
 
 [sub_resource type="Resource" id="Resource_54k3g"]
-script = ExtResource("2_icxts")
+script = SubResource("GDScript_icxts")
 data = PackedByteArray("AQEBAQEB")
 name = &"visible"
 category = ""
@@ -60,7 +647,7 @@ data_type = 0
 stride = 1
 
 [sub_resource type="Resource" id="Resource_i1o1g"]
-script = ExtResource("4_ebna0")
+script = SubResource("GDScript_iqhro")
 data = PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)
 name = &"color"
 category = ""
@@ -68,7 +655,7 @@ data_type = 4
 stride = 4
 
 [sub_resource type="Resource" id="Resource_3eaul"]
-script = ExtResource("3_iqhro")
+script = SubResource("GDScript_ebna0")
 data = PackedInt32Array(0, 0, 0, 0, 1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5)
 name = &"face_index"
 category = ""
@@ -76,7 +663,7 @@ data_type = 1
 stride = 1
 
 [sub_resource type="Resource" id="Resource_8pclc"]
-script = ExtResource("4_ebna0")
+script = SubResource("GDScript_iqhro")
 data = PackedFloat32Array(-1, 0, 0, -1, 0, 0, -1, 0, 0, -1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, -1, 0, 0, -1, 0, 0, -1, 0, 0, -1, 0, 0, 0, -1, 0, 0, -1, 0, 0, -1, 0, 0, -1)
 name = &"normal"
 category = ""
@@ -84,15 +671,387 @@ data_type = 6
 stride = 3
 
 [sub_resource type="Resource" id="Resource_wad40"]
-script = ExtResource("3_iqhro")
+script = SubResource("GDScript_ebna0")
 data = PackedInt32Array(0, 1, 2, 3, 7, 6, 5, 4, 1, 0, 4, 5, 2, 1, 5, 6, 3, 2, 6, 7, 0, 3, 7, 4)
 name = &"vertex_index"
 category = ""
 data_type = 1
 stride = 1
 
+[sub_resource type="GDScript" id="GDScript_2lrd6"]
+script/source = "# MIT License
+#
+# Copyright (c) 2023 Mark McKay
+# https://github.com/blackears/cyclopsLevelBuilder
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the \"Software\"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+#
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+#
+# THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+
+@tool
+extends Resource
+class_name MeshVectorData
+
+
+#@export var selected:bool = false
+#@export var active:bool = false
+#@export var collision:bool = true
+#@export_flags_3d_physics var physics_layer:int
+#@export_flags_3d_physics var physics_mask:int
+
+@export var num_vertices:int
+@export var num_edges:int
+@export var num_faces:int
+@export var num_face_vertices:int
+
+@export var active_vertex:int
+@export var active_edge:int
+@export var active_face:int
+@export var active_face_vertex:int
+
+
+@export var edge_vertex_indices:PackedInt32Array
+@export var edge_face_indices:PackedInt32Array
+
+@export var face_vertex_count:PackedInt32Array #Number of verts in each face
+@export var face_vertex_indices:PackedInt32Array #Vertex index per face
+
+@export var vertex_data:Dictionary
+@export var edge_data:Dictionary
+@export var face_data:Dictionary
+@export var face_vertex_data:Dictionary
+
+const V_POSITION: StringName = \"position\"
+const V_SELECTED: StringName = \"selected\"
+const V_COLOR: StringName = \"color\"
+
+const E_SELECTED: StringName = \"selected\"
+
+const F_MATERIAL_INDEX: StringName = \"material_index\"
+const F_UV_XFORM: StringName = \"uv_transform\"
+const F_VISIBLE: StringName = \"visible\"
+const F_COLOR: StringName = \"color\"
+const F_SELECTED: StringName = \"selected\"
+
+const FV_VERTEX_INDEX: StringName = \"vertex_index\"
+const FV_FACE_INDEX: StringName = \"face_index\"
+const FV_VERTEX_LOCAL_INDEX: StringName = \"vertex_local_index\"
+const FV_SELECTED: StringName = \"selected\"
+const FV_COLOR: StringName = \"color\"
+const FV_NORMAL: StringName = \"normal\"
+const FV_UV1: StringName = \"uv1\"
+const FV_UV2: StringName = \"uv2\"
+
+
+func create_from_convex_block(block_data:ConvexBlockData):
+
+	#selected = block_data.selected
+	#active = block_data.active
+	#collision = block_data.collision
+	#physics_layer = block_data.physics_layer
+	#physics_mask = block_data.physics_mask
+
+	active_vertex = block_data.active_vertex
+	active_edge = block_data.active_edge
+	active_face = block_data.active_face
+	active_face_vertex = block_data.active_face_vertex
+		
+	num_vertices = block_data.vertex_points.size()
+	num_edges = block_data.edge_vertex_indices.size() / 2
+	num_faces = block_data.face_vertex_count.size()
+	
+	set_vertex_data(DataVectorFloat.new(V_POSITION, 
+		block_data.vertex_points.to_byte_array().to_float32_array(), 
+		DataVector.DataType.VECTOR3))
+
+	set_vertex_data(DataVectorByte.new(V_SELECTED, 
+		block_data.vertex_selected, 
+		DataVector.DataType.BOOL))
+
+	set_edge_data(DataVectorByte.new(E_SELECTED, 
+		block_data.edge_selected, 
+		DataVector.DataType.BOOL))
+
+	set_face_data(DataVectorInt.new(F_MATERIAL_INDEX, 
+		block_data.face_material_indices, 
+		DataVector.DataType.INT))
+
+	set_face_data(DataVectorByte.new(F_VISIBLE, 
+		block_data.face_visible, 
+		DataVector.DataType.BOOL))
+
+	set_face_data(DataVectorFloat.new(F_COLOR,
+		block_data.face_color.to_byte_array().to_float32_array(),
+		DataVector.DataType.COLOR))
+
+	var f_uv_xform:PackedFloat32Array	
+	for t in block_data.face_uv_transform:
+		f_uv_xform.append_array([t.x.x, t.x.y, t.y.x, t.y.y, t.origin.x, t.origin.y])
+	set_face_data(DataVectorFloat.new(F_UV_XFORM, 
+		f_uv_xform,
+		DataVector.DataType.TRANSFORM_2D))
+		
+		
+	set_face_data(DataVectorByte.new(F_SELECTED, 
+		block_data.face_selected, 
+		DataVector.DataType.BOOL))
+
+	set_face_data(DataVectorFloat.new(F_COLOR, 
+		block_data.face_color.to_byte_array().to_float32_array(), 
+		DataVector.DataType.COLOR))
+
+	
+	#Create face-vertex data
+	edge_vertex_indices = block_data.edge_vertex_indices
+	edge_face_indices = block_data.edge_face_indices
+	face_vertex_count = block_data.face_vertex_count
+	face_vertex_indices = block_data.face_vertex_indices
+	
+	num_face_vertices = 0
+	for n in block_data.face_vertex_count:
+		num_face_vertices += n
+
+	var fv_array_offset:int = 0
+	var next_fv_idx:int = 0
+	var face_indices:PackedInt32Array
+	var vert_indices:PackedInt32Array
+	
+	for f_idx in block_data.face_vertex_count.size():
+		var num_verts_in_face:int = block_data.face_vertex_count[f_idx]
+		for fv_local_idx in num_verts_in_face:
+			var v_idx:int = block_data.face_vertex_indices[fv_array_offset + fv_local_idx]
+			
+			face_indices.append(f_idx)
+			vert_indices.append(v_idx)
+			
+		fv_array_offset += num_verts_in_face
+	
+
+	set_face_vertex_data(DataVectorInt.new(FV_FACE_INDEX, 
+		face_indices, 
+		DataVector.DataType.INT))
+
+	set_face_vertex_data(DataVectorInt.new(FV_VERTEX_INDEX, 
+		vert_indices, 
+		DataVector.DataType.INT))
+
+	#set_face_vertex_data(DataVectorInt.new(FV_VERTEX_LOCAL_INDEX, 
+		#fv_local_indices, 
+		#DataVector.DataType.INT))
+	
+	if block_data.face_vertex_color.is_empty():
+		#Construct face vertex colors from old face colors system
+		var col_fv_data:PackedColorArray
+		for fv_idx in num_face_vertices:
+			var f_idx:int = face_indices[fv_idx]
+			var v_idx:int = vert_indices[fv_idx]
+			col_fv_data.append(block_data.face_color[f_idx])
+			
+
+		set_face_vertex_data(DataVectorFloat.new(FV_COLOR, 
+			col_fv_data.to_byte_array().to_float32_array(), 
+			DataVector.DataType.COLOR))
+	else:
+		#Copy face vertex colors
+		set_face_vertex_data(DataVectorFloat.new(FV_COLOR, 
+			block_data.face_vertex_color.to_byte_array().to_float32_array(), 
+			DataVector.DataType.COLOR))
+			
+	set_face_vertex_data(DataVectorFloat.new(FV_NORMAL, 
+		block_data.face_vertex_normal.to_byte_array().to_float32_array(), 
+		DataVector.DataType.VECTOR3))
+			
+
+func get_vertex_data(vector_name:String)->DataVector:
+	return vertex_data[vector_name]
+
+func get_edge_data(vector_name:String)->DataVector:
+	return edge_data[vector_name]
+
+func get_face_data(vector_name:String)->DataVector:
+	return face_data[vector_name]
+
+func get_face_vertex_data(vector_name:String)->DataVector:
+	return face_vertex_data[vector_name]
+
+func set_vertex_data(data_vector:DataVector):
+	vertex_data[data_vector.name] = data_vector
+
+func set_edge_data(data_vector:DataVector):
+	edge_data[data_vector.name] = data_vector
+
+func set_face_data(data_vector:DataVector):
+	face_data[data_vector.name] = data_vector
+	
+func set_face_vertex_data(data_vector:DataVector):
+	face_vertex_data[data_vector.name] = data_vector
+
+func validate()->bool:
+	return true
+	
+
+func create_vector_xml_node(name:String, type:String, value:String)->XMLElement:
+	var evi_ele:XMLElement = XMLElement.new(\"vector\")
+	evi_ele.set_attribute(\"name\", name)
+	evi_ele.set_attribute(\"type\", type)
+	evi_ele.set_attribute(\"value\", value)
+	return evi_ele
+	
+func section_to_xml(type:String, vertex_data:Dictionary)->XMLElement:
+	var sec_vertex_ele:XMLElement = XMLElement.new(\"section\")
+	sec_vertex_ele.set_attribute(\"type\", type)
+
+	for vec_name in vertex_data.keys():
+		var v:DataVector = vertex_data[vec_name]
+		match v.data_type:
+			DataVector.DataType.BOOL:
+				sec_vertex_ele.add_child(create_vector_xml_node(v.name, \"bool\", var_to_str(v.data)))
+			DataVector.DataType.INT:
+				sec_vertex_ele.add_child(create_vector_xml_node(v.name, \"int\", var_to_str(v.data)))
+			DataVector.DataType.FLOAT:
+				sec_vertex_ele.add_child(create_vector_xml_node(v.name, \"float\", var_to_str(v.data)))
+			DataVector.DataType.STRING:
+				sec_vertex_ele.add_child(create_vector_xml_node(v.name, \"string\", var_to_str(v.data)))
+			DataVector.DataType.COLOR:
+				sec_vertex_ele.add_child(create_vector_xml_node(v.name, \"color\", var_to_str(v.data)))
+			DataVector.DataType.VECTOR2:
+				sec_vertex_ele.add_child(create_vector_xml_node(v.name, \"vector2\", var_to_str(v.data)))
+			DataVector.DataType.VECTOR3:
+				sec_vertex_ele.add_child(create_vector_xml_node(v.name, \"vector3\", var_to_str(v.data)))
+			DataVector.DataType.VECTOR4:
+				sec_vertex_ele.add_child(create_vector_xml_node(v.name, \"vector4\", var_to_str(v.data)))
+			DataVector.DataType.TRANSFORM_2D:
+				sec_vertex_ele.add_child(create_vector_xml_node(v.name, \"transform2D\", var_to_str(v.data)))
+			DataVector.DataType.TRANSFORM_3D:
+				sec_vertex_ele.add_child(create_vector_xml_node(v.name, \"transform3D\", var_to_str(v.data)))
+	
+	return sec_vertex_ele
+		
+func to_xml()->XMLElement:
+	var rec_ele:XMLElement = XMLElement.new(\"record\")
+	rec_ele.set_attribute(\"type\", \"mesh\")
+	
+	#rec_ele.set_attribute(\"selected\", str(selected))
+	#rec_ele.set_attribute(\"active\", str(active))
+	#rec_ele.set_attribute(\"collision\", str(collision))	
+	#rec_ele.set_attribute(\"physics_layer\", str(physics_layer))
+	#rec_ele.set_attribute(\"physics_mask\", str(physics_mask))
+
+	rec_ele.set_attribute(\"num_vertices\", str(num_vertices))
+	rec_ele.set_attribute(\"num_edges\", str(num_edges))
+	rec_ele.set_attribute(\"num_faces\", str(num_faces))
+	rec_ele.set_attribute(\"num_face_vertices\", str(num_face_vertices))
+
+
+	rec_ele.add_child(create_vector_xml_node(\"edge_vertex_indices\", \"int\", var_to_str(edge_vertex_indices)))
+	rec_ele.add_child(create_vector_xml_node(\"edge_face_indices\", \"int\", var_to_str(edge_face_indices)))
+	rec_ele.add_child(create_vector_xml_node(\"face_vertex_count\", \"int\", var_to_str(face_vertex_count)))
+	rec_ele.add_child(create_vector_xml_node(\"face_vertex_indices\", \"int\", var_to_str(face_vertex_indices)))
+
+	rec_ele.set_attribute(\"active_vertex\", str(active_vertex))
+	rec_ele.set_attribute(\"active_edge\", str(active_edge))
+	rec_ele.set_attribute(\"active_face\", str(active_face))
+	rec_ele.set_attribute(\"active_face_vertex\", str(active_face_vertex))
+	
+	var sec_vertex_ele:XMLElement = XMLElement.new(\"data\")
+	sec_vertex_ele.set_attribute(\"type\", \"vertex\")
+	rec_ele.add_child(sec_vertex_ele)
+
+	rec_ele.add_child(section_to_xml(\"vertex\", vertex_data))
+	rec_ele.add_child(section_to_xml(\"edge\", edge_data))
+	rec_ele.add_child(section_to_xml(\"face\", face_data))
+	rec_ele.add_child(section_to_xml(\"faceVertex\", face_vertex_data))
+				
+	
+	return rec_ele
+
+func to_dictionary(file_builder:CyclopsFileBuilder)->Dictionary:
+	var result:Dictionary
+	
+	result[\"num_vertices\"] = num_vertices
+	result[\"num_edges\"] = num_edges
+	result[\"num_faces\"] = num_faces
+	result[\"num_face_vertices\"] = num_face_vertices
+	
+	result[\"active_vertex\"] = active_vertex
+	result[\"active_edge\"] = active_edge
+	result[\"active_face\"] = active_face
+	result[\"active_face_vertex\"] = active_face_vertex
+	
+#	vectors[\"face_vertices\"].append(file_builder.export_vector(data_vec))
+	result[\"edge_vertex_index_buffer\"] = file_builder.export_byte_array(edge_vertex_indices.to_byte_array())
+	result[\"edge_face_index_buffer\"] = file_builder.export_byte_array(edge_face_indices.to_byte_array())
+	result[\"face_vertex_count_buffer\"] = file_builder.export_byte_array(face_vertex_count.to_byte_array())
+	result[\"face_vertex_index_buffer\"] = file_builder.export_byte_array(face_vertex_indices.to_byte_array())
+	#result[\"edge_vertex_indices\"] = edge_vertex_indices
+	#result[\"edge_face_indices\"] = edge_face_indices
+	#
+	#result[\"face_vertex_count\"] = face_vertex_count
+	#result[\"face_vertex_indices\"] = face_vertex_indices
+
+	var vectors:Dictionary = {
+		\"vertices\": [],
+		\"edges\": [],
+		\"faces\": [],
+		\"face_vertices\": []
+	}
+	result[\"vectors\"] = vectors
+	
+	for key in vertex_data.keys():
+		var data_vec:DataVector = vertex_data[key]
+#		vectors[\"vertices\"].append(data_vec.to_dictionary(buf_ar))
+		vectors[\"vertices\"].append(file_builder.export_vector(data_vec))
+	
+	for key in edge_data.keys():
+		var data_vec:DataVector = edge_data[key]
+#		vectors[\"edges\"].append(data_vec.to_dictionary(buf_ar))
+		vectors[\"edges\"].append(file_builder.export_vector(data_vec))
+	
+	for key in face_data.keys():
+		var data_vec:DataVector = face_data[key]
+#		vectors[\"faces\"].append(data_vec.to_dictionary(buf_ar))
+		vectors[\"faces\"].append(file_builder.export_vector(data_vec))
+	
+	for key in face_vertex_data.keys():
+		var data_vec:DataVector = face_vertex_data[key]
+#		vectors[\"face_vertices\"].append(data_vec.to_dictionary(buf_ar))
+		vectors[\"face_vertices\"].append(file_builder.export_vector(data_vec))
+	
+	return result
+
+#func export_vector(vec:DataVector, file_builder:CyclopsFileBuilder)->Dictionary:
+	#var result:Dictionary
+	#
+	#result[\"name\"] = vec.name
+	#result[\"data_type\"] = DataVector.DataType.values()[vec.data_type]
+	#if vec.stride != 1:
+		#result[\"stride\"] = vec.stride
+	#if !vec.category.is_empty():
+		#result[\"category\"] = vec.category
+	#
+	#var region:BufferArchive.BufferRegion = file_builder.buf_ar.store_buffer(vec.get_buffer_byte_data())
+	#result[\"data_buffer\"] = region.index
+	#
+	#return result
+	
+"
+
 [sub_resource type="Resource" id="Resource_jvve5"]
-script = ExtResource("4_ebna0")
+script = SubResource("GDScript_iqhro")
 data = PackedFloat32Array(0, 1, 0, 0, 1, 1, 0, 0, 1, 0, 0, 0, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 0, 0)
 name = &"position"
 category = ""
@@ -100,7 +1059,7 @@ data_type = 6
 stride = 3
 
 [sub_resource type="Resource" id="Resource_joae0"]
-script = ExtResource("2_icxts")
+script = SubResource("GDScript_icxts")
 data = PackedByteArray("AAAAAAAAAAA=")
 name = &"selected"
 category = ""
@@ -108,7 +1067,7 @@ data_type = 0
 stride = 1
 
 [sub_resource type="Resource" id="Resource_pgmig"]
-script = ExtResource("5_2lrd6")
+script = SubResource("GDScript_2lrd6")
 num_vertices = 8
 num_edges = 12
 num_faces = 6
@@ -191,14 +1150,14 @@ points = PackedVector3Array(7.08579, 0.5, -1, 7.91421, 0.5, -1, 7.5, 2.5, 0, 7.5
 script = ExtResource("1_8e3mo")
 
 [node name="block0" type="Node3D" parent="."]
-script = ExtResource("1_02o5q")
+script = SubResource("GDScript_02o5q")
 mesh_vector_data = SubResource("Resource_pgmig")
 
 [node name="FuncGodotMap" type="Node3D" parent="."]
 script = ExtResource("6_iqhro")
 local_map_file = "uid://dbjypvr6aku57"
 map_settings = ExtResource("7_ebna0")
-metadata/_custom_type_script = ExtResource("6_iqhro")
+metadata/_custom_type_script = "uid://iqjhfm6bsp6k"
 
 [node name="entity_0_worldspawn" type="StaticBody3D" parent="FuncGodotMap"]
 collision_mask = 0
