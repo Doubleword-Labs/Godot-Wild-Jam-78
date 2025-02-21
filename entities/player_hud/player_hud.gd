@@ -18,6 +18,7 @@ func _ready() -> void:
 	Game.shop_player_buff_node = $ShopPlayerBuff
 	Game.shop_weapon_buff_node = $ShopWeaponBuff
 	Game.player_hud = $"."
+	Game.erase_damage = erase_damage
 	
 	Game.hp_gui = $HealthBar
 	if (Buff.player_ogre):
