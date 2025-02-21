@@ -94,7 +94,7 @@ offset_right = 249.0
 offset_bottom = 607.0
 theme_override_fonts/font = ExtResource("2_m8sim")
 theme_override_font_sizes/font_size = 25
-text = "Double
+text = "More
 Health
 Points"
 
@@ -127,9 +127,9 @@ offset_right = 904.0
 offset_bottom = 607.0
 theme_override_fonts/font = ExtResource("2_m8sim")
 theme_override_font_sizes/font_size = 25
-text = "1 Health
-Points
-/Second"
+text = "Slowly
+Regenerate
+Health"
 
 [node name="ButtonDamage" type="Button" parent="."]
 offset_left = 935.0
