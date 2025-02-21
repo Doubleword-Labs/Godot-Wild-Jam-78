@@ -40,6 +40,9 @@ func _ready() -> void:
 
 
 func _request_weapon(index: int) -> void:
+	if index == 2 and !Buff.weapon_staple:
+		return
+	
 	if Game.current_weapon == index:
 		print("Weapon already equipped")
 		return

@@ -19,4 +19,5 @@ func _on_button_minigun_pressed() -> void:
 
 func _on_button_stapler_pressed() -> void:
 	Buff.weapon_staple = true
+	Game.get_player()._request_weapon(2)
 	Waves.exit_shop()
