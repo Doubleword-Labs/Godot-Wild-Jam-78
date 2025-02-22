@@ -10,8 +10,8 @@ func _ready() -> void:
 
 func _on_wave_again_pressed() -> void:
 	Game.reload()
-	#if (Waves.current_wave - 1) % 4 == 3:
-	Waves.shop_time = true
+	if (Waves.current_wave - 1) % 4 == 3:
+		Waves.shop_time = true
 		
 	Waves.current_wave += 1
 	
