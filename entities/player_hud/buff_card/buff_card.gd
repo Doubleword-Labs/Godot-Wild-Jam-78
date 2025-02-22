@@ -29,5 +29,5 @@ func _on_purchase_pressed() -> void:
 	if internal_name == "stapler":
 		Buff.weapon_staple = true
 		Game.get_player()._request_weapon(2)
-		
+
 	Waves.exit_shop()
