@@ -143,16 +143,16 @@ def main(args: ProgramArgs):
         print("Uploading to itch using butler...")
 
         if platforms["windows"]:
-            cmd(f'butler push "{bin_dir}/{project_name}[WIN].zip" {itchio_user}/{itchio_project}:win')
+            cmd(f'butler push "{bin_dir}/windows" {itchio_user}/{itchio_project}:win')
 
         if platforms["macos"]:
-            cmd(f'butler push "{bin_dir}/{project_name}[MACOS].zip" {itchio_user}/{itchio_project}:macos')
+            cmd(f'butler push "{bin_dir}/macos" {itchio_user}/{itchio_project}:macos')
 
         if platforms["linux"]:
-            cmd(f'butler push "{bin_dir}/{project_name}[LINUX].zip" {itchio_user}/{itchio_project}:linux')
+            cmd(f'butler push "{bin_dir}/linux" {itchio_user}/{itchio_project}:linux')
 
         if platforms["web"]:
-            cmd(f'butler push "{bin_dir}/{project_name}[WEB].zip" {itchio_user}/{itchio_project}:web')
+            cmd(f'butler push "{bin_dir}/web" {itchio_user}/{itchio_project}:web')
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Build and export Godot project for multiple platforms.')
