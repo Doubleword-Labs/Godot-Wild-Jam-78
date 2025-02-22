@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://we358fsclmak" path="res://entities/projectile/projectile_resource.gd" id="1_m2f4a"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_n5n3x"]
-radius = 0.15
+radius = 0.2
 
 [resource]
 script = ExtResource("1_m2f4a")
