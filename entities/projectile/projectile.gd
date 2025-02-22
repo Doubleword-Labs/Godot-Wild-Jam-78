@@ -6,6 +6,8 @@ const PROJECTILE_HIT = preload("res://entities/projectile_hit/projectile_hit.tsc
 
 @onready var collision_shape: CollisionShape3D = $CollisionShape3D
 @onready var life_timer: Timer = $LifeTimer
+@onready var area_of_effect: Area3D = $AreaOfEffect
+@onready var area_of_effect_shape: CollisionShape3D = %AreaOfEffectShape
 
 @export_tool_button("Update from resource") var update_from_resource_action = update_from_resource
 
@@ -16,7 +18,8 @@ const PROJECTILE_HIT = preload("res://entities/projectile_hit/projectile_hit.tsc
 
 var spawned_by: Node3D
 var velocity: Vector3 = Vector3.ZERO
-var damage:= 10.0
+var damage := 10.0
+
 
 func _ready() -> void:
 	update_from_resource()
@@ -50,6 +53,34 @@ func _enter_tree() -> void:
 	update_from_resource()
 
 
+func _handle_collision(collider: Node3D) -> void:
+	if collider.is_in_group("damageable"):
+		collider.take_damage(resource.impact_damage, spawned_by is Player)
+
+	var audio_player := AudioPlayer.play_sfx_3d_array(resource.impact_sounds)
+	if is_instance_valid(audio_player):
+		audio_player.global_position = global_position
+
+	if resource.show_projectile_hit:
+		var projectile_hit := PROJECTILE_HIT.instantiate()
+		Game.get_projectiles_parent().add_child(projectile_hit)
+		projectile_hit.scale = Vector3.ONE * resource.projectile_hit_scale
+		projectile_hit.global_position = global_position
+
+	if resource.area_damage > 0:
+		_handle_area_of_effect(collider, resource.area_damage)
+
+
+func _handle_area_of_effect(collider: Node3D, area_damage: float) -> void:
+	var overlapping_bodies := area_of_effect.get_overlapping_bodies()
+	for body in overlapping_bodies:
+		if body == collider:
+			continue
+
+		if body.is_in_group("damageable"):
+			body.take_damage(area_damage, spawned_by is Player)
+
+
 func _physics_process(delta: float) -> void:
 	if Engine.is_editor_hint():
 		return
@@ -58,26 +89,8 @@ func _physics_process(delta: float) -> void:
 	if collision:
 		var collider := collision.get_collider()
 		if is_instance_valid(collider):
+			_handle_collision(collider)
 			queue_free()
-
-			if collider.is_in_group("damageable"):
-				if is_instance_valid(spawned_by) and not spawned_by.is_queued_for_deletion():
-					if (spawned_by is Player):
-						if Game.current_weapon == 1:
-							damage = 2
-						if Game.current_weapon == 2:
-							damage = 3
-					collider.take_damage(damage, spawned_by is Player)
-
-			var audio_player := AudioPlayer.play_sfx_3d_array(resource.impact_sounds)
-			if is_instance_valid(audio_player):
-				audio_player.global_position = global_position
-
-			if resource.show_projectile_hit:
-				var projectile_hit := PROJECTILE_HIT.instantiate()
-				Game.get_projectiles_parent().add_child(projectile_hit)
-				projectile_hit.scale = Vector3.ONE * resource.projectile_hit_scale
-				projectile_hit.global_position = global_position
 
 
 func _on_life_timer_timeout() -> void:
@@ -98,3 +111,12 @@ func update_from_resource() -> void:
 	var visual := resource.scene.instantiate()
 	visual.name = "ProjectileVisual"
 	add_child(visual)
+
+	if resource.area_radius > 0:
+		if is_instance_valid(area_of_effect_shape):
+			var sphere := SphereShape3D.new()
+			sphere.radius = resource.area_radius
+			area_of_effect_shape.shape = sphere
+	else:
+		if is_instance_valid(area_of_effect_shape):
+			area_of_effect_shape.shape = null

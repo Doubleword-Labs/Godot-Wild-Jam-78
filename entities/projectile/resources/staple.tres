@@ -9,7 +9,7 @@ radius = 0.15
 [resource]
 script = ExtResource("1_m2f4a")
 speed = 100.0
-impact_damage = 5.0
+impact_damage = 3.0
 area_damage = 0.0
 area_radius = 0.0
 spread = 5.0

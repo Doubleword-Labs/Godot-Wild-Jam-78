@@ -1,10 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://c6qhy6082m067"]
+[gd_scene load_steps=5 format=3 uid="uid://c6qhy6082m067"]
 
 [ext_resource type="Script" uid="uid://bvdy77cdw7t37" path="res://entities/projectile/projectile.gd" id="1_iqisb"]
-[ext_resource type="Resource" uid="uid://cspy28kk467px" path="res://entities/projectile/resources/rubber_band.tres" id="2_n5n3x"]
+[ext_resource type="Resource" uid="uid://d18nbi5siw1xe" path="res://entities/projectile/resources/ball_of_paper.tres" id="2_n5n3x"]
 
-[sub_resource type="SphereShape3D" id="SphereShape3D_1f6fx"]
-radius = 0.1
+[sub_resource type="SphereShape3D" id="SphereShape3D_ilcb0"]
+radius = 0.25
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_n5n3x"]
+radius = 1.5
 
 [node name="Projectile" type="StaticBody3D"]
 collision_layer = 4
@@ -13,10 +16,18 @@ script = ExtResource("1_iqisb")
 resource = ExtResource("2_n5n3x")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
-shape = SubResource("SphereShape3D_1f6fx")
+shape = SubResource("SphereShape3D_ilcb0")
 
 [node name="LifeTimer" type="Timer" parent="."]
 wait_time = 10.0
 one_shot = true
+
+[node name="AreaOfEffect" type="Area3D" parent="."]
+collision_layer = 4
+collision_mask = 7
+
+[node name="AreaOfEffectShape" type="CollisionShape3D" parent="AreaOfEffect"]
+unique_name_in_owner = true
+shape = SubResource("SphereShape3D_n5n3x")
 
 [connection signal="timeout" from="LifeTimer" to="." method="_on_life_timer_timeout"]
