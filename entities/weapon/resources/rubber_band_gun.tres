@@ -88,7 +88,6 @@ attack_animation = "shoot"
 sprite_position = Vector2(576, 412)
 sprite_scale = Vector2(0.473633, 0.473633)
 attack_shaker_preset = SubResource("Resource_fdhhv")
-attack_shaker_intensity = 0.5
 attack_shaker_duration = 0.1
 attack_sounds = Array[AudioStream]([ExtResource("1_25g32")])
 metadata/_custom_type_script = "uid://d0c7jub8ujtvp"

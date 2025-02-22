@@ -111,5 +111,6 @@ idle_animation = "idle"
 attack_animation = "melee"
 sprite_position = Vector2(350, 408)
 sprite_scale = Vector2(0.473633, 0.473633)
+attack_shaker_duration = 0.1
 attack_sounds = Array[AudioStream]([])
 metadata/_custom_type_script = "uid://d0c7jub8ujtvp"

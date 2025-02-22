@@ -114,5 +114,6 @@ idle_animation = "idle"
 attack_animation = "shoot"
 sprite_position = Vector2(815, 412)
 sprite_scale = Vector2(0.473633, 0.473633)
+attack_shaker_duration = 0.1
 attack_sounds = Array[AudioStream]([ExtResource("1_b321w")])
 metadata/_custom_type_script = "uid://d0c7jub8ujtvp"
