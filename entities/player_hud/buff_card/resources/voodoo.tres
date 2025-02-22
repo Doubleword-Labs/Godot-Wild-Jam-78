@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="BuffResource" load_steps=3 format=3 uid="uid://b6gwnc18ono18"]
+
+[ext_resource type="Script" uid="uid://htcgp23ytf5n" path="res://entities/player_hud/buff_card/buff_resource.gd" id="1_8x2en"]
+[ext_resource type="Texture2D" uid="uid://c8xo3m5oriqgg" path="res://assets/gui/shop_items/shop_potion_voodoo.png" id="2_3ul0s"]
+
+[resource]
+script = ExtResource("1_8x2en")
+internal_name = "vampire"
+headline = "Voodoo"
+texture = ExtResource("2_3ul0s")
+text = "Health Points From Attack"
+metadata/_custom_type_script = "uid://htcgp23ytf5n"

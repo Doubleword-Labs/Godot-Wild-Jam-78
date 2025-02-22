@@ -1,0 +1,87 @@
+[gd_scene load_steps=13 format=3 uid="uid://d3vgsht6c4xjx"]
+
+[ext_resource type="Script" uid="uid://bqyghe8aysbnq" path="res://entities/player_hud/player_hud_shop_random_buff.gd" id="1_4rieo"]
+[ext_resource type="Script" uid="uid://htcgp23ytf5n" path="res://entities/player_hud/buff_card/buff_resource.gd" id="2_3t6ko"]
+[ext_resource type="Texture2D" uid="uid://cgoar483cgs6u" path="res://assets/background/credits_bg.png" id="2_l6pgr"]
+[ext_resource type="Resource" uid="uid://bq32r15m0plc1" path="res://entities/player_hud/buff_card/resources/divine.tres" id="3_1k6rs"]
+[ext_resource type="Resource" uid="uid://xxxxwfx3gytl" path="res://entities/player_hud/buff_card/resources/chaingun.tres" id="3_pylli"]
+[ext_resource type="FontFile" uid="uid://db4p37abih74f" path="res://assets/fonts/Sigmar/Sigmar-Regular.ttf" id="3_upe60"]
+[ext_resource type="PackedScene" uid="uid://bauxpuqidi022" path="res://entities/player_hud/buff_card/buff_card.tscn" id="4_dbamn"]
+[ext_resource type="Resource" uid="uid://cu3ehkd5f8o6n" path="res://entities/player_hud/buff_card/resources/pulse.tres" id="5_c73ew"]
+[ext_resource type="Resource" uid="uid://dpryoo3ltamhk" path="res://entities/player_hud/buff_card/resources/rage.tres" id="6_b8u8o"]
+[ext_resource type="Resource" uid="uid://ccbibia84fih" path="res://entities/player_hud/buff_card/resources/stapler.tres" id="7_1ela4"]
+[ext_resource type="Resource" uid="uid://bbsqtqexi310b" path="res://entities/player_hud/buff_card/resources/storm.tres" id="8_qplrr"]
+[ext_resource type="Resource" uid="uid://b6gwnc18ono18" path="res://entities/player_hud/buff_card/resources/voodoo.tres" id="9_7v05a"]
+
+[node name="ShopRandomBuff" type="CanvasLayer"]
+script = ExtResource("1_4rieo")
+buffs = Array[ExtResource("2_3t6ko")]([ExtResource("3_pylli"), ExtResource("3_1k6rs"), ExtResource("5_c73ew"), ExtResource("6_b8u8o"), ExtResource("7_1ela4"), ExtResource("8_qplrr"), ExtResource("9_7v05a")])
+
+[node name="TextureRect6" type="TextureRect" parent="."]
+offset_right = 1152.0
+offset_bottom = 648.0
+texture = ExtResource("2_l6pgr")
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+visible = false
+offset_right = 1154.0
+offset_bottom = 647.0
+color = Color(0, 0, 0, 0.247059)
+
+[node name="Label" type="Label" parent="."]
+offset_left = 257.0
+offset_top = 20.0
+offset_right = 915.0
+offset_bottom = 103.0
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("3_upe60")
+theme_override_font_sizes/font_size = 50
+text = "SHOP - CHOOSE WISELY!"
+horizontal_alignment = 1
+
+[node name="Next" type="Button" parent="."]
+visible = false
+offset_left = 138.0
+offset_top = 475.0
+offset_right = 565.0
+offset_bottom = 571.0
+size_flags_horizontal = 3
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("3_upe60")
+theme_override_font_sizes/font_size = 30
+text = "Next Wave?"
+
+[node name="Title" type="Button" parent="."]
+visible = false
+offset_left = 619.0
+offset_top = 475.0
+offset_right = 1046.0
+offset_bottom = 571.0
+size_flags_horizontal = 3
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("3_upe60")
+theme_override_font_sizes/font_size = 30
+text = "Back to Title"
+
+[node name="BuffCard" parent="." instance=ExtResource("4_dbamn")]
+offset_left = 24.0
+offset_top = 120.0
+offset_right = 24.0
+offset_bottom = 120.0
+
+[node name="BuffCard2" parent="." instance=ExtResource("4_dbamn")]
+offset_left = 396.0
+offset_top = 120.0
+offset_right = 396.0
+offset_bottom = 120.0
+
+[node name="BuffCard3" parent="." instance=ExtResource("4_dbamn")]
+offset_left = 770.0
+offset_top = 119.0
+offset_right = 770.0
+offset_bottom = 119.0
+
+[connection signal="pressed" from="Next" to="." method="_on_wave_again_pressed"]
+[connection signal="pressed" from="Title" to="." method="_on_title_pressed"]
+
+[editable path="BuffCard"]

@@ -3,6 +3,7 @@ class_name Level
 
 @onready var world_environment: WorldEnvironment = $WorldEnvironment
 
+var shop_buy = "res://entities/player_hud/player_hud_shop_random_buff.tscn"
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -23,7 +24,8 @@ func _on_lava_area_body_entered(body: Node3D) -> void:
 
 func _on_shop_door_body_entered(body: Node3D) -> void:
 	print("Shop Opened!")
-	Game.hud_modal(Game.shop_player_buff_node)
+	#Game.hud_modal(Game.shop_player_buff_node)	
+	get_tree().change_scene_to_file(shop_buy)
 
 
 func _on_exit_door_body_entered(body: Node3D) -> void:
