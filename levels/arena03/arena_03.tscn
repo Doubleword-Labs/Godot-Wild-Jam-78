@@ -11,13 +11,14 @@
 [ext_resource type="Resource" uid="uid://cv8d8rwsh3weu" path="res://entities/enemy/resources/tiki_mug_01.tres" id="10_5fjfq"]
 [ext_resource type="Resource" uid="uid://d4fgyepouyfb5" path="res://entities/enemy/resources/tiki_usb_01.tres" id="10_nwll6"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_4q6uk"]
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_5fjfq"]
 sky_top_color = Color(0.168627, 0.752941, 0.811765, 1)
 sky_horizon_color = Color(0.168627, 0.752941, 0.811765, 1)
+ground_bottom_color = Color(0.0466759, 0.165397, 0.355353, 1)
 ground_horizon_color = Color(0.168627, 0.752941, 0.811765, 1)
 
 [sub_resource type="Sky" id="Sky_5fjfq"]
-sky_material = SubResource("ProceduralSkyMaterial_4q6uk")
+sky_material = SubResource("ProceduralSkyMaterial_5fjfq")
 
 [sub_resource type="Environment" id="Environment_nwll6"]
 background_mode = 2
