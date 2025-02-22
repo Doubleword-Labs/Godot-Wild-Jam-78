@@ -12,9 +12,6 @@ func _ready() -> void:
 	else:
 		Game.wave_gui.text = "Wave: " + str(Waves.current_wave)
 
-	if is_instance_valid(world_environment):
-		world_environment.environment.glow_enabled = OS.get_name() != "Web"
-
 
 func _exit_tree() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
