@@ -1,10 +1,12 @@
-[gd_resource type="Resource" script_class="BuffResource" load_steps=2 format=3 uid="uid://bbsqtqexi310b"]
+[gd_resource type="Resource" script_class="BuffResource" load_steps=3 format=3 uid="uid://bbsqtqexi310b"]
 
 [ext_resource type="Script" uid="uid://htcgp23ytf5n" path="res://entities/player_hud/buff_card/buff_resource.gd" id="1_cvq1q"]
+[ext_resource type="Texture2D" uid="uid://bpq1a1p2f424u" path="res://assets/gui/shop_items/shop_lightning_storm.png" id="2_6pe3a"]
 
 [resource]
 script = ExtResource("1_cvq1q")
-internal_name = ""
-headline = ""
-text = ""
+internal_name = "flash"
+headline = "Storm"
+texture = ExtResource("2_6pe3a")
+text = "Double Run Speed"
 metadata/_custom_type_script = "uid://htcgp23ytf5n"

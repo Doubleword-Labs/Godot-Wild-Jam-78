@@ -5,7 +5,7 @@
 
 [resource]
 script = ExtResource("1_pycgi")
-internal_name = ""
+internal_name = "ogre"
 headline = "Divine"
 texture = ExtResource("2_42w6n")
 text = "More Health Points"
