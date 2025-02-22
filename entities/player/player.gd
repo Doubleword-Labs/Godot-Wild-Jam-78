@@ -13,6 +13,7 @@ const STAPLE_SHOTGUN = preload("res://entities/weapon/resources/staple_shotgun.t
 @onready var melee_ray_cast: RayCast3D = %MeleeRayCast
 @onready var head: Node3D = $Head
 @onready var eyes: Node3D = $Head/Eyes
+@onready var shaker_emitter: ShakerEmitter3D = $ShakerEmitter3D
 
 @onready var melee_sprite_base_position := player_hud.melee_sprite.position
 
@@ -20,6 +21,7 @@ const STAPLE_SHOTGUN = preload("res://entities/weapon/resources/staple_shotgun.t
 @export var joy_look_sens := 0.05
 @export var mouse_look_sens := 0.005
 @export var lerp_speed := 10.0
+@export var damage_shaker_preset: ShakerPreset3D
 
 @export_category("Head bob")
 @export var head_bob_speed := 14.0
@@ -111,6 +113,17 @@ func _ranged_attack() -> void:
 			self, projectile_spawn_point, current_weapon_resource.projectile_resource
 		)
 
+	if is_instance_valid(current_weapon_resource.attack_shaker_preset):
+		(
+			Shaker
+			. shake_emit_3d(
+				global_position,
+				current_weapon_resource.attack_shaker_preset,
+				1.0,
+				current_weapon_resource.attack_shaker_duration,
+			)
+		)
+
 
 func _melee_attack() -> void:
 	can_attack = false
@@ -167,6 +180,16 @@ func take_damage(damage: int, from_player: bool) -> void:
 
 		if health <= 0:
 			Game.die()
+		else:
+			(
+				Shaker
+				. shake_emit_3d(
+					global_position,
+					damage_shaker_preset,
+					1.0,
+					0.5,
+				)
+			)
 
 
 func _on_attack_timer_timeout() -> void:

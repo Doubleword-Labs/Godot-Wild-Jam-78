@@ -16,6 +16,8 @@ class_name WeaponResource
 @export var attack_animation := "attack"
 @export var sprite_position := Vector2.ZERO
 @export var sprite_scale := Vector2.ONE
+@export var attack_shaker_preset: ShakerPreset3D
+@export var attack_shaker_duration: float = 0.1
 
 @export_group("Audio")
 @export var attack_sounds: Array[AudioStream] = []

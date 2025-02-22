@@ -23,6 +23,7 @@ AudioPlayer="*res://globals/audio_player.gd"
 MusicPlayer="*res://globals/music_player.tscn"
 Waves="*res://globals/waves.gd"
 Buff="*res://globals/buff.gd"
+Shaker="*res://addons/shaker/src/Shaker.gd"
 
 [display]
 
@@ -30,7 +31,7 @@ window/stretch/mode="canvas_items"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/godot_state_charts/plugin.cfg", "res://addons/script-ide/plugin.cfg")
+enabled=PackedStringArray("res://addons/godot_state_charts/plugin.cfg", "res://addons/script-ide/plugin.cfg", "res://addons/shaker/plugin.cfg")
 
 [global_group]
 

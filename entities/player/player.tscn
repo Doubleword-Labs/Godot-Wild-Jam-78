@@ -1,7 +1,47 @@
-[gd_scene load_steps=5 format=3 uid="uid://cvf7653hiknvm"]
+[gd_scene load_steps=14 format=3 uid="uid://cvf7653hiknvm"]
 
 [ext_resource type="Script" uid="uid://dejp5ore4fjxu" path="res://entities/player/player.gd" id="1_symyc"]
 [ext_resource type="PackedScene" uid="uid://b78bqckus7vfd" path="res://entities/player_hud/player_hud.tscn" id="2_abrql"]
+[ext_resource type="Script" uid="uid://uhq8w80ef6o7" path="res://addons/shaker/src/Vector3/shaker_component3D.gd" id="3_sglur"]
+[ext_resource type="Script" uid="uid://d1vbqogk7xn2c" path="res://addons/shaker/src/Vector3/ShakerReceiver3D.gd" id="4_bls4j"]
+[ext_resource type="Script" uid="uid://bbjh5cgq0yrbt" path="res://addons/shaker/data/Vector3/BaseShakerType3D.gd" id="6_26q78"]
+[ext_resource type="Script" uid="uid://cj2m674mnjyfi" path="res://addons/shaker/data/Vector3/ShakerTypeRandom3D.gd" id="7_bectd"]
+[ext_resource type="Script" uid="uid://cvjlajlftts0q" path="res://addons/shaker/data/Vector3/ShakerPreset3D.gd" id="8_wvtmh"]
+
+[sub_resource type="Resource" id="Resource_qiwj3"]
+script = ExtResource("7_bectd")
+seed = 0
+amplitude = Vector3(1, 1, 1)
+offset = Vector3(0, 0, 0)
+BlendingMode = 0
+fade_in = 0.0
+fade_out = 0.0
+start_percent = 0.0
+end_percent = 1.0
+_temp_graph = false
+bake_internal = 64
+metadata/_custom_type_script = "uid://cj2m674mnjyfi"
+
+[sub_resource type="Resource" id="Resource_26q78"]
+script = ExtResource("8_wvtmh")
+PositionShake = Array[ExtResource("6_26q78")]([SubResource("Resource_qiwj3")])
+RotationShake = Array[ExtResource("6_26q78")]([])
+ScaleShake = Array[ExtResource("6_26q78")]([])
+bake_internal = 64
+__follow_timeline = false
+metadata/_custom_type_script = "uid://cvjlajlftts0q"
+
+[sub_resource type="Resource" id="Resource_8fjmc"]
+script = ExtResource("8_wvtmh")
+PositionShake = Array[ExtResource("6_26q78")]([])
+RotationShake = Array[ExtResource("6_26q78")]([])
+ScaleShake = Array[ExtResource("6_26q78")]([])
+bake_internal = 64
+__follow_timeline = false
+metadata/_custom_type_script = "uid://cvjlajlftts0q"
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_fkugw"]
+radius = 2.0
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_symyc"]
 
@@ -11,6 +51,7 @@ length = 0.5
 [node name="Player" type="CharacterBody3D" groups=["damageable", "player"]]
 collision_mask = 7
 script = ExtResource("1_symyc")
+damage_shaker_preset = SubResource("Resource_26q78")
 head_bob_intensity = 0.2
 player_hud_bob_intensity = 10.0
 
@@ -22,6 +63,25 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 [node name="Camera3D" type="Camera3D" parent="Head/Eyes"]
 unique_name_in_owner = true
 current = true
+
+[node name="ShakerComponent3D" type="Node3D" parent="Head/Eyes"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.5, 0)
+script = ExtResource("3_sglur")
+AutoPlay = true
+shakerPreset = SubResource("Resource_8fjmc")
+metadata/_custom_type_script = "uid://uhq8w80ef6o7"
+
+[node name="ShakerReceiver3D" type="Node3D" parent="Head/Eyes/ShakerComponent3D"]
+script = ExtResource("4_bls4j")
+metadata/_custom_type_script = "uid://d1vbqogk7xn2c"
+
+[node name="Area3D" type="Area3D" parent="Head/Eyes/ShakerComponent3D/ShakerReceiver3D"]
+collision_layer = 0
+collision_mask = 512
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Head/Eyes/ShakerComponent3D/ShakerReceiver3D/Area3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("SphereShape3D_fkugw")
 
 [node name="Weapons" type="Node3D" parent="Head"]
 
