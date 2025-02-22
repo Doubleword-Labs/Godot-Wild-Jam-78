@@ -209,7 +209,7 @@ sprite_frames = SubResource("SpriteFrames_3da6q")
 autoplay = "default"
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
-path_desired_distance = 30.0
+path_desired_distance = 50.0
 avoidance_enabled = true
 
 [node name="SightRayCast" type="RayCast3D" parent="."]
@@ -223,7 +223,7 @@ debug_shape_custom_color = Color(0, 0.59079, 0.744833, 1)
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, -1, -8.74228e-08, 0, 8.74228e-08, -1, 0, 0.5, -0.5)
 enabled = false
-target_position = Vector3(0, 0, 30)
+target_position = Vector3(0, 0, 50)
 debug_shape_custom_color = Color(1, 0, 0, 1)
 
 [node name="StateChart" type="Node" parent="."]

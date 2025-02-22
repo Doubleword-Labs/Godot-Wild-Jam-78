@@ -3,13 +3,17 @@ class_name Level
 
 @onready var world_environment: WorldEnvironment = $WorldEnvironment
 
+
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	if Waves.shop_time:
 		Game.wave_gui.text = "Shop Time!"
 		Game.stationery_gui.text = ""
 	else:
-		Game.wave_gui.text = "Wave: "+str(Waves.current_wave)
+		Game.wave_gui.text = "Wave: " + str(Waves.current_wave)
+
+	if is_instance_valid(world_environment):
+		world_environment.environment.glow_enabled = OS.get_name() != "Web"
 
 
 func _exit_tree() -> void:
