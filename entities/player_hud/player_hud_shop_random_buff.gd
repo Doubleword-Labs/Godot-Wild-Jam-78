@@ -5,7 +5,6 @@ var BUFF_CARD = preload("res://entities/player_hud/buff_card/buff_card.tscn")
 @onready var container: HBoxContainer = $HBoxContainer
 
 @export var buffs:Array[BuffResource] = []
-var buffs2:Array[BuffResource]
 
 @onready var buffcard = $BuffCard
 @onready var buffcard2 = $BuffCard2
@@ -48,10 +47,11 @@ func remove_buffs_already_activated():
 			or (b.internal_name  == "regen" and !Buff.player_regen)
 			or (b.internal_name  == "damage" and !Buff.player_damage)
 			or (b.internal_name  == "minigun" and !Buff.weapon_minigun)
-			or (b.internal_name  == "staple" and !Buff.weapon_staple)
+			or (b.internal_name  == "stapler" and !Buff.weapon_staple)
 			):
 			temp.append(b)
 	buffs = temp
+	
 
 
 func  remove_buff(buff: BuffResource):
@@ -60,7 +60,7 @@ func  remove_buff(buff: BuffResource):
 		if buff.internal_name != b.internal_name:
 			temp.append(b)
 	buffs = temp
-	
+
 
 func  render_buff(node: BuffCard, resource: BuffResource):
 	node.internal_name = resource.internal_name
