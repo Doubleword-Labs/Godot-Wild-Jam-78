@@ -13,10 +13,11 @@ color = Color(0, 0, 0, 0.247059)
 
 [node name="Label" type="Label" parent="ColorRect2"]
 layout_mode = 0
-offset_left = 18.0
-offset_top = 287.0
-offset_right = 1159.0
-offset_bottom = 452.0
+offset_left = 33.0
+offset_top = 234.0
+offset_right = 1174.0
+offset_bottom = 399.0
+theme_override_constants/line_spacing = 32
 theme_override_constants/outline_size = 10
 theme_override_fonts/font = ExtResource("1_k0thd")
 theme_override_font_sizes/font_size = 100
