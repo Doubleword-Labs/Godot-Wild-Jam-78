@@ -13,7 +13,7 @@ func _on_timer_timeout() -> void:
 	if scroll.scroll_vertical == 0:
 		scroll_down = true
 
-	if scroll.scroll_vertical == 150:
+	if scroll.scroll_vertical == 480:
 		scroll_down = false
 
 	if scroll_down:

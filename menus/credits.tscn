@@ -64,8 +64,29 @@ theme_override_constants/outline_size = 10
 theme_override_fonts/font = ExtResource("2_5jbn1")
 theme_override_font_sizes/font_size = 25
 text = "
+Shaders
+https://godotshaders.com/shader/stylized-flame/
+
+Models
+https://spline.design/
+
 Font
 https://fonts.google.com/specimen/Sigmar"
+horizontal_alignment = 1
+
+[node name="SFX" type="Label" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("2_5jbn1")
+theme_override_font_sizes/font_size = 25
+text = "
+Sound Effects
+Deevus produced during this jam
+https://filmcow.itch.io/filmcow-sfx-2
+https://filmcow.itch.io/filmcow-sfx-4
+https://freesound.org/s/216057/
+https://freesound.org/s/779940/
+https://freesound.org/s/180149/"
 horizontal_alignment = 1
 
 [node name="Music" type="Label" parent="ScrollContainer/VBoxContainer"]
@@ -77,16 +98,6 @@ text = "
 Music
 https://pixabay.com/music/beats-jungle-story-168459/
 "
-horizontal_alignment = 1
-
-[node name="SFX" type="Label" parent="ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_constants/outline_size = 10
-theme_override_fonts/font = ExtResource("2_5jbn1")
-theme_override_font_sizes/font_size = 25
-text = "Sound Effects
-https://filmcow.itch.io/filmcow-sfx-2
-https://filmcow.itch.io/filmcow-sfx-4"
 horizontal_alignment = 1
 
 [node name="PushSpacing" type="Label" parent="ScrollContainer/VBoxContainer"]
