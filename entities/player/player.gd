@@ -135,7 +135,10 @@ func _melee_attack() -> void:
 		var hit = melee_ray_cast.get_collider()
 
 		if hit.is_in_group("damageable"):
-			hit.take_damage(melee_weapon.melee_damage, true)
+			var damage = melee_weapon.melee_damage
+			if Buff.player_damage:
+				damage = damage * 2
+			hit.take_damage(damage, true)
 			AudioPlayer.play_sfx_array(AudioPlayer.punch_sfx_arr)
 
 
