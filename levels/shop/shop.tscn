@@ -17,6 +17,7 @@ sky_material = SubResource("ProceduralSkyMaterial_ab8xu")
 [sub_resource type="Environment" id="Environment_sap14"]
 background_mode = 2
 sky = SubResource("Sky_5fjfq")
+ambient_light_energy = 0.6
 tonemap_mode = 2
 glow_enabled = true
 
