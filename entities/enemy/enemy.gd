@@ -32,6 +32,7 @@ var sight_range: float
 @onready var projectile_spawn_point: Node3D = $ProjectileSpawnPoint
 @onready var attack_timer: Timer = $AttackTimer
 @onready var roam_timer: Timer = $RoamTimer
+@onready var collision_shape: CollisionShape3D = $CollisionShape3D
 
 @onready var state_chart: StateChart = $StateChart
 @onready var idle_state: AtomicState = %IdleState
@@ -110,7 +111,7 @@ func _on_chase_state_state_entered() -> void:
 func _on_chase_state_state_physics_processing(delta: float) -> void:
 	var current_position := global_transform.origin
 	var next_position := nav_agent.get_next_path_position()
-	var new_velocity := (next_position - current_position).normalized() * speed * delta
+	var new_velocity = current_position.direction_to(next_position).normalized() * speed * delta
 
 	nav_agent.velocity = new_velocity
 
@@ -163,7 +164,8 @@ func take_damage(damage: int, from_player: bool) -> void:
 			received_damage = true
 
 			# pain chance
-			if randf() <= resource.pain_chance:
+			var pain_chance_roll = randf()
+			if pain_chance_roll <= resource.pain_chance:
 				state_chart.send_event(EnemyStateEvent.PAIN)
 
 
@@ -198,6 +200,8 @@ func _on_pain_state_state_entered() -> void:
 
 
 func _on_death_state_state_entered() -> void:
+	velocity = Vector3.ZERO
+	collision_shape.disabled = true
 	play_sound(resource.death_sound, true)
 	sprite.play(resource.death_animation)
 	await sprite.animation_finished
