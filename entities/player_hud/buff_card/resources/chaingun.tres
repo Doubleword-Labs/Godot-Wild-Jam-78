@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="BuffResource" load_steps=3 format=3 uid="uid://xxxxwfx3gytl"]
+
+[ext_resource type="Script" uid="uid://htcgp23ytf5n" path="res://entities/player_hud/buff_card/buff_resource.gd" id="1_ojeje"]
+[ext_resource type="Texture2D" uid="uid://kn7056lgxr3c" path="res://assets/gui/shop_items/shop_rubberband_gun_weapon.png" id="2_vkcey"]
+
+[resource]
+script = ExtResource("1_ojeje")
+internal_name = "minigun"
+headline = "ANGER MANAGEMENT"
+texture = ExtResource("2_vkcey")
+text = "Fires a thousand rubber bands a minute"
+metadata/_custom_type_script = "uid://htcgp23ytf5n"

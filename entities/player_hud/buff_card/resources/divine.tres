@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="BuffResource" load_steps=3 format=3 uid="uid://bq32r15m0plc1"]
+
+[ext_resource type="Script" uid="uid://htcgp23ytf5n" path="res://entities/player_hud/buff_card/buff_resource.gd" id="1_pycgi"]
+[ext_resource type="Texture2D" uid="uid://cqie3nsoq5e73" path="res://assets/gui/shop_items/shop_heart_divine.png" id="2_42w6n"]
+
+[resource]
+script = ExtResource("1_pycgi")
+internal_name = ""
+headline = "Divine"
+texture = ExtResource("2_42w6n")
+text = "More Health Points"
+metadata/_custom_type_script = "uid://htcgp23ytf5n"

@@ -1,0 +1,66 @@
+[gd_scene load_steps=8 format=3 uid="uid://bauxpuqidi022"]
+
+[ext_resource type="Script" uid="uid://b86fne6ab47r3" path="res://entities/player_hud/buff_card/buff_card.gd" id="1_uc5n0"]
+[ext_resource type="Script" uid="uid://htcgp23ytf5n" path="res://entities/player_hud/buff_card/buff_resource.gd" id="2_qlmeg"]
+[ext_resource type="Resource" uid="uid://ccbibia84fih" path="res://entities/player_hud/buff_card/resources/stapler.tres" id="3_nf6qh"]
+[ext_resource type="FontFile" uid="uid://db4p37abih74f" path="res://assets/fonts/Sigmar/Sigmar-Regular.ttf" id="3_q8rx3"]
+[ext_resource type="Texture2D" uid="uid://kn7056lgxr3c" path="res://assets/gui/shop_items/shop_rubberband_gun_weapon.png" id="4_85fm1"]
+[ext_resource type="Resource" uid="uid://bq32r15m0plc1" path="res://entities/player_hud/buff_card/resources/divine.tres" id="4_lboos"]
+[ext_resource type="Resource" uid="uid://b6gwnc18ono18" path="res://entities/player_hud/buff_card/resources/voodoo.tres" id="5_p6rgc"]
+
+[node name="BuffCard" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_uc5n0")
+buffs = Array[ExtResource("2_qlmeg")]([ExtResource("3_nf6qh"), ExtResource("4_lboos"), ExtResource("5_p6rgc")])
+metadata/_custom_type_script = "uid://b86fne6ab47r3"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 372.0
+offset_bottom = 429.0
+color = Color(0, 0, 0, 0.321569)
+
+[node name="Headline" type="Label" parent="."]
+offset_left = 23.0
+offset_top = 19.0
+offset_right = 334.0
+offset_bottom = 152.0
+theme_override_constants/line_spacing = -22
+theme_override_fonts/font = ExtResource("3_q8rx3")
+theme_override_font_sizes/font_size = 40
+text = "ANGER MANAGEMENT"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Subtitle" type="Label" parent="."]
+modulate = Color(1, 1, 0.227451, 1)
+offset_left = 30.0
+offset_top = 344.0
+offset_right = 338.0
+offset_bottom = 461.0
+theme_override_constants/line_spacing = -7
+theme_override_fonts/font = ExtResource("3_q8rx3")
+theme_override_font_sizes/font_size = 25
+text = "Fires a thousand rubber bands a minute"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = 63.0
+offset_top = 105.0
+offset_right = 319.0
+offset_bottom = 361.0
+texture = ExtResource("4_85fm1")
+
+[node name="Purchase" type="Button" parent="."]
+offset_left = 3.0
+offset_top = 440.0
+offset_right = 373.0
+offset_bottom = 508.0
+theme_override_fonts/font = ExtResource("3_q8rx3")
+theme_override_font_sizes/font_size = 25
+text = "PURCHASE
+"
+
+[connection signal="pressed" from="Purchase" to="." method="_on_purchase_pressed"]

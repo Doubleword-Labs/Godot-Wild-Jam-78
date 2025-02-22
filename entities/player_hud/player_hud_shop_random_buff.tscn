@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bxwkjul7lmd43"]
+[gd_scene load_steps=9 format=3 uid="uid://d1hnr4438kil0"]
 
 [ext_resource type="Script" uid="uid://dtf01gtgtvsfe" path="res://entities/player_hud/player_hud_shop_player_buff.gd" id="1_5vl6d"]
 [ext_resource type="Texture2D" uid="uid://cgoar483cgs6u" path="res://assets/background/credits_bg.png" id="2_l6pgr"]

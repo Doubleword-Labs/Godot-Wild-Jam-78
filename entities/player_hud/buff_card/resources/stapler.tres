@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="BuffResource" load_steps=3 format=3 uid="uid://ccbibia84fih"]
+
+[ext_resource type="Script" uid="uid://htcgp23ytf5n" path="res://entities/player_hud/buff_card/buff_resource.gd" id="1_w0mgx"]
+[ext_resource type="Texture2D" uid="uid://y4d8y0shhjm2" path="res://assets/gui/shop_items/shop_stapler_weapon.png" id="2_raleq"]
+
+[resource]
+script = ExtResource("1_w0mgx")
+internal_name = "stapler"
+headline = "STAPLER SHOTGUN"
+texture = ExtResource("2_raleq")
+text = "Swingline™ \\n A FPS staple"
+metadata/_custom_type_script = "uid://htcgp23ytf5n"

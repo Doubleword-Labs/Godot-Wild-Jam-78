@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="BuffResource" load_steps=2 format=3 uid="uid://bbsqtqexi310b"]
+
+[ext_resource type="Script" uid="uid://htcgp23ytf5n" path="res://entities/player_hud/buff_card/buff_resource.gd" id="1_cvq1q"]
+
+[resource]
+script = ExtResource("1_cvq1q")
+internal_name = ""
+headline = ""
+text = ""
+metadata/_custom_type_script = "uid://htcgp23ytf5n"
