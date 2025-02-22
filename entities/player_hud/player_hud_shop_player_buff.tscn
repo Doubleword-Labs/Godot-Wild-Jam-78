@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://b73ju0p53en0j"]
+[gd_scene load_steps=9 format=3 uid="uid://b73ju0p53en0j"]
 
 [ext_resource type="Script" uid="uid://dtf01gtgtvsfe" path="res://entities/player_hud/player_hud_shop_player_buff.gd" id="1_dnwqf"]
 [ext_resource type="FontFile" uid="uid://db4p37abih74f" path="res://assets/fonts/Sigmar/Sigmar-Regular.ttf" id="2_m8sim"]
+[ext_resource type="Texture2D" uid="uid://cgoar483cgs6u" path="res://assets/background/credits_bg.png" id="2_ssd4p"]
 [ext_resource type="Texture2D" uid="uid://cqie3nsoq5e73" path="res://assets/gui/shop_items/shop_heart_divine.png" id="3_jhmrj"]
 [ext_resource type="Texture2D" uid="uid://bpq1a1p2f424u" path="res://assets/gui/shop_items/shop_lightning_storm.png" id="4_ssd4p"]
 [ext_resource type="Texture2D" uid="uid://c8xo3m5oriqgg" path="res://assets/gui/shop_items/shop_potion_voodoo.png" id="5_e8wjr"]
@@ -11,22 +12,27 @@
 [node name="ShopPlayerBuff" type="CanvasLayer"]
 script = ExtResource("1_dnwqf")
 
+[node name="TextureRect6" type="TextureRect" parent="."]
+offset_right = 1152.0
+offset_bottom = 648.0
+texture = ExtResource("2_ssd4p")
+
 [node name="ColorRect2" type="ColorRect" parent="."]
+visible = false
 offset_right = 1154.0
 offset_bottom = 647.0
 color = Color(0, 0, 0, 0.247059)
 
-[node name="Label" type="Label" parent="ColorRect2"]
-visible = false
-layout_mode = 0
-offset_left = 332.0
-offset_top = 61.0
-offset_right = 874.0
-offset_bottom = 144.0
+[node name="Label" type="Label" parent="."]
+offset_left = 322.0
+offset_top = 40.0
+offset_right = 864.0
+offset_bottom = 123.0
 theme_override_constants/outline_size = 10
 theme_override_fonts/font = ExtResource("2_m8sim")
 theme_override_font_sizes/font_size = 50
-text = "Jason Drawn's Buffs"
+text = "Buff Shop"
+horizontal_alignment = 1
 
 [node name="Next" type="Button" parent="."]
 visible = false

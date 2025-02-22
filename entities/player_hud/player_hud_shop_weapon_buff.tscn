@@ -1,38 +1,44 @@
-[gd_scene load_steps=5 format=3 uid="uid://dw3mev7tcxi1g"]
+[gd_scene load_steps=6 format=3 uid="uid://dw3mev7tcxi1g"]
 
-[ext_resource type="Script" uid="uid://c7cqku8y3gqll" path="res://entities/player_hud/player_hud_shop_weapon_buff.gd" id="1_8ob4s"]
+[ext_resource type="Script" path="res://entities/player_hud/player_hud_shop_weapon_buff.gd" id="1_8ob4s"]
 [ext_resource type="FontFile" uid="uid://db4p37abih74f" path="res://assets/fonts/Sigmar/Sigmar-Regular.ttf" id="2_8frtw"]
+[ext_resource type="Texture2D" uid="uid://cgoar483cgs6u" path="res://assets/background/credits_bg.png" id="2_men1w"]
 [ext_resource type="Texture2D" uid="uid://kn7056lgxr3c" path="res://assets/gui/shop_items/shop_rubberband_gun_weapon.png" id="3_588h7"]
 [ext_resource type="Texture2D" uid="uid://y4d8y0shhjm2" path="res://assets/gui/shop_items/shop_stapler_weapon.png" id="4_men1w"]
 
 [node name="ShopWeaponBuff" type="CanvasLayer"]
 script = ExtResource("1_8ob4s")
 
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_right = 1152.0
+offset_bottom = 648.0
+texture = ExtResource("2_men1w")
+
 [node name="ColorRect2" type="ColorRect" parent="."]
+visible = false
 offset_right = 1154.0
 offset_bottom = 647.0
 color = Color(0, 0, 0, 0.247059)
 
-[node name="Label" type="Label" parent="ColorRect2"]
-visible = false
-layout_mode = 0
+[node name="Label" type="Label" parent="."]
 offset_left = 266.0
-offset_top = 107.0
+offset_top = 38.0
 offset_right = 875.0
-offset_bottom = 190.0
+offset_bottom = 121.0
 theme_override_constants/outline_size = 10
 theme_override_fonts/font = ExtResource("2_8frtw")
 theme_override_font_sizes/font_size = 50
-text = "Weapon Upgrade Shop"
+text = "Weapon Shop"
+horizontal_alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="ColorRect2"]
+[node name="ChaingunImage" type="TextureRect" parent="."]
 offset_left = 213.0
 offset_top = 133.0
 offset_right = 469.0
 offset_bottom = 389.0
 texture = ExtResource("3_588h7")
 
-[node name="TextureRect2" type="TextureRect" parent="ColorRect2"]
+[node name="StaplerImage" type="TextureRect" parent="."]
 offset_left = 622.0
 offset_top = 133.0
 offset_right = 878.0
