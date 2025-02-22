@@ -10,8 +10,13 @@ var BUFF_CARD = preload("res://entities/player_hud/buff_card/buff_card.tscn")
 @onready var buffcard2 = $BuffCard2
 @onready var buffcard3 = $BuffCard3
 
+var weapons = []
+
+var shown_weapon = false
+
 func _ready() -> void:
 	remove_buffs_already_activated()
+	get_weapons()
 	#hide extra cards if not enough buffs
 	if len(buffs) == 2:
 		buffcard3.visible = false
@@ -35,7 +40,24 @@ func _ready() -> void:
 	if len(buffs) >= 1:
 		buff = buffs.pick_random()
 		render_buff(buffcard2, buff)
+	
+	if (!shown_weapon and len(weapons) > 0 and len(buffs) >= 4):
+		render_buff(buffcard2, weapons.pick_random())
 
+
+func get_weapons():
+	var temp: Array[BuffResource] = []
+	for b in buffs:
+		if (
+			(b.internal_name  == "minigun" and !Buff.weapon_minigun)
+			or (b.internal_name  == "stapler" and !Buff.weapon_staple)
+			):
+			temp.append(b)
+	weapons = temp
+
+func is_buff_weapon(b: BuffResource) -> bool:
+	return b.internal_name  == "minigun" or b.internal_name  == "stapler"
+	
 
 func remove_buffs_already_activated():
 	var temp: Array[BuffResource] = []
@@ -67,4 +89,6 @@ func  render_buff(node: BuffCard, resource: BuffResource):
 	node.get_node("Headline").text = resource.headline
 	node.get_node("TextureRect").texture = resource.texture
 	node.get_node("Subtitle").text = resource.text
+	if is_buff_weapon(resource):
+		shown_weapon = true
 	
