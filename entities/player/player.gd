@@ -89,7 +89,6 @@ func _process(_delta: float) -> void:
 		
 	if Input.is_action_just_pressed("jump"):
 		jump = true
-		print('jump')
 
 
 func _ranged_attack() -> void:
@@ -139,11 +138,11 @@ func _physics_process(delta: float) -> void:
 	var look_vector := -Input.get_axis("look_left", "look_right")
 	if look_vector:
 		rotate_y(look_vector * joy_look_sens)
-		
-	var gravity = 30
+
 	if jump and velocity.y == 0:   
 		velocity.y = 4
 		jump = false
+
 	move_and_slide()
 
 
