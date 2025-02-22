@@ -14,7 +14,9 @@ config/name="Godot Wild Jam 78"
 run/main_scene="uid://byx6t8ewapqg1"
 config/features=PackedStringArray("4.4", "Forward Plus")
 boot_splash/image="uid://gli4y8kdimw3"
-config/icon="res://icon.svg"
+config/icon="uid://dkl434niu7rwj"
+config/macos_native_icon="res://icon.icns"
+config/windows_native_icon="res://icon.ico"
 
 [autoload]
 
