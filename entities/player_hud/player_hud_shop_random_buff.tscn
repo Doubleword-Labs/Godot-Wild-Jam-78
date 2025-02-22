@@ -1,16 +1,21 @@
-[gd_scene load_steps=9 format=3 uid="uid://d1hnr4438kil0"]
+[gd_scene load_steps=13 format=3 uid="uid://d3vgsht6c4xjx"]
 
-[ext_resource type="Script" uid="uid://dtf01gtgtvsfe" path="res://entities/player_hud/player_hud_shop_player_buff.gd" id="1_5vl6d"]
+[ext_resource type="Script" uid="uid://bqyghe8aysbnq" path="res://entities/player_hud/player_hud_shop_random_buff.gd" id="1_4rieo"]
+[ext_resource type="Script" uid="uid://htcgp23ytf5n" path="res://entities/player_hud/buff_card/buff_resource.gd" id="2_3t6ko"]
 [ext_resource type="Texture2D" uid="uid://cgoar483cgs6u" path="res://assets/background/credits_bg.png" id="2_l6pgr"]
+[ext_resource type="Resource" uid="uid://bq32r15m0plc1" path="res://entities/player_hud/buff_card/resources/divine.tres" id="3_1k6rs"]
+[ext_resource type="Resource" uid="uid://xxxxwfx3gytl" path="res://entities/player_hud/buff_card/resources/chaingun.tres" id="3_pylli"]
 [ext_resource type="FontFile" uid="uid://db4p37abih74f" path="res://assets/fonts/Sigmar/Sigmar-Regular.ttf" id="3_upe60"]
-[ext_resource type="Texture2D" uid="uid://cqie3nsoq5e73" path="res://assets/gui/shop_items/shop_heart_divine.png" id="4_xcjw1"]
-[ext_resource type="Texture2D" uid="uid://bpq1a1p2f424u" path="res://assets/gui/shop_items/shop_lightning_storm.png" id="5_pylli"]
-[ext_resource type="Texture2D" uid="uid://c8xo3m5oriqgg" path="res://assets/gui/shop_items/shop_potion_voodoo.png" id="6_c73ew"]
-[ext_resource type="Texture2D" uid="uid://24k88uw68fr" path="res://assets/gui/shop_items/shop_blood_pulse.png" id="7_b8u8o"]
-[ext_resource type="Texture2D" uid="uid://4qwoeooaqeh3" path="res://assets/gui/shop_items/shop_flame_storm.png" id="8_1ela4"]
+[ext_resource type="PackedScene" uid="uid://bauxpuqidi022" path="res://entities/player_hud/buff_card/buff_card.tscn" id="4_dbamn"]
+[ext_resource type="Resource" uid="uid://cu3ehkd5f8o6n" path="res://entities/player_hud/buff_card/resources/pulse.tres" id="5_c73ew"]
+[ext_resource type="Resource" uid="uid://dpryoo3ltamhk" path="res://entities/player_hud/buff_card/resources/rage.tres" id="6_b8u8o"]
+[ext_resource type="Resource" uid="uid://ccbibia84fih" path="res://entities/player_hud/buff_card/resources/stapler.tres" id="7_1ela4"]
+[ext_resource type="Resource" uid="uid://bbsqtqexi310b" path="res://entities/player_hud/buff_card/resources/storm.tres" id="8_qplrr"]
+[ext_resource type="Resource" uid="uid://b6gwnc18ono18" path="res://entities/player_hud/buff_card/resources/voodoo.tres" id="9_7v05a"]
 
-[node name="ShopPlayerBuff" type="CanvasLayer"]
-script = ExtResource("1_5vl6d")
+[node name="ShopRandomBuff" type="CanvasLayer"]
+script = ExtResource("1_4rieo")
+buffs = Array[ExtResource("2_3t6ko")]([ExtResource("3_pylli"), ExtResource("3_1k6rs"), ExtResource("5_c73ew"), ExtResource("6_b8u8o"), ExtResource("7_1ela4"), ExtResource("8_qplrr"), ExtResource("9_7v05a")])
 
 [node name="TextureRect6" type="TextureRect" parent="."]
 offset_right = 1152.0
@@ -24,14 +29,14 @@ offset_bottom = 647.0
 color = Color(0, 0, 0, 0.247059)
 
 [node name="Label" type="Label" parent="."]
-offset_left = 322.0
-offset_top = 40.0
-offset_right = 864.0
-offset_bottom = 123.0
+offset_left = 257.0
+offset_top = 37.0
+offset_right = 915.0
+offset_bottom = 120.0
 theme_override_constants/outline_size = 10
 theme_override_fonts/font = ExtResource("3_upe60")
 theme_override_font_sizes/font_size = 50
-text = "Buff Shop"
+text = "SHOP - CHOOSE WISELY!"
 horizontal_alignment = 1
 
 [node name="Next" type="Button" parent="."]
@@ -58,144 +63,25 @@ theme_override_fonts/font = ExtResource("3_upe60")
 theme_override_font_sizes/font_size = 30
 text = "Back to Title"
 
-[node name="TextureRect" type="TextureRect" parent="."]
-offset_left = 32.0
-offset_top = 133.0
-offset_right = 288.0
-offset_bottom = 389.0
-texture = ExtResource("4_xcjw1")
+[node name="BuffCard" parent="." instance=ExtResource("4_dbamn")]
+offset_left = 24.0
+offset_top = 120.0
+offset_right = 24.0
+offset_bottom = 120.0
 
-[node name="TextureRect2" type="TextureRect" parent="."]
-offset_left = 267.0
-offset_top = 131.0
-offset_right = 523.0
-offset_bottom = 387.0
-texture = ExtResource("5_pylli")
+[node name="BuffCard2" parent="." instance=ExtResource("4_dbamn")]
+offset_left = 396.0
+offset_top = 120.0
+offset_right = 396.0
+offset_bottom = 120.0
 
-[node name="TextureRect3" type="TextureRect" parent="."]
-offset_left = 460.0
-offset_top = 131.0
-offset_right = 716.0
-offset_bottom = 387.0
-texture = ExtResource("6_c73ew")
-
-[node name="TextureRect4" type="TextureRect" parent="."]
-offset_left = 679.0
-offset_top = 131.0
-offset_right = 935.0
-offset_bottom = 387.0
-texture = ExtResource("7_b8u8o")
-
-[node name="TextureRect5" type="TextureRect" parent="."]
-offset_left = 887.0
-offset_top = 131.0
-offset_right = 1143.0
-offset_bottom = 387.0
-texture = ExtResource("8_1ela4")
-
-[node name="ButtonOgre" type="Button" parent="."]
-offset_left = 71.0
-offset_top = 443.0
-offset_right = 249.0
-offset_bottom = 607.0
-theme_override_fonts/font = ExtResource("3_upe60")
-theme_override_font_sizes/font_size = 25
-text = "More
-Health
-Points"
-
-[node name="ButtonFlash" type="Button" parent="."]
-offset_left = 301.0
-offset_top = 442.0
-offset_right = 479.0
-offset_bottom = 607.0
-theme_override_fonts/font = ExtResource("3_upe60")
-theme_override_font_sizes/font_size = 25
-text = "Double
-Run
-Speed"
-
-[node name="ButtonVampire" type="Button" parent="."]
-offset_left = 515.0
-offset_top = 443.0
-offset_right = 693.0
-offset_bottom = 607.0
-theme_override_fonts/font = ExtResource("3_upe60")
-theme_override_font_sizes/font_size = 25
-text = "Health 
-Points
-From Attack"
-
-[node name="ButtonRegen" type="Button" parent="."]
-offset_left = 726.0
-offset_top = 443.0
-offset_right = 904.0
-offset_bottom = 607.0
-theme_override_fonts/font = ExtResource("3_upe60")
-theme_override_font_sizes/font_size = 25
-text = "Slowly
-Regenerate
-Health"
-
-[node name="ButtonDamage" type="Button" parent="."]
-offset_left = 935.0
-offset_top = 443.0
-offset_right = 1113.0
-offset_bottom = 607.0
-theme_override_fonts/font = ExtResource("3_upe60")
-theme_override_font_sizes/font_size = 25
-text = "2 x
-Damage"
-
-[node name="Divine" type="Label" parent="."]
-offset_left = 86.0
-offset_top = 373.0
-offset_right = 240.0
-offset_bottom = 439.0
-theme_override_fonts/font = ExtResource("3_upe60")
-theme_override_font_sizes/font_size = 40
-text = "DIVINE"
-
-[node name="Divine2" type="Label" parent="."]
-offset_left = 317.0
-offset_top = 373.0
-offset_right = 470.0
-offset_bottom = 439.0
-theme_override_fonts/font = ExtResource("3_upe60")
-theme_override_font_sizes/font_size = 40
-text = "STORM"
-
-[node name="Divine3" type="Label" parent="."]
-offset_left = 509.0
-offset_top = 373.0
-offset_right = 700.0
-offset_bottom = 439.0
-theme_override_fonts/font = ExtResource("3_upe60")
-theme_override_font_sizes/font_size = 40
-text = "VOODOO"
-
-[node name="Divine4" type="Label" parent="."]
-offset_left = 743.0
-offset_top = 373.0
-offset_right = 882.0
-offset_bottom = 439.0
-theme_override_fonts/font = ExtResource("3_upe60")
-theme_override_font_sizes/font_size = 40
-text = "PULSE"
-
-[node name="Divine5" type="Label" parent="."]
-offset_left = 956.0
-offset_top = 373.0
-offset_right = 1094.0
-offset_bottom = 439.0
-theme_override_fonts/font = ExtResource("3_upe60")
-theme_override_font_sizes/font_size = 40
-text = "RAGE"
+[node name="BuffCard3" parent="." instance=ExtResource("4_dbamn")]
+offset_left = 770.0
+offset_top = 119.0
+offset_right = 770.0
+offset_bottom = 119.0
 
 [connection signal="pressed" from="Next" to="." method="_on_wave_again_pressed"]
 [connection signal="pressed" from="Title" to="." method="_on_title_pressed"]
-[connection signal="pressed" from="ButtonOgre" to="." method="_on_button_ogre_pressed"]
-[connection signal="pressed" from="ButtonFlash" to="." method="_on_button_flash_pressed"]
-[connection signal="pressed" from="ButtonVampire" to="." method="_on_button_vampire_pressed"]
-[connection signal="pressed" from="ButtonRegen" to="." method="_on_button_regen_pressed"]
-[connection signal="pressed" from="ButtonDamage" to="." method="_on_button_damage_pressed"]
+
+[editable path="BuffCard"]

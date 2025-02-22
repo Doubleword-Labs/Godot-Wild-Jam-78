@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="BuffResource" load_steps=3 format=3 uid="uid://dpryoo3ltamhk"]
 
 [ext_resource type="Script" uid="uid://htcgp23ytf5n" path="res://entities/player_hud/buff_card/buff_resource.gd" id="1_7h6bs"]
-[ext_resource type="Texture2D" uid="uid://4qwoeooaqeh3" path="res://assets/gui/shop_items/shop_flame_storm.png" id="2_yn8aw"]
+[ext_resource type="Texture2D" uid="uid://24k88uw68fr" path="res://assets/gui/shop_items/shop_blood_pulse.png" id="2_yn8aw"]
 
 [resource]
 script = ExtResource("1_7h6bs")
