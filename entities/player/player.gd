@@ -18,6 +18,7 @@ const STAPLE_SHOTGUN = preload("res://entities/weapon/resources/staple_shotgun.t
 
 @export var health := 100.0
 var can_attack := true
+var jump = false
 
 var melee_weapon := preload("res://entities/weapon/resources/melee.tres")
 var weapons: Array[PlayerWeapon] = [
@@ -84,7 +85,11 @@ func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("weapon_rubber_band"):
 		_request_weapon(1)
 	if Input.is_action_just_pressed("weapon_shotgun"):
-		_request_weapon(2)
+		_request_weapon(2)		
+		
+	if Input.is_action_just_pressed("jump"):
+		jump = true
+		print('jump')
 
 
 func _ranged_attack() -> void:
@@ -134,7 +139,11 @@ func _physics_process(delta: float) -> void:
 	var look_vector := -Input.get_axis("look_left", "look_right")
 	if look_vector:
 		rotate_y(look_vector * joy_look_sens)
-
+		
+	var gravity = 30
+	if jump and velocity.y == 0:   
+		velocity.y = 4
+		jump = false
 	move_and_slide()
 
 
