@@ -6,7 +6,7 @@
 [resource]
 script = ExtResource("1_8x2en")
 internal_name = "vampire"
-headline = "Voodoo"
+headline = "VOODOO"
 texture = ExtResource("2_3ul0s")
 text = "Health Points From Attack"
 metadata/_custom_type_script = "uid://htcgp23ytf5n"

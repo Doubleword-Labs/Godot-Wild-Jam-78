@@ -6,7 +6,7 @@
 [resource]
 script = ExtResource("1_6ypjf")
 internal_name = "regen"
-headline = "Pulse"
+headline = "PULSE"
 texture = ExtResource("2_a10s8")
 text = "Slowly Regenerate Health"
 metadata/_custom_type_script = "uid://htcgp23ytf5n"

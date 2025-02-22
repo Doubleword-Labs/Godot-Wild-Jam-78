@@ -6,7 +6,7 @@
 [resource]
 script = ExtResource("1_7h6bs")
 internal_name = "damage"
-headline = "Rage"
+headline = "RAGE"
 texture = ExtResource("2_yn8aw")
 text = "Double Damage"
 metadata/_custom_type_script = "uid://htcgp23ytf5n"

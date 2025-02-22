@@ -6,7 +6,7 @@
 [resource]
 script = ExtResource("1_ojeje")
 internal_name = "minigun"
-headline = "ANGER MANAGEMENT"
+headline = "RUBBERBAND MAYHEM"
 texture = ExtResource("2_vkcey")
 text = "Fires a thousand rubber bands a minute"
 metadata/_custom_type_script = "uid://htcgp23ytf5n"

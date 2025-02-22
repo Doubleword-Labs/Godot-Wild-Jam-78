@@ -6,7 +6,7 @@
 [resource]
 script = ExtResource("1_cvq1q")
 internal_name = "flash"
-headline = "Storm"
+headline = "STORM"
 texture = ExtResource("2_6pe3a")
 text = "Double Run Speed"
 metadata/_custom_type_script = "uid://htcgp23ytf5n"
