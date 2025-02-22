@@ -24,10 +24,10 @@ func _on_purchase_pressed() -> void:
 		
 	if internal_name == "minigun":
 		Buff.weapon_minigun = true
-		Game.get_player()._request_weapon(1)
+		Game.current_weapon = 1
 		
 	if internal_name == "stapler":
 		Buff.weapon_staple = true
-		Game.get_player()._request_weapon(2)
+		Game.current_weapon = 2
 
 	Waves.exit_shop()
