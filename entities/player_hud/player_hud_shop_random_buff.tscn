@@ -30,9 +30,9 @@ color = Color(0, 0, 0, 0.247059)
 
 [node name="Label" type="Label" parent="."]
 offset_left = 257.0
-offset_top = 37.0
+offset_top = 20.0
 offset_right = 915.0
-offset_bottom = 120.0
+offset_bottom = 103.0
 theme_override_constants/outline_size = 10
 theme_override_fonts/font = ExtResource("3_upe60")
 theme_override_font_sizes/font_size = 50
