@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://c065d6nqro7wq"]
+[gd_scene load_steps=10 format=3 uid="uid://c065d6nqro7wq"]
 
 [ext_resource type="Script" uid="uid://gta2qv6v5bdy" path="res://levels/level.gd" id="1_qh4mo"]
 [ext_resource type="PackedScene" uid="uid://cvf7653hiknvm" path="res://entities/player/player.tscn" id="2_878re"]
@@ -27,8 +27,6 @@ geometry_collision_mask = 4294967042
 agent_height = 2.0
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_7w5nn"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_ab8xu"]
 
 [node name="Arena01" type="Node3D"]
 script = ExtResource("1_qh4mo")
@@ -114,12 +112,5 @@ shape = SubResource("BoxShape3D_7w5nn")
 transform = Transform3D(0.825449, 0, -0.564477, 0, 1, 0, 0.564477, 0, 0.825449, 12.133, 0, -12.797)
 visible = false
 sign_text = "Exit"
-
-[node name="ExitDoor" type="Area3D" parent="Exit"]
-visible = false
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Exit/ExitDoor"]
-transform = Transform3D(1, 0, 2.98023e-08, 0, 1, 0, -2.98023e-08, 0, 1, -0.0243063, 0.897775, 2.46402)
-shape = SubResource("BoxShape3D_ab8xu")
 
 [connection signal="body_entered" from="Shop/ShopDoor" to="." method="_on_shop_door_body_entered"]
