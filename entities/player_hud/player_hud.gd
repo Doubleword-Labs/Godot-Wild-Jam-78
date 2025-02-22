@@ -1,9 +1,11 @@
 extends CanvasLayer
+class_name PlayerHud
 
 const MELEE_WEAPON_RESOURCE = preload("res://entities/weapon/resources/melee.tres")
 
-@onready var weapon_sprite: AnimatedSprite2D = $Hand/WeaponSprite
-@onready var melee_sprite: AnimatedSprite2D = $Hand/MeleeSprite
+@onready var hands: Control = %Hands
+@onready var weapon_sprite: AnimatedSprite2D = %WeaponSprite
+@onready var melee_sprite: AnimatedSprite2D = %MeleeSprite
 @onready var erase_damage: TextureRect = $EraseDamage
 
 var erase_damage_transparency = 0

@@ -6,15 +6,25 @@ const PAPER_BALL_THROW = preload("res://entities/weapon/resources/paper_ball_thr
 const RUBBER_BAND_GUN = preload("res://entities/weapon/resources/rubber_band_gun.tres")
 const STAPLE_SHOTGUN = preload("res://entities/weapon/resources/staple_shotgun.tres")
 
-@onready var player_hud: CanvasLayer = $PlayerHud
+@onready var player_hud: PlayerHud = $PlayerHud
 @onready var attack_timer: Timer = $AttackTimer
-@onready var camera: Camera3D = $Camera3D
-@onready var projectile_spawn_point: Node3D = $Camera3D/ProjectileSpawnPoint
-@onready var melee_ray_cast: RayCast3D = $Camera3D/MeleeRayCast
+@onready var camera: Camera3D = %Camera3D
+@onready var projectile_spawn_point: Node3D = %ProjectileSpawnPoint
+@onready var melee_ray_cast: RayCast3D = %MeleeRayCast
+@onready var head: Node3D = $Head
+@onready var eyes: Node3D = $Head/Eyes
+
+@onready var melee_sprite_base_position := player_hud.melee_sprite.position
 
 @export var speed := 5.0
 @export var joy_look_sens := 0.05
 @export var mouse_look_sens := 0.005
+@export var lerp_speed := 10.0
+
+@export_category("Head bob")
+@export var head_bob_speed := 14.0
+@export var head_bob_intensity := 0.1
+@export var player_hud_bob_intensity := 5.0
 
 @export var health := 100.0
 var can_attack := true
@@ -23,9 +33,12 @@ var jump = false
 var melee_weapon := preload("res://entities/weapon/resources/melee.tres")
 var weapons: Array[PlayerWeapon] = [
 	PlayerWeapon.new(PAPER_BALL_THROW, true),
-	PlayerWeapon.new(RUBBER_BAND_GUN, true),
-	PlayerWeapon.new(STAPLE_SHOTGUN, true),
+	PlayerWeapon.new(RUBBER_BAND_GUN, Buff.weapon_minigun),
+	PlayerWeapon.new(STAPLE_SHOTGUN, Buff.weapon_staple),
 ]
+
+var head_bob_vector := Vector2.ZERO
+var head_bob_index := 0.0
 
 
 func _ready() -> void:
@@ -34,19 +47,13 @@ func _ready() -> void:
 
 	if Buff.player_flash:
 		speed = 10.0
-		
+
 	if Buff.player_ogre:
 		health = Buff.player_ogre_amount
 		Game.hp_gui.value = health
 
 
 func _request_weapon(index: int) -> void:
-	if index == 1 and !Buff.weapon_minigun:
-		return
-	
-	if index == 2 and !Buff.weapon_staple:
-		return
-
 	if Game.current_weapon == index:
 		print("Weapon already equipped")
 		return
@@ -85,8 +92,8 @@ func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("weapon_rubber_band"):
 		_request_weapon(1)
 	if Input.is_action_just_pressed("weapon_shotgun"):
-		_request_weapon(2)		
-		
+		_request_weapon(2)
+
 	if Input.is_action_just_pressed("jump"):
 		jump = true
 
@@ -135,11 +142,13 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0, speed)
 		velocity.z = move_toward(velocity.z, 0, speed)
 
+	_head_bob(input_dir, delta)
+
 	var look_vector := -Input.get_axis("look_left", "look_right")
 	if look_vector:
 		rotate_y(look_vector * joy_look_sens)
 
-	if jump and velocity.y == 0:   
+	if jump and velocity.y == 0:
 		velocity.y = 4
 		jump = false
 
@@ -170,3 +179,33 @@ func _on_regen_timer_timeout() -> void:
 			var player = Game.get_player()
 			player.health += 1
 			Game.hp_gui.value = player.health
+
+
+func _head_bob(input_dir: Vector2, delta: float) -> void:
+	head_bob_index = fmod(head_bob_index + (head_bob_speed * delta), 360.0)
+
+	if not input_dir.is_equal_approx(Vector2.ZERO) and is_on_floor():
+		head_bob_vector.y = sin(head_bob_index)
+		head_bob_vector.x = sin(head_bob_index / 2.0) + 0.5
+
+		eyes.position.y = lerpf(
+			eyes.position.y, head_bob_vector.y * head_bob_intensity / 2.0, delta * lerp_speed
+		)
+		eyes.position.x = lerpf(
+			eyes.position.x, head_bob_vector.x * head_bob_intensity, delta * lerp_speed
+		)
+
+		var weapon_sprite_base_position = _get_current_weapon().sprite_position
+		var weapon_sprite = player_hud.weapon_sprite
+		weapon_sprite.position.x = lerpf(
+			weapon_sprite.position.x,
+			weapon_sprite_base_position.x + (head_bob_vector.x * player_hud_bob_intensity),
+			delta * lerp_speed
+		)
+		weapon_sprite.position.y = lerpf(
+			weapon_sprite.position.y,
+			weapon_sprite_base_position.y + (head_bob_vector.y * player_hud_bob_intensity),
+			delta * lerp_speed
+		)
+	else:
+		eyes.position = lerp(eyes.position, Vector3.ZERO, delta * lerp_speed)

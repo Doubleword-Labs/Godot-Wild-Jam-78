@@ -132,7 +132,8 @@ animations = [{
 [node name="CanvasLayer" type="CanvasLayer"]
 script = ExtResource("1_ocp11")
 
-[node name="Hand" type="Control" parent="."]
+[node name="Hands" type="Control" parent="."]
+unique_name_in_owner = true
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -140,15 +141,17 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="WeaponSprite" type="AnimatedSprite2D" parent="Hand"]
-position = Vector2(815, 408)
+[node name="WeaponSprite" type="AnimatedSprite2D" parent="Hands"]
+unique_name_in_owner = true
+position = Vector2(815, 412)
 scale = Vector2(0.473633, 0.473633)
 sprite_frames = SubResource("SpriteFrames_bectd")
 animation = &"idle"
 autoplay = "idle"
 
-[node name="MeleeSprite" type="AnimatedSprite2D" parent="Hand"]
-position = Vector2(350, 408)
+[node name="MeleeSprite" type="AnimatedSprite2D" parent="Hands"]
+unique_name_in_owner = true
+position = Vector2(350, 412)
 scale = Vector2(0.473633, 0.473633)
 sprite_frames = SubResource("SpriteFrames_bectd")
 animation = &"melee"

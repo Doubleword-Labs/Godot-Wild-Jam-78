@@ -1,8 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://bcc535h78xbg3"]
+[gd_scene load_steps=11 format=3 uid="uid://bcc535h78xbg3"]
 
-[ext_resource type="Script" uid="uid://gta2qv6v5bdy" path="res://levels/level.gd" id="1_oksox"]
+[ext_resource type="Script" uid="uid://dopsglken0vq1" path="res://levels/sandbox/sandbox.gd" id="1_x68yp"]
 [ext_resource type="PackedScene" uid="uid://cvf7653hiknvm" path="res://entities/player/player.tscn" id="2_x68yp"]
-[ext_resource type="PackedScene" uid="uid://cx5mk2aylf5te" path="res://entities/enemy/enemy.tscn" id="4_s1ctw"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_x68yp"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -37,7 +36,7 @@ size = Vector2(50, 50)
 data = PackedVector3Array(25, 0, 25, -25, 0, 25, 25, 0, -25, -25, 0, 25, -25, 0, -25, 25, 0, -25)
 
 [node name="Sandbox" type="Node3D"]
-script = ExtResource("1_oksox")
+script = ExtResource("1_x68yp")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_s1ctw")
@@ -48,42 +47,6 @@ shadow_enabled = true
 
 [node name="Player" parent="." instance=ExtResource("2_x68yp")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0)
-
-[node name="Enemy" parent="." instance=ExtResource("4_s1ctw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 0.00957432, 0)
-
-[node name="Enemy2" parent="." instance=ExtResource("4_s1ctw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 0.0095742, 2)
-
-[node name="Enemy3" parent="." instance=ExtResource("4_s1ctw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 0.00957434, 4)
-
-[node name="Enemy4" parent="." instance=ExtResource("4_s1ctw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11, 0.00957429, 6)
-
-[node name="Enemy5" parent="." instance=ExtResource("4_s1ctw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0.00957424, 0)
-
-[node name="Enemy6" parent="." instance=ExtResource("4_s1ctw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0.00957422, 2)
-
-[node name="Enemy7" parent="." instance=ExtResource("4_s1ctw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0.00957427, 4)
-
-[node name="Enemy8" parent="." instance=ExtResource("4_s1ctw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0.00957424, 6)
-
-[node name="Enemy9" parent="." instance=ExtResource("4_s1ctw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.7728, 0.010976, -0.212722)
-
-[node name="Enemy10" parent="." instance=ExtResource("4_s1ctw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 0.00957424, 2)
-
-[node name="Enemy11" parent="." instance=ExtResource("4_s1ctw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 0.00957434, 4)
-
-[node name="Enemy12" parent="." instance=ExtResource("4_s1ctw")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 0.00957434, 6)
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_s1ctw")

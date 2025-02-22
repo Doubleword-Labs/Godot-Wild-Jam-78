@@ -11,18 +11,29 @@ length = 0.5
 [node name="Player" type="CharacterBody3D" groups=["damageable", "player"]]
 collision_mask = 7
 script = ExtResource("1_symyc")
+head_bob_intensity = 0.2
+player_hud_bob_intensity = 10.0
 
-[node name="Camera3D" type="Camera3D" parent="."]
+[node name="Head" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+
+[node name="Eyes" type="Node3D" parent="Head"]
+
+[node name="Camera3D" type="Camera3D" parent="Head/Eyes"]
+unique_name_in_owner = true
 current = true
 
-[node name="ProjectileSpawnPoint" type="Node3D" parent="Camera3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+[node name="Weapons" type="Node3D" parent="Head"]
 
-[node name="MeleeRayCast" type="RayCast3D" parent="Camera3D"]
+[node name="MeleeRayCast" type="RayCast3D" parent="Head/Weapons"]
+unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
 enabled = false
 target_position = Vector3(0, -1.5, 0)
+
+[node name="ProjectileSpawnPoint" type="Node3D" parent="Head/Weapons"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
