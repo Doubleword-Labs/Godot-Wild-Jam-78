@@ -11,6 +11,8 @@ func _ready() -> void:
 
 
 func _on_play_pressed() -> void:
+	Buff.reset_buffs()
+	Game.current_weapon = 0
 	Waves.current_wave = 1
 	Waves.set_level()
 

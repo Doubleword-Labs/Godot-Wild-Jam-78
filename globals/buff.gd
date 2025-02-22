@@ -21,6 +21,15 @@ var weapon_minigun := false:
 var player_ogre_amount := 150
 
 
+func reset_buffs():
+	player_ogre = false
+	player_flash = false
+	player_vampire = false
+	player_regen = false
+	player_damage = false
+	weapon_minigun = false
+	weapon_staple = false
+
 func is_player_buffs_all_bought():
 	return player_ogre and player_flash and player_vampire and player_regen and player_damage
 
