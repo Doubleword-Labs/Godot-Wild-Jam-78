@@ -33,6 +33,7 @@ var sight_range: float
 @onready var attack_timer: Timer = $AttackTimer
 @onready var roam_timer: Timer = $RoamTimer
 @onready var collision_shape: CollisionShape3D = $CollisionShape3D
+@onready var state_label_debug: Label3D = $StateLabelDebug
 
 @onready var state_chart: StateChart = $StateChart
 @onready var idle_state: AtomicState = %IdleState
@@ -47,7 +48,15 @@ var audio_player: AudioStreamPlayer3D
 
 
 func _ready() -> void:
+	if is_instance_valid(state_label_debug):
+		state_label_debug.visible = OS.is_debug_build()
+
 	update_from_resource()
+
+
+func _enter_tree() -> void:
+	if is_instance_valid(state_label_debug):
+		state_label_debug.visible = OS.is_debug_build()
 
 
 func update_from_resource() -> void:
@@ -81,6 +90,7 @@ func update_target_position(target_position: Vector3) -> void:
 
 
 func _on_idle_state_state_entered() -> void:
+	state_label_debug.text = "Idle"
 	sight_ray_cast.enabled = true
 	sprite.play(resource.default_animation)
 
@@ -103,12 +113,22 @@ func _on_idle_state_state_physics_processing(delta: float) -> void:
 
 
 func _on_chase_state_state_entered() -> void:
+	state_label_debug.text = "Chase"
 	sight_ray_cast.enabled = false
 	attack_ray_cast.enabled = true
 	sprite.play(resource.default_animation)
 
 
 func _on_chase_state_state_physics_processing(delta: float) -> void:
+	if attack_ray_cast.is_colliding() and can_attack:
+		var collider := attack_ray_cast.get_collider()
+
+		if collider is Player:
+			state_chart.send_event(EnemyStateEvent.ATTACK)
+			velocity = Vector3.ZERO
+			move_and_slide()
+			return
+
 	var current_position := global_transform.origin
 	var next_position := nav_agent.get_next_path_position()
 	var new_velocity = current_position.direction_to(next_position).normalized() * speed * delta
@@ -117,12 +137,6 @@ func _on_chase_state_state_physics_processing(delta: float) -> void:
 
 	if global_position != next_position:
 		look_at(next_position)
-
-	if attack_ray_cast.is_colliding() and can_attack:
-		var collider := attack_ray_cast.get_collider()
-
-		if collider is Player:
-			state_chart.send_event(EnemyStateEvent.ATTACK)
 
 
 func _on_attack_state_state_exited() -> void:
@@ -134,6 +148,8 @@ func _on_attack_timer_timeout() -> void:
 
 
 func _on_attack_state_state_entered() -> void:
+	state_label_debug.text = "Attack"
+
 	can_attack = false
 	var attack_timeout := randf_range(resource.attack_timeout * 0.5, resource.attack_timeout * 2.0)
 	attack_timer.start(attack_timeout)
@@ -195,12 +211,13 @@ func get_current_audio_stream() -> AudioStream:
 
 
 func _on_pain_state_state_entered() -> void:
+	state_label_debug.text = "Pain"
 	play_sound(resource.pain_sound, get_current_audio_stream() != resource.pain_sound)
 	sprite.play(resource.pain_animation)
 
 
 func _on_death_state_state_entered() -> void:
-	velocity = Vector3.ZERO
+	state_label_debug.text = "Death"
 	collision_shape.disabled = true
 	play_sound(resource.death_sound, true)
 	sprite.play(resource.death_animation)
@@ -225,7 +242,14 @@ func _on_navigation_agent_3d_velocity_computed(safe_velocity: Vector3) -> void:
 func _on_animated_sprite_3d_frame_changed() -> void:
 	if is_instance_valid(sprite) and sprite.animation == resource.attack_animation:
 		if sprite.frame == resource.attack_frame:
-			Game.spawn_projectile(self, projectile_spawn_point, FIREBALL_PROJECTILE)
+			match resource.attack_type:
+				EnemyResource.AttackType.Ranged:
+					Game.spawn_projectile(self, projectile_spawn_point, FIREBALL_PROJECTILE)
+				EnemyResource.AttackType.Melee:
+					if attack_ray_cast.is_colliding():
+						var collider := attack_ray_cast.get_collider()
+						if collider is Player:
+							collider.take_damage(resource.melee_damage, false)
 
 
 func _on_idle_state_state_exited() -> void:

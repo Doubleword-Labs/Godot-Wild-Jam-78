@@ -1,9 +1,16 @@
 extends Resource
 class_name EnemyResource
 
+enum AttackType {
+	Melee,
+	Ranged,
+}
+
 @export_group("Stats")
 @export var attack_range := 5.0
 @export var attack_timeout := 2.0
+@export var attack_type := AttackType.Ranged
+@export var melee_damage := 10.0
 @export var sight_range := 15.0
 @export var speed := 100.0
 @export var health := 10.0

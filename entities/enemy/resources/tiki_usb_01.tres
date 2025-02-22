@@ -188,6 +188,7 @@ animations = [{
 script = ExtResource("1_2lyl1")
 attack_range = 50.0
 attack_timeout = 2.0
+attack_type = 1
 sight_range = 100.0
 speed = 100.0
 health = 45.0
