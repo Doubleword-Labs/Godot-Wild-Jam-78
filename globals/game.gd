@@ -103,8 +103,9 @@ func free_spawnables() -> void:
 
 
 func reload():
-	free_spawnables()
-	pause(false)
+	free_spawnables()	
+	if $".".name == "Pause":
+		pause(false)
 	can_pause = true
 
 
