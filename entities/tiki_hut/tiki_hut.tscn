@@ -1,8 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://byp34cina6f3c"]
+[gd_scene load_steps=9 format=3 uid="uid://byp34cina6f3c"]
 
 [ext_resource type="PackedScene" uid="uid://bbfxa13m2nqut" path="res://entities/tiki_hut/tiki_hut_base.tscn" id="1_s1c6u"]
 [ext_resource type="Script" uid="uid://ckyxw34qa81rv" path="res://entities/tiki_hut/tiki_hut.gd" id="1_tlqxp"]
 [ext_resource type="FontFile" uid="uid://db4p37abih74f" path="res://assets/fonts/Sigmar/Sigmar-Regular.ttf" id="3_1ctbc"]
+[ext_resource type="Script" uid="uid://komh7f1ob2v7" path="res://addons/purely-ambience/Audio.gd" id="4_baumy"]
+[ext_resource type="AudioStream" uid="uid://dsb5x7cr2nror" path="res://assets/sfx/ambience/shop/shop-wind-chimes.wav" id="5_4o4a8"]
 
 [sub_resource type="Animation" id="Animation_tlqxp"]
 length = 0.001
@@ -62,5 +64,10 @@ libraries = {
 &"": SubResource("AnimationLibrary_1ctbc")
 }
 autoplay = "spawn"
+
+[node name="Ambient-Source" type="Node3D" parent="."]
+script = ExtResource("4_baumy")
+audio_stream = ExtResource("5_4o4a8")
+metadata/_custom_type_script = "uid://komh7f1ob2v7"
 
 [editable path="tiki_hut"]
