@@ -76,7 +76,7 @@ func _update_melee_weapon():
 	if not is_instance_valid(MELEE_WEAPON_RESOURCE):
 		return
 
-	var resource := MELEE_WEAPON_RESOURCE
+	var resource: WeaponResource = MELEE_WEAPON_RESOURCE
 
 	if is_instance_valid(melee_sprite):
 		melee_sprite.sprite_frames = resource.sprite_frames
