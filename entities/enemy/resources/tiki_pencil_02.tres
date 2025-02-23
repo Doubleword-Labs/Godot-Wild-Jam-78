@@ -204,4 +204,5 @@ awake_sound = ExtResource("1_pt1iy")
 death_sound = ExtResource("2_62lxd")
 roam_sound = ExtResource("4_v3ih3")
 pain_sound = ExtResource("3_4u50u")
+chase_animation_frame = 0
 metadata/_custom_type_script = "uid://ch7dh0une2ae"
