@@ -21,4 +21,4 @@ func _on_timer_timeout() -> void:
 	else:
 		scroll.scroll_vertical -= 1
 	
-	print(scroll.scroll_vertical)
+	#print(scroll.scroll_vertical)

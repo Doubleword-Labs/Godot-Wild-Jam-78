@@ -85,13 +85,37 @@ https://archive.org/details/sound-ideas-sampler-library-wav.-7z
 Music
 https://pixabay.com/music/beats-jungle-story-168459/
 
-Font
+Fonts
 https://fonts.google.com/specimen/Sigmar"
 horizontal_alignment = 1
 
 [node name="PushSpacing" type="Label" parent="ScrollContainer/VBoxContainer"]
 layout_mode = 2
 text = "                                                                                                                                                                                                                                                                                "
+
+[node name="PushLine" type="Label" parent="ScrollContainer/VBoxContainer"]
+layout_mode = 2
+text = "             
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                                                                                                                                                                                                                                                                   "
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 0.025
