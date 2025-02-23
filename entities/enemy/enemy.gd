@@ -374,10 +374,13 @@ func _fallback_prediction(
 
 
 func _melee_attack() -> void:
-	if attack_ray_cast.is_colliding():
-		var collider := attack_ray_cast.get_collider()
-		if collider is Player:
-			collider.take_damage(resource.melee_damage, false)
+	var player := Game.get_player()
+	if not is_instance_valid(player):
+		return
+
+	var distance_to_player := player.global_position.distance_to(global_position)
+	if distance_to_player <= resource.attack_range:
+		player.take_damage(resource.melee_damage, false)
 
 
 func _on_idle_state_state_exited() -> void:

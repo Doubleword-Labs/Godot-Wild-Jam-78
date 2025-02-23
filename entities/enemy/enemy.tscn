@@ -386,6 +386,7 @@ font = ExtResource("43_dtkp3")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.6, 0)
 
 [node name="DamageLabel" type="Label3D" parent="DamageLabels"]
+visible = false
 pixel_size = 0.01
 billboard = 1
 modulate = Color(1, 1, 0, 1)

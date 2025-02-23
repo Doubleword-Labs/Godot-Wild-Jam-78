@@ -179,7 +179,7 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 
-func take_damage(damage: int, from_player: bool) -> void:
+func take_damage(damage: float, from_player: bool) -> void:
 	if !from_player:
 		printt("took damage", damage)
 		Game.player_hud.erase_damage_transparency = 1
