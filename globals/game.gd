@@ -44,7 +44,6 @@ func _process(_delta: float) -> void:
 func pause(to_pause: bool) -> void:
 	if OS.get_name() == "Web":
 		AudioPlayer.squelch_sfx = true
-		await get_tree().create_timer(0.25).timeout
 
 	paused = to_pause
 	get_tree().paused = to_pause
