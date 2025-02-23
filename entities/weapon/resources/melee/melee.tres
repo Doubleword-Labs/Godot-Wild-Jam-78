@@ -1,7 +1,13 @@
-[gd_resource type="Resource" script_class="WeaponResource" load_steps=3 format=3 uid="uid://cmrf6byj77uub"]
+[gd_resource type="Resource" script_class="WeaponResource" load_steps=9 format=3 uid="uid://cmrf6byj77uub"]
 
 [ext_resource type="Script" uid="uid://d0c7jub8ujtvp" path="res://entities/weapon/weapon_resource.gd" id="1_6e4cu"]
+[ext_resource type="AudioStream" uid="uid://bayvhwivxowc1" path="res://assets/sfx/weapons/melee/attack/attack-01.wav" id="1_vs1x1"]
 [ext_resource type="SpriteFrames" uid="uid://718okdqdu0fk" path="res://entities/weapon/resources/melee/sprite_frames.tres" id="2_32qh5"]
+[ext_resource type="AudioStream" uid="uid://c7u61cils2iio" path="res://assets/sfx/weapons/melee/attack/attack-02.wav" id="2_q0f2h"]
+[ext_resource type="AudioStream" uid="uid://ded3lcco2ymmb" path="res://assets/sfx/weapons/melee/attack/attack-03.wav" id="3_hprlt"]
+[ext_resource type="AudioStream" uid="uid://dby31081aofbo" path="res://assets/sfx/weapons/melee/attack/attack-04.wav" id="4_yp6s7"]
+[ext_resource type="AudioStream" uid="uid://bffyosh3nf2kv" path="res://assets/sfx/weapons/melee/attack/attack-05.wav" id="5_wnj8u"]
+[ext_resource type="AudioStream" uid="uid://bt433fsgycjgl" path="res://assets/sfx/weapons/melee/attack/attack-06.wav" id="6_5o405"]
 
 [resource]
 script = ExtResource("1_6e4cu")
@@ -15,5 +21,5 @@ attack_animation = "punch"
 sprite_position = Vector2(350, 408)
 sprite_scale = Vector2(0.473633, 0.473633)
 attack_shaker_duration = 0.1
-attack_sounds = Array[AudioStream]([])
+attack_sounds = Array[AudioStream]([ExtResource("1_vs1x1"), ExtResource("2_q0f2h"), ExtResource("3_hprlt"), ExtResource("4_yp6s7"), ExtResource("5_wnj8u"), ExtResource("6_5o405")])
 metadata/_custom_type_script = "uid://d0c7jub8ujtvp"

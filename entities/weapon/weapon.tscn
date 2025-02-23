@@ -12,3 +12,4 @@ resource = ExtResource("2_g83n5")
 position = Vector2(576, 412)
 scale = Vector2(0.473633, 0.473633)
 sprite_frames = ExtResource("3_o0hjo")
+frame_progress = 0.462034

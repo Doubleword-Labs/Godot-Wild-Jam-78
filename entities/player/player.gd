@@ -130,6 +130,8 @@ func _melee_attack() -> void:
 	attack_timer.start(melee_weapon.attack_timeout)
 	player_hud.melee_attack()
 
+	AudioPlayer.play_sfx_array(melee_weapon.attack_sounds)
+
 	melee_ray_cast.force_raycast_update()
 	if melee_ray_cast.is_colliding():
 		var hit = melee_ray_cast.get_collider()
