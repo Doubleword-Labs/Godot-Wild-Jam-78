@@ -33,7 +33,7 @@ var spawn_count := 0
 func _ready() -> void:
 	if Engine.is_editor_hint():
 		return
-		
+
 	spawnlevel(Waves.current_wave)
 	Game.stationery_gui.text = "Stationery: " + str(len(Waves.spawnlist))
 
@@ -162,13 +162,16 @@ func get_spawn_area_bounds() -> Vector2i:
 
 
 func get_spawn_target() -> Node3D:
-	if not is_instance_valid(get_node_or_null("/root/Enemies")):
+	var level_node := get_tree().get_first_node_in_group("level")
+
+	if not is_instance_valid(level_node.get_node_or_null("Enemies")):
 		var spawn_target := Node3D.new()
 		spawn_target.name = "Enemies"
-		get_tree().root.add_child(spawn_target)
+		level_node.add_child(spawn_target)
 
-	return get_node("/root/Enemies")
-	
+	return level_node.get_node("Enemies")
+
+
 func spawnlevel(level: int) -> void:
 	spawn_limit = Waves.get_spawn_limit()
 	spawn_amount = Waves.get_spawn_amount()

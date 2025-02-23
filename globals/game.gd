@@ -75,7 +75,14 @@ func _physics_process(_delta: float) -> void:
 
 
 func get_projectiles_parent() -> Node:
-	return get_tree().root
+	var level_node := get_tree().get_first_node_in_group("level")
+
+	if not is_instance_valid(level_node.get_node_or_null("Projectiles")):
+		var node := Node3D.new()
+		node.name = "Projectiles"
+		level_node.add_child(node)
+
+	return level_node.get_node("Projectiles")
 
 
 func spawn_projectile(

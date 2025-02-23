@@ -8,6 +8,8 @@ var shop_buy = "res://entities/player_hud/player_hud_shop_random_buff.tscn"
 
 
 func _ready() -> void:
+	add_to_group("level")
+
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	if Waves.shop_time:
 		Game.wave_gui.text = "Shop Time!"
