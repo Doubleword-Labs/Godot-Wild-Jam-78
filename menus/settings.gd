@@ -1,16 +1,17 @@
-extends Node2D
+extends CanvasLayer
 
 var title_path := "res://menus/title.tscn"
 
-@onready var master_volume = $SoundSettings/Master/MasterVolume
-@onready var music_volume = $SoundSettings/Music/MusicVolume
-@onready var sfx_volume = $SoundSettings/SFX/SFXVolume
+@onready var master_volume = $Master/MasterVolume
+@onready var music_volume = $Music/MusicVolume
+@onready var sfx_volume = $SFX/SFXVolume
 @onready var mouse_sensitivity = $MouseSensitivityLabel/MouseSensitivity
 @onready var head_bob = $HeadBobLabel/HeadBob
 
 var sfx_ready = false
 
 func _ready() -> void:
+	process_mode = Node.PROCESS_MODE_ALWAYS
 	master_volume.value = AudioPlayer.default_volumes[0]
 	music_volume.value = AudioPlayer.default_volumes[1]
 	sfx_volume.value = AudioPlayer.default_volumes[2]
@@ -38,9 +39,13 @@ func _on_sfx_volume_value_changed(value: float) -> void:
 
 func _on_mouse_sensitivity_value_changed(value: float) -> void:
 	Prefs.mouse_sensitivity = value
-	print(value)
+	var player = Game.get_player()
+	if (player != null):
+		player.mouse_look_sens = value
 
 
 func _on_head_bob_value_changed(value: float) -> void:
 	Prefs.head_bob = value
-	print(value)
+	var player = Game.get_player()
+	if (player != null):
+		player.head_bob_speed = value

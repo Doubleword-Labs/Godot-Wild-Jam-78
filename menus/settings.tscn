@@ -4,7 +4,7 @@
 [ext_resource type="FontFile" uid="uid://db4p37abih74f" path="res://assets/fonts/Sigmar/Sigmar-Regular.ttf" id="2_0uirt"]
 [ext_resource type="Texture2D" uid="uid://cgoar483cgs6u" path="res://assets/background/credits_bg.png" id="2_hjugb"]
 
-[node name="Settings" type="Node2D"]
+[node name="Settings" type="CanvasLayer"]
 script = ExtResource("1_kot5a")
 
 [node name="TextureRect" type="TextureRect" parent="."]
@@ -28,9 +28,7 @@ theme_override_fonts/font = ExtResource("2_0uirt")
 theme_override_font_sizes/font_size = 75
 text = "SETUP"
 
-[node name="SoundSettings" type="Node" parent="."]
-
-[node name="Audio" type="Label" parent="SoundSettings"]
+[node name="Audio" type="Label" parent="."]
 offset_left = 489.0
 offset_top = 137.0
 offset_right = 635.0
@@ -40,7 +38,7 @@ theme_override_fonts/font = ExtResource("2_0uirt")
 theme_override_font_sizes/font_size = 40
 text = "Audio"
 
-[node name="Game" type="Label" parent="SoundSettings"]
+[node name="Game" type="Label" parent="."]
 offset_left = 489.0
 offset_top = 346.0
 offset_right = 635.0
@@ -50,7 +48,7 @@ theme_override_fonts/font = ExtResource("2_0uirt")
 theme_override_font_sizes/font_size = 40
 text = "Game"
 
-[node name="Master" type="Label" parent="SoundSettings"]
+[node name="Master" type="Label" parent="."]
 offset_left = 399.0
 offset_top = 188.0
 offset_right = 545.0
@@ -60,7 +58,7 @@ theme_override_fonts/font = ExtResource("2_0uirt")
 theme_override_font_sizes/font_size = 40
 text = "Master"
 
-[node name="MasterVolume" type="HScrollBar" parent="SoundSettings/Master"]
+[node name="MasterVolume" type="HScrollBar" parent="Master"]
 layout_mode = 0
 offset_left = 162.0
 offset_top = 21.0
@@ -68,7 +66,7 @@ offset_right = 315.0
 offset_bottom = 50.0
 max_value = 1.0
 
-[node name="Music" type="Label" parent="SoundSettings"]
+[node name="Music" type="Label" parent="."]
 offset_left = 416.0
 offset_top = 234.0
 offset_right = 538.0
@@ -78,7 +76,7 @@ theme_override_fonts/font = ExtResource("2_0uirt")
 theme_override_font_sizes/font_size = 40
 text = "Music"
 
-[node name="MusicVolume" type="HScrollBar" parent="SoundSettings/Music"]
+[node name="MusicVolume" type="HScrollBar" parent="Music"]
 layout_mode = 0
 offset_left = 145.0
 offset_top = 19.0
@@ -86,7 +84,7 @@ offset_right = 298.0
 offset_bottom = 48.0
 max_value = 1.0
 
-[node name="SFX" type="Label" parent="SoundSettings"]
+[node name="SFX" type="Label" parent="."]
 offset_left = 453.0
 offset_top = 276.0
 offset_right = 532.0
@@ -96,7 +94,7 @@ theme_override_fonts/font = ExtResource("2_0uirt")
 theme_override_font_sizes/font_size = 40
 text = "SFX"
 
-[node name="SFXVolume" type="HScrollBar" parent="SoundSettings/SFX"]
+[node name="SFXVolume" type="HScrollBar" parent="SFX"]
 layout_mode = 0
 offset_left = 109.0
 offset_top = 22.0
@@ -141,7 +139,7 @@ offset_left = 385.0
 offset_top = 22.0
 offset_right = 538.0
 offset_bottom = 48.0
-min_value = 0.1
+min_value = 0.001
 max_value = 150.0
 value = 1.0
 
@@ -156,9 +154,9 @@ theme_override_fonts/font = ExtResource("2_0uirt")
 theme_override_font_sizes/font_size = 30
 text = "RETURN"
 
-[connection signal="value_changed" from="SoundSettings/Master/MasterVolume" to="." method="_on_master_volume_value_changed"]
-[connection signal="value_changed" from="SoundSettings/Music/MusicVolume" to="." method="_on_music_volume_value_changed"]
-[connection signal="value_changed" from="SoundSettings/SFX/SFXVolume" to="." method="_on_sfx_volume_value_changed"]
+[connection signal="value_changed" from="Master/MasterVolume" to="." method="_on_master_volume_value_changed"]
+[connection signal="value_changed" from="Music/MusicVolume" to="." method="_on_music_volume_value_changed"]
+[connection signal="value_changed" from="SFX/SFXVolume" to="." method="_on_sfx_volume_value_changed"]
 [connection signal="value_changed" from="MouseSensitivityLabel/MouseSensitivity" to="." method="_on_mouse_sensitivity_value_changed"]
 [connection signal="value_changed" from="HeadBobLabel/HeadBob" to="." method="_on_head_bob_value_changed"]
 [connection signal="pressed" from="Return" to="." method="_on_return_pressed"]

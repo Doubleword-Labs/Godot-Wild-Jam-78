@@ -50,8 +50,10 @@ func pause(to_pause: bool) -> void:
 
 	if to_pause:
 		process_mode = Node.PROCESS_MODE_WHEN_PAUSED
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	else:
 		process_mode = Node.PROCESS_MODE_PAUSABLE
+		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 		
 	AudioPlayer.squelch_sfx = false	
 
