@@ -2,7 +2,7 @@ extends Node
 
 signal wave_started(wave_number: int)
 
-var current_wave = 0:
+var current_wave = 1:
 	set(value):
 		current_wave = value
 		wave_started.emit.call_deferred(current_wave)
