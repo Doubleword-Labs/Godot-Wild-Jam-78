@@ -19,7 +19,9 @@ func _ready() -> void:
 	head_bob.value = Prefs.head_bob
 	sfx_ready = true
 
-func _on_return_pressed() -> void:	
+func _on_return_pressed() -> void:
+	if $".".name == "Pause":
+		Game.pause(false)
 	get_tree().change_scene_to_file(title_path)
 
 

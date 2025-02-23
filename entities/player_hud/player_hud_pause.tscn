@@ -3,13 +3,24 @@
 [ext_resource type="FontFile" uid="uid://db4p37abih74f" path="res://assets/fonts/Sigmar/Sigmar-Regular.ttf" id="1_2n37o"]
 [ext_resource type="Script" uid="uid://f4hovebph03t" path="res://menus/settings.gd" id="1_x4gdg"]
 
-[node name="Node" type="CanvasLayer"]
+[node name="Pause" type="CanvasLayer"]
 script = ExtResource("1_x4gdg")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 offset_right = 1154.0
 offset_bottom = 647.0
 color = Color(0, 0, 0, 0.247059)
+
+[node name="Return" type="Button" parent="ColorRect"]
+offset_left = 433.0
+offset_top = 541.0
+offset_right = 687.0
+offset_bottom = 637.0
+size_flags_horizontal = 3
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("1_2n37o")
+theme_override_font_sizes/font_size = 30
+text = "Back to Title"
 
 [node name="Label" type="Label" parent="."]
 offset_left = 395.0
@@ -34,9 +45,9 @@ text = "Audio"
 
 [node name="Game" type="Label" parent="."]
 offset_left = 489.0
-offset_top = 382.0
+offset_top = 378.0
 offset_right = 635.0
-offset_bottom = 448.0
+offset_bottom = 444.0
 theme_override_constants/outline_size = 10
 theme_override_fonts/font = ExtResource("1_2n37o")
 theme_override_font_sizes/font_size = 40
@@ -98,9 +109,9 @@ max_value = 1.0
 
 [node name="MouseSensitivityLabel" type="Label" parent="."]
 offset_left = 181.0
-offset_top = 430.0
+offset_top = 426.0
 offset_right = 552.0
-offset_bottom = 496.0
+offset_bottom = 492.0
 theme_override_constants/outline_size = 10
 theme_override_fonts/font = ExtResource("1_2n37o")
 theme_override_font_sizes/font_size = 40
@@ -118,9 +129,9 @@ value = 0.01
 
 [node name="HeadBobLabel" type="Label" parent="."]
 offset_left = 183.0
-offset_top = 481.0
+offset_top = 477.0
 offset_right = 554.0
-offset_bottom = 547.0
+offset_bottom = 543.0
 theme_override_constants/outline_size = 10
 theme_override_fonts/font = ExtResource("1_2n37o")
 theme_override_font_sizes/font_size = 40
@@ -137,6 +148,7 @@ min_value = 0.001
 max_value = 150.0
 value = 1.0
 
+[connection signal="pressed" from="ColorRect/Return" to="." method="_on_return_pressed"]
 [connection signal="value_changed" from="Master/MasterVolume" to="." method="_on_master_volume_value_changed"]
 [connection signal="value_changed" from="Music/MusicVolume" to="." method="_on_music_volume_value_changed"]
 [connection signal="value_changed" from="SFX/SFXVolume" to="." method="_on_sfx_volume_value_changed"]
