@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://c6l8ugfe6wxid"
-path="res://.godot/imported/fire.wav-a48ab64d97a1478f8b32fd052dc3e34d.sample"
+path="res://.godot/imported/fire-1.wav-70c049804fb3340aab455bbda5774731.sample"
 
 [deps]
 
-source_file="res://assets/sfx/weapons/staple_shotgun/fire.wav"
-dest_files=["res://.godot/imported/fire.wav-a48ab64d97a1478f8b32fd052dc3e34d.sample"]
+source_file="res://assets/sfx/weapons/staple_shotgun/fire-1.wav"
+dest_files=["res://.godot/imported/fire-1.wav-70c049804fb3340aab455bbda5774731.sample"]
 
 [params]
 

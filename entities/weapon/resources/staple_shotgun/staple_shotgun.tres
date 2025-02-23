@@ -1,10 +1,11 @@
-[gd_resource type="Resource" script_class="WeaponResource" load_steps=10 format=3 uid="uid://b2rkwd640cxm3"]
+[gd_resource type="Resource" script_class="WeaponResource" load_steps=11 format=3 uid="uid://b2rkwd640cxm3"]
 
 [ext_resource type="Script" uid="uid://bbjh5cgq0yrbt" path="res://addons/shaker/data/Vector3/BaseShakerType3D.gd" id="1_k3fsy"]
 [ext_resource type="Script" uid="uid://cj2m674mnjyfi" path="res://addons/shaker/data/Vector3/ShakerTypeRandom3D.gd" id="2_085cr"]
 [ext_resource type="Script" uid="uid://cvjlajlftts0q" path="res://addons/shaker/data/Vector3/ShakerPreset3D.gd" id="3_tssf7"]
-[ext_resource type="AudioStream" uid="uid://c6l8ugfe6wxid" path="res://assets/sfx/weapons/staple_shotgun/fire.wav" id="4_1dq6v"]
+[ext_resource type="AudioStream" uid="uid://c6l8ugfe6wxid" path="res://assets/sfx/weapons/staple_shotgun/fire-1.wav" id="4_085cr"]
 [ext_resource type="Resource" uid="uid://bnwocgopvps0t" path="res://entities/projectile/resources/staple.tres" id="5_lllmr"]
+[ext_resource type="AudioStream" uid="uid://b58o867oct8si" path="res://assets/sfx/weapons/staple_shotgun/fire-2.wav" id="5_tssf7"]
 [ext_resource type="Script" uid="uid://d0c7jub8ujtvp" path="res://entities/weapon/weapon_resource.gd" id="6_evy2r"]
 [ext_resource type="SpriteFrames" uid="uid://dtlpytvs5yk3p" path="res://entities/weapon/resources/staple_shotgun/sprite_frames.tres" id="7_wb2av"]
 
@@ -45,5 +46,5 @@ sprite_position = Vector2(815, 412)
 sprite_scale = Vector2(0.473633, 0.473633)
 attack_shaker_preset = SubResource("Resource_vd3mu")
 attack_shaker_duration = 0.2
-attack_sounds = Array[AudioStream]([ExtResource("4_1dq6v")])
+attack_sounds = Array[AudioStream]([ExtResource("4_085cr"), ExtResource("5_tssf7")])
 metadata/_custom_type_script = "uid://d0c7jub8ujtvp"
