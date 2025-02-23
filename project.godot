@@ -26,6 +26,7 @@ MusicPlayer="*res://globals/music_player.tscn"
 Waves="*res://globals/waves.gd"
 Buff="*res://globals/buff.gd"
 Shaker="*res://addons/shaker/src/Shaker.gd"
+Prefs="*res://globals/prefs.gd"
 
 [display]
 

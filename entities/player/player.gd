@@ -53,6 +53,9 @@ func _ready() -> void:
 	if Buff.player_ogre:
 		health = Buff.player_ogre_amount
 		Game.hp_gui.value = health
+		
+	mouse_look_sens = Prefs.mouse_sensitivity
+	head_bob_speed = Prefs.head_bob
 
 
 func _request_weapon(index: int) -> void:
