@@ -67,11 +67,7 @@ var squelch_sfx = false
 
 
 func update_volume(id, value):
-	if value == 0:
-		AudioServer.set_bus_mute(id, true)
-	else:
-		AudioServer.set_bus_mute(id, false)
-		AudioServer.set_bus_volume_db(id, linear_to_db(value))
+	AudioServer.set_bus_volume_db(id, linear_to_db(value))
 
 
 func play_music():

@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Jason Drawn - Never Stationery"
-run/main_scene="uid://byx6t8ewapqg1"
+run/main_scene="uid://tohqtj05ku6f"
 config/features=PackedStringArray("4.4", "Forward Plus")
 boot_splash/image="uid://gli4y8kdimw3"
 config/icon="uid://dkl434niu7rwj"
