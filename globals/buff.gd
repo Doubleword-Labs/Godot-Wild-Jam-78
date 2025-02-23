@@ -18,7 +18,7 @@ var weapon_minigun := false:
 		if value:
 			enable_player_weapon(1)
 
-var player_ogre_amount := 150
+var player_ogre_amount := 200
 
 
 func reset_buffs():
