@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://dx8ncp3g3sfst"]
+[gd_scene load_steps=4 format=3 uid="uid://dx8ncp3g3sfst"]
 
 [ext_resource type="FontFile" uid="uid://db4p37abih74f" path="res://assets/fonts/Sigmar/Sigmar-Regular.ttf" id="1_adefy"]
 [ext_resource type="Script" uid="uid://bi6hknne5net5" path="res://entities/player_hud/player_hud_lose.gd" id="1_m0aqb"]
+[ext_resource type="Texture2D" uid="uid://bj0k3dy1ne7lv" path="res://assets/gui/erase_damage/player_erase_damage_v3_HUD.png" id="3_la0gd"]
 
 [node name="Lose" type="CanvasLayer"]
 script = ExtResource("1_m0aqb")
@@ -23,6 +24,10 @@ theme_override_fonts/font = ExtResource("1_adefy")
 theme_override_font_sizes/font_size = 100
 text = "Jason Drawn
   < Erased! >"
+
+[node name="PlayerEraseDamageV3Hud" type="Sprite2D" parent="."]
+position = Vector2(576, 324)
+texture = ExtResource("3_la0gd")
 
 [node name="WaveAgain" type="Button" parent="."]
 offset_left = 138.0
