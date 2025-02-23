@@ -82,7 +82,6 @@ func _update_melee_weapon():
 		melee_sprite.sprite_frames = resource.sprite_frames
 		melee_sprite.position = resource.sprite_position
 		melee_sprite.scale = resource.sprite_scale
-		melee_sprite.play(resource.idle_animation)
 
 
 func _on_wipe_out_damage_timeout() -> void:
