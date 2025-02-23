@@ -17,6 +17,7 @@ func _ready() -> void:
 
 	if is_instance_valid(ambient_source) and is_instance_valid(ambient_source.audio_player_node):
 		ambient_source.audio_player_node.bus = "SFX"
+		ambient_source.player_node = Game.get_player()
 
 
 func _exit_tree() -> void:

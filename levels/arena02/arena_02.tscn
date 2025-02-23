@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://ceua3g70lcq81"]
+[gd_scene load_steps=23 format=3 uid="uid://ceua3g70lcq81"]
 
 [ext_resource type="Script" uid="uid://gta2qv6v5bdy" path="res://levels/level.gd" id="1_sof8r"]
 [ext_resource type="PackedScene" uid="uid://cvf7653hiknvm" path="res://entities/player/player.tscn" id="2_patpq"]
@@ -9,6 +9,8 @@
 [ext_resource type="Resource" uid="uid://bbyony6hw2axm" path="res://entities/enemy/resources/tiki_pencil_01.tres" id="7_q6qsw"]
 [ext_resource type="Resource" uid="uid://bxfc1w7qg63t0" path="res://entities/enemy/resources/tiki_pencil_02.tres" id="8_vdk6s"]
 [ext_resource type="Resource" uid="uid://d4fgyepouyfb5" path="res://entities/enemy/resources/tiki_usb_01.tres" id="9_patpq"]
+[ext_resource type="Script" uid="uid://komh7f1ob2v7" path="res://addons/purely-ambience/Audio.gd" id="10_ml8i0"]
+[ext_resource type="AudioStream" uid="uid://csf1h5qocs1y6" path="res://assets/sfx/ambience/wind/wind-ambience-1.wav" id="11_3vlcc"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_patpq"]
 sky_top_color = Color(0.168627, 0.752941, 0.811765, 1)
@@ -127,5 +129,10 @@ spawn_amount = 5
 [node name="CollisionShape3D" type="CollisionShape3D" parent="LavaArea"]
 transform = Transform3D(7.05273, 0, 0, 0, 1, 0, 0, 0, 14550.3, 0, -6.19328, 0)
 shape = SubResource("BoxShape3D_3vlcc")
+
+[node name="Ambient-Source" type="Node3D" parent="."]
+script = ExtResource("10_ml8i0")
+audio_stream = ExtResource("11_3vlcc")
+metadata/_custom_type_script = "uid://komh7f1ob2v7"
 
 [connection signal="body_entered" from="LavaArea" to="." method="_on_lava_area_body_entered"]

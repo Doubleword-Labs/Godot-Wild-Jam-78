@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://c065d6nqro7wq"]
+[gd_scene load_steps=24 format=3 uid="uid://c065d6nqro7wq"]
 
 [ext_resource type="Script" uid="uid://gta2qv6v5bdy" path="res://levels/level.gd" id="1_qh4mo"]
 [ext_resource type="PackedScene" uid="uid://cvf7653hiknvm" path="res://entities/player/player.tscn" id="2_878re"]
@@ -10,6 +10,8 @@
 [ext_resource type="Resource" uid="uid://bxfc1w7qg63t0" path="res://entities/enemy/resources/tiki_pencil_02.tres" id="8_i6axb"]
 [ext_resource type="Resource" uid="uid://cv8d8rwsh3weu" path="res://entities/enemy/resources/tiki_mug_01.tres" id="10_5fjfq"]
 [ext_resource type="Resource" uid="uid://d4fgyepouyfb5" path="res://entities/enemy/resources/tiki_usb_01.tres" id="10_nwll6"]
+[ext_resource type="Script" uid="uid://komh7f1ob2v7" path="res://addons/purely-ambience/Audio.gd" id="11_tsj4a"]
+[ext_resource type="AudioStream" uid="uid://csf1h5qocs1y6" path="res://assets/sfx/ambience/wind/wind-ambience-1.wav" id="12_gyn0q"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_5fjfq"]
 sky_top_color = Color(0.168627, 0.752941, 0.811765, 1)
@@ -178,3 +180,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.89909, 0.07426, 13.5992)
 enemies = Array[ExtResource("5_wvknh")]([SubResource("Resource_fm2rd"), SubResource("Resource_uebnn"), SubResource("Resource_atwq1"), SubResource("Resource_yu7i2")])
 spawn_limit = 20
 spawn_amount = 5
+
+[node name="Ambient-Source" type="Node3D" parent="."]
+script = ExtResource("11_tsj4a")
+audio_stream = ExtResource("12_gyn0q")
+metadata/_custom_type_script = "uid://komh7f1ob2v7"
