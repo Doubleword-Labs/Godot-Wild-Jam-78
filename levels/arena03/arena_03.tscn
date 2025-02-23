@@ -78,7 +78,7 @@ resource = ExtResource("10_5fjfq")
 spawn_rate = 1.0
 metadata/_custom_type_script = ExtResource("5_wvknh")
 
-[node name="Arena01" type="Node3D"]
+[node name="Arena02" type="Node3D"]
 script = ExtResource("1_qh4mo")
 
 [node name="WorldEnvironment2" type="WorldEnvironment" parent="."]

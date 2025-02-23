@@ -17,8 +17,6 @@ var shop_weapon_buff_node: CanvasLayer
 var player_hud
 var erase_damage
 
-var spawnables := []
-
 var current_level := "res://levels/arena03/arena_03.tscn"
 
 var paused := false
@@ -97,19 +95,10 @@ func spawn_projectile(
 
 	get_projectiles_parent().add_child(projectile)
 	projectile.global_position = spawn_point.global_position
-	spawnables.append(projectile)
 	return projectile
 
 
-func free_spawnables() -> void:
-	for spawn in spawnables:
-		if spawn != null:
-			spawn.queue_free()
-	spawnables = []
-
-
 func reload():
-	free_spawnables()	
 	pause(false)
 	can_pause = true
 

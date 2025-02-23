@@ -11,10 +11,11 @@ func _ready() -> void:
 	AudioPlayer.play_music()
 
 
-func _load_audio_preferences():	
+func _load_audio_preferences():
 	AudioPlayer.update_volume(0, Prefs.master_volume)
 	AudioPlayer.update_volume(1, Prefs.music_volume)
 	AudioPlayer.update_volume(2, Prefs.sfx_volume)
+
 
 func _on_play_pressed() -> void:
 	Buff.reset_buffs()

@@ -74,7 +74,7 @@ metadata/_custom_type_script = ExtResource("6_np2gy")
 [sub_resource type="BoxShape3D" id="BoxShape3D_gcryc"]
 size = Vector3(1.02234, 1, 52.8417)
 
-[node name="Arena01" type="Node3D"]
+[node name="Arena02" type="Node3D"]
 script = ExtResource("1_wr23p")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]

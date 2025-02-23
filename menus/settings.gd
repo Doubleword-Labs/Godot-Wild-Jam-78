@@ -10,17 +10,18 @@ var title_path := "res://menus/title.tscn"
 
 var sfx_ready = false
 
+
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	master_volume.value = Prefs.master_volume
 	music_volume.value = Prefs.music_volume
 	sfx_volume.value = Prefs.sfx_volume
-	mouse_sensitivity.value = Prefs.mouse_sensitivity	
+	mouse_sensitivity.value = Prefs.mouse_sensitivity
 	head_bob.value = Prefs.head_bob
 	sfx_ready = true
 
-func _on_return_pressed() -> void:	
-	Game.free_spawnables()
+
+func _on_return_pressed() -> void:
 	Waves.current_wave = 1
 	get_tree().change_scene_to_file(title_path)
 
@@ -45,12 +46,11 @@ func _on_sfx_volume_value_changed(value: float) -> void:
 		AudioPlayer.play_sfx_array(AudioPlayer.player_damaged_sfx_arr)
 
 
-
 func _on_mouse_sensitivity_value_changed(value: float) -> void:
 	Prefs.mouse_sensitivity = value
 	Prefs.save()
 	var player = Game.get_player()
-	if (player != null):
+	if player != null:
 		player.mouse_look_sens = value
 
 
@@ -58,5 +58,5 @@ func _on_head_bob_value_changed(value: float) -> void:
 	Prefs.head_bob = value
 	Prefs.save()
 	var player = Game.get_player()
-	if (player != null):
+	if player != null:
 		player.head_bob_speed = value

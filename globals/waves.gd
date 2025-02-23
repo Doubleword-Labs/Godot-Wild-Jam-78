@@ -18,12 +18,14 @@ var levels = [
 var shop = "res://levels/shop/shop.tscn"
 var shop_time := false
 
+
 func set_level():
+	Game.reload()
 	get_tree().change_scene_to_file(levels[(current_wave - 1) % len(levels)])
 
 
 func set_shop():
-	if (Buff.is_shop_bought()):
+	if Buff.is_shop_bought():
 		Game.pause(false)
 		shop_time = false
 		set_level()
@@ -31,7 +33,7 @@ func set_shop():
 		get_tree().change_scene_to_file(shop)
 
 
-func exit_shop():	
+func exit_shop():
 	Game.pause(false)
 	shop_time = false
 	Waves.set_level()
@@ -39,15 +41,14 @@ func exit_shop():
 
 func get_spawn_limit():
 	var spawn_limit = ceil(current_wave / 4.0)
-	printt('spawn limit', spawn_limit)
+	printt("spawn limit", spawn_limit)
 	return spawn_limit
 
 
 func get_spawn_amount():
 	var spawn_amount = ceil(current_wave / 4.0)
-	printt('spawn_amount', spawn_amount)
+	printt("spawn_amount", spawn_amount)
 	return spawn_amount
-	
 
 
 func prune_spawnlist() -> void:

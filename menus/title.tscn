@@ -5,6 +5,7 @@
 [ext_resource type="FontFile" uid="uid://db4p37abih74f" path="res://assets/fonts/Sigmar/Sigmar-Regular.ttf" id="2_vmgax"]
 
 [node name="Title" type="Node2D"]
+process_mode = 3
 script = ExtResource("1_c33ia")
 
 [node name="TextureRect" type="TextureRect" parent="."]
