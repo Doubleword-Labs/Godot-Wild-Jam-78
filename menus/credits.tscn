@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://cgoar483cgs6u" path="res://assets/background/credits_bg.png" id="2_gknjt"]
 
 [node name="Credits" type="Node2D"]
+process_mode = 3
 script = ExtResource("1_jkw7x")
 
 [node name="TextureRect" type="TextureRect" parent="."]
