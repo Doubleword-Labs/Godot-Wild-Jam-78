@@ -19,7 +19,7 @@ radius = 0.1
 [resource]
 script = ExtResource("1_jydok")
 speed = 50.0
-impact_damage = 2.0
+impact_damage = 3.0
 area_damage = 0.0
 area_radius = 0.0
 spread = 2.0
