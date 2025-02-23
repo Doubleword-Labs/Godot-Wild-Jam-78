@@ -4,7 +4,7 @@ var levels: Array[String] = []
 
 
 func _ready() -> void:
-	if not OS.is_debug_build() or OS.has_feature("loading"):
+	if OS.has_feature("loading_screen"):
 		levels.append_array(Waves.levels)
 		levels.append(Waves.shop)
 

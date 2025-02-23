@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://c7614c1b6j20g"]
 
 [ext_resource type="Script" uid="uid://dwc4t04rung1d" path="res://entities/projectile/resources/staple/staple.gd" id="1_yvn5i"]
-[ext_resource type="Texture2D" uid="uid://btibcq5ord0nu" path="res://assets/weapons/stapler_shotgun/projectiles/shot_stapler01.png" id="2_q3r2i"]
+[ext_resource type="Texture2D" uid="uid://ws0dwlrjr25x" path="res://assets/weapons/stapler_shotgun/projectiles/shot_stapler02.png" id="2_q3r2i"]
 
 [node name="Staple" type="Node3D"]
 script = ExtResource("1_yvn5i")
