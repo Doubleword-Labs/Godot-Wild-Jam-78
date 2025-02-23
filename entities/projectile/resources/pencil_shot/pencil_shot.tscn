@@ -5,7 +5,7 @@
 [node name="PencilShot" type="Node3D"]
 
 [node name="Sprite" type="AnimatedSprite3D" parent="."]
-transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
 billboard = 2
 sprite_frames = ExtResource("1_ssm17")
 autoplay = "default"
