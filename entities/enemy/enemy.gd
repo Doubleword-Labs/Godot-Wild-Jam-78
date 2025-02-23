@@ -239,12 +239,19 @@ func _on_navigation_agent_3d_velocity_computed(safe_velocity: Vector3) -> void:
 	move_and_slide()
 
 
+func _get_projectile_resource() -> ProjectileResource:
+	if is_instance_valid(resource.projectile_resource):
+		return resource.projectile_resource
+	else:
+		return FIREBALL_PROJECTILE
+
+
 func _on_animated_sprite_3d_frame_changed() -> void:
 	if is_instance_valid(sprite) and sprite.animation == resource.attack_animation:
 		if sprite.frame == resource.attack_frame:
 			match resource.attack_type:
 				EnemyResource.AttackType.Ranged:
-					Game.spawn_projectile(self, projectile_spawn_point, FIREBALL_PROJECTILE)
+					Game.spawn_projectile(self, projectile_spawn_point, _get_projectile_resource())
 				EnemyResource.AttackType.Melee:
 					if attack_ray_cast.is_colliding():
 						var collider := attack_ray_cast.get_collider()

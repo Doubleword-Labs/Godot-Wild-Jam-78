@@ -24,6 +24,7 @@ enum AttackType {
 @export var attack_frame := 0
 @export var pain_animation := "pain"
 @export var death_animation := "death"
+@export var projectile_resource: ProjectileResource
 
 @export_group("Collisions")
 @export var collision_shape: Shape3D

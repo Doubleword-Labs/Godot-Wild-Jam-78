@@ -1,6 +1,6 @@
-[gd_resource type="Resource" script_class="ProjectileResource" load_steps=4 format=3 uid="uid://djq2wvnuu30jf"]
+[gd_resource type="Resource" script_class="ProjectileResource" load_steps=4 format=3 uid="uid://dr8kep7et8lca"]
 
-[ext_resource type="PackedScene" uid="uid://ctt3qrsd8rjrd" path="res://entities/projectile/resources/fireball/fireball.tscn" id="1_nk4q2"]
+[ext_resource type="PackedScene" uid="uid://b44y1ipp6k0rr" path="res://entities/projectile/resources/blue_orb/blue_orb.tscn" id="1_nk4q2"]
 [ext_resource type="Script" uid="uid://we358fsclmak" path="res://entities/projectile/projectile_resource.gd" id="2_wxix3"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_07r6x"]

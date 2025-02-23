@@ -29,3 +29,6 @@ shader_parameter/color4 = Color(1, 1, 1, 1)
 [node name="Fireball" type="MeshInstance3D"]
 mesh = SubResource("SphereMesh_xwps5")
 surface_material_override/0 = SubResource("ShaderMaterial_mqgc5")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+light_color = Color(1, 0.856547, 0.733152, 1)

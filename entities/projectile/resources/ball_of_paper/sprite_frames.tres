@@ -1,4 +1,4 @@
-[gd_resource type="SpriteFrames" load_steps=17 format=3 uid="uid://718okdqdu0fk"]
+[gd_resource type="SpriteFrames" load_steps=17 format=3 uid="uid://bjpwi2nbdu107"]
 
 [ext_resource type="Texture2D" uid="uid://ba0rar1s50w44" path="res://assets/player/black-and-white/JD_left_hand_punch_01/JD_left_hand_punch_00000.png" id="1_sg7en"]
 [ext_resource type="Texture2D" uid="uid://d33dooad8ovpi" path="res://assets/player/black-and-white/JD_left_hand_punch_01/JD_left_hand_punch_00001.png" id="2_l6466"]
