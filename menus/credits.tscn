@@ -58,98 +58,43 @@ theme_override_font_sizes/font_size = 35
 text = "Made by Deevus, Addsoul & NathanSDunn"
 horizontal_alignment = 1
 
-[node name="Font" type="Label" parent="ScrollContainer/VBoxContainer"]
+[node name="Text" type="Label" parent="ScrollContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/outline_size = 10
 theme_override_fonts/font = ExtResource("2_5jbn1")
 theme_override_font_sizes/font_size = 25
 text = "
-Shaders
-https://godotshaders.com/shader/stylized-flame/
-
 Models
 https://spline.design/
 
-Font
-https://fonts.google.com/specimen/Sigmar"
-horizontal_alignment = 1
-
-[node name="SFX" type="Label" parent="ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_constants/outline_size = 10
-theme_override_fonts/font = ExtResource("2_5jbn1")
-theme_override_font_sizes/font_size = 25
-text = "
 Sound Effects
 Deevus produced during this jam
 https://filmcow.itch.io/filmcow-sfx-2
 https://filmcow.itch.io/filmcow-sfx-4
 https://freesound.org/s/216057/
 https://freesound.org/s/779940/
-https://freesound.org/s/180149/"
-horizontal_alignment = 1
+https://freesound.org/s/180149/
+https://freesound.org/s/697751/
 
-[node name="Music" type="Label" parent="ScrollContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_constants/outline_size = 10
-theme_override_fonts/font = ExtResource("2_5jbn1")
-theme_override_font_sizes/font_size = 25
-text = "
+Ambience
+https://opengameart.org/content/mild-wind-background-noise
+https://opengameart.org/content/wind1
+https://opengameart.org/content/breeze
+https://archive.org/details/sound-ideas-sampler-library-wav.-7z
+
 Music
 https://pixabay.com/music/beats-jungle-story-168459/
-"
+
+Font
+https://fonts.google.com/specimen/Sigmar"
 horizontal_alignment = 1
 
 [node name="PushSpacing" type="Label" parent="ScrollContainer/VBoxContainer"]
 layout_mode = 2
 text = "                                                                                                                                                                                                                                                                                "
 
-[node name="FontSigmar" type="LinkButton" parent="ScrollContainer/VBoxContainer"]
-visible = false
-modulate = Color(0.0403016, 0.58888, 0.913882, 1)
-layout_mode = 2
-theme_override_constants/outline_size = 10
-theme_override_constants/underline_spacing = 0
-theme_override_fonts/font = ExtResource("2_5jbn1")
-theme_override_font_sizes/font_size = 25
-text = "https://fonts.google.com/specimen/Sigmar"
-uri = "https://fonts.google.com/specimen/Sigmar"
-
-[node name="MusicLink" type="LinkButton" parent="ScrollContainer/VBoxContainer"]
-visible = false
-modulate = Color(0.0403016, 0.58888, 0.913882, 1)
-layout_mode = 2
-theme_override_constants/outline_size = 10
-theme_override_constants/underline_spacing = 1
-theme_override_fonts/font = ExtResource("2_5jbn1")
-theme_override_font_sizes/font_size = 25
-text = "https://pixabay.com/music/beats-jungle-story-168459/"
-uri = "https://pixabay.com/music/beats-jungle-story-168459/"
-
-[node name="FilmCow2" type="LinkButton" parent="ScrollContainer/VBoxContainer"]
-visible = false
-modulate = Color(0.0403016, 0.58888, 0.913882, 1)
-layout_mode = 2
-theme_override_constants/outline_size = 10
-theme_override_constants/underline_spacing = 1
-theme_override_fonts/font = ExtResource("2_5jbn1")
-theme_override_font_sizes/font_size = 25
-text = "https://filmcow.itch.io/filmcow-sfx-2"
-uri = "https://filmcow.itch.io/filmcow-sfx-2"
-
-[node name="FilmCow4" type="LinkButton" parent="ScrollContainer/VBoxContainer"]
-visible = false
-modulate = Color(0.0403016, 0.58888, 0.913882, 1)
-layout_mode = 2
-theme_override_constants/outline_size = 10
-theme_override_constants/underline_spacing = 1
-theme_override_fonts/font = ExtResource("2_5jbn1")
-theme_override_font_sizes/font_size = 25
-text = "https://filmcow.itch.io/filmcow-sfx-4"
-uri = "https://filmcow.itch.io/filmcow-sfx-4"
-
 [node name="Timer" type="Timer" parent="."]
-wait_time = 0.1
+wait_time = 0.025
 autostart = true
 
 [connection signal="pressed" from="Return" to="." method="_on_return_pressed"]
