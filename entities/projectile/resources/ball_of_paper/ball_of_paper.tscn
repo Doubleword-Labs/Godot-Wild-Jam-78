@@ -1,17 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://qdkkarbk1ani"]
+[gd_scene load_steps=2 format=3 uid="uid://qdkkarbk1ani"]
 
-[ext_resource type="Texture2D" uid="uid://c12o5ell22y4k" path="res://assets/projectile/512x512_paperball_TEST_ONLYx.png" id="1_7b83o"]
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_u8i81"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("1_7b83o")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
+[ext_resource type="SpriteFrames" uid="uid://234y8hdky8b4" path="res://entities/projectile/resources/ball_of_paper/sprite_frames2.tres" id="1_7b83o"]
 
 [node name="BallOfPaper" type="Node3D"]
 
@@ -19,4 +8,6 @@ animations = [{
 transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 0, 0)
 billboard = 2
 texture_filter = 2
-sprite_frames = SubResource("SpriteFrames_u8i81")
+sprite_frames = ExtResource("1_7b83o")
+animation = &"speed"
+autoplay = "speed"
