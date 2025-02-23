@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dgygirm0ms4tr"
-path="res://.godot/imported/JD_left_hand_uppercut_00005.png-d05588b1484e0d131f4b27964ffec44d.ctex"
+uid="uid://lslyfx3svg3v"
+path="res://.godot/imported/JD_left_hand_uppercut_00003.png-6252caa526f8e392c6867a65ff530170.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/player/uppercut/JD_left_hand_uppercut_00005.png"
-dest_files=["res://.godot/imported/JD_left_hand_uppercut_00005.png-d05588b1484e0d131f4b27964ffec44d.ctex"]
+source_file="res://assets/player/black-and-white/uppercut/JD_left_hand_uppercut_00003.png"
+dest_files=["res://.godot/imported/JD_left_hand_uppercut_00003.png-6252caa526f8e392c6867a65ff530170.ctex"]
 
 [params]
 
