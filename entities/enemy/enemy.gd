@@ -159,11 +159,11 @@ func _on_attack_state_state_entered() -> void:
 
 	can_attack = false
 	var attack_timeout := randf_range(resource.attack_timeout * 0.5, resource.attack_timeout * 2.0)
-	attack_timer.start(attack_timeout)
 	sprite.play(resource.attack_animation)
 
 	await sprite.animation_finished
 
+	attack_timer.start(attack_timeout)
 	state_chart.send_event(EnemyStateEvent.CHASE)
 
 
@@ -260,15 +260,68 @@ func _on_animated_sprite_3d_frame_changed() -> void:
 
 			match resource.attack_type:
 				EnemyResource.AttackType.Ranged:
-					Game.spawn_projectile(self, projectile_spawn_point, _get_projectile_resource())
+					_ranged_attack()
 				EnemyResource.AttackType.Melee:
-					if attack_ray_cast.is_colliding():
-						var collider := attack_ray_cast.get_collider()
-						if collider is Player:
-							collider.take_damage(resource.melee_damage, false)
+					_melee_attack()
 
 		if is_chasing and sprite.frame == resource.chase_animation_frame:
 			play_sound(resource.chase_sound, true)
+
+
+func _ranged_attack() -> void:
+	var player := Game.get_player()
+	var player_velocity := player.velocity
+	var player_pos := player.global_position
+	var enemy_pos := global_position
+	var projectile_speed := _get_projectile_resource().speed
+
+	var EP := player_pos - enemy_pos
+	var V := player_velocity
+	var S := projectile_speed
+
+	var a := V.length_squared() - S * S
+	var b := 2 * EP.dot(V)
+	var c := EP.length_squared()
+
+	var t := -1.0
+
+	# Solve quadratic equation for intercept time
+	if abs(a) < 1e-6:  # Handle linear case when a ~= 0
+		if abs(b) > 1e-6:
+			t = -c / b
+			t = t if t > 0 else -1.0
+	else:
+		var disc := b * b - 4 * a * c
+		if disc >= 0:
+			var sqrt_disc := sqrt(disc)
+			var t1 := (-b + sqrt_disc) / (2 * a)
+			var t2 := (-b - sqrt_disc) / (2 * a)
+			# Select smallest positive time
+			if t1 > 0 && t2 > 0:
+				t = min(t1, t2)
+			elif t1 > 0:
+				t = t1
+			elif t2 > 0:
+				t = t2
+
+	var predicted_position: Vector3
+	if t > 0:
+		predicted_position = player_pos + V * t
+	else:
+		# Fallback to basic prediction
+		var player_distance = EP.length()
+		var time_to_intercept = player_distance / S
+		predicted_position = player_pos + V * time_to_intercept
+
+	var direction := (predicted_position - enemy_pos).normalized()
+	Game.spawn_projectile(self, direction, projectile_spawn_point, _get_projectile_resource())
+
+
+func _melee_attack() -> void:
+	if attack_ray_cast.is_colliding():
+		var collider := attack_ray_cast.get_collider()
+		if collider is Player:
+			collider.take_damage(resource.melee_damage, false)
 
 
 func _on_idle_state_state_exited() -> void:
