@@ -1,0 +1,3 @@
+[gd_scene format=3 uid="uid://b44y1ipp6k0rr"]
+
+[node name="BlueOrb" type="AnimatedSprite3D"]
