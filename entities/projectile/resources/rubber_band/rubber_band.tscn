@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://wmmky8u2yslj"]
 
 [ext_resource type="Script" uid="uid://jjcgmln8fcms" path="res://entities/projectile/resources/rubber_band/rubber_band.gd" id="1_5w85e"]
-[ext_resource type="Texture2D" uid="uid://brs6v78o8ogvr" path="res://assets/weapons/rubber_band_gun/projectiles/shot_rubberband05.png" id="2_5w85e"]
+[ext_resource type="Texture2D" uid="uid://363fvqvlfcmx" path="res://assets/weapons/rubber_band_gun/projectiles/shot_rubberband03.png" id="2_5w85e"]
 
 [node name="RubberBand" type="Node3D"]
 script = ExtResource("1_5w85e")
