@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://bjlqxffemi3wh"]
+
+[ext_resource type="SpriteFrames" uid="uid://dk6k657cqjesf" path="res://entities/projectile/resources/blue_orb/sprite_frames.tres" id="1_gejx6"]
+
+[node name="CoffeeDrop" type="Node3D"]
+
+[node name="Sprite" type="AnimatedSprite3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+billboard = 2
+sprite_frames = ExtResource("1_gejx6")
+autoplay = "default"
+frame_progress = 0.0977275
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+light_color = Color(0.508821, 0.297687, 0.0704058, 1)
