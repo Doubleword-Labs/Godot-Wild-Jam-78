@@ -232,7 +232,8 @@ func _on_death_state_state_entered() -> void:
 	await sprite.animation_finished
 	queue_free()
 	Waves.prune_spawnlist()
-	Game.stationery_gui.text = "Stationery: " + str(len(Waves.spawnlist))
+	if (Game.stationery_gui != null):
+		Game.stationery_gui.text = "Stationery: " + str(len(Waves.spawnlist))
 	if len(Waves.spawnlist) == 0:
 		Game.win()
 
@@ -271,6 +272,8 @@ func _on_animated_sprite_3d_frame_changed() -> void:
 
 func _ranged_attack() -> void:
 	var player := Game.get_player()
+	if (player == null):
+		return
 	var player_velocity := player.velocity
 	var player_pos := player.global_position
 	var enemy_pos := global_position
