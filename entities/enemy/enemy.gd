@@ -232,7 +232,7 @@ func _on_death_state_state_entered() -> void:
 	await sprite.animation_finished
 	queue_free()
 	Waves.prune_spawnlist()
-	if (Game.stationery_gui != null):
+	if Game.stationery_gui != null:
 		Game.stationery_gui.text = "Stationery: " + str(len(Waves.spawnlist))
 	if len(Waves.spawnlist) == 0:
 		Game.win()
@@ -272,53 +272,31 @@ func _on_animated_sprite_3d_frame_changed() -> void:
 
 func _ranged_attack() -> void:
 	var player := Game.get_player()
-	if (player == null):
+	if not is_instance_valid(player):
 		return
-	var player_velocity := player.velocity
+
+	var player_vel := player.velocity
 	var player_pos := player.global_position
 	var enemy_pos := global_position
-	var projectile_speed := _get_projectile_resource().speed
+	var proj_speed := _get_projectile_resource().speed
 
-	var EP := player_pos - enemy_pos
-	var V := player_velocity
-	var S := projectile_speed
+	var to_player := player_pos - enemy_pos
+	var relative_vel := player_vel
+	var speed_sq := proj_speed * proj_speed
 
-	var a := V.length_squared() - S * S
-	var b := 2 * EP.dot(V)
-	var c := EP.length_squared()
+	var a := relative_vel.length_squared() - speed_sq
+	var b := 2 * to_player.dot(relative_vel)
+	var c := to_player.length_squared()
 
-	var t := -1.0
+	var t := _calculate_intercept_time(a, b, c)
+	var predicted_pos := (
+		player_pos + player_vel * t
+		if t > 0
+		else _fallback_prediction(to_player, player_pos, player_vel, proj_speed)
+	)
 
-	# Solve quadratic equation for intercept time
-	if abs(a) < 1e-6:  # Handle linear case when a ~= 0
-		if abs(b) > 1e-6:
-			t = -c / b
-			t = t if t > 0 else -1.0
-	else:
-		var disc := b * b - 4 * a * c
-		if disc >= 0:
-			var sqrt_disc := sqrt(disc)
-			var t1 := (-b + sqrt_disc) / (2 * a)
-			var t2 := (-b - sqrt_disc) / (2 * a)
-			# Select smallest positive time
-			if t1 > 0 && t2 > 0:
-				t = min(t1, t2)
-			elif t1 > 0:
-				t = t1
-			elif t2 > 0:
-				t = t2
-
-	var predicted_position: Vector3
-	if t > 0:
-		predicted_position = player_pos + V * t
-	else:
-		# Fallback to basic prediction
-		var player_distance = EP.length()
-		var time_to_intercept = player_distance / S
-		predicted_position = player_pos + V * time_to_intercept
-
-	var direction := (predicted_position - enemy_pos).normalized()
-	Game.spawn_projectile(self, direction, projectile_spawn_point, _get_projectile_resource())
+	var attack_dir := enemy_pos.direction_to(predicted_pos)
+	Game.spawn_projectile(self, attack_dir, projectile_spawn_point, _get_projectile_resource())
 
 	play_sound(
 		(
@@ -327,6 +305,45 @@ func _ranged_attack() -> void:
 			else resource.ranged_attack_sound
 		)
 	)
+
+
+func _calculate_intercept_time(a: float, b: float, c: float) -> float:
+	if is_zero_approx(a):  # More robust floating point check
+		return -c / b if !is_zero_approx(b) else -1.0
+
+	var disc := b * b - 4 * a * c
+	if disc < 0:
+		return -1.0
+
+	var sqrt_disc := sqrt(disc)
+	var t1 := (-b + sqrt_disc) / (2 * a)
+	var t2 := (-b - sqrt_disc) / (2 * a)
+
+	# Handle edge cases with move_toward
+	return _select_positive_time(t1, t2)
+
+
+func _select_positive_time(t1: float, t2: float) -> float:
+	var candidates := []
+	if t1 > 0:
+		candidates.append(t1)
+	if t2 > 0:
+		candidates.append(t2)
+
+	if candidates.is_empty():
+		return -1.0
+	elif candidates.size() == 1:
+		return candidates[0]
+
+	# Prefer smallest positive time using minf
+	return minf(candidates[0], candidates[1])
+
+
+func _fallback_prediction(
+	to_player: Vector3, player_pos: Vector3, player_vel: Vector3, proj_speed: float
+) -> Vector3:
+	var time_est := clampf(to_player.length() / proj_speed, 0.0, 5.0)  # Add sane limits
+	return player_pos + player_vel * time_est
 
 
 func _melee_attack() -> void:
