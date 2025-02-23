@@ -22,7 +22,6 @@ func _ready() -> void:
 func _on_return_pressed() -> void:	
 	Game.free_spawnables()
 	Waves.current_wave = 1
-	Game.reload()
 	get_tree().change_scene_to_file(title_path)
 
 
