@@ -53,7 +53,7 @@ func _ready() -> void:
 	if Buff.player_ogre:
 		health = Buff.player_ogre_amount
 		Game.hp_gui.value = health
-		
+
 	mouse_look_sens = Prefs.mouse_sensitivity
 	head_bob_speed = Prefs.head_bob
 
@@ -113,7 +113,10 @@ func _ranged_attack() -> void:
 
 	for i in range(current_weapon_resource.projectile_count):
 		Game.spawn_projectile(
-			self, projectile_spawn_point, current_weapon_resource.projectile_resource
+			self,
+			-transform.basis.z,
+			projectile_spawn_point,
+			current_weapon_resource.projectile_resource
 		)
 
 	if is_instance_valid(current_weapon_resource.attack_shaker_preset):

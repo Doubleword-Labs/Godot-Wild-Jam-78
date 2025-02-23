@@ -26,6 +26,7 @@ var can_pause := true
 
 var current_weapon = 0
 
+
 func _process(_delta: float) -> void:
 	if paused_gui_node != null:
 		if Input.is_action_just_released("pause") and can_pause:
@@ -40,7 +41,7 @@ func _process(_delta: float) -> void:
 			get_window().mode = Window.MODE_FULLSCREEN
 
 
-func pause(to_pause: bool) -> void:	
+func pause(to_pause: bool) -> void:
 	if OS.get_name() == "Web":
 		AudioPlayer.squelch_sfx = true
 		await get_tree().create_timer(0.25).timeout
@@ -54,8 +55,8 @@ func pause(to_pause: bool) -> void:
 	else:
 		process_mode = Node.PROCESS_MODE_PAUSABLE
 		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-		
-	AudioPlayer.squelch_sfx = false	
+
+	AudioPlayer.squelch_sfx = false
 
 
 func get_player() -> Player:
@@ -78,7 +79,7 @@ func get_projectiles_parent() -> Node:
 
 
 func spawn_projectile(
-	actor: Node3D, spawn_point: Node3D, resource: ProjectileResource
+	actor: Node3D, velocity: Vector3, spawn_point: Node3D, resource: ProjectileResource
 ) -> Projectile:
 	if not is_instance_valid(resource):
 		push_error("Invalid projectile resource provided")
@@ -86,8 +87,7 @@ func spawn_projectile(
 	var projectile := PROJECTILE.instantiate()
 	projectile.resource = resource
 	projectile.spawned_by = actor
-	projectile.rotation = actor.rotation
-	projectile.velocity = -actor.transform.basis.z
+	projectile.velocity = velocity
 
 	get_projectiles_parent().add_child(projectile)
 	projectile.global_position = spawn_point.global_position
@@ -117,25 +117,25 @@ func hud_modal(modal: CanvasLayer):
 
 func die():
 	player_hud.erase_damage_transparency = 0
-	erase_damage.modulate = Color(1, 1, 1, 0)	
-	
+	erase_damage.modulate = Color(1, 1, 1, 0)
+
 	AudioPlayer.free_sfx()
-	
+
 	pause(true)
 	can_pause = false
-	
+
 	AudioPlayer.play_sfx_array(AudioPlayer.lose_sfx_arr)
 	hud_modal(lose_gui_node)
 
 
 func win():
 	player_hud.erase_damage_transparency = 0
-	erase_damage.modulate = Color(1, 1, 1, 0)	
-	
+	erase_damage.modulate = Color(1, 1, 1, 0)
+
 	AudioPlayer.free_sfx()
-	
+
 	pause(true)
 	can_pause = false
-	
+
 	AudioPlayer.play_sfx_array(AudioPlayer.win_sfx_arr)
 	hud_modal(win_gui_node)
