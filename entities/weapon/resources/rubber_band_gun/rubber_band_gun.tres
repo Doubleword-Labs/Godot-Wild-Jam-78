@@ -1,0 +1,49 @@
+[gd_resource type="Resource" script_class="WeaponResource" load_steps=10 format=3 uid="uid://cny0oc34g062a"]
+
+[ext_resource type="AudioStream" uid="uid://uyl6hadwba7y" path="res://assets/sfx/weapons/rubber_band_gun/fire.wav" id="1_25g32"]
+[ext_resource type="Resource" uid="uid://cspy28kk467px" path="res://entities/projectile/resources/rubber_band.tres" id="1_3308t"]
+[ext_resource type="Script" uid="uid://bbjh5cgq0yrbt" path="res://addons/shaker/data/Vector3/BaseShakerType3D.gd" id="1_dkoyo"]
+[ext_resource type="Script" uid="uid://d0c7jub8ujtvp" path="res://entities/weapon/weapon_resource.gd" id="1_v4ium"]
+[ext_resource type="Script" uid="uid://cj2m674mnjyfi" path="res://addons/shaker/data/Vector3/ShakerTypeRandom3D.gd" id="2_fuqru"]
+[ext_resource type="Script" uid="uid://cvjlajlftts0q" path="res://addons/shaker/data/Vector3/ShakerPreset3D.gd" id="3_mqman"]
+[ext_resource type="SpriteFrames" uid="uid://bgdhduywi1cat" path="res://entities/weapon/resources/rubber_band_gun/sprite_frames.tres" id="7_uvsdb"]
+
+[sub_resource type="Resource" id="Resource_p3e6m"]
+script = ExtResource("2_fuqru")
+seed = 0
+amplitude = Vector3(1, 1, 1)
+offset = Vector3(0, 0, 0)
+BlendingMode = 0
+fade_in = 0.0
+fade_out = 0.0
+start_percent = 0.0
+end_percent = 1.0
+_temp_graph = false
+bake_internal = 64
+metadata/_custom_type_script = "uid://cj2m674mnjyfi"
+
+[sub_resource type="Resource" id="Resource_fdhhv"]
+script = ExtResource("3_mqman")
+PositionShake = Array[ExtResource("1_dkoyo")]([SubResource("Resource_p3e6m")])
+RotationShake = Array[ExtResource("1_dkoyo")]([])
+ScaleShake = Array[ExtResource("1_dkoyo")]([])
+bake_internal = 64
+__follow_timeline = false
+metadata/_custom_type_script = "uid://cvjlajlftts0q"
+
+[resource]
+script = ExtResource("1_v4ium")
+melee_damage = 10.0
+melee_range = 100.0
+attack_timeout = 0.1
+projectile_count = 1
+projectile_resource = ExtResource("1_3308t")
+sprite_frames = ExtResource("7_uvsdb")
+idle_animation = "default"
+attack_animation = "shoot"
+sprite_position = Vector2(576, 412)
+sprite_scale = Vector2(0.473633, 0.473633)
+attack_shaker_preset = SubResource("Resource_fdhhv")
+attack_shaker_duration = 0.1
+attack_sounds = Array[AudioStream]([ExtResource("1_25g32")])
+metadata/_custom_type_script = "uid://d0c7jub8ujtvp"

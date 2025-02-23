@@ -1,0 +1,47 @@
+[gd_resource type="SpriteFrames" load_steps=9 format=3 uid="uid://bgdhduywi1cat"]
+
+[ext_resource type="Texture2D" uid="uid://nsufn3qqehjk" path="res://assets/weapons/rubber_band_gun/idle/JD_rubberband_gun_idle_00000_idle.png" id="1_vn8sk"]
+[ext_resource type="Texture2D" uid="uid://gl2jehfo1c2p" path="res://assets/weapons/rubber_band_gun/idle/JD_rubberband_gun_idle_00001_idle.png" id="2_bepfd"]
+[ext_resource type="Texture2D" uid="uid://btgg450e80axl" path="res://assets/weapons/rubber_band_gun/idle/JD_rubberband_gun_idle_00002_idle.png" id="3_de8ia"]
+[ext_resource type="Texture2D" uid="uid://bgve106i10has" path="res://assets/weapons/rubber_band_gun/idle/JD_rubberband_gun_idle_00003_idle.png" id="4_jnloc"]
+[ext_resource type="Texture2D" uid="uid://bwv3th5yq8h3b" path="res://assets/weapons/rubber_band_gun/shoot/JD_rubberband_gun_00000_shoot.png" id="5_jgeh4"]
+[ext_resource type="Texture2D" uid="uid://dr0s6lje4u8ab" path="res://assets/weapons/rubber_band_gun/shoot/JD_rubberband_gun_00001_shoot.png" id="6_8yrlw"]
+[ext_resource type="Texture2D" uid="uid://bbmkc3h55t8y5" path="res://assets/weapons/rubber_band_gun/shoot/JD_rubberband_gun_00002_shoot.png" id="7_j1x6s"]
+[ext_resource type="Texture2D" uid="uid://dprl5o811iwyg" path="res://assets/weapons/rubber_band_gun/shoot/JD_rubberband_gun_00003_shoot.png" id="8_bqqeb"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_vn8sk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_bepfd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_de8ia")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_jnloc")
+}],
+"loop": true,
+"name": &"default",
+"speed": 12.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_jgeh4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_8yrlw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_j1x6s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_bqqeb")
+}],
+"loop": false,
+"name": &"shoot",
+"speed": 12.0
+}]

@@ -1,7 +1,7 @@
 extends CanvasLayer
 class_name PlayerHud
 
-const MELEE_WEAPON_RESOURCE = preload("res://entities/weapon/resources/melee.tres")
+const MELEE_WEAPON_RESOURCE = preload("uid://cmrf6byj77uub")
 
 @onready var hands: Control = %Hands
 @onready var weapon_sprite: AnimatedSprite2D = %WeaponSprite
@@ -21,9 +21,9 @@ func _ready() -> void:
 	Game.shop_weapon_buff_node = $ShopWeaponBuff
 	Game.player_hud = $"."
 	Game.erase_damage = erase_damage
-	
+
 	Game.hp_gui = $HealthBar
-	if (Buff.player_ogre):
+	if Buff.player_ogre:
 		Game.hp_gui.max_value = Buff.player_ogre_amount
 	else:
 		Game.hp_gui.max_value = 100
@@ -34,15 +34,19 @@ func _ready() -> void:
 	_update_melee_weapon()
 	weapon_sprite.show()
 	melee_sprite.hide()
-	
+
 	$AnimatedSprite2D.play()
+
+
+func _enter_tree() -> void:
+	_update_melee_weapon()
 
 
 func melee_attack() -> void:
 	weapon_sprite.hide()
 	melee_sprite.show()
 
-	melee_sprite.play(MELEE_WEAPON_RESOURCE.attack_animation)
+	melee_sprite.play(["punch", "uppercut"].pick_random())
 	await melee_sprite.animation_finished
 
 	weapon_sprite.show()

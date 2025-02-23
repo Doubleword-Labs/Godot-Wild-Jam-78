@@ -1,0 +1,63 @@
+[gd_resource type="SpriteFrames" load_steps=13 format=3 uid="uid://bm5bvby303pnn"]
+
+[ext_resource type="Texture2D" uid="uid://c2p6xe7aajcne" path="res://assets/player/black-and-white/JD_right_hand_idle/JD_right_hand_idle_00000.png" id="1_lr4hk"]
+[ext_resource type="Texture2D" uid="uid://d11xfdmpkrixy" path="res://assets/player/black-and-white/JD_right_hand_idle/JD_right_hand_idle_00001.png" id="2_ydspk"]
+[ext_resource type="Texture2D" uid="uid://dyjmt3ibfckb" path="res://assets/player/black-and-white/JD_right_hand_idle/JD_right_hand_idle_00002.png" id="3_erqbs"]
+[ext_resource type="Texture2D" uid="uid://di5xm4qwh08at" path="res://assets/player/black-and-white/JD_right_hand_idle/JD_right_hand_idle_00003.png" id="4_waf4t"]
+[ext_resource type="Texture2D" uid="uid://dn43masf2aqkt" path="res://assets/player/black-and-white/JD_right_hand_idle/JD_right_hand_idle_00004.png" id="5_s3ckn"]
+[ext_resource type="Texture2D" uid="uid://cqisjm80522st" path="res://assets/player/black-and-white/JD_right_hand_idle/JD_right_hand_idle_00005.png" id="6_c2hhj"]
+[ext_resource type="Texture2D" uid="uid://cm6nhdkkjt6y8" path="res://assets/player/black-and-white/JD_right_hand_idle/JD_right_hand_idle_00006.png" id="7_s202y"]
+[ext_resource type="Texture2D" uid="uid://dp5btqenvla7" path="res://assets/player/black-and-white/JD_right_hand_idle/JD_right_hand_idle_00007.png" id="8_3kr86"]
+[ext_resource type="Texture2D" uid="uid://cfe3tgofuv43q" path="res://assets/player/black-and-white/JD_right_hand_shoot/JD_right_hand_shoot_00004.png" id="17_xblui"]
+[ext_resource type="Texture2D" uid="uid://b8ygoo3rkkvp7" path="res://assets/player/black-and-white/JD_right_hand_shoot/JD_right_hand_shoot_00005.png" id="18_wem1r"]
+[ext_resource type="Texture2D" uid="uid://elq3ixns57sm" path="res://assets/player/black-and-white/JD_right_hand_shoot/JD_right_hand_shoot_00006.png" id="19_aia24"]
+[ext_resource type="Texture2D" uid="uid://dotfhfjlpsd0q" path="res://assets/player/black-and-white/JD_right_hand_shoot/JD_right_hand_shoot_00007.png" id="20_s70vw"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_lr4hk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_ydspk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_erqbs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_waf4t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_s3ckn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_c2hhj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_s202y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_3kr86")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("17_xblui")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_wem1r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_aia24")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_s70vw")
+}],
+"loop": false,
+"name": &"shoot",
+"speed": 12.0
+}]

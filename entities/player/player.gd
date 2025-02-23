@@ -2,9 +2,9 @@ extends CharacterBody3D
 class_name Player
 
 const PROJECTILE = preload("res://entities/projectile/projectile.tscn")
-const PAPER_BALL_THROW = preload("res://entities/weapon/resources/paper_ball_throw.tres")
-const RUBBER_BAND_GUN = preload("res://entities/weapon/resources/rubber_band_gun.tres")
-const STAPLE_SHOTGUN = preload("res://entities/weapon/resources/staple_shotgun.tres")
+const PAPER_BALL_THROW = preload("uid://cktjs8hbv04pk")
+const RUBBER_BAND_GUN = preload("uid://cny0oc34g062a")
+const STAPLE_SHOTGUN = preload("uid://b2rkwd640cxm3")
 
 @onready var player_hud: PlayerHud = $PlayerHud
 @onready var attack_timer: Timer = $AttackTimer
@@ -32,7 +32,7 @@ const STAPLE_SHOTGUN = preload("res://entities/weapon/resources/staple_shotgun.t
 var can_attack := true
 var jump = false
 
-var melee_weapon := preload("res://entities/weapon/resources/melee.tres")
+var melee_weapon := preload("uid://cmrf6byj77uub")
 var weapons: Array[PlayerWeapon] = [
 	PlayerWeapon.new(PAPER_BALL_THROW, true),
 	PlayerWeapon.new(RUBBER_BAND_GUN, Buff.weapon_minigun),

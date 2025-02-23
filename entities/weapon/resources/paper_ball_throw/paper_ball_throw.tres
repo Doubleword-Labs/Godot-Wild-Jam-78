@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="WeaponResource" load_steps=5 format=3 uid="uid://cktjs8hbv04pk"]
+
+[ext_resource type="AudioStream" uid="uid://dgyublsch5l14" path="res://assets/sfx/weapons/paper_throw/throw.wav" id="1_b321w"]
+[ext_resource type="Script" uid="uid://d0c7jub8ujtvp" path="res://entities/weapon/weapon_resource.gd" id="1_egj82"]
+[ext_resource type="Resource" uid="uid://d18nbi5siw1xe" path="res://entities/projectile/resources/ball_of_paper.tres" id="1_nidtu"]
+[ext_resource type="SpriteFrames" uid="uid://bm5bvby303pnn" path="res://entities/weapon/resources/paper_ball_throw/sprite_frames.tres" id="4_ane5m"]
+
+[resource]
+script = ExtResource("1_egj82")
+melee_damage = 10.0
+melee_range = 100.0
+attack_timeout = 0.5
+projectile_count = 1
+projectile_resource = ExtResource("1_nidtu")
+sprite_frames = ExtResource("4_ane5m")
+idle_animation = "idle"
+attack_animation = "shoot"
+sprite_position = Vector2(815, 412)
+sprite_scale = Vector2(0.473633, 0.473633)
+attack_shaker_duration = 0.1
+attack_sounds = Array[AudioStream]([ExtResource("1_b321w")])
+metadata/_custom_type_script = "uid://d0c7jub8ujtvp"
