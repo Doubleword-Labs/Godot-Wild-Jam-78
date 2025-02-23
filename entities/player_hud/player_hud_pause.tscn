@@ -12,6 +12,7 @@ offset_bottom = 647.0
 color = Color(0, 0, 0, 0.247059)
 
 [node name="Return" type="Button" parent="ColorRect"]
+layout_mode = 0
 offset_left = 433.0
 offset_top = 541.0
 offset_right = 687.0
