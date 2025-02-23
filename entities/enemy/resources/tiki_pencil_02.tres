@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="EnemyResource" load_steps=42 format=3 uid="uid://bxfc1w7qg63t0"]
+[gd_resource type="Resource" script_class="EnemyResource" load_steps=43 format=3 uid="uid://bxfc1w7qg63t0"]
 
 [ext_resource type="Script" uid="uid://ch7dh0une2ae" path="res://entities/enemy/resources/enemy_resource.gd" id="1_fxacy"]
 [ext_resource type="AudioStream" uid="uid://dxd8dm5lbhgl8" path="res://assets/sfx/enemies/pencil/awake.wav" id="1_pt1iy"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://unp3l5lohnan" path="res://assets/enemies/tiki_pencil_02/shoot/tiki_pencil_002_shoot_00011.png" id="2_g6khe"]
 [ext_resource type="AudioStream" uid="uid://c8hdqirya8hqy" path="res://assets/sfx/enemies/pencil/pain.wav" id="3_4u50u"]
 [ext_resource type="Texture2D" uid="uid://iy2k0gubb5j" path="res://assets/enemies/tiki_pencil_02/shoot/tiki_pencil_002_shoot_00012.png" id="3_wpvl8"]
+[ext_resource type="Resource" uid="uid://k3qt1q22thsg" path="res://entities/projectile/resources/pencil_shot.tres" id="4_62lxd"]
 [ext_resource type="Texture2D" uid="uid://t6r653mxsles" path="res://assets/enemies/tiki_pencil_02/shoot/tiki_pencil_002_shoot_00013.png" id="4_lina5"]
 [ext_resource type="AudioStream" uid="uid://jvj4mbhl652x" path="res://assets/sfx/enemies/pencil/roam.wav" id="4_v3ih3"]
 [ext_resource type="Texture2D" uid="uid://c8ftwlk8br8gi" path="res://assets/enemies/tiki_pencil_02/shoot/tiki_pencil_002_shoot_00014.png" id="5_x8v7x"]
@@ -198,6 +199,7 @@ attack_animation = "attack"
 attack_frame = 6
 pain_animation = "pain"
 death_animation = "death"
+projectile_resource = ExtResource("4_62lxd")
 awake_sound = ExtResource("1_pt1iy")
 death_sound = ExtResource("2_62lxd")
 roam_sound = ExtResource("4_v3ih3")

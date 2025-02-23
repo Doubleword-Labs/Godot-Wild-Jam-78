@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://cbsrliqw13sf5"]
+
+[ext_resource type="SpriteFrames" uid="uid://18qo1mcoofoe" path="res://entities/projectile/resources/pencil_shot/sprite_frames.tres" id="1_ssm17"]
+
+[node name="PencilShot" type="Node3D"]
+
+[node name="Sprite" type="AnimatedSprite3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
+billboard = 2
+sprite_frames = ExtResource("1_ssm17")
+autoplay = "default"
+frame = 3
+frame_progress = 0.826659
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+light_color = Color(0.0121386, 0.00393694, 0.000329114, 1)
