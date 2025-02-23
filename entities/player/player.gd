@@ -13,7 +13,6 @@ const STAPLE_SHOTGUN = preload("uid://b2rkwd640cxm3")
 @onready var melee_ray_cast: RayCast3D = %MeleeRayCast
 @onready var head: Node3D = $Head
 @onready var eyes: Node3D = $Head/Eyes
-@onready var shaker_emitter: ShakerEmitter3D = $ShakerEmitter3D
 
 @onready var melee_sprite_base_position := player_hud.melee_sprite.position
 
