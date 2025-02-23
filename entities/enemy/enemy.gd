@@ -254,9 +254,14 @@ func _on_animated_sprite_3d_frame_changed() -> void:
 
 func _on_idle_state_state_exited() -> void:
 	play_sound(resource.awake_sound)
+	_start_roam_timer()
 
 
 func _on_roam_timer_timeout() -> void:
-	if play_sound(resource.roam_sound):
-		var timeout := minf(2.0, randf() * 10)
-		roam_timer.start(timeout)
+	play_sound(resource.roam_sound)
+	_start_roam_timer()
+
+
+func _start_roam_timer() -> void:
+	var timeout := randf_range(2.0, 10.0)
+	roam_timer.start(timeout)
