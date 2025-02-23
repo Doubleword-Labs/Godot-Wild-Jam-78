@@ -1,3 +1,7 @@
-[gd_scene format=3 uid="uid://b44y1ipp6k0rr"]
+[gd_scene load_steps=2 format=3 uid="uid://b44y1ipp6k0rr"]
+
+[ext_resource type="SpriteFrames" uid="uid://dk6k657cqjesf" path="res://entities/projectile/resources/blue_orb/sprite_frames.tres" id="1_x4fq8"]
 
 [node name="BlueOrb" type="AnimatedSprite3D"]
+sprite_frames = ExtResource("1_x4fq8")
+autoplay = "default"
