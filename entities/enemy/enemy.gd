@@ -46,6 +46,9 @@ var health: float
 var received_damage := false
 var audio_player: AudioStreamPlayer3D
 
+var is_chasing := false
+var is_attacking := false
+
 
 func _ready() -> void:
 	if is_instance_valid(state_label_debug):
@@ -92,7 +95,8 @@ func update_target_position(target_position: Vector3) -> void:
 func _on_idle_state_state_entered() -> void:
 	state_label_debug.text = "Idle"
 	sight_ray_cast.enabled = true
-	sprite.play(resource.default_animation)
+	sprite.animation = resource.default_animation
+	sprite.stop()
 
 
 func _on_idle_state_state_physics_processing(delta: float) -> void:
@@ -113,6 +117,7 @@ func _on_idle_state_state_physics_processing(delta: float) -> void:
 
 
 func _on_chase_state_state_entered() -> void:
+	is_chasing = true
 	state_label_debug.text = "Chase"
 	sight_ray_cast.enabled = false
 	attack_ray_cast.enabled = true
@@ -140,7 +145,7 @@ func _on_chase_state_state_physics_processing(delta: float) -> void:
 
 
 func _on_attack_state_state_exited() -> void:
-	pass  # Replace with function body.
+	is_attacking = false
 
 
 func _on_attack_timer_timeout() -> void:
@@ -148,6 +153,8 @@ func _on_attack_timer_timeout() -> void:
 
 
 func _on_attack_state_state_entered() -> void:
+	is_attacking = true
+
 	state_label_debug.text = "Attack"
 
 	can_attack = false
@@ -247,8 +254,10 @@ func _get_projectile_resource() -> ProjectileResource:
 
 
 func _on_animated_sprite_3d_frame_changed() -> void:
-	if is_instance_valid(sprite) and sprite.animation == resource.attack_animation:
-		if sprite.frame == resource.attack_frame:
+	if is_instance_valid(sprite):
+		if is_attacking and sprite.frame == resource.attack_frame:
+			play_sound(resource.attack_sound, true)
+
 			match resource.attack_type:
 				EnemyResource.AttackType.Ranged:
 					Game.spawn_projectile(self, projectile_spawn_point, _get_projectile_resource())
@@ -257,6 +266,9 @@ func _on_animated_sprite_3d_frame_changed() -> void:
 						var collider := attack_ray_cast.get_collider()
 						if collider is Player:
 							collider.take_damage(resource.melee_damage, false)
+
+		if is_chasing and sprite.frame == resource.walk_animation_frame:
+			play_sound(resource.walk_sound, true)
 
 
 func _on_idle_state_state_exited() -> void:
@@ -272,3 +284,7 @@ func _on_roam_timer_timeout() -> void:
 func _start_roam_timer() -> void:
 	var timeout := randf_range(2.0, 10.0)
 	roam_timer.start(timeout)
+
+
+func _on_chase_state_state_exited() -> void:
+	is_chasing = false

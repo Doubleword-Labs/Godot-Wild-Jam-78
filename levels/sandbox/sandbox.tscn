@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://bcc535h78xbg3"]
+[gd_scene load_steps=12 format=3 uid="uid://bcc535h78xbg3"]
 
 [ext_resource type="Script" uid="uid://dopsglken0vq1" path="res://levels/sandbox/sandbox.gd" id="1_x68yp"]
 [ext_resource type="PackedScene" uid="uid://cvf7653hiknvm" path="res://entities/player/player.tscn" id="2_x68yp"]
+[ext_resource type="PackedScene" uid="uid://cx5mk2aylf5te" path="res://entities/enemy/enemy.tscn" id="3_oksox"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_x68yp"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -60,3 +61,6 @@ collision_layer = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/MeshInstance3D/StaticBody3D"]
 shape = SubResource("ConcavePolygonShape3D_x002k")
+
+[node name="Enemy" parent="." instance=ExtResource("3_oksox")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.420531, 0.000999836, -8.23077)
