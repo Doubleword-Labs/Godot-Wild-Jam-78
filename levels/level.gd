@@ -2,8 +2,10 @@ extends Node3D
 class_name Level
 
 @onready var world_environment: WorldEnvironment = $WorldEnvironment
+@onready var ambient_source: Node3D = get_node_or_null("Ambient-Source")
 
 var shop_buy = "res://entities/player_hud/player_hud_shop_random_buff.tscn"
+
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -12,6 +14,9 @@ func _ready() -> void:
 		Game.stationery_gui.text = ""
 	else:
 		Game.wave_gui.text = "Wave: " + str(Waves.current_wave)
+
+	if is_instance_valid(ambient_source) and is_instance_valid(ambient_source.audio_player_node):
+		ambient_source.audio_player_node.bus = "SFX"
 
 
 func _exit_tree() -> void:
@@ -24,7 +29,7 @@ func _on_lava_area_body_entered(body: Node3D) -> void:
 
 func _on_shop_door_body_entered(body: Node3D) -> void:
 	print("Shop Opened!")
-	#Game.hud_modal(Game.shop_player_buff_node)	
+	#Game.hud_modal(Game.shop_player_buff_node)
 	get_tree().change_scene_to_file(shop_buy)
 
 

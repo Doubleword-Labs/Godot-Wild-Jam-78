@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://ib1c30hpfq7q"]
+[gd_scene load_steps=23 format=3 uid="uid://ib1c30hpfq7q"]
 
 [ext_resource type="Script" uid="uid://gta2qv6v5bdy" path="res://levels/level.gd" id="1_q3id4"]
 [ext_resource type="PackedScene" uid="uid://cvf7653hiknvm" path="res://entities/player/player.tscn" id="2_stayi"]
@@ -9,6 +9,9 @@
 [ext_resource type="Resource" uid="uid://bbyony6hw2axm" path="res://entities/enemy/resources/tiki_pencil_01.tres" id="7_jbvbn"]
 [ext_resource type="Resource" uid="uid://bxfc1w7qg63t0" path="res://entities/enemy/resources/tiki_pencil_02.tres" id="8_x0uqj"]
 [ext_resource type="Resource" uid="uid://d4fgyepouyfb5" path="res://entities/enemy/resources/tiki_usb_01.tres" id="9_8tff6"]
+[ext_resource type="Script" uid="uid://komh7f1ob2v7" path="res://addons/purely-ambience/Audio.gd" id="10_ojm8r"]
+[ext_resource type="AudioStream" uid="uid://dt65y0o80g7eq" path="res://assets/sfx/ambience/beach/beach-ambience-1.wav" id="11_ojm8r"]
+[ext_resource type="AudioStream" uid="uid://bbrgkmx6aaenr" path="res://assets/sfx/ambience/beach/beach-ambience-2.wav" id="12_wcpyi"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_q3id4"]
 sky_top_color = Color(0.168627, 0.752941, 0.811765, 1)
@@ -61,6 +64,13 @@ resource = ExtResource("9_8tff6")
 spawn_rate = 1.0
 metadata/_custom_type_script = ExtResource("5_wcpyi")
 
+[sub_resource type="AudioStreamPlaylist" id="AudioStreamPlaylist_jbvbn"]
+shuffle = true
+fade_time = 0.5
+stream_count = 2
+stream_0 = ExtResource("11_ojm8r")
+stream_1 = ExtResource("12_wcpyi")
+
 [node name="Arena01" type="Node3D"]
 script = ExtResource("1_q3id4")
 
@@ -93,3 +103,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.67514, 0.07426, 10.5043)
 enemies = Array[ExtResource("5_wcpyi")]([SubResource("Resource_fm2rd"), SubResource("Resource_uebnn"), SubResource("Resource_atwq1"), SubResource("Resource_yu7i2")])
 spawn_limit = 20
 spawn_amount = 5
+
+[node name="Ambient-Source" type="Node3D" parent="." node_paths=PackedStringArray("player_node")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23, 0, 0)
+script = ExtResource("10_ojm8r")
+player_node = NodePath("../Player")
+audio_stream = SubResource("AudioStreamPlaylist_jbvbn")
+max_volume_db = -8.0
+fade_range = 30.0
+show_debug = true
+metadata/_custom_type_script = "uid://komh7f1ob2v7"
