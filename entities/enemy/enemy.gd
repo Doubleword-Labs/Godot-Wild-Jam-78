@@ -35,6 +35,8 @@ var sight_range: float
 @onready var roam_timer: Timer = $RoamTimer
 @onready var collision_shape: CollisionShape3D = $CollisionShape3D
 @onready var state_label_debug: Label3D = $StateLabelDebug
+@onready var damage_labels: Node3D = $DamageLabels
+@onready var damage_label: Label3D = $DamageLabels/DamageLabel
 
 @onready var state_chart: StateChart = $StateChart
 @onready var idle_state: AtomicState = %IdleState
@@ -55,6 +57,7 @@ func _ready() -> void:
 	if is_instance_valid(state_label_debug):
 		state_label_debug.visible = OS.is_debug_build()
 
+	damage_label.hide()
 	update_from_resource()
 
 
@@ -191,6 +194,30 @@ func take_damage(damage: int, from_player: bool) -> void:
 			var pain_chance_roll = randf()
 			if pain_chance_roll <= resource.pain_chance:
 				state_chart.send_event(EnemyStateEvent.PAIN)
+
+		_show_damage_label(damage)
+
+
+func _show_damage_label(damage: int) -> void:
+	var label: Label3D = damage_label.duplicate()
+	label.text = str(damage)
+	label.show()
+	damage_labels.add_child(label)
+	label.position = Vector3(randf_range(-0.5, 0.5), 0, 0)
+
+	var target_position := Vector3(randf_range(-0.5, 0.5), randf_range(0, 0.5), 0)
+	var target_modulate = label.modulate * Color(1, 1, 1, 0)
+	var target_outline_modulate = label.outline_modulate * Color(1, 1, 1, 0)
+
+	var tween := create_tween()
+	tween.set_parallel()
+	tween.tween_property(label, "position", target_position, 1.0)
+	tween.tween_property(label, "modulate", target_modulate, 1.0)
+	tween.tween_property(label, "outline_modulate", target_outline_modulate, 1.0)
+
+	await tween.finished
+
+	label.queue_free()
 
 
 func play_sound(sound: AudioStream, override: bool = false) -> bool:
