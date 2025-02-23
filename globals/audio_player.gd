@@ -60,7 +60,6 @@ const projectile_spawed_sfx_arr = [
 ]
 
 var music_player: AudioStreamPlayer
-var default_volumes = [1, 0.4, 0.6]
 
 var sfx_player_list = []
 
@@ -68,9 +67,9 @@ var squelch_sfx = false
 
 
 func _ready():
-	update_volume(0, default_volumes[0])
-	update_volume(1, default_volumes[1])
-	update_volume(2, default_volumes[2])
+	update_volume(0, Prefs.master_volume)
+	update_volume(1, Prefs.music_volume)
+	update_volume(2, Prefs.sfx_volume)
 
 
 func update_volume(id, value):

@@ -12,9 +12,9 @@ var sfx_ready = false
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
-	master_volume.value = AudioPlayer.default_volumes[0]
-	music_volume.value = AudioPlayer.default_volumes[1]
-	sfx_volume.value = AudioPlayer.default_volumes[2]
+	master_volume.value = Prefs.master_volume
+	music_volume.value = Prefs.music_volume
+	sfx_volume.value = Prefs.sfx_volume
 	mouse_sensitivity.value = Prefs.mouse_sensitivity	
 	head_bob.value = Prefs.head_bob
 	sfx_ready = true
@@ -27,14 +27,17 @@ func _on_return_pressed() -> void:
 
 func _on_master_volume_value_changed(value: float) -> void:
 	AudioPlayer.update_volume(0, value)
+	Prefs.master_volume = value
 
 
 func _on_music_volume_value_changed(value: float) -> void:
 	AudioPlayer.update_volume(1, value)
+	Prefs.music_volume = value
 
 
 func _on_sfx_volume_value_changed(value: float) -> void:
 	AudioPlayer.update_volume(2, value)
+	Prefs.sfx_volume = value
 	if sfx_ready:
 		AudioPlayer.play_sfx_array(AudioPlayer.player_damaged_sfx_arr)
 
