@@ -66,12 +66,6 @@ var sfx_player_list = []
 var squelch_sfx = false
 
 
-func _ready():
-	update_volume(0, Prefs.master_volume)
-	update_volume(1, Prefs.music_volume)
-	update_volume(2, Prefs.sfx_volume)
-
-
 func update_volume(id, value):
 	if value == 0:
 		AudioServer.set_bus_mute(id, true)

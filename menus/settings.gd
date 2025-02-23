@@ -28,22 +28,27 @@ func _on_return_pressed() -> void:
 func _on_master_volume_value_changed(value: float) -> void:
 	AudioPlayer.update_volume(0, value)
 	Prefs.master_volume = value
+	Prefs.save()
 
 
 func _on_music_volume_value_changed(value: float) -> void:
 	AudioPlayer.update_volume(1, value)
 	Prefs.music_volume = value
+	Prefs.save()
 
 
 func _on_sfx_volume_value_changed(value: float) -> void:
 	AudioPlayer.update_volume(2, value)
 	Prefs.sfx_volume = value
+	Prefs.save()
 	if sfx_ready:
 		AudioPlayer.play_sfx_array(AudioPlayer.player_damaged_sfx_arr)
 
 
+
 func _on_mouse_sensitivity_value_changed(value: float) -> void:
 	Prefs.mouse_sensitivity = value
+	Prefs.save()
 	var player = Game.get_player()
 	if (player != null):
 		player.mouse_look_sens = value
@@ -51,6 +56,7 @@ func _on_mouse_sensitivity_value_changed(value: float) -> void:
 
 func _on_head_bob_value_changed(value: float) -> void:
 	Prefs.head_bob = value
+	Prefs.save()
 	var player = Game.get_player()
 	if (player != null):
 		player.head_bob_speed = value
