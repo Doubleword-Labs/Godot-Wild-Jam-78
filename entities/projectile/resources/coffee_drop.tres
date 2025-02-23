@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="ProjectileResource" load_steps=4 format=3 uid="uid://duw0locddhoe"]
+[gd_resource type="Resource" script_class="ProjectileResource" load_steps=4 format=3 uid="uid://dg8q3vw38eol6"]
 
 [ext_resource type="PackedScene" uid="uid://bjlqxffemi3wh" path="res://entities/projectile/resources/coffee_drop/coffee_drop.tscn" id="1_y0m3m"]
 [ext_resource type="Script" uid="uid://we358fsclmak" path="res://entities/projectile/projectile_resource.gd" id="2_ersqw"]

@@ -34,6 +34,6 @@ enum AttackType {
 @export var death_sound: AudioStream
 @export var roam_sound: AudioStream
 @export var pain_sound: AudioStream
-@export var walk_sound: AudioStream
-@export var walk_animation_frame := 0
+@export var chase_sound: AudioStream
+@export var chase_animation_frame := 0
 @export var attack_sound: AudioStream

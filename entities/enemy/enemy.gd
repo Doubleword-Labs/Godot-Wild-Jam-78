@@ -267,8 +267,8 @@ func _on_animated_sprite_3d_frame_changed() -> void:
 						if collider is Player:
 							collider.take_damage(resource.melee_damage, false)
 
-		if is_chasing and sprite.frame == resource.walk_animation_frame:
-			play_sound(resource.walk_sound, true)
+		if is_chasing and sprite.frame == resource.chase_animation_frame:
+			play_sound(resource.chase_sound, true)
 
 
 func _on_idle_state_state_exited() -> void:
