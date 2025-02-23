@@ -12,6 +12,7 @@ const EnemyStateEvent = {
 }
 
 const FIREBALL_PROJECTILE = preload("res://entities/projectile/resources/fireball.tres")
+const RANGED_ATTACK_SOUND = preload("res://assets/sfx/enemies/shared/ranged_attack.ogg")
 
 @export_tool_button("Update from resource") var update_from_resource_button := update_from_resource
 
@@ -315,6 +316,14 @@ func _ranged_attack() -> void:
 
 	var direction := (predicted_position - enemy_pos).normalized()
 	Game.spawn_projectile(self, direction, projectile_spawn_point, _get_projectile_resource())
+
+	play_sound(
+		(
+			RANGED_ATTACK_SOUND
+			if resource.ranged_attack_sound == null
+			else resource.ranged_attack_sound
+		)
+	)
 
 
 func _melee_attack() -> void:

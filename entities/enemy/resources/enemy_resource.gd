@@ -37,3 +37,4 @@ enum AttackType {
 @export var chase_sound: AudioStream
 @export var chase_animation_frame := 0
 @export var attack_sound: AudioStream
+@export var ranged_attack_sound: AudioStream
