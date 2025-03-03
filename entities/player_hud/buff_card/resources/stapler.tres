@@ -8,5 +8,5 @@ script = ExtResource("1_w0mgx")
 internal_name = "stapler"
 headline = "STAPLER SHOTGUN"
 texture = ExtResource("2_raleq")
-text = " Swingline™                    A FPS staple"
+text = "A FPS staple"
 metadata/_custom_type_script = "uid://htcgp23ytf5n"
